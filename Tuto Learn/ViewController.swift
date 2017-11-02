@@ -24,7 +24,6 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         //Mahesh
-        //Vijay
         self.setLayoutAndSetTexts()
         self.setUpForGoogleSignIn()
     }
