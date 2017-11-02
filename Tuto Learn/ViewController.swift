@@ -12,7 +12,6 @@ import FBSDKLoginKit
 import Google
 import GoogleSignIn
 import Alamofire
-import MBProgressHUD
 class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
     @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -54,11 +53,12 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
 //                        {
                             print(response.result.value as Any)
                        // }
-                        MBProgressHUD.hide(for: self.view, animated: true)
+                        
                        }else if response.result.isFailure
                        {
                         print(response.result.error as Any)
                        }
+                    MBProgressHUD.hide(for: self.view, animated: true)
                 }
     }
     

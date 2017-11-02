@@ -12,6 +12,6 @@
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 #import <linkedin-sdk/LISDK.h>
-#import <MBProgressHUD/MBProgressHUD.h>
+#import "MBProgressHUD.h"
 
 #endif /* Header_h */

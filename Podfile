@@ -11,7 +11,6 @@ target 'Tuto Learn' do
    pod 'FacebookShare'
    pod 'Google/SignIn'
    pod 'SideMenu'
-   pod 'MBProgressHUD'
   # Pods for Tuto Learn
 
   target 'Tuto LearnTests' do
@@ -24,7 +23,6 @@ target 'Tuto Learn' do
    pod 'FacebookShare'
    pod 'Google/SignIn'
    pod 'SideMenu'
-   pod 'MBProgressHUD'
     # Pods for testing
   end
 
@@ -38,7 +36,6 @@ target 'Tuto Learn' do
    pod 'FacebookShare'
    pod 'Google/SignIn'
    pod 'SideMenu'
-   pod 'MBProgressHUD'
     # Pods for testing
   end
 
