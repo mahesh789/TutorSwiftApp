@@ -14,6 +14,11 @@
 		3D2278511FA39DF600D3B6E0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D22784F1FA39DF600D3B6E0 /* LaunchScreen.storyboard */; };
 		3D22785C1FA39DF600D3B6E0 /* Tuto_LearnTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D22785B1FA39DF600D3B6E0 /* Tuto_LearnTests.swift */; };
 		3D2278671FA39DF600D3B6E0 /* Tuto_LearnUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2278661FA39DF600D3B6E0 /* Tuto_LearnUITests.swift */; };
+		3D8B98561FA59C300083FC8F /* linkedin-sdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D8B98551FA59C300083FC8F /* linkedin-sdk.framework */; };
+		3D92C7751FAAFDD4001B7A91 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D92C7741FAAFDD4001B7A91 /* GoogleService-Info.plist */; };
+		50326AC26D61E7C64B569E55 /* Pods_Tuto_Learn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73D4B75396E27E1A8CBE1C7F /* Pods_Tuto_Learn.framework */; };
+		8587B336F013EEC2FF92572C /* Pods_Tuto_LearnUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F25EC7011674942482E84582 /* Pods_Tuto_LearnUITests.framework */; };
+		E0B999ABA2457D53A1E5523A /* Pods_Tuto_LearnTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E14C71DF087A30B77F81C24F /* Pods_Tuto_LearnTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3127DB78AA7843104C70CF4E /* Pods-Tuto LearnTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tuto LearnTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tuto LearnTests/Pods-Tuto LearnTests.release.xcconfig"; sourceTree = "<group>"; };
 		3D2278431FA39DF500D3B6E0 /* Tuto Learn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tuto Learn.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D2278461FA39DF600D3B6E0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3D2278481FA39DF600D3B6E0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -47,6 +53,17 @@
 		3D2278621FA39DF600D3B6E0 /* Tuto LearnUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tuto LearnUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D2278661FA39DF600D3B6E0 /* Tuto_LearnUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tuto_LearnUITests.swift; sourceTree = "<group>"; };
 		3D2278681FA39DF600D3B6E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3D8B98551FA59C300083FC8F /* linkedin-sdk.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = "linkedin-sdk.framework"; sourceTree = "<group>"; };
+		3D92C76D1FAAE4CD001B7A91 /* Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
+		3D92C7741FAAFDD4001B7A91 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		55AD48552D7AD84A932B14E4 /* Pods-Tuto LearnUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tuto LearnUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tuto LearnUITests/Pods-Tuto LearnUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		6AC1441E8797F5AA2CE644E7 /* Pods-Tuto Learn.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tuto Learn.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tuto Learn/Pods-Tuto Learn.release.xcconfig"; sourceTree = "<group>"; };
+		73D4B75396E27E1A8CBE1C7F /* Pods_Tuto_Learn.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tuto_Learn.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		90548A21F77BA925D6F12405 /* Pods-Tuto Learn.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tuto Learn.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tuto Learn/Pods-Tuto Learn.debug.xcconfig"; sourceTree = "<group>"; };
+		D9FA219B8107D4DE7C99BE06 /* Pods-Tuto LearnTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tuto LearnTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tuto LearnTests/Pods-Tuto LearnTests.debug.xcconfig"; sourceTree = "<group>"; };
+		DEF8B6D153567D6F4DFD6E95 /* Pods-Tuto LearnUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tuto LearnUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tuto LearnUITests/Pods-Tuto LearnUITests.release.xcconfig"; sourceTree = "<group>"; };
+		E14C71DF087A30B77F81C24F /* Pods_Tuto_LearnTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tuto_LearnTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F25EC7011674942482E84582 /* Pods_Tuto_LearnUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tuto_LearnUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +71,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50326AC26D61E7C64B569E55 /* Pods_Tuto_Learn.framework in Frameworks */,
+				3D8B98561FA59C300083FC8F /* linkedin-sdk.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0B999ABA2457D53A1E5523A /* Pods_Tuto_LearnTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,6 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8587B336F013EEC2FF92572C /* Pods_Tuto_LearnUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +102,8 @@
 				3D22785A1FA39DF600D3B6E0 /* Tuto LearnTests */,
 				3D2278651FA39DF600D3B6E0 /* Tuto LearnUITests */,
 				3D2278441FA39DF500D3B6E0 /* Products */,
+				C9E1321C5889B5168FEFBB57 /* Pods */,
+				50A4C9DD55A9FD2F579E5839 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -103,6 +126,8 @@
 				3D22784D1FA39DF600D3B6E0 /* Assets.xcassets */,
 				3D22784F1FA39DF600D3B6E0 /* LaunchScreen.storyboard */,
 				3D2278521FA39DF600D3B6E0 /* Info.plist */,
+				3D92C7741FAAFDD4001B7A91 /* GoogleService-Info.plist */,
+				3D92C76D1FAAE4CD001B7A91 /* Header.h */,
 			);
 			path = "Tuto Learn";
 			sourceTree = "<group>";
@@ -125,6 +150,30 @@
 			path = "Tuto LearnUITests";
 			sourceTree = "<group>";
 		};
+		50A4C9DD55A9FD2F579E5839 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3D8B98551FA59C300083FC8F /* linkedin-sdk.framework */,
+				73D4B75396E27E1A8CBE1C7F /* Pods_Tuto_Learn.framework */,
+				E14C71DF087A30B77F81C24F /* Pods_Tuto_LearnTests.framework */,
+				F25EC7011674942482E84582 /* Pods_Tuto_LearnUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C9E1321C5889B5168FEFBB57 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				90548A21F77BA925D6F12405 /* Pods-Tuto Learn.debug.xcconfig */,
+				6AC1441E8797F5AA2CE644E7 /* Pods-Tuto Learn.release.xcconfig */,
+				D9FA219B8107D4DE7C99BE06 /* Pods-Tuto LearnTests.debug.xcconfig */,
+				3127DB78AA7843104C70CF4E /* Pods-Tuto LearnTests.release.xcconfig */,
+				55AD48552D7AD84A932B14E4 /* Pods-Tuto LearnUITests.debug.xcconfig */,
+				DEF8B6D153567D6F4DFD6E95 /* Pods-Tuto LearnUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -132,9 +181,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3D22786B1FA39DF600D3B6E0 /* Build configuration list for PBXNativeTarget "Tuto Learn" */;
 			buildPhases = (
+				2B5D37B03578865F1F46B0C2 /* [CP] Check Pods Manifest.lock */,
 				3D22783F1FA39DF500D3B6E0 /* Sources */,
 				3D2278401FA39DF500D3B6E0 /* Frameworks */,
 				3D2278411FA39DF500D3B6E0 /* Resources */,
+				C8888A0B624DBDF5E3D3AEB6 /* [CP] Embed Pods Frameworks */,
+				A273F64DEF1270C4D674B870 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -149,9 +201,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3D22786E1FA39DF600D3B6E0 /* Build configuration list for PBXNativeTarget "Tuto LearnTests" */;
 			buildPhases = (
+				623817AFCEF945B37DE755DA /* [CP] Check Pods Manifest.lock */,
 				3D2278531FA39DF600D3B6E0 /* Sources */,
 				3D2278541FA39DF600D3B6E0 /* Frameworks */,
 				3D2278551FA39DF600D3B6E0 /* Resources */,
+				CC23DD40233C483CDE214EB9 /* [CP] Embed Pods Frameworks */,
+				3E1116A7393A7C88ABE63A94 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -167,9 +222,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3D2278711FA39DF600D3B6E0 /* Build configuration list for PBXNativeTarget "Tuto LearnUITests" */;
 			buildPhases = (
+				523353CF226A3E31D541C381 /* [CP] Check Pods Manifest.lock */,
 				3D22785E1FA39DF600D3B6E0 /* Sources */,
 				3D22785F1FA39DF600D3B6E0 /* Frameworks */,
 				3D2278601FA39DF600D3B6E0 /* Resources */,
+				B577927CEAAFF3FBB14CE911 /* [CP] Embed Pods Frameworks */,
+				E2232C548CC2718BE6A47175 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -193,6 +251,7 @@
 				TargetAttributes = {
 					3D2278421FA39DF500D3B6E0 = {
 						CreatedOnToolsVersion = 9.0.1;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 					3D2278561FA39DF600D3B6E0 = {
@@ -233,6 +292,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D2278511FA39DF600D3B6E0 /* LaunchScreen.storyboard in Resources */,
+				3D92C7751FAAFDD4001B7A91 /* GoogleService-Info.plist in Resources */,
 				3D22784E1FA39DF600D3B6E0 /* Assets.xcassets in Resources */,
 				3D22784C1FA39DF600D3B6E0 /* Main.storyboard in Resources */,
 			);
@@ -253,6 +313,249 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2B5D37B03578865F1F46B0C2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Tuto Learn-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3E1116A7393A7C88ABE63A94 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Tuto LearnTests/Pods-Tuto LearnTests-resources.sh",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tuto LearnTests/Pods-Tuto LearnTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		523353CF226A3E31D541C381 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Tuto LearnUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		623817AFCEF945B37DE755DA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Tuto LearnTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A273F64DEF1270C4D674B870 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Tuto Learn/Pods-Tuto Learn-resources.sh",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tuto Learn/Pods-Tuto Learn-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B577927CEAAFF3FBB14CE911 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Tuto LearnUITests/Pods-Tuto LearnUITests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKShareKit/FBSDKShareKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookCore/FacebookCore.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookLogin/FacebookLogin.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookShare/FacebookShare.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKShareKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookLogin.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookShare.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenu.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tuto LearnUITests/Pods-Tuto LearnUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C8888A0B624DBDF5E3D3AEB6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Tuto Learn/Pods-Tuto Learn-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKShareKit/FBSDKShareKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookCore/FacebookCore.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookLogin/FacebookLogin.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookShare/FacebookShare.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKShareKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookLogin.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookShare.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenu.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tuto Learn/Pods-Tuto Learn-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CC23DD40233C483CDE214EB9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Tuto LearnTests/Pods-Tuto LearnTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKShareKit/FBSDKShareKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookCore/FacebookCore.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookLogin/FacebookLogin.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookShare/FacebookShare.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKShareKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookLogin.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookShare.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenu.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tuto LearnTests/Pods-Tuto LearnTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E2232C548CC2718BE6A47175 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Tuto LearnUITests/Pods-Tuto LearnUITests-resources.sh",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tuto LearnUITests/Pods-Tuto LearnUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3D22783F1FA39DF500D3B6E0 /* Sources */ = {
@@ -424,34 +727,62 @@
 		};
 		3D22786C1FA39DF600D3B6E0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 90548A21F77BA925D6F12405 /* Pods-Tuto Learn.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3GH227U3JZ;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Alamofire\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/IQKeyboardManagerSwift\"",
+					"$(PROJECT_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				INFOPLIST_FILE = "Tuto Learn/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Tuto.Tuto-Learn";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				SWIFT_OBJC_BRIDGING_HEADER = "Tuto Learn/Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		3D22786D1FA39DF600D3B6E0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6AC1441E8797F5AA2CE644E7 /* Pods-Tuto Learn.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3GH227U3JZ;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				INFOPLIST_FILE = "Tuto Learn/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Tuto.Tuto-Learn";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				SWIFT_OBJC_BRIDGING_HEADER = "Tuto Learn/Header.h";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
 		3D22786F1FA39DF600D3B6E0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D9FA219B8107D4DE7C99BE06 /* Pods-Tuto LearnTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -468,6 +799,7 @@
 		};
 		3D2278701FA39DF600D3B6E0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3127DB78AA7843104C70CF4E /* Pods-Tuto LearnTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -484,6 +816,7 @@
 		};
 		3D2278721FA39DF600D3B6E0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 55AD48552D7AD84A932B14E4 /* Pods-Tuto LearnUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -499,6 +832,7 @@
 		};
 		3D2278731FA39DF600D3B6E0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DEF8B6D153567D6F4DFD6E95 /* Pods-Tuto LearnUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
