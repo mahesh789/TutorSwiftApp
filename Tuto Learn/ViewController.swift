@@ -35,31 +35,64 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
         self.linkedInLoginButton.setTitle("Linked In", for:UIControlState.normal)
         self.googlePlusLoginButton.setTitle("Google Plus", for:UIControlState.normal)
         fbLoginButton.addTarget(self, action: #selector(self.facebookLoginButtonClicked), for: .touchUpInside)
+        
+        //temprary
+        self.userNameTextField.text = "asdhjjsa@sdjsk.sds"
+        self.passwordTextField.text = "gh4527gh"
     }
+    
     //MARK:SignIn Button Action
     @IBAction func signInButtonAction(_ sender: Any) {
+        
+        guard  !(self.userNameTextField.text?.isEmpty)!  else {
+            self.showAlertController(alertMessage: "Please Enter Email")
+            return
+        }
+        guard (self.userNameTextField.text! as NSString).isValidEmail() else {
+             self.showAlertController(alertMessage: "Please Enter Valid Email")
+            return
+        }
+        guard !(self.passwordTextField.text?.isEmpty)! else {
+            self.showAlertController(alertMessage: "Please Enter Password")
+            return
+        }
         MBProgressHUD.showAdded(to: self.view, animated: true)
        self.loginApicall()
     }
     // MARK:Login Api Implementation
     func loginApicall() -> Void {
         
-        let urlPath = "http://tutoruber.000webhostapp.com/auth/public/tutor_login"
-        Alamofire.request(urlPath, method: .post, parameters: (["username":"sntftgnt@tgfyt.fgtdfg","password":"12345"] as [String:Any]), encoding: JSONEncoding.default, headers:["Content-Type":"application/json"])
-                    .responseJSON { response in
-                       if response.result.isSuccess
-                       {
-//                        if let result11 = response.result.value as? NSArray
-//                        {
-                            print(response.result.value as Any)
-                       // }
+        let urlPath = String(format: "%@%@",Constants.baseUrl,Constants.tutorLogin) as String
+        Alamofire.request(urlPath, method: .post, parameters: (["username":self.userNameTextField.text ?? "","password":self.passwordTextField.text ?? ""] as [String:Any]), encoding: JSONEncoding.default, headers:["Content-Type":"application/json"])
+            .responseJSON { response in
+                if response.result.isSuccess
+                {
+                    if let resultDictionary = response.result.value as? NSDictionary
+                    {
+                        if let resultParseLoginDictionary = resultDictionary.object(forKey: "Data")
+                        {
+                            let loginModelArray = TutorLoginModel.modelsFromDictionaryArray(array: [resultParseLoginDictionary])
+                            if (loginModelArray.first != nil)
+                            {
+                                TutorSharedClass.shared.loginTutorLoginObject = loginModelArray.first
+                            }
+                            
+                        }
                         
-                       }else if response.result.isFailure
-                       {
-                        print(response.result.error as Any)
-                       }
-                    MBProgressHUD.hide(for: self.view, animated: true)
+                    }
+                    
+                }else if response.result.isFailure
+                {
+                    print(response.result.error as Any)
                 }
+                MBProgressHUD.hide(for: self.view, animated: true)
+        }
+    }
+    //MARK: Default AlertViewController
+    func showAlertController(alertMessage:String?) -> Void {
+        let alert = UIAlertController(title: "", message: alertMessage, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
     
     // MARK: -Facebook Login
