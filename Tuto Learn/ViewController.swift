@@ -36,7 +36,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
         self.googlePlusLoginButton.setTitle("Google Plus", for:UIControlState.normal)
         fbLoginButton.addTarget(self, action: #selector(self.facebookLoginButtonClicked), for: .touchUpInside)
         
-        //temprary
+        //temporary
         self.userNameTextField.text = "asdhjjsa@sdjsk.sds"
         self.passwordTextField.text = "gh4527gh"
     }
@@ -71,16 +71,14 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
                     {
                         if let resultParseLoginDictionary = resultDictionary.object(forKey: "Data")
                         {
+                            print(resultParseLoginDictionary)
                             let loginModelArray = TutorLoginModel.modelsFromDictionaryArray(array: [resultParseLoginDictionary])
                             if (loginModelArray.first != nil)
                             {
                                 TutorSharedClass.shared.loginTutorLoginObject = loginModelArray.first
                             }
-                            
                         }
-                        
                     }
-                    
                 }else if response.result.isFailure
                 {
                     print(response.result.error as Any)

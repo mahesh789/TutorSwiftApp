@@ -13,4 +13,7 @@ class Constants {
     // MARK: List of Constants
     static let baseUrl = "http://tutoruber.000webhostapp.com/auth/public/"
     static let tutorLogin = "tutor_login"
+    static let screenSize = UIScreen.main.bounds
+    static let phoneScreenWidth = screenSize.width
+    static let phoneScreenHeight = screenSize.height
 }

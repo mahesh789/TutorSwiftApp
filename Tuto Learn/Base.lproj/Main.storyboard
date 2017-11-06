@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,9 +20,9 @@
         <!--Navigation Controller-->
         <scene sceneID="2az-ym-OcF">
             <objects>
-                <navigationController id="TwJ-JU-hmD" sceneMemberID="viewController">
+                <navigationController navigationBarHidden="YES" id="TwJ-JU-hmD" sceneMemberID="viewController">
+                    <nil key="simulatedTopBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="WHz-ep-5zS">
-                        <rect key="frame" x="0.0" y="20" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -45,7 +46,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fnR-d0-Mdw">
-                                <rect key="frame" x="0.0" y="64" width="414" height="672"/>
+                                <rect key="frame" x="0.0" y="20" width="414" height="772"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6fr-EV-lV6">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="603"/>
@@ -143,7 +144,7 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="6fr-EV-lV6" firstAttribute="width" secondItem="fnR-d0-Mdw" secondAttribute="width" id="L16-Lq-bUu"/>
-                                    <constraint firstAttribute="bottom" secondItem="6fr-EV-lV6" secondAttribute="bottom" id="OKY-UD-bNm"/>
+                                    <constraint firstAttribute="bottom" secondItem="6fr-EV-lV6" secondAttribute="bottom" constant="113" id="OKY-UD-bNm"/>
                                     <constraint firstAttribute="trailing" secondItem="6fr-EV-lV6" secondAttribute="trailing" id="j3t-sM-cvq"/>
                                     <constraint firstItem="6fr-EV-lV6" firstAttribute="leading" secondItem="fnR-d0-Mdw" secondAttribute="leading" id="wgv-Pp-3Rv"/>
                                     <constraint firstItem="6fr-EV-lV6" firstAttribute="top" secondItem="fnR-d0-Mdw" secondAttribute="top" id="zc0-7K-ofo"/>
@@ -154,7 +155,7 @@
                         <constraints>
                             <constraint firstItem="fnR-d0-Mdw" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="A9h-xE-z0r"/>
                             <constraint firstItem="fnR-d0-Mdw" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="FHf-17-3hr"/>
-                            <constraint firstItem="fnR-d0-Mdw" firstAttribute="bottom" secondItem="veT-rs-HuL" secondAttribute="top" id="QM9-89-Htc"/>
+                            <constraint firstItem="fnR-d0-Mdw" firstAttribute="bottom" secondItem="veT-rs-HuL" secondAttribute="top" constant="56" id="QM9-89-Htc"/>
                             <constraint firstItem="fnR-d0-Mdw" firstAttribute="top" secondItem="yVj-JV-63S" secondAttribute="bottom" id="TmU-CT-z9H"/>
                         </constraints>
                     </view>
