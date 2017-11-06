@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3D1BD8651FB0E69D00DDB3BB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1BD8641FB0E69D00DDB3BB /* ViewController.swift */; };
-		3D2278471FA39DF600D3B6E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2278461FA39DF600D3B6E0 /* AppDelegate.swift */; };
+		3D1BD8671FB0E74300DDB3BB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1BD8661FB0E74200DDB3BB /* AppDelegate.swift */; };
 		3D22784C1FA39DF600D3B6E0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D22784A1FA39DF600D3B6E0 /* Main.storyboard */; };
 		3D22784E1FA39DF600D3B6E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D22784D1FA39DF600D3B6E0 /* Assets.xcassets */; };
 		3D2278511FA39DF600D3B6E0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D22784F1FA39DF600D3B6E0 /* LaunchScreen.storyboard */; };
@@ -47,8 +47,8 @@
 /* Begin PBXFileReference section */
 		3127DB78AA7843104C70CF4E /* Pods-Tuto LearnTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tuto LearnTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tuto LearnTests/Pods-Tuto LearnTests.release.xcconfig"; sourceTree = "<group>"; };
 		3D1BD8641FB0E69D00DDB3BB /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		3D1BD8661FB0E74200DDB3BB /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3D2278431FA39DF500D3B6E0 /* Tuto Learn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tuto Learn.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		3D2278461FA39DF600D3B6E0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3D22784B1FA39DF600D3B6E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3D22784D1FA39DF600D3B6E0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3D2278501FA39DF600D3B6E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -141,7 +141,6 @@
 		3D2278451FA39DF500D3B6E0 /* Tuto Learn */ = {
 			isa = PBXGroup;
 			children = (
-				3D2278461FA39DF600D3B6E0 /* AppDelegate.swift */,
 				3D1BD8631FB0E69D00DDB3BB /* TutorViewControllers */,
 				3DC357941FB013960084F898 /* TutorViews */,
 				3DBEC5971FAF85900018CD66 /* TutorLoader */,
@@ -180,6 +179,7 @@
 		3DBEC58A1FAF80C70018CD66 /* TutorSharedClasses */ = {
 			isa = PBXGroup;
 			children = (
+				3D1BD8661FB0E74200DDB3BB /* AppDelegate.swift */,
 				3DBEC58B1FAF81050018CD66 /* TutorSharedClass.swift */,
 			);
 			path = TutorSharedClasses;
@@ -648,12 +648,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D1BD8671FB0E74300DDB3BB /* AppDelegate.swift in Sources */,
 				3DBEC5901FAF852A0018CD66 /* TutorLoginModel.swift in Sources */,
 				3DBEC5931FAF85510018CD66 /* TutorConstant.swift in Sources */,
 				3DC357971FB013D50084F898 /* TutorHomeNavigationBar.swift in Sources */,
 				3DBEC58C1FAF81050018CD66 /* TutorSharedClass.swift in Sources */,
 				3DBEC5961FAF85730018CD66 /* CommonUtils.swift in Sources */,
-				3D2278471FA39DF600D3B6E0 /* AppDelegate.swift in Sources */,
 				3D1BD8651FB0E69D00DDB3BB /* ViewController.swift in Sources */,
 				3DBEC59A1FAF85900018CD66 /* MBProgressHUD.m in Sources */,
 			);
