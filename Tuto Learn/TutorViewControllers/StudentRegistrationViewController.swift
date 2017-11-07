@@ -49,11 +49,28 @@ class StudentRegistrationViewController: UIViewController {
     }
     
     func registrationApicall() -> Void {
-        let urlPath = String(format: "%@%@",Constants.baseUrl,Constants.tutorLogin) as String
+        let urlPath = String(format: "%@%@",Constants.baseUrl,Constants.studentRegister) as String
         let data = UIImagePNGRepresentation(UIImage(named: "menu")!) as NSData?
-        let parameters = ["s_name":self.firstNameTextField.text ?? "","s_mobile":self.mobNoTextField.text ?? "","s_email":self.eMailTextField.text ?? "","s_password":self.passwordTextField.text ?? "","s_address1":self.address1TextField.text ?? "","s_address2": self.address2TextField.text ?? "","s_city_id":"12","s_login_key":"a4b12c9d","s_pin":"400001","s_lastname": self.lastNameTextField.text ?? "","s_dob":self.dobTextField.text ?? "","s_gender":self.genderTextField.text ?? "","s_school_name":"New English School","s_level":"9","s_profile_img":data,"s_extension":"png"] as [String : AnyObject]?
+        let dictionary = NSMutableDictionary()
+        dictionary.setValue(self.firstNameTextField.text, forKey: "s_name")
+        dictionary.setValue(self.mobNoTextField.text, forKey: "s_mobile")
+        dictionary.setValue(self.eMailTextField.text, forKey: "s_email")
+        dictionary.setValue(self.passwordTextField.text, forKey: "s_password")
+        dictionary.setValue(self.address1TextField.text, forKey: "s_address1")
+        dictionary.setValue(self.address2TextField.text, forKey: "s_address2")
+        dictionary.setValue("12", forKey: "s_city_ide")
+        dictionary.setValue("a4b12c9d", forKey: "s_login_key")
+        dictionary.setValue("400001", forKey: "s_pin")
+        dictionary.setValue(self.lastNameTextField.text, forKey: "s_lastname")
+        dictionary.setValue(self.dobTextField.text, forKey: "s_dob")
+        dictionary.setValue(self.genderTextField.text, forKey: "s_gender")
+        dictionary.setValue("New English School", forKey: "s_school_name")
+        dictionary.setValue("9", forKey: "s_level")
+        dictionary.setValue(data, forKey: "s_profile_img")
+        dictionary.setValue("png", forKey: "s_extension")
         
-        Alamofire.request(urlPath, method: .post, parameters: (parameters as [String:Any]), encoding: JSONEncoding.default, headers:["Content-Type":"application/json"]) .responseJSON { response in
+        
+        Alamofire.request(urlPath, method: .post, parameters: (dictionary as! [String:Any]), encoding: JSONEncoding.default, headers:["Content-Type":"application/json"]) .responseJSON { response in
                 if response.result.isSuccess
                 {
                     if let resultDictionary = response.result.value as? NSDictionary
