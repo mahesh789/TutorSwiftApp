@@ -45,7 +45,7 @@ class StudentRegistrationViewController: UIViewController {
     
     // MARK:Login Api Implementation
     @objc func backButtonAction(sender:UIButton!) {
-        _ = navigationController?.popViewController(animated: true)
+         self.navigationController?.popViewController(animated: true)
     }
     
     func registrationApicall() -> Void {
@@ -66,19 +66,15 @@ class StudentRegistrationViewController: UIViewController {
         dictionary.setValue(self.genderTextField.text, forKey: "s_gender")
         dictionary.setValue("New English School", forKey: "s_school_name")
         dictionary.setValue("9", forKey: "s_level")
-        dictionary.setValue(data, forKey: "s_profile_img")
+        //dictionary.setValue(data, forKey: "s_profile_img")
         dictionary.setValue("png", forKey: "s_extension")
-        
         
         Alamofire.request(urlPath, method: .post, parameters: (dictionary as! [String:Any]), encoding: JSONEncoding.default, headers:["Content-Type":"application/json"]) .responseJSON { response in
                 if response.result.isSuccess
                 {
                     if let resultDictionary = response.result.value as? NSDictionary
                     {
-                        if let resultParseLoginDictionary = resultDictionary.object(forKey:"Data")
-                        {
-                            print(resultParseLoginDictionary)
-                        }
+                        
                     }
                 }else if response.result.isFailure
                 {

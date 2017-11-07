@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="TwJ-JU-hmD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="TwJ-JU-hmD">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -46,7 +47,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fnR-d0-Mdw">
-                                <rect key="frame" x="0.0" y="40" width="414" height="752"/>
+                                <rect key="frame" x="0.0" y="20" width="414" height="772"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6fr-EV-lV6">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="603"/>
@@ -120,8 +121,7 @@
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                                 <state key="normal" title="Sign Up"/>
                                                 <connections>
-                                                    <action selector="linkedInLoginAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="H9O-0v-NL9"/>
-                                                    <segue destination="EKs-La-WDo" kind="show" id="qn5-zi-TVX"/>
+                                                    <action selector="signUpButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KO5-bp-HcJ"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -187,7 +187,7 @@
         <!--Student Registration View Controller-->
         <scene sceneID="oak-am-c3b">
             <objects>
-                <viewController id="EKs-La-WDo" customClass="StudentRegistrationViewController" customModule="Tuto_Learn" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StudentRegistrationViewController" id="EKs-La-WDo" customClass="StudentRegistrationViewController" customModule="Tuto_Learn" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="83Y-27-os1"/>
                         <viewControllerLayoutGuide type="bottom" id="tI4-HF-Ibh"/>
@@ -196,8 +196,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GEj-9U-KD6">
-                                <rect key="frame" x="0.0" y="64" width="414" height="672"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GEj-9U-KD6">
+                                <rect key="frame" x="0.0" y="76" width="414" height="672"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cf0-1B-pNb">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="998"/>
@@ -496,24 +496,29 @@ special character and one capital letter and one number.</string>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="Cf0-1B-pNb" secondAttribute="trailing" id="2jH-Uo-lPZ"/>
-                                    <constraint firstAttribute="bottom" secondItem="Cf0-1B-pNb" secondAttribute="bottom" constant="-332" id="4kj-J8-dHM"/>
+                                    <constraint firstAttribute="bottom" secondItem="Cf0-1B-pNb" secondAttribute="bottom" id="4kj-J8-dHM"/>
                                     <constraint firstItem="Cf0-1B-pNb" firstAttribute="leading" secondItem="GEj-9U-KD6" secondAttribute="leading" id="8ZD-J8-PRM"/>
                                     <constraint firstItem="Cf0-1B-pNb" firstAttribute="top" secondItem="GEj-9U-KD6" secondAttribute="top" id="hTx-r8-xp0"/>
                                     <constraint firstItem="Cf0-1B-pNb" firstAttribute="width" secondItem="GEj-9U-KD6" secondAttribute="width" id="ihr-gy-DZc"/>
                                 </constraints>
                             </scrollView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kic-Nu-G5q" customClass="TutorHomeNavigationBar" customModule="Tuto_Learn" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="20" width="414" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kic-Nu-G5q" customClass="TutorHomeNavigationBar" customModule="Tuto_Learn" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="76"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="76" id="rLh-0B-jH7"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="GEj-9U-KD6" firstAttribute="top" secondItem="Kic-Nu-G5q" secondAttribute="bottom" id="782-Dr-jZf"/>
                             <constraint firstItem="GEj-9U-KD6" firstAttribute="trailing" secondItem="I3u-r2-wAz" secondAttribute="trailing" id="E2n-hw-9e1"/>
-                            <constraint firstItem="GEj-9U-KD6" firstAttribute="bottom" secondItem="tI4-HF-Ibh" secondAttribute="top" id="HqJ-jX-WLe"/>
-                            <constraint firstItem="GEj-9U-KD6" firstAttribute="top" secondItem="83Y-27-os1" secondAttribute="bottom" id="WBV-Bp-wwG"/>
+                            <constraint firstItem="GEj-9U-KD6" firstAttribute="bottom" secondItem="tI4-HF-Ibh" secondAttribute="top" constant="12" id="HqJ-jX-WLe"/>
+                            <constraint firstItem="Kic-Nu-G5q" firstAttribute="top" secondItem="I3u-r2-wAz" secondAttribute="top" id="gMK-76-NFP"/>
                             <constraint firstItem="GEj-9U-KD6" firstAttribute="leading" secondItem="I3u-r2-wAz" secondAttribute="leading" id="iHN-SK-hRG"/>
+                            <constraint firstItem="Kic-Nu-G5q" firstAttribute="leading" secondItem="I3u-r2-wAz" secondAttribute="leading" id="nSi-2h-qVU"/>
+                            <constraint firstAttribute="trailing" secondItem="Kic-Nu-G5q" secondAttribute="trailing" id="t6p-8t-fTr"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="tq4-UR-DvZ"/>
@@ -524,12 +529,10 @@ special character and one capital letter and one number.</string>
                         <outlet property="districtTextField" destination="SSg-o0-Kgk" id="LZP-DN-CFB"/>
                         <outlet property="dobTextField" destination="p5o-qx-7fG" id="fSn-pd-Wcs"/>
                         <outlet property="eMailTextField" destination="wKx-dn-GEy" id="4aG-R1-0jb"/>
-                        <outlet property="fbLoginButton" destination="Z4h-qt-yzq" id="QEo-dk-Zdd"/>
                         <outlet property="finTextField" destination="o9f-Xn-3DL" id="eCf-8h-6CO"/>
                         <outlet property="firstNameTextField" destination="4Pt-Sl-4JW" id="fWh-7B-g1v"/>
                         <outlet property="genderTextField" destination="gJf-eZ-hR5" id="OJi-n8-qc9"/>
                         <outlet property="lastNameTextField" destination="YPV-AU-36i" id="9Za-uF-ZHL"/>
-                        <outlet property="linkedInLoginButton" destination="6Jg-ZI-G5Z" id="1Gm-vu-v3J"/>
                         <outlet property="mobNoTextField" destination="1gg-sU-xyr" id="MvB-wa-sj6"/>
                         <outlet property="passwordTextField" destination="jjW-oh-Nvb" id="1c2-TB-uGc"/>
                         <outlet property="pinCodeTextField" destination="Grm-IJ-MUY" id="3vm-UX-TXp"/>

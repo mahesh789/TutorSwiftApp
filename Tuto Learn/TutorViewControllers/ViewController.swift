@@ -93,6 +93,12 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
         self.present(alert, animated: true, completion: nil)
     }
     
+    @IBAction func signUpButtonAction(_ sender: Any)
+    {
+        let commonChangeEmailController:StudentRegistrationViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "StudentRegistrationViewController") as! StudentRegistrationViewController
+        self.navigationController?.pushViewController(commonChangeEmailController, animated: true)
+    }
+    
     // MARK: -Facebook Login
     @objc func facebookLoginButtonClicked() {
         let loginManager = LoginManager()
