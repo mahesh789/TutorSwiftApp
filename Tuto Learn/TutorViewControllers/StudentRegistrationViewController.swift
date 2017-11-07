@@ -25,7 +25,7 @@ class StudentRegistrationViewController: UIViewController {
     @IBOutlet weak var districtTextField: UITextField!
     @IBOutlet weak var pinCodeTextField: UITextField!
 
-    @IBOutlet weak var navigationBar: TutorHomeNavigationBar!
+    @IBOutlet weak var tutorNavigationBar: TutorHomeNavigationBar!
     override func viewDidLoad() {
         
         // Do any additional setup after loading the view.
@@ -39,7 +39,15 @@ class StudentRegistrationViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func setLayoutAndSetTexts() -> Void {
+        self.tutorNavigationBar.leftBarButton.addTarget(self, action: #selector(backButtonAction), for:.touchUpInside)
+    }
+    
     // MARK:Login Api Implementation
+    @objc func backButtonAction(sender:UIButton!) {
+        _ = navigationController?.popViewController(animated: true)
+    }
+    
     func registrationApicall() -> Void {
         let urlPath = String(format: "%@%@",Constants.baseUrl,Constants.tutorLogin) as String
         let data = UIImagePNGRepresentation(UIImage(named: "menu")!) as NSData?
