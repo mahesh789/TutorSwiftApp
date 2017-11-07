@@ -41,9 +41,9 @@ class StudentRegistrationViewController: UIViewController {
     func registrationApicall() -> Void {
         let urlPath = String(format: "%@%@",Constants.baseUrl,Constants.tutorLogin) as String
         let data = UIImagePNGRepresentation(UIImage(named: "menu")!) as NSData?
-        let parameters = ["s_name":self.firstNameTextField.text ?? "","s_mobile":self.mobNoTextField.text ?? "","s_email":self.eMailTextField.text ?? "","s_password":self.passwordTextField.text ?? "","s_address1":self.address1TextField.text ?? "","s_address2":self.address2TextField.text ?? "","s_city_id":"12","s_login_key":"a4b12c9d","s_pin":"400001","s_lastname":self.lastNameTextField.text ?? "","s_dob":self.dobTextField.text ?? "","s_gender":self.genderTextField.text ?? "","s_school_name":"New English School","s_level":"9","s_profile_img":data,"s_extension":"png"] as [String : AnyObject]
+        let parameters = ["s_name":self.firstNameTextField.text ?? "","s_mobile":self.mobNoTextField.text ?? "","s_email":self.eMailTextField.text ?? "","s_password":self.passwordTextField.text ?? "","s_address1":self.address1TextField.text ?? "","s_address2": self.address2TextField.text ?? "","s_city_id":"12","s_login_key":"a4b12c9d","s_pin":"400001","s_lastname": self.lastNameTextField.text ?? "","s_dob":self.dobTextField.text ?? "","s_gender":self.genderTextField.text ?? "","s_school_name":"New English School","s_level":"9","s_profile_img":data,"s_extension":"png"] as [String : AnyObject]?
         
-        Alamofire.request(urlPath, method: .post, parameters: (parameters as [String:Any]), encoding: JSONEncoding.default, headers:["Content-Type":"application/json"]) .responseJSON { response in
+        Alamofire.request(urlPath, method: .post, parameters: (parameters as [String:AnyObject]), encoding: JSONEncoding.default, headers:["Content-Type":"application/json"]) .responseJSON { response in
                 if response.result.isSuccess
                 {
                     if let resultDictionary = response.result.value as? NSDictionary
