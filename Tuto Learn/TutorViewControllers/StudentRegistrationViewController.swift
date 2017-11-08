@@ -9,7 +9,7 @@
 import UIKit
 import Alamofire
 
-class StudentRegistrationViewController: UIViewController {
+class StudentRegistrationViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
@@ -31,7 +31,6 @@ class StudentRegistrationViewController: UIViewController {
         // Do any additional setup after loading the view.
         super.viewDidLoad()
         self.setLayoutAndSetTexts()
-        self.registrationApicall()
     }
 
     override func didReceiveMemoryWarning() {
@@ -48,9 +47,64 @@ class StudentRegistrationViewController: UIViewController {
          self.navigationController?.popViewController(animated: true)
     }
     
+    @IBAction func submitButtonClicked(_ sender: Any) {
+        
+        guard  !(self.firstNameTextField.text?.isEmpty)!  else {
+            self.showAlertController(alertMessage: "Please Enter First Name")
+            return
+        }
+        guard !(self.lastNameTextField.text?.isEmpty)! else {
+            self.showAlertController(alertMessage: "Please Enter Last Name")
+            return
+        }
+        guard !(self.genderTextField.text?.isEmpty)! else {
+            self.showAlertController(alertMessage: "Please Enter Gender")
+            return
+        }
+        guard !(self.dobTextField.text?.isEmpty)! else {
+            self.showAlertController(alertMessage: "Please Enter Date of Birth")
+            return
+        }
+        guard (self.eMailTextField.text! as NSString).isValidEmail() else {
+            self.showAlertController(alertMessage: "Please Enter Email")
+            return
+        }
+        guard !(self.mobNoTextField.text?.isEmpty)! else {
+            self.showAlertController(alertMessage: "Please Enter Mobile No")
+            return
+        }
+        guard !(self.passwordTextField.text?.isEmpty)! else {
+            self.showAlertController(alertMessage: "Please Enter Password")
+            return
+        }
+        guard !(self.address1TextField.text?.isEmpty)! else {
+            self.showAlertController(alertMessage: "Please Enter Address 1 Field")
+            return
+        }
+        guard !(self.address2TextField.text?.isEmpty)! else {
+            self.showAlertController(alertMessage: "Please Enter Address 2 Field")
+            return
+        }
+        guard !(self.districtTextField.text?.isEmpty)! else {
+            self.showAlertController(alertMessage: "Please Enter District")
+            return
+        }
+        guard !(self.pinCodeTextField.text?.isEmpty)! else {
+            self.showAlertController(alertMessage: "Please Enter Pin Code")
+            return
+        }
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        self.registrationApicall()
+    }
+    
+    @IBAction func canelButtonClicked(_ sender: Any) {
+    }
+    
     func registrationApicall() -> Void {
         let urlPath = String(format: "%@%@",Constants.baseUrl,Constants.studentRegister) as String
         let data = UIImagePNGRepresentation(UIImage(named: "menu")!) as NSData?
+        let imageStr = data?.base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0))
+
         let dictionary = NSMutableDictionary()
         dictionary.setValue(self.firstNameTextField.text, forKey: "s_name")
         dictionary.setValue(self.mobNoTextField.text, forKey: "s_mobile")
@@ -66,16 +120,14 @@ class StudentRegistrationViewController: UIViewController {
         dictionary.setValue(self.genderTextField.text, forKey: "s_gender")
         dictionary.setValue("New English School", forKey: "s_school_name")
         dictionary.setValue("9", forKey: "s_level")
-        //dictionary.setValue(data, forKey: "s_profile_img")
+        dictionary.setValue(imageStr, forKey: "s_profile_img")
         dictionary.setValue("png", forKey: "s_extension")
         
         Alamofire.request(urlPath, method: .post, parameters: (dictionary as! [String:Any]), encoding: JSONEncoding.default, headers:["Content-Type":"application/json"]) .responseJSON { response in
                 if response.result.isSuccess
                 {
-                    if let resultDictionary = response.result.value as? NSDictionary
-                    {
-                        
-                    }
+                    if (response.result.value as? NSDictionary) != nil
+                        self.showAlertController(alertMessage: "Successfully Registered")
                 }else if response.result.isFailure
                 {
                     print(response.result.error as Any)
@@ -90,5 +142,16 @@ class StudentRegistrationViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool // called when 'return' key pressed. return false to ignore.
+    {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+//        self.view.endEditing(true)
+//        return false
+//    }
 
 }
