@@ -13,10 +13,6 @@ import Google
 import GoogleSignIn
 import Alamofire
 
-enum Status:Int {
-    case StatusOK = 200
-}
-
 class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
     @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -75,7 +71,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
                     if let resultDictionary = response.result.value as? NSDictionary
                     {
                         
-                        if Int(truncating: resultDictionary["status"] as! NSNumber) == Status.StatusOK.rawValue
+                        if Int(truncating: resultDictionary["status"] as! NSNumber) == Constants.Status.StatusOK.rawValue
                         {
                             if let resultParseLoginDictionary = resultDictionary.object(forKey: "Data")
                             {
@@ -141,7 +137,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
                 {
                     if let resultDictionary = response.result.value as? NSDictionary
                     {
-                        if Int(truncating: resultDictionary["status"] as! NSNumber) == Status.StatusOK.rawValue
+                        if Int(truncating: resultDictionary["status"] as! NSNumber) == Constants.Status.StatusOK.rawValue
                         {
                             if let resultParseLoginDictionary = resultDictionary.object(forKey: "Data")
                             {

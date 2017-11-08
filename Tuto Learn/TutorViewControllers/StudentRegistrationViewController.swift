@@ -40,6 +40,8 @@ class StudentRegistrationViewController: UIViewController, UITextFieldDelegate {
     
     func setLayoutAndSetTexts() -> Void {
         self.tutorNavigationBar.leftBarButton.addTarget(self, action: #selector(backButtonAction), for:.touchUpInside)
+        self.tutorNavigationBar.rightBarButton.isHidden = true
+        self.tutorNavigationBar.navigationTitleLabel.text = "Registration"
     }
     
     // MARK:Login Api Implementation
@@ -126,9 +128,9 @@ class StudentRegistrationViewController: UIViewController, UITextFieldDelegate {
         Alamofire.request(urlPath, method: .post, parameters: (dictionary as! [String:Any]), encoding: JSONEncoding.default, headers:["Content-Type":"application/json"]) .responseJSON { response in
                 if response.result.isSuccess
                 {
-                    if (response.result.value as? NSDictionary) != nil
+                    if let resultDictionary = response.result.value as? NSDictionary
                     {
-                        self.showAlertController(alertMessage: "Successfully Registered")
+                        self.showAlertController(alertMessage: resultDictionary["message"] as? String)
                     }
                 }else if response.result.isFailure
                 {

@@ -9,7 +9,9 @@
 import Foundation
 
 class Constants {
-    
+    enum Status:Int {
+        case StatusOK = 200
+    }
     // MARK: List of Constants
     static let baseUrl = "https://tutoruber.000webhostapp.com/auth/public/"
     static let studentLogin = "student_login"
@@ -20,3 +22,6 @@ class Constants {
     static let phoneScreenWidth = screenSize.width
     static let phoneScreenHeight = screenSize.height
 }
+
+
+
