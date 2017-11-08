@@ -12,6 +12,11 @@ import FBSDKLoginKit
 import Google
 import GoogleSignIn
 import Alamofire
+
+enum Status:Int {
+    case StatusOK = 200
+}
+
 class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
     @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -37,8 +42,8 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
         fbLoginButton.addTarget(self, action: #selector(self.facebookLoginButtonClicked), for: .touchUpInside)
         
         //temporary
-        self.userNameTextField.text = "asdhjjsa@sdjsk.sds"
-        self.passwordTextField.text = "gh4527gh"
+        self.userNameTextField.text = "ankita@test.com"
+        self.passwordTextField.text = "12345"
     }
     
     //MARK:SignIn Button Action
@@ -62,22 +67,30 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
     // MARK:Login Api Implementation
     func loginApicall() -> Void {
         
-        let urlPath = String(format: "%@%@",Constants.baseUrl,Constants.tutorLogin) as String
+        let urlPath = String(format: "%@%@",Constants.baseUrl,Constants.studentLogin) as String
         Alamofire.request(urlPath, method: .post, parameters: (["username":self.userNameTextField.text ?? "","password":self.passwordTextField.text ?? ""] as [String:Any]), encoding: JSONEncoding.default, headers:["Content-Type":"application/json"])
             .responseJSON { response in
                 if response.result.isSuccess
                 {
                     if let resultDictionary = response.result.value as? NSDictionary
                     {
-                        if let resultParseLoginDictionary = resultDictionary.object(forKey: "Data")
+                        
+                        if Int(truncating: resultDictionary["status"] as! NSNumber) == Status.StatusOK.rawValue
                         {
-                            print(resultParseLoginDictionary)
-                            let loginModelArray = TutorLoginModel.modelsFromDictionaryArray(array: [resultParseLoginDictionary])
-                            if (loginModelArray.first != nil)
+                            if let resultParseLoginDictionary = resultDictionary.object(forKey: "Data")
                             {
-                                TutorSharedClass.shared.loginTutorLoginObject = loginModelArray.first
+                                print(resultParseLoginDictionary)
+                                let loginModelArray = TutorLoginModel.modelsFromDictionaryArray(array: [resultParseLoginDictionary])
+                                if (loginModelArray.first != nil)
+                                {
+                                    TutorSharedClass.shared.loginTutorLoginObject = loginModelArray.first
+                                    self.showAlertController(alertMessage: "Login Successfull")
+                                }
                             }
+                        }else{
+                            self.showAlertController(alertMessage: resultDictionary["message"] as? String)
                         }
+                       
                     }
                 }else if response.result.isFailure
                 {
@@ -97,6 +110,59 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
     {
         let commonChangeEmailController:StudentRegistrationViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "StudentRegistrationViewController") as! StudentRegistrationViewController
         self.navigationController?.pushViewController(commonChangeEmailController, animated: true)
+    }
+    
+    func generateTokenApiCalling(paramsDictionary:NSDictionary) -> Void {
+        let urlPath = String(format: "%@%@",Constants.baseUrl,Constants.token) as String
+        Alamofire.request(urlPath, method: .post, parameters:nil, encoding: JSONEncoding.default, headers:["Content-Type":"application/json"])
+            .responseJSON { response in
+                if response.result.isSuccess
+                {
+                    if let resultDictionary = response.result.value as? NSDictionary
+                    {
+                       let tokenId = resultDictionary["token"] as? String
+                        self.loginSocialNetworkingApiCall(parametersDictionary: paramsDictionary as NSDictionary, token:tokenId)
+                    }else{
+                        MBProgressHUD.hide(for: self.view, animated: true)
+                    }
+                }else if response.result.isFailure
+                {
+                    print(response.result.error as Any)
+                    MBProgressHUD.hide(for: self.view, animated: true)
+                }
+        }
+    }
+    //MARK: -Login API Call For Social Networking
+    func loginSocialNetworkingApiCall(parametersDictionary:NSDictionary,token:String?) -> Void {
+        let urlPath = String(format: "%@%@",Constants.baseUrl,Constants.socialStudentRegister) as String
+        Alamofire.request(urlPath, method: .post, parameters: (parametersDictionary as! [String:Any]), encoding: JSONEncoding.default, headers:["Content-Type":"application/json","Authorization":String(format:"Bearer %@",token ?? "")])
+            .responseJSON { response in
+                if response.result.isSuccess
+                {
+                    if let resultDictionary = response.result.value as? NSDictionary
+                    {
+                        if Int(truncating: resultDictionary["status"] as! NSNumber) == Status.StatusOK.rawValue
+                        {
+                            if let resultParseLoginDictionary = resultDictionary.object(forKey: "Data")
+                            {
+                                print(resultParseLoginDictionary)
+                                let loginModelArray = TutorLoginModel.modelsFromDictionaryArray(array: [resultParseLoginDictionary])
+                                if (loginModelArray.first != nil)
+                                {
+                                    TutorSharedClass.shared.loginTutorLoginObject = loginModelArray.first
+                                    self.showAlertController(alertMessage: "Login Successfull")
+                                }
+                            }
+                        }else{
+                            self.showAlertController(alertMessage: resultDictionary["message"] as? String)
+                        }
+                    }
+                }else if response.result.isFailure
+                {
+                    print(response.result.error as Any)
+                }
+                MBProgressHUD.hide(for: self.view, animated: true)
+        }
     }
     
     // MARK: -Facebook Login
@@ -119,9 +185,18 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
         if((FBSDKAccessToken.current()) != nil){
             FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, picture.type(large), email"]).start(completionHandler: { (connection, result, error) -> Void in
                 if (error == nil){
-                   // self.dict = result as! [String : AnyObject]
-                    print(result!)
-                    //print(self.dict)
+                    if let responseDictionary = result as? [String : Any]
+                    {
+                    var profileUrlPicture = ""
+                    if  let profilePicture = responseDictionary["picture"] as? [String: Any], let profileData = profilePicture["data"] as? [String: Any],let profileUrl = profileData["url"]
+                     {
+                        profileUrlPicture = profileUrl as! String
+                     }
+                        let paramDictionary = ["ac_type":"facebook","id":responseDictionary["id"] ?? "","first_name":responseDictionary["name"] ?? "","last_name": "dfdfd","email":responseDictionary["email"] ?? "","address":"mumbai","url":profileUrlPicture ,"oauth_token":FBSDKAccessToken.current().tokenString]
+                        MBProgressHUD.showAdded(to: self.view, animated: true)
+                        self.generateTokenApiCalling(paramsDictionary: paramDictionary as NSDictionary)
+                    }
+                   
                 }
             })
         }
@@ -145,6 +220,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
         //adding the delegates
         GIDSignIn.sharedInstance().uiDelegate = self
         GIDSignIn.sharedInstance().delegate = self
+        GIDSignIn.sharedInstance().shouldFetchBasicProfile = true
     }
 
     //when the signin complets
@@ -157,20 +233,51 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
         }
         //if success display the email on label
         print(user.profile.email)
+        var profileUrl = ""
+        if (GIDSignIn.sharedInstance().currentUser.profile.hasImage)
+        {
+            let dimension = round(100 * UIScreen.main.scale);
+            let picUrl = user.profile.imageURL(withDimension: UInt(dimension))
+            profileUrl = String(format:"%@",(picUrl?.absoluteString)!)
+        }
+         let paramDictionary = ["ac_type":"gmail","id":user.userID,"first_name":user.profile.name,"last_name": "dfdfd","email":user.profile.email,"address":"mumbai","url":profileUrl ,"oauth_token":user.authentication.accessToken]
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        self.generateTokenApiCalling(paramsDictionary: paramDictionary as NSDictionary)
     }
     
     // MARK: -LinkedIn Login-
     @IBAction func linkedInLoginAction(_ sender: Any) {
         LISDKSessionManager.createSession(withAuth: [LISDK_BASIC_PROFILE_PERMISSION,LISDK_EMAILADDRESS_PERMISSION], state: nil, showGoToAppStoreDialog: true, successBlock: { (success) in
-            let url = "https://api.linkedin.com/v1/people/~"
+            let url = "https://api.linkedin.com/v1/people/~:(id,first-name,last-name,maiden-name,formatted-name,email-address,location:(name),public-profile-url,picture-url)"
             if (LISDKSessionManager.hasValidSession())
             {
                 LISDKAPIHelper.sharedInstance().getRequest(url, success: { (response) in
                     if let dataFromString = response?.data.data(using: String.Encoding.utf8, allowLossyConversion: false) {
-                        let result = try? JSONSerialization.jsonObject(with: dataFromString)
-                        print(result ?? "")
-                            LISDKSessionManager.clearSession()
+                        if let result = try? JSONSerialization.jsonObject(with: dataFromString) as! [String:Any]
+                        {
+                            print(result)
+                            DispatchQueue.main.async {
+                                let paramDictionary = NSMutableDictionary()
+                                paramDictionary.setValue("linkedin", forKey: "ac_type")
+                                paramDictionary.setValue(result["id"] as? String, forKey: "id")
+                                paramDictionary.setValue(result["firstName"] as? String, forKey: "first_name")
+                                paramDictionary.setValue(result["lastName"] as? String, forKey: "last_name")
+                                paramDictionary.setValue(result["emailAddress"] as? String, forKey: "email")
+                                if let location = result["location"] as? [String:Any],let name = location["name"]
+                                {
+                                    paramDictionary.setValue(name, forKey: "address")
+                                }else{
+                                    paramDictionary.setValue("", forKey: "address")
+                                }
+                                paramDictionary.setValue(result["pictureUrl"] as? String, forKey: "url")
+                                paramDictionary.setValue("", forKey: "oauth_token")
+                                MBProgressHUD.showAdded(to: self.view, animated: true)
+                                self.generateTokenApiCalling(paramsDictionary: paramDictionary as NSDictionary)
+                                LISDKSessionManager.clearSession()
+                            }
                         }
+                        
+                    }
                 }, error: { (error) in
                     print(error!)
                 })

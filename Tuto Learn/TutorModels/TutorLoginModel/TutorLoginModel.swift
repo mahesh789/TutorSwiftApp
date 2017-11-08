@@ -10,18 +10,14 @@ public class TutorLoginModel {
 	public var cityId : Int?
 	public var dOB : String?
 	public var email : String?
-	public var experience : Int?
     public var firstName : String?
 	public var gender : String?
 	public var lastName : String?
 	public var loginKey : String?
 	public var mobile : Int?
-	public var nIRCNo : String?
-	public var nRICImage : String?
 	public var pincode : Int?
 	public var profileImage : String?
-	public var qualification : String?
-	public var subjects : String?
+	public var schoolNameString : String?
 
 /**
     Returns an array of models based on given dictionary.
@@ -55,23 +51,19 @@ public class TutorLoginModel {
 */
 	required public init?(dictionary: NSDictionary) {
 
-		address1 = dictionary["Address 1"] as? String
-		address2 = dictionary["Address 2"] as? String
-		cityId = dictionary["City Id"] as? Int
-		dOB = dictionary["DOB"] as? String
-		email = dictionary["Email"] as? String
-		experience = dictionary["Experience"] as? Int
-		firstName = dictionary["First Name"] as? String
-		gender = dictionary["Gender"] as? String
-		lastName = dictionary["Last Name"] as? String
-		loginKey = dictionary["Login Key"] as? String
-		mobile = dictionary["Mobile"] as? Int
-		nIRCNo = dictionary["NIRC No"] as? String
-		nRICImage = dictionary["NRIC Image"] as? String
-		pincode = dictionary["Pincode"] as? Int
-		profileImage = dictionary["Profile Image"] as? String
-		qualification = dictionary["Qualification"] as? String
-		subjects = dictionary["Subjects"] as? String
+		address1 = dictionary["sm_address1"] as? String
+		address2 = dictionary["sm_address2"] as? String
+		cityId = dictionary["sm_city_id"] as? Int
+		dOB = dictionary["sm_dob"] as? String
+		email = dictionary["sm_email"] as? String
+		firstName = dictionary["sm_first"] as? String
+		gender = dictionary["sm_gender"] as? String
+		lastName = dictionary["sm_last"] as? String
+		loginKey = dictionary["sm_login_key"] as? String
+		mobile = dictionary["sm_mobile"] as? Int
+		pincode = dictionary["sm_pin"] as? Int
+		profileImage = dictionary["sm_profile_img_url"] as? String
+		schoolNameString = dictionary["sm_school_name"] as? String
 	}
 
 		
@@ -81,26 +73,21 @@ public class TutorLoginModel {
     - returns: NSDictionary.
 */
 	public func dictionaryRepresentation() -> NSDictionary {
-
+        
 		let dictionary = NSMutableDictionary()
 
-		dictionary.setValue(self.address1, forKey: "Address 1")
-		dictionary.setValue(self.address2, forKey: "Address 2")
-		dictionary.setValue(self.cityId, forKey: "City Id")
-		dictionary.setValue(self.dOB, forKey: "DOB")
-		dictionary.setValue(self.email, forKey: "Email")
-		dictionary.setValue(self.experience, forKey: "Experience")
-		dictionary.setValue(self.firstName, forKey: "First Name")
-		dictionary.setValue(self.gender, forKey: "Gender")
-		dictionary.setValue(self.lastName, forKey: "Last Name")
-		dictionary.setValue(self.loginKey, forKey: "Login Key")
-		dictionary.setValue(self.mobile, forKey: "Mobile")
-		dictionary.setValue(self.nIRCNo, forKey: "NIRC No")
-		dictionary.setValue(self.nRICImage, forKey: "NRIC Image")
-		dictionary.setValue(self.pincode, forKey: "Pincode")
-		dictionary.setValue(self.profileImage, forKey: "Profile Image")
-		dictionary.setValue(self.qualification, forKey: "Qualification")
-		dictionary.setValue(self.subjects, forKey: "Subjects")
+		dictionary.setValue(self.address1, forKey: "sm_address1")
+		dictionary.setValue(self.address2, forKey: "sm_address2")
+		dictionary.setValue(self.cityId, forKey: "sm_city_id")
+		dictionary.setValue(self.dOB, forKey: "sm_dob")
+		dictionary.setValue(self.email, forKey: "sm_email")
+		dictionary.setValue(self.firstName, forKey: "sm_first")
+		dictionary.setValue(self.gender, forKey: "sm_gender")
+		dictionary.setValue(self.lastName, forKey: "sm_last")
+		dictionary.setValue(self.loginKey, forKey: "sm_login_key")
+		dictionary.setValue(self.mobile, forKey: "sm_mobile")
+		dictionary.setValue(self.pincode, forKey: "sm_pin")
+		dictionary.setValue(self.profileImage, forKey: "sm_profile_img_url")
 
 		return dictionary
 	}
