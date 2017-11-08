@@ -127,7 +127,9 @@ class StudentRegistrationViewController: UIViewController, UITextFieldDelegate {
                 if response.result.isSuccess
                 {
                     if (response.result.value as? NSDictionary) != nil
+                    {
                         self.showAlertController(alertMessage: "Successfully Registered")
+                    }
                 }else if response.result.isFailure
                 {
                     print(response.result.error as Any)
