@@ -172,6 +172,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="xev-ul-uDT"/>
                     <connections>
+                        <outlet property="contentView" destination="6fr-EV-lV6" id="3Cl-wK-8tb"/>
                         <outlet property="fbLoginButton" destination="KTC-hg-j4L" id="hCf-Ky-d2u"/>
                         <outlet property="googlePlusLoginButton" destination="Wlg-g7-wpx" id="aD9-8E-4lZ"/>
                         <outlet property="linkedInLoginButton" destination="SIJ-sa-vwn" id="KZY-p8-DcY"/>
@@ -183,6 +184,76 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-114.49275362318842" y="69.293478260869577"/>
+        </scene>
+        <!--Tutor Home View Controller-->
+        <scene sceneID="wPd-8a-wqc">
+            <objects>
+                <viewController storyboardIdentifier="TutorHomeViewController" id="vUl-G4-tVc" customClass="TutorHomeViewController" customModule="Tuto_Learn" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="E1j-4T-xyd"/>
+                        <viewControllerLayoutGuide type="bottom" id="quF-Ei-4ie"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="9Od-Rh-7lS">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4jx-YW-cZx" customClass="TutorHomeNavigationBar" customModule="Tuto_Learn" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="76"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="76" id="k5z-rv-AFX"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="4jx-YW-cZx" secondAttribute="trailing" id="K31-8y-dve"/>
+                            <constraint firstItem="4jx-YW-cZx" firstAttribute="leading" secondItem="9Od-Rh-7lS" secondAttribute="leading" id="Sph-6Q-pt5"/>
+                            <constraint firstItem="4jx-YW-cZx" firstAttribute="top" secondItem="9Od-Rh-7lS" secondAttribute="top" id="wyC-Gj-R1G"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tutorHomeNavigationBar" destination="4jx-YW-cZx" id="Gep-Ff-Bb1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="m9A-cB-3zs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-890" y="765"/>
+        </scene>
+        <!--Side Menu Navigation Controller-->
+        <scene sceneID="5VS-fx-Lap">
+            <objects>
+                <navigationController storyboardIdentifier="RightMenuNavigationController" navigationBarHidden="YES" id="tdu-vi-EtH" customClass="UISideMenuNavigationController" customModule="SideMenu" sceneMemberID="viewController">
+                    <nil key="simulatedTopBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="LjW-av-JYC">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="oTs-K5-b4J" kind="relationship" relationship="rootViewController" id="4Pw-Dg-jLZ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="p8a-9J-hzi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-206" y="765"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="LcH-uz-ndH">
+            <objects>
+                <viewController id="oTs-K5-b4J" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Tx6-DV-vuU"/>
+                        <viewControllerLayoutGuide type="bottom" id="VLt-pc-FhK"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="YFb-lq-m4r">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="0.49522534419999997" blue="0.1910708944" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Hwq-cH-kzW"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fek-oP-j4Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="503" y="765"/>
         </scene>
         <!--Student Registration View Controller-->
         <scene sceneID="oak-am-c3b">

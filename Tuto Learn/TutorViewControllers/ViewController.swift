@@ -20,6 +20,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
     @IBOutlet weak var fbLoginButton: UIButton!
     @IBOutlet weak var linkedInLoginButton: UIButton!
     @IBOutlet weak var googlePlusLoginButton: UIButton!
+    @IBOutlet weak var contentView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -36,7 +37,8 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
         self.linkedInLoginButton.setTitle("Linked In", for:UIControlState.normal)
         self.googlePlusLoginButton.setTitle("Google Plus", for:UIControlState.normal)
         fbLoginButton.addTarget(self, action: #selector(self.facebookLoginButtonClicked), for: .touchUpInside)
-        
+        contentView.backgroundColor = UIColor.tutorAppBackgroungColor()
+        self.view.backgroundColor = UIColor.tutorAppBackgroungColor()
         //temporary
         self.userNameTextField.text = "ankita@test.com"
         self.passwordTextField.text = "12345"
@@ -62,7 +64,6 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
     }
     // MARK:Login Api Implementation
     func loginApicall() -> Void {
-        
         let urlPath = String(format: "%@%@",Constants.baseUrl,Constants.studentLogin) as String
         Alamofire.request(urlPath, method: .post, parameters: (["username":self.userNameTextField.text ?? "","password":self.passwordTextField.text ?? ""] as [String:Any]), encoding: JSONEncoding.default, headers:["Content-Type":"application/json"])
             .responseJSON { response in
@@ -80,7 +81,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
                                 if (loginModelArray.first != nil)
                                 {
                                     TutorSharedClass.shared.loginTutorLoginObject = loginModelArray.first
-                                    self.showAlertController(alertMessage: "Login Successfull")
+                                    self.setrootViewControllerAfterLogin()
                                 }
                             }
                         }else{
@@ -94,6 +95,12 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
                 }
                 MBProgressHUD.hide(for: self.view, animated: true)
         }
+    }
+    func setrootViewControllerAfterLogin() -> Void {
+         let tutorHomeViewController:TutorHomeViewController = self.storyboard?.instantiateViewController(withIdentifier: "TutorHomeViewController") as! TutorHomeViewController
+        let navigationController = UINavigationController(rootViewController: tutorHomeViewController)
+        navigationController.isNavigationBarHidden = true
+        UIApplication.shared.keyWindow?.rootViewController = navigationController
     }
     //MARK: Default AlertViewController
     func showAlertController(alertMessage:String?) -> Void {

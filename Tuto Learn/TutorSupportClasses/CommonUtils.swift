@@ -33,9 +33,13 @@ extension UIColor
             blue: rgb & 0xFF
         )
     }
-    
-  class func naigationBarColor() -> UIColor {
-        return UIColor(rgb: 0xFFFFFF)
+  class func navigationBarColor() -> UIColor {
+        return UIColor(rgb: 0x333333)
     }
-    
+    class func navigationTitleColor() -> UIColor {
+        return UIColor(rgb: 0xE6743E)
+    }
+    class func tutorAppBackgroungColor() -> UIColor {
+        return UIColor(rgb: 0x19929A)
+    }
 }

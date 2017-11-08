@@ -26,13 +26,14 @@ class TutorHomeNavigationBar: UIView {
     func layoutContent() -> Void {
         let navigationBarView = UIView()
         navigationBarView.frame = CGRect(x: 0, y: 0, width: Constants.phoneScreenWidth, height: 76)
-        navigationBarView.backgroundColor = UIColor.naigationBarColor()
+        navigationBarView.backgroundColor = UIColor.navigationBarColor()
         self.addSubview(navigationBarView)
         
         //Navigation Title
         navigationTitleLabel = UILabel.init(frame: CGRect(x:0,y: 18+(76-44-20)/2.0, width: Constants.phoneScreenWidth, height: 44))
         navigationTitleLabel.backgroundColor = UIColor.clear
         navigationTitleLabel.textAlignment = .center
+        navigationTitleLabel.textColor = UIColor.navigationTitleColor()
         navigationTitleLabel.font = UIFont(name: navigationTitleLabel.font.fontName, size: 20)
         navigationBarView.addSubview(navigationTitleLabel)
         
@@ -44,10 +45,6 @@ class TutorHomeNavigationBar: UIView {
         rightBarButton = UIButton.init(frame: CGRect(x:(Constants.phoneScreenWidth-50),y: 20+(76-30-20)/2.0, width: 30, height: 30))
         rightBarButton.setImage(UIImage(named: "menu"), for: UIControlState.normal)
         navigationBarView.addSubview(rightBarButton)
-        //Navigation Seperatar
-        let lineSeperaterLabel = UILabel.init(frame: CGRect(x:0,y: 75, width: Constants.phoneScreenWidth, height: 1))
-        lineSeperaterLabel.backgroundColor = UIColor.lightGray
-        navigationBarView.addSubview(lineSeperaterLabel)
     }
 
 }
