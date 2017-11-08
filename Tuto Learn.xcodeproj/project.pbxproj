@@ -17,6 +17,7 @@
 		3D8B98561FA59C300083FC8F /* linkedin-sdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D8B98551FA59C300083FC8F /* linkedin-sdk.framework */; };
 		3D92C7751FAAFDD4001B7A91 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D92C7741FAAFDD4001B7A91 /* GoogleService-Info.plist */; };
 		3D9AE04B1FB21E2B0061859F /* StudentRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9AE04A1FB21E2B0061859F /* StudentRegistrationViewController.swift */; };
+		3D9AE04E1FB36E160061859F /* TutorHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9AE04D1FB36E160061859F /* TutorHomeViewController.swift */; };
 		3DBEC58C1FAF81050018CD66 /* TutorSharedClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBEC58B1FAF81050018CD66 /* TutorSharedClass.swift */; };
 		3DBEC5901FAF852A0018CD66 /* TutorLoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBEC58F1FAF85290018CD66 /* TutorLoginModel.swift */; };
 		3DBEC5931FAF85510018CD66 /* TutorConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBEC5921FAF85510018CD66 /* TutorConstant.swift */; };
@@ -64,6 +65,7 @@
 		3D92C76D1FAAE4CD001B7A91 /* Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		3D92C7741FAAFDD4001B7A91 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3D9AE04A1FB21E2B0061859F /* StudentRegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentRegistrationViewController.swift; sourceTree = "<group>"; };
+		3D9AE04D1FB36E160061859F /* TutorHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorHomeViewController.swift; sourceTree = "<group>"; };
 		3DBEC58B1FAF81050018CD66 /* TutorSharedClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorSharedClass.swift; sourceTree = "<group>"; };
 		3DBEC58F1FAF85290018CD66 /* TutorLoginModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorLoginModel.swift; sourceTree = "<group>"; };
 		3DBEC5921FAF85510018CD66 /* TutorConstant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorConstant.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 			children = (
 				3D9AE04A1FB21E2B0061859F /* StudentRegistrationViewController.swift */,
 				3D1BD8641FB0E69D00DDB3BB /* ViewController.swift */,
+				3D9AE04C1FB36DED0061859F /* TutorHomeViewController */,
 			);
 			path = TutorViewControllers;
 			sourceTree = "<group>";
@@ -177,6 +180,14 @@
 				3D2278681FA39DF600D3B6E0 /* Info.plist */,
 			);
 			path = "Tuto LearnUITests";
+			sourceTree = "<group>";
+		};
+		3D9AE04C1FB36DED0061859F /* TutorHomeViewController */ = {
+			isa = PBXGroup;
+			children = (
+				3D9AE04D1FB36E160061859F /* TutorHomeViewController.swift */,
+			);
+			path = TutorHomeViewController;
 			sourceTree = "<group>";
 		};
 		3DBEC58A1FAF80C70018CD66 /* TutorSharedClasses */ = {
@@ -657,6 +668,7 @@
 				3DBEC5931FAF85510018CD66 /* TutorConstant.swift in Sources */,
 				3DC357971FB013D50084F898 /* TutorHomeNavigationBar.swift in Sources */,
 				3DBEC58C1FAF81050018CD66 /* TutorSharedClass.swift in Sources */,
+				3D9AE04E1FB36E160061859F /* TutorHomeViewController.swift in Sources */,
 				3DBEC5961FAF85730018CD66 /* CommonUtils.swift in Sources */,
 				3D1BD8651FB0E69D00DDB3BB /* ViewController.swift in Sources */,
 				3DBEC59A1FAF85900018CD66 /* MBProgressHUD.m in Sources */,
