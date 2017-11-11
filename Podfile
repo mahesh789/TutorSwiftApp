@@ -11,6 +11,7 @@ target 'Tuto Learn' do
    pod 'FacebookShare'
    pod 'Google/SignIn'
    pod 'SideMenu'
+   pod 'AAPickerView'
   # Pods for Tuto Learn
 
   target 'Tuto LearnTests' do
@@ -23,6 +24,7 @@ target 'Tuto Learn' do
    pod 'FacebookShare'
    pod 'Google/SignIn'
    pod 'SideMenu'
+   pod 'AAPickerView'
     # Pods for testing
   end
 
@@ -36,6 +38,7 @@ target 'Tuto Learn' do
    pod 'FacebookShare'
    pod 'Google/SignIn'
    pod 'SideMenu'
+   pod 'AAPickerView'
     # Pods for testing
   end
 
