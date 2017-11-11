@@ -48,19 +48,20 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
     @IBAction func signInButtonAction(_ sender: Any) {
         
         guard  !(self.userNameTextField.text?.isEmpty)!  else {
-            self.showAlertController(alertMessage: "Please Enter Email")
+            TutorDefaultAlertController.showAlertController(alertMessage:"Please Enter Email" , showController: self)
             return
         }
         guard (self.userNameTextField.text! as NSString).isValidEmail() else {
-             self.showAlertController(alertMessage: "Please Enter Valid Email")
+            TutorDefaultAlertController.showAlertController(alertMessage:"Please Enter Valid Email" , showController: self)
             return
         }
         guard !(self.passwordTextField.text?.isEmpty)! else {
-            self.showAlertController(alertMessage: "Please Enter Password")
+            TutorDefaultAlertController.showAlertController(alertMessage:"Please Enter Password" , showController: self)
             return
         }
-        MBProgressHUD.showAdded(to: self.view, animated: true)
-       self.loginApicall()
+        self.setrootViewControllerAfterLogin()
+       // MBProgressHUD.showAdded(to: self.view, animated: true)
+      // self.loginApicall()
     }
     // MARK:Login Api Implementation
     func loginApicall() -> Void {
@@ -85,7 +86,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
                                 }
                             }
                         }else{
-                            self.showAlertController(alertMessage: resultDictionary["message"] as? String)
+                            TutorDefaultAlertController.showAlertController(alertMessage: resultDictionary["message"] as? String, showController: self)
                         }
                        
                     }
@@ -102,12 +103,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
         navigationController.isNavigationBarHidden = true
         UIApplication.shared.keyWindow?.rootViewController = navigationController
     }
-    //MARK: Default AlertViewController
-    func showAlertController(alertMessage:String?) -> Void {
-        let alert = UIAlertController(title: "", message: alertMessage, preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
-    }
+   
     
     @IBAction func signUpButtonAction(_ sender: Any)
     {
@@ -153,11 +149,11 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
                                 if (loginModelArray.first != nil)
                                 {
                                     TutorSharedClass.shared.loginTutorLoginObject = loginModelArray.first
-                                    self.showAlertController(alertMessage: "Login Successfull")
+                                    self.setrootViewControllerAfterLogin()
                                 }
                             }
                         }else{
-                            self.showAlertController(alertMessage: resultDictionary["message"] as? String)
+                             TutorDefaultAlertController.showAlertController(alertMessage: resultDictionary["message"] as? String, showController: self)
                         }
                     }
                 }else if response.result.isFailure
