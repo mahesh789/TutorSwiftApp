@@ -18,6 +18,8 @@
 		3D92C7751FAAFDD4001B7A91 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D92C7741FAAFDD4001B7A91 /* GoogleService-Info.plist */; };
 		3D9AE04B1FB21E2B0061859F /* StudentRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9AE04A1FB21E2B0061859F /* StudentRegistrationViewController.swift */; };
 		3D9AE04E1FB36E160061859F /* TutorHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9AE04D1FB36E160061859F /* TutorHomeViewController.swift */; };
+		3D9AE0521FB4058C0061859F /* TutorCommonPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9AE0501FB4058C0061859F /* TutorCommonPickerView.swift */; };
+		3D9AE0531FB4058C0061859F /* TutorCommonPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D9AE0511FB4058C0061859F /* TutorCommonPickerView.xib */; };
 		3DBEC58C1FAF81050018CD66 /* TutorSharedClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBEC58B1FAF81050018CD66 /* TutorSharedClass.swift */; };
 		3DBEC5901FAF852A0018CD66 /* TutorLoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBEC58F1FAF85290018CD66 /* TutorLoginModel.swift */; };
 		3DBEC5931FAF85510018CD66 /* TutorConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBEC5921FAF85510018CD66 /* TutorConstant.swift */; };
@@ -66,6 +68,8 @@
 		3D92C7741FAAFDD4001B7A91 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3D9AE04A1FB21E2B0061859F /* StudentRegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentRegistrationViewController.swift; sourceTree = "<group>"; };
 		3D9AE04D1FB36E160061859F /* TutorHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorHomeViewController.swift; sourceTree = "<group>"; };
+		3D9AE0501FB4058C0061859F /* TutorCommonPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorCommonPickerView.swift; sourceTree = "<group>"; };
+		3D9AE0511FB4058C0061859F /* TutorCommonPickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TutorCommonPickerView.xib; sourceTree = "<group>"; };
 		3DBEC58B1FAF81050018CD66 /* TutorSharedClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorSharedClass.swift; sourceTree = "<group>"; };
 		3DBEC58F1FAF85290018CD66 /* TutorLoginModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorLoginModel.swift; sourceTree = "<group>"; };
 		3DBEC5921FAF85510018CD66 /* TutorConstant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorConstant.swift; sourceTree = "<group>"; };
@@ -190,6 +194,15 @@
 			path = TutorHomeViewController;
 			sourceTree = "<group>";
 		};
+		3D9AE04F1FB4058C0061859F /* TutorPickerView */ = {
+			isa = PBXGroup;
+			children = (
+				3D9AE0501FB4058C0061859F /* TutorCommonPickerView.swift */,
+				3D9AE0511FB4058C0061859F /* TutorCommonPickerView.xib */,
+			);
+			path = TutorPickerView;
+			sourceTree = "<group>";
+		};
 		3DBEC58A1FAF80C70018CD66 /* TutorSharedClasses */ = {
 			isa = PBXGroup;
 			children = (
@@ -243,6 +256,7 @@
 		3DC357941FB013960084F898 /* TutorViews */ = {
 			isa = PBXGroup;
 			children = (
+				3D9AE04F1FB4058C0061859F /* TutorPickerView */,
 				3DC357951FB013960084F898 /* TutorNavigationView */,
 			);
 			path = TutorViews;
@@ -397,6 +411,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D9AE0531FB4058C0061859F /* TutorCommonPickerView.xib in Resources */,
 				3D2278511FA39DF600D3B6E0 /* LaunchScreen.storyboard in Resources */,
 				3D92C7751FAAFDD4001B7A91 /* GoogleService-Info.plist in Resources */,
 				3D22784E1FA39DF600D3B6E0 /* Assets.xcassets in Resources */,
@@ -665,6 +680,7 @@
 				3D1BD8671FB0E74300DDB3BB /* AppDelegate.swift in Sources */,
 				3DBEC5901FAF852A0018CD66 /* TutorLoginModel.swift in Sources */,
 				3D9AE04B1FB21E2B0061859F /* StudentRegistrationViewController.swift in Sources */,
+				3D9AE0521FB4058C0061859F /* TutorCommonPickerView.swift in Sources */,
 				3DBEC5931FAF85510018CD66 /* TutorConstant.swift in Sources */,
 				3DC357971FB013D50084F898 /* TutorHomeNavigationBar.swift in Sources */,
 				3DBEC58C1FAF81050018CD66 /* TutorSharedClass.swift in Sources */,
