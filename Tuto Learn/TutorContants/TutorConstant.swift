@@ -12,7 +12,7 @@ import Alamofire
 class Constants {
     enum Status:Int {
         case StatusOK = 200
-        case TokenInvalid = 202
+        case TokenInvalid = 404
     }
     // MARK: List of Constants
     static let baseUrl = "https://tutoruber.000webhostapp.com/auth/public/"
@@ -38,14 +38,14 @@ class TutorGenerateToken {
                 {
                     if let resultDictionary = response.result.value as? NSDictionary
                     {
-//                        if Int(resultDictionary["status"] as! String) == Constants.Status.StatusOK.rawValue
-//                        {
+                        if Int(resultDictionary["status"] as! String) == Constants.Status.StatusOK.rawValue
+                        {
                             let tokenId = resultDictionary["token"] as? String
                             TutorSharedClass.shared.token = tokenId
                             completionHandler(200,tokenId)
-//                        }else{
-//                            completionHandler(201,"")
-//                        }
+                        }else{
+                            completionHandler(201,"")
+                        }
                     }else{
                         completionHandler(201,"")
                     }
