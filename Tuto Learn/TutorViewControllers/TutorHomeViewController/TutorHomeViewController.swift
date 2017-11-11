@@ -62,13 +62,7 @@ class TutorHomeViewController: UIViewController,TutorCommonPickerViewDelegate {
     //MARK: IBACTIONS
 
     @IBAction func selectStudentButtonAction(_ sender: Any) {
-    tutorCommonPickerView = Bundle.main.loadNibNamed("TutorCommonPickerView", owner: self, options: nil)?.first as? TutorCommonPickerView
-        //tutorCommonPickerView?.pickerListArray = pickerArray
-        tutorCommonPickerView?.frame = self.view.bounds
-        tutorCommonPickerView?.delegate = self
-        //selectedPickerType = pickerType
-        tutorCommonPickerView?.selectedRowInPicker(Row:0, InComponent: 0)
-        self.view.addSubview(tutorCommonPickerView!)
+     self.openpickerViewController(pickerArray: [])
     }
    
     @IBAction func selectSubjectButtonAction(_ sender: Any) {
@@ -78,14 +72,29 @@ class TutorHomeViewController: UIViewController,TutorCommonPickerViewDelegate {
         self.getTopicList()
     }
     @IBAction func selectDateButtonAction(_ sender: Any) {
+        self.openpickerViewController(pickerArray: [])
     }
     @IBAction func specifyTimeSlotButtonAction(_ sender: Any) {
+        self.openpickerViewController(pickerArray: [])
     }
     @IBAction func tutionTypeButtonAction(_ sender: Any) {
+        self.openpickerViewController(pickerArray: [])
     }
     @IBAction func groupSizeButtonAction(_ sender: Any) {
+        self.openpickerViewController(pickerArray: [])
     }
     @IBAction func findTutorButtonAction(_ sender: Any) {
+        
+    }
+    
+    func openpickerViewController(pickerArray:Array<Any>?) -> Void {
+        tutorCommonPickerView = Bundle.main.loadNibNamed("TutorCommonPickerView", owner: self, options: nil)?.first as? TutorCommonPickerView
+        tutorCommonPickerView?.pickerListArray = pickerArray! as NSArray
+        tutorCommonPickerView?.frame = self.view.bounds
+        tutorCommonPickerView?.delegate = self
+        //selectedPickerType = pickerType
+        tutorCommonPickerView?.selectedRowInPicker(Row:0, InComponent: 0)
+        self.view.addSubview(tutorCommonPickerView!)
     }
     
     // MARK:Topic List Api Implementation
