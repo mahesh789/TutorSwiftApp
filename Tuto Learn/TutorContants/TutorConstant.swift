@@ -7,10 +7,12 @@
 //
 
 import Foundation
+import Alamofire
 
 class Constants {
     enum Status:Int {
         case StatusOK = 200
+        case TokenInvalid = 202
     }
     // MARK: List of Constants
     static let baseUrl = "https://tutoruber.000webhostapp.com/auth/public/"
@@ -18,10 +20,51 @@ class Constants {
     static let studentRegister = "student_register"
     static let socialStudentRegister = "social_student_register"
     static let token = "token"
+    static let topicList = "topic_list"
     static let screenSize = UIScreen.main.bounds
     static let phoneScreenWidth = screenSize.width
     static let phoneScreenHeight = screenSize.height
+    
+  
 }
 
+class TutorGenerateToken {
+    class func performGenerateTokenUrl(completionHandler: @escaping (NSInteger?,String?) -> Void)
+    {
+        let urlPath = String(format: "%@%@",Constants.baseUrl,Constants.token) as String
+        Alamofire.request(urlPath, method: .post, parameters:nil, encoding: JSONEncoding.default, headers:["Content-Type":"application/json"])
+            .responseJSON { response in
+                if response.result.isSuccess
+                {
+                    if let resultDictionary = response.result.value as? NSDictionary
+                    {
+//                        if Int(resultDictionary["status"] as! String) == Constants.Status.StatusOK.rawValue
+//                        {
+                            let tokenId = resultDictionary["token"] as? String
+                            TutorSharedClass.shared.token = tokenId
+                            completionHandler(200,tokenId)
+//                        }else{
+//                            completionHandler(201,"")
+//                        }
+                    }else{
+                        completionHandler(201,"")
+                    }
+                }else if response.result.isFailure
+                {
+                    print(response.result.error as Any)
+                    completionHandler(201,"")
+                }
+        }
+    }
+}
 
+class TutorDefaultAlertController {
+    
+    //MARK: Default AlertViewController
+   class func showAlertController(alertMessage:String?,showController:AnyObject) -> Void {
+        let alert = UIAlertController(title: "", message: alertMessage, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        (showController as AnyObject).present(alert, animated: true, completion: nil)
+    }
+}
 
