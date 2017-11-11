@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 // MARK: - Singleton
 final class TutorSharedClass {
     
@@ -19,5 +20,9 @@ final class TutorSharedClass {
     
     // MARK: Local Variables
     var loginTutorLoginObject:TutorLoginModel?
+    // MARK: Local Variables
+    var token:String?
+    
+     
 }
 
