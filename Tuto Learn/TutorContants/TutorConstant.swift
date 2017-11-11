@@ -20,6 +20,7 @@ class Constants {
     static let studentRegister = "student_register"
     static let socialStudentRegister = "social_student_register"
     static let token = "token"
+    static let cityList = "city_list"
     static let topicList = "topic_list"
     static let screenSize = UIScreen.main.bounds
     static let phoneScreenWidth = screenSize.width
