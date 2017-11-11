@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="fFt-RA-vdf" customClass="TutorCommonPickerView" customModule="Tuto_Learn" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9yI-Bf-P9t">
+                    <rect key="frame" x="0.0" y="451" width="375" height="216"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </pickerView>
+                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dz7-Dm-o6P">
+                    <rect key="frame" x="0.0" y="407" width="375" height="44"/>
+                    <items>
+                        <barButtonItem title="Cancel" id="HdA-Tv-PFw">
+                            <connections>
+                                <action selector="cancelButtonClicked:" destination="fFt-RA-vdf" id="HGl-m1-CG0"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="FFP-k4-mzj"/>
+                        <barButtonItem title="Done" id="x7K-SD-qgy">
+                            <connections>
+                                <action selector="doneButtonClicked:" destination="fFt-RA-vdf" id="RCX-p1-NdU"/>
+                            </connections>
+                        </barButtonItem>
+                    </items>
+                </toolbar>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="Dz7-Dm-o6P" secondAttribute="trailing" id="JDR-79-Ss7"/>
+                <constraint firstItem="Dz7-Dm-o6P" firstAttribute="leading" secondItem="fFt-RA-vdf" secondAttribute="leading" id="KXX-VB-KN8"/>
+                <constraint firstAttribute="bottom" secondItem="9yI-Bf-P9t" secondAttribute="bottom" id="U8q-sV-DqP"/>
+                <constraint firstItem="9yI-Bf-P9t" firstAttribute="top" secondItem="Dz7-Dm-o6P" secondAttribute="bottom" id="iIr-F6-OAB"/>
+                <constraint firstAttribute="trailing" secondItem="9yI-Bf-P9t" secondAttribute="trailing" id="sx5-bh-yth"/>
+                <constraint firstItem="9yI-Bf-P9t" firstAttribute="leading" secondItem="fFt-RA-vdf" secondAttribute="leading" id="weM-CK-Kgb"/>
+            </constraints>
+            <connections>
+                <outlet property="commonPickerView" destination="9yI-Bf-P9t" id="l49-ms-lqE"/>
+                <outlet property="toolBarCancelButton" destination="HdA-Tv-PFw" id="4DW-nr-l4l"/>
+                <outlet property="toolBarDoneButton" destination="x7K-SD-qgy" id="SnP-RD-ZuK"/>
+            </connections>
+            <point key="canvasLocation" x="-15" y="66"/>
+        </view>
+    </objects>
+</document>
