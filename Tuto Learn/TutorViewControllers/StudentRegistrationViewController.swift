@@ -9,8 +9,8 @@
 import UIKit
 import Alamofire
 
-class StudentRegistrationViewController: UIViewController, UITextFieldDelegate {
-
+class StudentRegistrationViewController: UIViewController,UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource {
+    
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var genderTextField: UITextField!
@@ -24,13 +24,23 @@ class StudentRegistrationViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var address2TextField: UITextField!
     @IBOutlet weak var districtTextField: UITextField!
     @IBOutlet weak var pinCodeTextField: UITextField!
-
     @IBOutlet weak var tutorNavigationBar: TutorHomeNavigationBar!
+    @IBOutlet weak var contentView: UIView!
+    
+    @IBOutlet weak var studentButton: UIButton!
+    @IBOutlet weak var guardianButton: UIButton!
+    let gender = ["Male","Female"]
+    let thePicker = UIPickerView()
+    var cityArray = Array<Any>()
+    var regiterTypeString : String?
+    
+
     override func viewDidLoad() {
-        
         // Do any additional setup after loading the view.
         super.viewDidLoad()
         self.setLayoutAndSetTexts()
+        thePicker.delegate = self ;
+        thePicker.dataSource = self ;
     }
 
     override func didReceiveMemoryWarning() {
@@ -42,6 +52,12 @@ class StudentRegistrationViewController: UIViewController, UITextFieldDelegate {
         self.tutorNavigationBar.leftBarButton.addTarget(self, action: #selector(backButtonAction), for:.touchUpInside)
         self.tutorNavigationBar.rightBarButton.isHidden = true
         self.tutorNavigationBar.navigationTitleLabel.text = "Registration"
+        self.view.backgroundColor = UIColor.tutorAppBackgroungColor()
+        self.contentView.backgroundColor = UIColor.tutorAppBackgroungColor()
+        
+        self.regiterTypeString = "Guardian"
+        self.guardianButton.backgroundColor = UIColor.orange
+        self.studentButton.backgroundColor = UIColor.white
     }
     
     // MARK:Login Api Implementation
@@ -49,6 +65,23 @@ class StudentRegistrationViewController: UIViewController, UITextFieldDelegate {
          self.navigationController?.popViewController(animated: true)
     }
     
+    @IBAction func registerTypeButtonClicked(_ sender: Any) {
+        switch (sender as AnyObject).tag
+        {
+        case 0:      //when guardian isclicked...
+            self.regiterTypeString = "Guardian"
+            self.guardianButton.backgroundColor = UIColor.orange
+            self.studentButton.backgroundColor = UIColor.white
+            break
+        case 1:      //when student is clicked...
+            self.regiterTypeString = "Student"
+            self.studentButton.backgroundColor = UIColor.orange
+            self.guardianButton.backgroundColor = UIColor.white
+
+            break
+        default: print("Other...")
+        }
+    }
     @IBAction func submitButtonClicked(_ sender: Any) {
         
         guard  !(self.firstNameTextField.text?.isEmpty)!  else {
@@ -95,6 +128,14 @@ class StudentRegistrationViewController: UIViewController, UITextFieldDelegate {
             self.showAlertController(alertMessage: "Please Enter Pin Code")
             return
         }
+        guard !(self.cnfPassTextField.text?.isEmpty)! else {
+            self.showAlertController(alertMessage: "Please Enter Cofirm Password")
+            return
+        }
+        guard (self.passwordTextField.text != self.cnfPassTextField.text) else {
+            self.showAlertController(alertMessage: "Confirmed password not matched please try again.")
+            return
+        }
         MBProgressHUD.showAdded(to: self.view, animated: true)
         self.registrationApicall()
     }
@@ -121,13 +162,31 @@ class StudentRegistrationViewController: UIViewController, UITextFieldDelegate {
         dictionary.setValue("Mobile", forKey: "s_oauth")
         dictionary.setValue("12", forKey: "s_city_ide")
 
-        Alamofire.request(urlPath, method: .post, parameters: (dictionary as! [String:Any]), encoding: JSONEncoding.default, headers:["Content-Type":"application/json"]) .responseJSON { response in
+        Alamofire.request(urlPath, method: .post, parameters: (dictionary as! [String:Any]), encoding: JSONEncoding.default, headers:["Content-Type":"application/json","Authorization":String(format:"Bearer %@",TutorSharedClass.shared.token ?? "")]) .responseJSON { response in
                 if response.result.isSuccess
                 {
                     if let resultDictionary = response.result.value as? NSDictionary
                     {
-                        self.showAlertController(alertMessage: resultDictionary["message"] as? String)
+                        if Int(resultDictionary["status"] as! String) == Constants.Status.StatusOK.rawValue
+                        {
+                            print(resultDictionary)
+                            MBProgressHUD.hide(for: self.view, animated: true)
+                        }else if Int(resultDictionary["status"] as! String) == Constants.Status.TokenInvalid.rawValue
+                        {
+                            TutorGenerateToken.performGenerateTokenUrl(completionHandler: { (status, token) in
+                                if status == Constants.Status.StatusOK.rawValue
+                                {
+                                    self.registrationApicall()
+                                }else{
+                                    print(token as Any)
+                                    MBProgressHUD.hide(for: self.view, animated: true)
+                                }
+                            })
+                        }else{
+                            TutorDefaultAlertController.showAlertController(alertMessage: resultDictionary["message"] as? String, showController: self)
+                        }
                     }
+                
                 }
                 else if response.result.isFailure {
                     print(response.result.error as Any)
@@ -139,7 +198,9 @@ class StudentRegistrationViewController: UIViewController, UITextFieldDelegate {
     //MARK: Default AlertViewController
     func showAlertController(alertMessage:String?) -> Void {
         let alert = UIAlertController(title: "", message: alertMessage, preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default){ action -> Void in
+            // Put your code here
+        })
         self.present(alert, animated: true, completion: nil)
     }
     
@@ -148,10 +209,94 @@ class StudentRegistrationViewController: UIViewController, UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        
+        if textField == self.genderTextField {
+            self.genderTextField.inputView = thePicker
+            thePicker.tag = 0
+        }
+        else if textField == self.districtTextField {
+            if self.cityArray.isEmpty == false {
+                self.districtTextField.inputView = self.thePicker
+                self.thePicker.tag = 1
+            }
+            else {
+                MBProgressHUD.showAdded(to: self.view, animated: true)
+                self.cityListApiCall()
+            }
+        }
+        return true
+    }
     
-//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//        self.view.endEditing(true)
-//        return false
-//    }
+    func cityListApiCall() -> Void {
+        let urlPath = String(format: "%@%@",Constants.baseUrl,Constants.cityList) as String
+        Alamofire.request(urlPath, method: .post, parameters: nil, encoding: JSONEncoding.default, headers:["Content-Type":"application/json","Authorization":String(format:"Bearer %@",TutorSharedClass.shared.token ?? "")]) .responseJSON { response in
+            if response.result.isSuccess
+            {
+                if let resultDictionary = response.result.value as? NSDictionary
+                {
+                    if Int(resultDictionary["status"] as! String) == Constants.Status.StatusOK.rawValue
+                    {
+                        print(resultDictionary)
+                        if let resultParseLoginDictionary = resultDictionary.object(forKey: "Data") {
+                            self.cityArray = [resultParseLoginDictionary]
+                        }
+                        
+                        MBProgressHUD.hide(for: self.view, animated: true)
+                    }
+                    else if Int(resultDictionary["status"] as! String) == Constants.Status.TokenInvalid.rawValue
+                    {
+                        TutorGenerateToken.performGenerateTokenUrl(completionHandler: { (status, token) in
+                            if status == Constants.Status.StatusOK.rawValue
+                            {
+                                self.cityListApiCall()
+                            }else{
+                                print(token as Any)
+                                MBProgressHUD.hide(for: self.view, animated: true)
+                            }
+                        })
+                    }
+                    else{
+                        TutorDefaultAlertController.showAlertController(alertMessage: resultDictionary["message"] as? String, showController: self)
+                    }
+                }
+            }
+            else if response.result.isFailure {
+                print(response.result.error as Any)
+            }
+            MBProgressHUD.hide(for: self.view, animated: true)
+        }
+    }
+    // Sets number of columns in picker view
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    // Sets the number of rows in the picker view
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        if pickerView.tag == 1 {
+            return cityArray.count
+        }
+        return gender.count
+    }
+    
+    // This function sets the text of the picker view to the content of the "salutations" array
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        if pickerView.tag == 1 {
+            let postDictionary = cityArray[row] as? Dictionary<String,String>
+            return postDictionary?["city_name"]
+        }
+        return gender[row]
+    }
+    
+    // When user selects an option, this function will set the text of the text field to reflect
+    // the selected option.
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if pickerView.tag == 1 {
+            let postDictionary = cityArray[row] as? Dictionary<String,String>
+            districtTextField.text = postDictionary?["city_name"]
+        }
+        genderTextField.text = gender[row]
+    }
 
 }
