@@ -308,6 +308,7 @@
                                                 </state>
                                                 <connections>
                                                     <action selector="findTutorButtonAction:" destination="vUl-G4-tVc" eventType="touchUpInside" id="7BX-sI-DfM"/>
+                                                    <segue destination="sO1-TQ-Snz" kind="show" id="iMu-3D-LkP"/>
                                                 </connections>
                                             </button>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Select Date" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jyC-Oz-AUV" customClass="AAPickerView" customModule="AAPickerView">
@@ -384,6 +385,95 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m9A-cB-3zs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-891.304347826087" y="764.67391304347836"/>
+        </scene>
+        <!--Tutor Teachers List View Controller-->
+        <scene sceneID="pWW-kh-clm">
+            <objects>
+                <viewController id="sO1-TQ-Snz" customClass="TutorTeachersListViewController" customModule="Tuto_Learn" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="7k3-fl-vtt"/>
+                        <viewControllerLayoutGuide type="bottom" id="xWS-o1-G0h"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="tLQ-UJ-L5n">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gPF-h5-UTR" customClass="TutorHomeNavigationBar" customModule="Tuto_Learn" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="76"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="76" id="Hg5-ck-dx1"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tutor Search Results" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nNZ-SR-elm">
+                                <rect key="frame" x="20" y="101" width="367" height="21"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="wUy-1w-pXd"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="afR-qp-OKX">
+                                <rect key="frame" x="20" y="130" width="374" height="546"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="Erc-RO-IQO">
+                                    <size key="itemSize" width="131" height="205"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TeachersCell" id="IhZ-wW-SNr">
+                                        <rect key="frame" x="0.0" y="0.0" width="131" height="205"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="131" height="205"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </view>
+                                        <color key="backgroundColor" red="0.31455734369999999" green="0.71428519489999998" blue="0.74507206680000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="sO1-TQ-Snz" id="75U-Ts-0ou"/>
+                                    <outlet property="delegate" destination="sO1-TQ-Snz" id="eQd-2Z-mTe"/>
+                                </connections>
+                            </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ioD-T5-JOS">
+                                <rect key="frame" x="128" y="691" width="157" height="30"/>
+                                <color key="backgroundColor" red="0.31455734369999999" green="0.71428519489999998" blue="0.74507206680000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Ido-9M-6Pj"/>
+                                    <constraint firstAttribute="width" constant="157" id="vuM-vo-UYI"/>
+                                </constraints>
+                                <state key="normal" title="Modify Search"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.31455734369999999" green="0.71428519489999998" blue="0.74507206680000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="gPF-h5-UTR" firstAttribute="leading" secondItem="tLQ-UJ-L5n" secondAttribute="leading" id="1HU-Fe-RnT"/>
+                            <constraint firstAttribute="trailing" secondItem="gPF-h5-UTR" secondAttribute="trailing" id="289-v4-96h"/>
+                            <constraint firstItem="ioD-T5-JOS" firstAttribute="centerX" secondItem="tLQ-UJ-L5n" secondAttribute="centerX" id="7eM-lc-Avx"/>
+                            <constraint firstItem="ioD-T5-JOS" firstAttribute="top" secondItem="afR-qp-OKX" secondAttribute="bottom" constant="15" id="8kP-XM-5PO"/>
+                            <constraint firstItem="gPF-h5-UTR" firstAttribute="top" secondItem="tLQ-UJ-L5n" secondAttribute="top" id="9L5-5r-bn2"/>
+                            <constraint firstItem="afR-qp-OKX" firstAttribute="top" secondItem="nNZ-SR-elm" secondAttribute="bottom" constant="8" id="D2v-Ma-YCy"/>
+                            <constraint firstItem="xWS-o1-G0h" firstAttribute="top" secondItem="ioD-T5-JOS" secondAttribute="bottom" constant="15" id="PGh-X2-WGK"/>
+                            <constraint firstAttribute="trailing" secondItem="afR-qp-OKX" secondAttribute="trailing" constant="20" id="Pqb-hB-555"/>
+                            <constraint firstItem="nNZ-SR-elm" firstAttribute="leading" secondItem="tLQ-UJ-L5n" secondAttribute="leading" constant="20" id="Yc4-ST-PbX"/>
+                            <constraint firstItem="nNZ-SR-elm" firstAttribute="top" secondItem="gPF-h5-UTR" secondAttribute="bottom" constant="25" id="cmv-U1-rqP"/>
+                            <constraint firstAttribute="trailing" secondItem="nNZ-SR-elm" secondAttribute="trailing" constant="27" id="d5v-73-Dkn"/>
+                            <constraint firstItem="afR-qp-OKX" firstAttribute="leading" secondItem="tLQ-UJ-L5n" secondAttribute="leading" constant="20" id="gtY-QJ-X2A"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="teachersListCollectionView" destination="afR-qp-OKX" id="JTF-aS-TeQ"/>
+                        <outlet property="tutorHomeNavigationBar" destination="gPF-h5-UTR" id="jmZ-Bl-E0F"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SgZ-RW-nh7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-891.304347826087" y="1493.4782608695652"/>
         </scene>
         <!--Side Menu Navigation Controller-->
         <scene sceneID="5VS-fx-Lap">
