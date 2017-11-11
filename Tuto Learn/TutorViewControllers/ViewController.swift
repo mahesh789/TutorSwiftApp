@@ -59,9 +59,9 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
             TutorDefaultAlertController.showAlertController(alertMessage:"Please Enter Password" , showController: self)
             return
         }
-       // self.setrootViewControllerAfterLogin()
-        MBProgressHUD.showAdded(to: self.view, animated: true)
-       self.loginApicall()
+        self.setrootViewControllerAfterLogin()
+       // MBProgressHUD.showAdded(to: self.view, animated: true)
+      // self.loginApicall()
     }
     // MARK:Login Api Implementation
     func loginApicall() -> Void {

@@ -9,14 +9,12 @@
 import UIKit
 import SideMenu
 import Alamofire
+import AAPickerView
 
 class TutorHomeViewController: UIViewController,TutorCommonPickerViewDelegate {
    
-    
-    
    @IBOutlet weak var tutorHomeNavigationBar:TutorHomeNavigationBar!
     @IBOutlet weak var contentView:UIView!
-
     @IBOutlet weak var selectStudentButton: UIButton!
     @IBOutlet weak var selectSubjectButton: UIButton!
     @IBOutlet weak var selectTopicButton: UIButton!
@@ -26,13 +24,25 @@ class TutorHomeViewController: UIViewController,TutorCommonPickerViewDelegate {
     @IBOutlet weak var groupSizeButton: UIButton!
     @IBOutlet weak var findTutorButton: UIButton!
     var  tutorCommonPickerView:TutorCommonPickerView?
+    @IBOutlet weak var picker: AAPickerView!
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+         configureDatePicker()
         self.setLayoutAndSetTexts()
         self.setupSideMenu()
-     
+      
+    }
+    func configureDatePicker() -> Void {
+        picker.pickerType = .DatePicker
+        picker.datePicker?.datePickerMode = .date
+        picker.dateFormatter.dateFormat = "dd/MM/YYYY"
+        picker.dateDidChange = { date in
+            print("selectedDate ", date )
+        }
     }
     func setLayoutAndSetTexts() -> Void {
         self.tutorHomeNavigationBar.rightBarButton.addTarget(self, action: #selector(menuClickAction), for:.touchUpInside)
@@ -72,7 +82,7 @@ class TutorHomeViewController: UIViewController,TutorCommonPickerViewDelegate {
         self.getTopicList()
     }
     @IBAction func selectDateButtonAction(_ sender: Any) {
-        self.openpickerViewController(pickerArray: [])
+       
     }
     @IBAction func specifyTimeSlotButtonAction(_ sender: Any) {
         self.openpickerViewController(pickerArray: [])
