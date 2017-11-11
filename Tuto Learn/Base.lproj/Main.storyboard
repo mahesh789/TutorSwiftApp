@@ -204,21 +204,190 @@
                                     <constraint firstAttribute="height" constant="76" id="k5z-rv-AFX"/>
                                 </constraints>
                             </view>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CYd-eF-48u">
+                                <rect key="frame" x="0.0" y="76" width="414" height="660"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FGM-Lu-qWr">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="350"/>
+                                        <subviews>
+                                            <button opaque="NO" alpha="0.90000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KEm-K4-cVr">
+                                                <rect key="frame" x="20" y="22" width="374" height="35"/>
+                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="35" id="quW-TE-UOk"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
+                                                <state key="normal" title=" Select Student">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="selectStudentButtonAction:" destination="vUl-G4-tVc" eventType="touchUpInside" id="SJE-3U-tue"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" alpha="0.89999997615814209" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bt6-QE-SOI">
+                                                <rect key="frame" x="20" y="80" width="175" height="35"/>
+                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="35" id="nQR-eJ-Ad7"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
+                                                <state key="normal" title=" Select Subject">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="selectStudentButtonAction:" destination="vUl-G4-tVc" eventType="touchUpInside" id="M3x-NY-KmP"/>
+                                                    <action selector="selectSubjectButtonAction:" destination="vUl-G4-tVc" eventType="touchUpInside" id="BhJ-se-IR7"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" alpha="0.89999997615814209" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TNc-jh-7g5">
+                                                <rect key="frame" x="219" y="80" width="175" height="35"/>
+                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="35" id="BPa-ot-Cmu"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
+                                                <state key="normal" title=" Select Topic">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="selectTopicButtonAction:" destination="vUl-G4-tVc" eventType="touchUpInside" id="ti1-wE-ApR"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" alpha="0.89999997615814209" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ms0-75-ULh">
+                                                <rect key="frame" x="20" y="138" width="175" height="35"/>
+                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="35" id="9DU-bN-xBm"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
+                                                <state key="normal" title=" Select Date">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="selectDateButtonAction:" destination="vUl-G4-tVc" eventType="touchUpInside" id="Pvj-tc-9Vv"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" alpha="0.89999997615814209" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5cO-VB-Fka">
+                                                <rect key="frame" x="219" y="138" width="175" height="35"/>
+                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="35" id="WDF-2L-zwG"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
+                                                <state key="normal" title=" Specify Time Slot">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="specifyTimeSlotButtonAction:" destination="vUl-G4-tVc" eventType="touchUpInside" id="1Ym-W2-Y13"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" alpha="0.89999997615814209" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xqo-EA-TUP">
+                                                <rect key="frame" x="20" y="196" width="175" height="35"/>
+                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="35" id="2My-Mr-E5S"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
+                                                <state key="normal" title=" Tution Type">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="tutionTypeButtonAction:" destination="vUl-G4-tVc" eventType="touchUpInside" id="NxH-6q-4I4"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" alpha="0.89999997615814209" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NJi-rh-8cb">
+                                                <rect key="frame" x="219" y="196" width="175" height="35"/>
+                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="35" id="REs-kU-0z4"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
+                                                <state key="normal" title=" Group Size">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="groupSizeButtonAction:" destination="vUl-G4-tVc" eventType="touchUpInside" id="Dpb-PE-LK0"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="99L-95-ooc">
+                                                <rect key="frame" x="120" y="275" width="175" height="35"/>
+                                                <color key="backgroundColor" red="1" green="0.49522534419999997" blue="0.1910708944" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="175" id="AF0-1e-qbG"/>
+                                                    <constraint firstAttribute="height" constant="35" id="evY-PZ-eVt"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="findTutorButtonAction:" destination="vUl-G4-tVc" eventType="touchUpInside" id="7BX-sI-DfM"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.31455734369999999" green="0.71428519489999998" blue="0.74507206680000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="5cO-VB-Fka" firstAttribute="top" secondItem="TNc-jh-7g5" secondAttribute="bottom" constant="23" id="12N-tq-4Zy"/>
+                                            <constraint firstAttribute="height" constant="350" id="4yu-YW-Gl4"/>
+                                            <constraint firstAttribute="trailing" secondItem="NJi-rh-8cb" secondAttribute="trailing" constant="20" id="6PL-aZ-4qV"/>
+                                            <constraint firstItem="bt6-QE-SOI" firstAttribute="top" secondItem="KEm-K4-cVr" secondAttribute="bottom" constant="23" id="AC7-mx-74s"/>
+                                            <constraint firstItem="KEm-K4-cVr" firstAttribute="top" secondItem="FGM-Lu-qWr" secondAttribute="top" constant="22" id="DG0-R7-cob"/>
+                                            <constraint firstItem="KEm-K4-cVr" firstAttribute="leading" secondItem="FGM-Lu-qWr" secondAttribute="leading" constant="20" id="F5Y-LR-Yhy"/>
+                                            <constraint firstItem="5cO-VB-Fka" firstAttribute="width" secondItem="ms0-75-ULh" secondAttribute="width" id="FO2-R0-cgk"/>
+                                            <constraint firstItem="5cO-VB-Fka" firstAttribute="leading" secondItem="ms0-75-ULh" secondAttribute="trailing" constant="24" id="MKL-Wj-2GE"/>
+                                            <constraint firstItem="NJi-rh-8cb" firstAttribute="leading" secondItem="xqo-EA-TUP" secondAttribute="trailing" constant="24" id="O3a-16-nXG"/>
+                                            <constraint firstItem="ms0-75-ULh" firstAttribute="top" secondItem="bt6-QE-SOI" secondAttribute="bottom" constant="23" id="Qe7-XX-9Ib"/>
+                                            <constraint firstAttribute="trailing" secondItem="TNc-jh-7g5" secondAttribute="trailing" constant="20" id="VbR-RH-4Tl"/>
+                                            <constraint firstItem="ms0-75-ULh" firstAttribute="leading" secondItem="FGM-Lu-qWr" secondAttribute="leading" constant="20" id="ZY6-i3-ElH"/>
+                                            <constraint firstItem="TNc-jh-7g5" firstAttribute="width" secondItem="bt6-QE-SOI" secondAttribute="width" id="bgq-4u-mSe"/>
+                                            <constraint firstAttribute="trailing" secondItem="KEm-K4-cVr" secondAttribute="trailing" constant="20" id="cVs-p7-HFR"/>
+                                            <constraint firstItem="NJi-rh-8cb" firstAttribute="top" secondItem="5cO-VB-Fka" secondAttribute="bottom" constant="23" id="hQa-r7-1WW"/>
+                                            <constraint firstItem="TNc-jh-7g5" firstAttribute="top" secondItem="KEm-K4-cVr" secondAttribute="bottom" constant="23" id="hSw-XV-Knd"/>
+                                            <constraint firstItem="TNc-jh-7g5" firstAttribute="leading" secondItem="bt6-QE-SOI" secondAttribute="trailing" constant="24" id="hic-zO-EKo"/>
+                                            <constraint firstItem="99L-95-ooc" firstAttribute="centerX" secondItem="FGM-Lu-qWr" secondAttribute="centerX" id="nh8-r4-jRi"/>
+                                            <constraint firstItem="99L-95-ooc" firstAttribute="top" secondItem="xqo-EA-TUP" secondAttribute="bottom" constant="44" id="sRo-kk-dy1"/>
+                                            <constraint firstItem="NJi-rh-8cb" firstAttribute="width" secondItem="xqo-EA-TUP" secondAttribute="width" id="sy1-uN-5mu"/>
+                                            <constraint firstItem="bt6-QE-SOI" firstAttribute="leading" secondItem="FGM-Lu-qWr" secondAttribute="leading" constant="20" id="tOZ-AT-szJ"/>
+                                            <constraint firstAttribute="trailing" secondItem="5cO-VB-Fka" secondAttribute="trailing" constant="20" id="tjn-Aa-J0t"/>
+                                            <constraint firstItem="xqo-EA-TUP" firstAttribute="top" secondItem="ms0-75-ULh" secondAttribute="bottom" constant="23" id="xZ0-Ja-cZs"/>
+                                            <constraint firstItem="xqo-EA-TUP" firstAttribute="leading" secondItem="FGM-Lu-qWr" secondAttribute="leading" constant="20" id="xl5-Hv-elE"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="FGM-Lu-qWr" secondAttribute="trailing" id="Hpf-Hi-L8c"/>
+                                    <constraint firstItem="FGM-Lu-qWr" firstAttribute="top" secondItem="CYd-eF-48u" secondAttribute="top" id="LQE-Hk-9Ec"/>
+                                    <constraint firstItem="FGM-Lu-qWr" firstAttribute="leading" secondItem="CYd-eF-48u" secondAttribute="leading" id="oK6-cg-aUo"/>
+                                    <constraint firstAttribute="bottom" secondItem="FGM-Lu-qWr" secondAttribute="bottom" id="rjQ-u1-Uay"/>
+                                    <constraint firstItem="FGM-Lu-qWr" firstAttribute="width" secondItem="CYd-eF-48u" secondAttribute="width" id="zlA-0q-t4s"/>
+                                </constraints>
+                            </scrollView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="CYd-eF-48u" firstAttribute="leading" secondItem="9Od-Rh-7lS" secondAttribute="leading" id="08J-l9-cK2"/>
                             <constraint firstAttribute="trailing" secondItem="4jx-YW-cZx" secondAttribute="trailing" id="K31-8y-dve"/>
                             <constraint firstItem="4jx-YW-cZx" firstAttribute="leading" secondItem="9Od-Rh-7lS" secondAttribute="leading" id="Sph-6Q-pt5"/>
+                            <constraint firstItem="quF-Ei-4ie" firstAttribute="top" secondItem="CYd-eF-48u" secondAttribute="bottom" id="luT-3R-CJn"/>
+                            <constraint firstAttribute="trailing" secondItem="CYd-eF-48u" secondAttribute="trailing" id="p3z-Ob-Ab4"/>
+                            <constraint firstItem="CYd-eF-48u" firstAttribute="top" secondItem="4jx-YW-cZx" secondAttribute="bottom" id="u23-uB-MJw"/>
                             <constraint firstItem="4jx-YW-cZx" firstAttribute="top" secondItem="9Od-Rh-7lS" secondAttribute="top" id="wyC-Gj-R1G"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="contentView" destination="FGM-Lu-qWr" id="ezl-5s-BFZ"/>
+                        <outlet property="findTutorButton" destination="99L-95-ooc" id="kAm-Gg-GnD"/>
+                        <outlet property="groupSizeButton" destination="NJi-rh-8cb" id="G8c-q2-NJC"/>
+                        <outlet property="selectDateButton" destination="ms0-75-ULh" id="2WE-4Z-sAO"/>
+                        <outlet property="selectStudentButton" destination="KEm-K4-cVr" id="rk7-Jm-oeQ"/>
+                        <outlet property="selectTopicButton" destination="TNc-jh-7g5" id="ywn-oX-yCA"/>
+                        <outlet property="specifyTimeSlotButton" destination="5cO-VB-Fka" id="qmW-VC-5hj"/>
+                        <outlet property="tutionTypeButton" destination="xqo-EA-TUP" id="nTg-UH-8O7"/>
                         <outlet property="tutorHomeNavigationBar" destination="4jx-YW-cZx" id="Gep-Ff-Bb1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m9A-cB-3zs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-890" y="765"/>
+            <point key="canvasLocation" x="-891.304347826087" y="764.67391304347836"/>
         </scene>
         <!--Side Menu Navigation Controller-->
         <scene sceneID="5VS-fx-Lap">
