@@ -76,7 +76,6 @@ class TutorHomeViewController: UIViewController,TutorCommonPickerViewDelegate {
     @IBAction func selectTopicButtonAction(_ sender: Any) {
         MBProgressHUD.showAdded(to: self.view, animated: true)
         self.getTopicList()
-        
     }
     @IBAction func selectDateButtonAction(_ sender: Any) {
     }
