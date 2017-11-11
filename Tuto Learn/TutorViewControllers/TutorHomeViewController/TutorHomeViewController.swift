@@ -54,7 +54,7 @@ class TutorHomeViewController: UIViewController,TutorCommonPickerViewDelegate {
         
         SideMenuManager.default.menuAddPanGestureToPresent(toView: self.navigationController!.navigationBar)
         SideMenuManager.default.menuAddScreenEdgePanGesturesToPresent(toView: self.navigationController!.view)
-        
+        SideMenuManager.default.menuWidth = (Constants.phoneScreenWidth-120)
         // Set up a cool background image for demo purposes
         SideMenuManager.default.menuAnimationBackgroundColor = UIColor.clear
     }

@@ -11,26 +11,36 @@ import UIKit
 class TutorMenuViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
 
     @IBOutlet weak var menuTableView:UITableView!
+    let menuArray:Array<String> = ["Profile","Student Profile","Preference Settings","Logout"]
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         self.menuTableView.estimatedRowHeight = 100
         self.menuTableView.rowHeight = UITableViewAutomaticDimension
+        self.menuTableView.backgroundColor = UIColor.tutorAppBackgroungColor()
+        self.menuTableView.tableFooterView = UIView()
     }
     
     //MARK: UITableView Delegate & DataSource Methods
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 4
+        return menuArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let  cell = UITableViewCell(style: .default, reuseIdentifier: "Cell")
-        //let cell = tableView.dequeueReusableCell(withIdentifier: "EmailEditCell", for: indexPath as IndexPath)
-        cell.textLabel?.text = "Mahesh Chowdary Mahesh Chowdary"
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TutorMenuTableViewCell", for: indexPath as IndexPath) as! TutorMenuTableViewCell
+        cell.menuOptionsLabel.text = menuArray[indexPath.row]
+        cell.menuOptionsLabel.textColor = UIColor.white
+        cell.contentView.backgroundColor = UIColor.tutorAppBackgroungColor()
+        cell.selectionStyle = .none
         return cell
+    }
+    
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
+       
     }
 
     override func didReceiveMemoryWarning() {
