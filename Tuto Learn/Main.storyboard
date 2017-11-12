@@ -33,7 +33,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dFd-Yc-5ib" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-889" y="70"/>
+            <point key="canvasLocation" x="-891" y="69"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -755,7 +755,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p8a-9J-hzi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-206" y="765"/>
+            <point key="canvasLocation" x="-114" y="765"/>
         </scene>
         <!--Tutor Menu View Controller-->
         <scene sceneID="LcH-uz-ndH">
@@ -831,7 +831,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fek-oP-j4Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="657" y="765"/>
+            <point key="canvasLocation" x="641" y="765"/>
         </scene>
         <!--Student Registration View Controller-->
         <scene sceneID="oak-am-c3b">
@@ -926,7 +926,7 @@
                                                     <outlet property="delegate" destination="EKs-La-WDo" id="1uz-HD-QCJ"/>
                                                 </connections>
                                             </textField>
-                                            <textField opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder=" Date of Birth" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="p5o-qx-7fG">
+                                            <textField opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder=" Date of Birth" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="p5o-qx-7fG" customClass="AAPickerView" customModule="AAPickerView">
                                                 <rect key="frame" x="223" y="192" width="140" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" red="0.31119036674499512" green="0.70265263319015503" blue="0.72514331340789795" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1183,7 +1183,7 @@ special character and one capital letter and one number.</string>
                                                 <color key="backgroundColor" red="0.31119036674499512" green="0.70265263319015503" blue="0.72514331340789795" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="placeholderLabel.textColor">
                                                         <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1298,6 +1298,266 @@ special character and one capital letter and one number.</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5x5-Aj-S9q" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="640.57971014492762" y="68.478260869565219"/>
+        </scene>
+        <!--Tutor Guardian Profile View Controller-->
+        <scene sceneID="FLc-Jw-Tme">
+            <objects>
+                <viewController storyboardIdentifier="TutorGuardianProfileViewController" id="SHp-Cd-Meh" customClass="TutorGuardianProfileViewController" customModule="Tuto_Learn" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fTu-Zw-CyE"/>
+                        <viewControllerLayoutGuide type="bottom" id="a73-ck-cg1"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="eyu-k6-Rkl">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Guardian Details" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D3e-IA-UcF">
+                                <rect key="frame" x="0.0" y="76" width="414" height="70"/>
+                                <color key="backgroundColor" red="0.024838246410000001" green="0.66795229909999998" blue="0.66595339779999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="22"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="crl-Ph-Ogi">
+                                <rect key="frame" x="0.0" y="143" width="414" height="605"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1qR-9G-uJQ">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="605"/>
+                                        <subviews>
+                                            <textField opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder=" First Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PkN-6F-vj4">
+                                                <rect key="frame" x="52" y="248" width="140" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="0.3111903667" green="0.70265263320000004" blue="0.72514331340000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderLabel.textColor">
+                                                        <color key="value" red="0.99019607840000001" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <outlet property="delegate" destination="SHp-Cd-Meh" id="GON-8P-M6V"/>
+                                                </connections>
+                                            </textField>
+                                            <textField opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder=" Last Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HPE-t0-jXu">
+                                                <rect key="frame" x="222" y="248" width="140" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="0.3111903667" green="0.70265263320000004" blue="0.72514331340000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderLabel.textColor">
+                                                        <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <outlet property="delegate" destination="SHp-Cd-Meh" id="rV7-Wy-ahG"/>
+                                                </connections>
+                                            </textField>
+                                            <textField opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder=" Gender" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bIg-yn-TrG">
+                                                <rect key="frame" x="52" y="327" width="140" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="0.3111903667" green="0.70265263320000004" blue="0.72514331340000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderLabel.textColor">
+                                                        <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <outlet property="delegate" destination="SHp-Cd-Meh" id="UBy-aa-06H"/>
+                                                </connections>
+                                            </textField>
+                                            <textField opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder=" Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9Kn-65-UyV">
+                                                <rect key="frame" x="52" y="404" width="140" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="0.3111903667" green="0.70265263320000004" blue="0.72514331340000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderLabel.textColor">
+                                                        <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <outlet property="delegate" destination="SHp-Cd-Meh" id="XTW-Vs-rOI"/>
+                                                </connections>
+                                            </textField>
+                                            <textField opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder=" Mobile" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oC0-lF-04x">
+                                                <rect key="frame" x="222" y="404" width="140" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="0.3111903667" green="0.70265263320000004" blue="0.72514331340000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderLabel.textColor">
+                                                        <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <outlet property="delegate" destination="SHp-Cd-Meh" id="w9e-Tw-u13"/>
+                                                </connections>
+                                            </textField>
+                                            <textField opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder=" Occupation" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9bO-bT-PBg">
+                                                <rect key="frame" x="52" y="476" width="310" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="0.3111903667" green="0.70265263320000004" blue="0.72514331340000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderLabel.textColor">
+                                                        <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <outlet property="delegate" destination="SHp-Cd-Meh" id="ogu-0M-N95"/>
+                                                </connections>
+                                            </textField>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="First Name*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zfw-az-gqz">
+                                                <rect key="frame" x="52" y="214" width="111" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Last Name*" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="swK-MG-XAE">
+                                                <rect key="frame" x="222" y="212" width="111" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Gender*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ux8-8R-EQu">
+                                                <rect key="frame" x="52" y="295" width="111" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date of Birth*" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ft-Td-nDS">
+                                                <rect key="frame" x="223" y="295" width="111" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Email ID*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pav-Eg-V44">
+                                                <rect key="frame" x="52" y="374" width="111" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Mobile No." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WFC-iA-z7F">
+                                                <rect key="frame" x="223" y="372" width="111" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Occupation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uAn-Dh-FUR">
+                                                <rect key="frame" x="52" y="448" width="111" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="profileImage" translatesAutoresizingMaskIntoConstraints="NO" id="PFz-MH-ngu">
+                                                <rect key="frame" x="128" y="12" width="158" height="120"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R7x-1q-Qrq">
+                                                <rect key="frame" x="128" y="142" width="158" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                                <state key="normal" title="Upload Photo">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3H1-cP-59z">
+                                                <rect key="frame" x="123" y="534" width="168" height="36"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="0.89047574996948242" green="0.44694197177886963" blue="0.21005439758300781" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                                <state key="normal" title="Save &amp; Proceed"/>
+                                                <connections>
+                                                    <action selector="saveProceedButtonClicked:" destination="SHp-Cd-Meh" eventType="touchUpInside" id="16g-dK-61C"/>
+                                                </connections>
+                                            </button>
+                                            <textField opaque="NO" alpha="0.80000001192092896" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder=" Date of Birth" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dXh-rT-PnT" customClass="AAPickerView" customModule="AAPickerView">
+                                                <rect key="frame" x="222" y="327" width="140" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="0.3111903667" green="0.70265263320000004" blue="0.72514331340000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="SHp-Cd-Meh" id="ZoX-B1-g3o"/>
+                                                </connections>
+                                            </textField>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.0" green="0.57309991120000003" blue="0.60387867689999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="1qR-9G-uJQ" secondAttribute="bottom" constant="3" id="GYR-P3-6SD"/>
+                                    <constraint firstItem="1qR-9G-uJQ" firstAttribute="top" secondItem="crl-Ph-Ogi" secondAttribute="top" id="H5W-lP-X2U"/>
+                                    <constraint firstItem="1qR-9G-uJQ" firstAttribute="height" secondItem="crl-Ph-Ogi" secondAttribute="height" id="cc8-16-xeI"/>
+                                    <constraint firstItem="1qR-9G-uJQ" firstAttribute="width" secondItem="crl-Ph-Ogi" secondAttribute="width" id="fR2-8I-C4N"/>
+                                    <constraint firstItem="1qR-9G-uJQ" firstAttribute="leading" secondItem="crl-Ph-Ogi" secondAttribute="leading" id="kg2-rB-SAf"/>
+                                    <constraint firstAttribute="trailing" secondItem="1qR-9G-uJQ" secondAttribute="trailing" id="pLT-Ob-Ph2"/>
+                                </constraints>
+                            </scrollView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xSa-y8-WGL" customClass="TutorHomeNavigationBar" customModule="Tuto_Learn" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="76"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="76" id="6LS-o5-Rwm"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="crl-Ph-Ogi" secondAttribute="trailing" id="3Gs-En-Jcy"/>
+                            <constraint firstItem="crl-Ph-Ogi" firstAttribute="bottom" secondItem="a73-ck-cg1" secondAttribute="top" constant="12" id="CjH-cK-xK4"/>
+                            <constraint firstItem="D3e-IA-UcF" firstAttribute="top" secondItem="xSa-y8-WGL" secondAttribute="bottom" id="JMx-LA-z1k"/>
+                            <constraint firstItem="crl-Ph-Ogi" firstAttribute="leading" secondItem="eyu-k6-Rkl" secondAttribute="leading" id="O30-ml-cOv"/>
+                            <constraint firstItem="crl-Ph-Ogi" firstAttribute="top" secondItem="eyu-k6-Rkl" secondAttribute="top" constant="143" id="ODu-wV-9t0"/>
+                            <constraint firstItem="a73-ck-cg1" firstAttribute="top" secondItem="D3e-IA-UcF" secondAttribute="bottom" constant="590" id="OPa-xu-0Pk"/>
+                            <constraint firstItem="crl-Ph-Ogi" firstAttribute="trailing" secondItem="eyu-k6-Rkl" secondAttribute="trailing" id="Psp-J8-Ukx"/>
+                            <constraint firstItem="xSa-y8-WGL" firstAttribute="leading" secondItem="eyu-k6-Rkl" secondAttribute="leading" id="Wmu-0q-9nA"/>
+                            <constraint firstItem="D3e-IA-UcF" firstAttribute="leading" secondItem="eyu-k6-Rkl" secondAttribute="leading" id="aa2-Xd-cGL"/>
+                            <constraint firstItem="xSa-y8-WGL" firstAttribute="top" secondItem="eyu-k6-Rkl" secondAttribute="top" id="g6r-5g-J51"/>
+                            <constraint firstAttribute="trailing" secondItem="D3e-IA-UcF" secondAttribute="trailing" id="g9F-GO-lih"/>
+                            <constraint firstAttribute="trailing" secondItem="xSa-y8-WGL" secondAttribute="trailing" id="nJG-Jf-JHP"/>
+                            <constraint firstItem="crl-Ph-Ogi" firstAttribute="leading" secondItem="eyu-k6-Rkl" secondAttribute="leading" id="rpX-Bk-2dM"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="bkT-Gj-dFZ"/>
+                    <connections>
+                        <outlet property="contentView" destination="1qR-9G-uJQ" id="Y9d-Z0-epO"/>
+                        <outlet property="dobTextField" destination="dXh-rT-PnT" id="ywB-d0-RJ0"/>
+                        <outlet property="eMailTextField" destination="9Kn-65-UyV" id="zKY-hN-fVJ"/>
+                        <outlet property="firstNameTextField" destination="PkN-6F-vj4" id="Uv4-UM-2xp"/>
+                        <outlet property="genderTextField" destination="bIg-yn-TrG" id="oVs-XH-d1J"/>
+                        <outlet property="lastNameTextField" destination="HPE-t0-jXu" id="14c-fe-yN5"/>
+                        <outlet property="mobileNoTextField" destination="oC0-lF-04x" id="2Ov-Pb-iNI"/>
+                        <outlet property="occupationTextField" destination="9bO-bT-PBg" id="omx-t4-kSg"/>
+                        <outlet property="profileImageView" destination="PFz-MH-ngu" id="eZj-Q2-XOS"/>
+                        <outlet property="tutorHomeNavigationBar" destination="xSa-y8-WGL" id="CDI-UW-5nF"/>
+                        <outlet property="uploadButton" destination="R7x-1q-Qrq" id="RcM-L8-1Zi"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wPB-4Z-bnN" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1410.144927536232" y="69.293478260869577"/>
         </scene>
     </scenes>
     <resources>
