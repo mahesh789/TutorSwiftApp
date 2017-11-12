@@ -33,7 +33,9 @@ class StudentRegistrationViewController: UIViewController,UITextFieldDelegate,UI
     let thePicker = UIPickerView()
     var cityArray = Array<Any>()
     var regiterTypeString : String?
-    
+    var genderTypeString : String?
+    var cityIdString : String?
+
 
     override func viewDidLoad() {
         // Do any additional setup after loading the view.
@@ -58,6 +60,10 @@ class StudentRegistrationViewController: UIViewController,UITextFieldDelegate,UI
         self.regiterTypeString = "Guardian"
         self.guardianButton.backgroundColor = UIColor.orange
         self.studentButton.backgroundColor = UIColor.white
+        
+        self.genderTextField.inputView = self.thePicker
+        self.districtTextField.inputView = self.thePicker
+
     }
     
     // MARK:Login Api Implementation
@@ -147,7 +153,7 @@ class StudentRegistrationViewController: UIViewController,UITextFieldDelegate,UI
         let urlPath = String(format: "%@%@",Constants.baseUrl,Constants.studentRegister) as String
         
         let dictionary = NSMutableDictionary()
-        dictionary.setValue("student", forKey: "register_type")
+        dictionary.setValue(self.regiterTypeString, forKey: "register_type")
         dictionary.setValue(self.firstNameTextField.text, forKey: "s_name")
         dictionary.setValue(self.lastNameTextField.text, forKey: "s_lastname")
         dictionary.setValue(self.mobNoTextField.text, forKey: "s_mobile")
@@ -160,7 +166,7 @@ class StudentRegistrationViewController: UIViewController,UITextFieldDelegate,UI
         dictionary.setValue("400001", forKey: "s_pin")
         dictionary.setValue("L6783452H", forKey: "s_nric")
         dictionary.setValue("Mobile", forKey: "s_oauth")
-        dictionary.setValue("12", forKey: "s_city_ide")
+        dictionary.setValue(self.cityIdString, forKey: "s_city_ide")
 
         Alamofire.request(urlPath, method: .post, parameters: (dictionary as! [String:Any]), encoding: JSONEncoding.default, headers:["Content-Type":"application/json","Authorization":String(format:"Bearer %@",TutorSharedClass.shared.token ?? "")]) .responseJSON { response in
                 if response.result.isSuccess
@@ -212,15 +218,11 @@ class StudentRegistrationViewController: UIViewController,UITextFieldDelegate,UI
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         
         if textField == self.genderTextField {
-            self.genderTextField.inputView = thePicker
             thePicker.tag = 0
         }
         else if textField == self.districtTextField {
-            if self.cityArray.isEmpty == false {
-                self.districtTextField.inputView = self.thePicker
-                self.thePicker.tag = 1
-            }
-            else {
+            self.thePicker.tag = 1
+            if self.cityArray.isEmpty == true {
                 MBProgressHUD.showAdded(to: self.view, animated: true)
                 self.cityListApiCall()
             }
@@ -235,11 +237,14 @@ class StudentRegistrationViewController: UIViewController,UITextFieldDelegate,UI
             {
                 if let resultDictionary = response.result.value as? NSDictionary
                 {
-                    if Int(resultDictionary["status"] as! String) == Constants.Status.StatusOK.rawValue
+                    if let status = resultDictionary["status"] as? NSNumber
                     {
                         print(resultDictionary)
-                        if let resultParseLoginDictionary = resultDictionary.object(forKey: "Data") {
-                            self.cityArray = [resultParseLoginDictionary]
+                        if let resultParseLoginDictionary = resultDictionary["Data"] as? NSArray {
+                            print(resultParseLoginDictionary)
+
+                            self.cityArray = resultParseLoginDictionary as! [Any]
+                            self.thePicker.reloadAllComponents()
                         }
                         
                         MBProgressHUD.hide(for: self.view, animated: true)
@@ -284,8 +289,10 @@ class StudentRegistrationViewController: UIViewController,UITextFieldDelegate,UI
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if pickerView.tag == 1 {
             let postDictionary = cityArray[row] as? Dictionary<String,String>
+            self.cityIdString = postDictionary?["city_id"]
             return postDictionary?["city_name"]
         }
+        self.genderTypeString = gender[row]
         return gender[row]
     }
     
@@ -295,6 +302,7 @@ class StudentRegistrationViewController: UIViewController,UITextFieldDelegate,UI
         if pickerView.tag == 1 {
             let postDictionary = cityArray[row] as? Dictionary<String,String>
             districtTextField.text = postDictionary?["city_name"]
+            return
         }
         genderTextField.text = gender[row]
     }
