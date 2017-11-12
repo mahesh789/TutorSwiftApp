@@ -20,9 +20,11 @@ final class TutorSharedClass {
     
     // MARK: Local Variables
     var loginTutorLoginObject:TutorLoginModel?
+    
     // MARK: Local Variables
     var token:String?
-    
+    var studentId:String?
+
      
 }
 
