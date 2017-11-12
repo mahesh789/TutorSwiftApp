@@ -22,11 +22,11 @@ class Constants {
     static let token = "token"
     static let cityList = "city_list"
     static let topicList = "topic_list"
+    static let editStudent = "edit_student"
+
     static let screenSize = UIScreen.main.bounds
     static let phoneScreenWidth = screenSize.width
     static let phoneScreenHeight = screenSize.height
-    
-  
 }
 
 class TutorGenerateToken {
@@ -39,7 +39,7 @@ class TutorGenerateToken {
                 {
                     if let resultDictionary = response.result.value as? NSDictionary
                     {
-                        if Int(resultDictionary["status"] as! String) == Constants.Status.StatusOK.rawValue
+                        if Int(truncating: resultDictionary["status"] as! NSNumber) == Constants.Status.StatusOK.rawValue
                         {
                             let tokenId = resultDictionary["token"] as? String
                             TutorSharedClass.shared.token = tokenId
