@@ -48,6 +48,7 @@ class TutorHomeViewController: UIViewController,TutorCommonPickerViewDelegate {
         self.tutorHomeNavigationBar.rightBarButton.addTarget(self, action: #selector(menuClickAction), for:.touchUpInside)
         self.tutorHomeNavigationBar.leftBarButton.isHidden = true
         self.tutorHomeNavigationBar.navigationTitleLabel.text = "Find a Tutor"
+        self.findTutorButton.setTitle("Find a Tutor", for: .normal)
         self.view.backgroundColor = UIColor.tutorAppBackgroungColor()
         self.contentView.backgroundColor = UIColor.tutorAppBackgroungColor()
     }

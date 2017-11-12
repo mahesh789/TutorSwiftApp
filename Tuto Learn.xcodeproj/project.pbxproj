@@ -29,6 +29,8 @@
 		3DBEC5961FAF85730018CD66 /* CommonUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBEC5951FAF85730018CD66 /* CommonUtils.swift */; };
 		3DBEC59A1FAF85900018CD66 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBEC5991FAF85900018CD66 /* MBProgressHUD.m */; };
 		3DC357971FB013D50084F898 /* TutorHomeNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC357961FB013D50084F898 /* TutorHomeNavigationBar.swift */; };
+		3DD68B801FB7E20C008B2C0C /* TutorTeachersListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD68B7F1FB7E20C008B2C0C /* TutorTeachersListCollectionViewCell.swift */; };
+		3DD68B821FB800AF008B2C0C /* TutorViewProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD68B811FB800AF008B2C0C /* TutorViewProfileViewController.swift */; };
 		50326AC26D61E7C64B569E55 /* Pods_Tuto_Learn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73D4B75396E27E1A8CBE1C7F /* Pods_Tuto_Learn.framework */; };
 		8587B336F013EEC2FF92572C /* Pods_Tuto_LearnUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F25EC7011674942482E84582 /* Pods_Tuto_LearnUITests.framework */; };
 		E0B999ABA2457D53A1E5523A /* Pods_Tuto_LearnTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E14C71DF087A30B77F81C24F /* Pods_Tuto_LearnTests.framework */; };
@@ -83,6 +85,8 @@
 		3DBEC5981FAF85900018CD66 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		3DBEC5991FAF85900018CD66 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		3DC357961FB013D50084F898 /* TutorHomeNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorHomeNavigationBar.swift; sourceTree = "<group>"; };
+		3DD68B7F1FB7E20C008B2C0C /* TutorTeachersListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorTeachersListCollectionViewCell.swift; sourceTree = "<group>"; };
+		3DD68B811FB800AF008B2C0C /* TutorViewProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorViewProfileViewController.swift; sourceTree = "<group>"; };
 		55AD48552D7AD84A932B14E4 /* Pods-Tuto LearnUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tuto LearnUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tuto LearnUITests/Pods-Tuto LearnUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		6AC1441E8797F5AA2CE644E7 /* Pods-Tuto Learn.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tuto Learn.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tuto Learn/Pods-Tuto Learn.release.xcconfig"; sourceTree = "<group>"; };
 		73D4B75396E27E1A8CBE1C7F /* Pods_Tuto_Learn.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tuto_Learn.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -222,6 +226,7 @@
 			isa = PBXGroup;
 			children = (
 				3D4515CE1FB70F9100591577 /* TutorTeachersListViewController.swift */,
+				3DD68B811FB800AF008B2C0C /* TutorViewProfileViewController.swift */,
 			);
 			path = TutorTeachersListViewController;
 			sourceTree = "<group>";
@@ -296,6 +301,7 @@
 		3DC357941FB013960084F898 /* TutorViews */ = {
 			isa = PBXGroup;
 			children = (
+				3DD68B7D1FB7E1D1008B2C0C /* TutorTeachersListViews */,
 				3D0A6B801FB6947B001CC7A9 /* TutoMenuView */,
 				3D9AE04F1FB4058C0061859F /* TutorPickerView */,
 				3DC357951FB013960084F898 /* TutorNavigationView */,
@@ -309,6 +315,22 @@
 				3DC357961FB013D50084F898 /* TutorHomeNavigationBar.swift */,
 			);
 			path = TutorNavigationView;
+			sourceTree = "<group>";
+		};
+		3DD68B7D1FB7E1D1008B2C0C /* TutorTeachersListViews */ = {
+			isa = PBXGroup;
+			children = (
+				3DD68B7E1FB7E1D1008B2C0C /* TutorCell */,
+			);
+			path = TutorTeachersListViews;
+			sourceTree = "<group>";
+		};
+		3DD68B7E1FB7E1D1008B2C0C /* TutorCell */ = {
+			isa = PBXGroup;
+			children = (
+				3DD68B7F1FB7E20C008B2C0C /* TutorTeachersListCollectionViewCell.swift */,
+			);
+			path = TutorCell;
 			sourceTree = "<group>";
 		};
 		50A4C9DD55A9FD2F579E5839 /* Frameworks */ = {
@@ -732,11 +754,13 @@
 				3D9AE0521FB4058C0061859F /* TutorCommonPickerView.swift in Sources */,
 				3DBEC5931FAF85510018CD66 /* TutorConstant.swift in Sources */,
 				3DC357971FB013D50084F898 /* TutorHomeNavigationBar.swift in Sources */,
+				3DD68B821FB800AF008B2C0C /* TutorViewProfileViewController.swift in Sources */,
 				3DBEC58C1FAF81050018CD66 /* TutorSharedClass.swift in Sources */,
 				3D9AE04E1FB36E160061859F /* TutorHomeViewController.swift in Sources */,
 				3DBEC5961FAF85730018CD66 /* CommonUtils.swift in Sources */,
 				3D1BD8651FB0E69D00DDB3BB /* ViewController.swift in Sources */,
 				3D0A6B701FB68388001CC7A9 /* TutorMenuViewController.swift in Sources */,
+				3DD68B801FB7E20C008B2C0C /* TutorTeachersListCollectionViewCell.swift in Sources */,
 				3DBEC59A1FAF85900018CD66 /* MBProgressHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
