@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 48;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		071E0FC61FB74FE600829299 /* TutorGuardianProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071E0FC51FB74FE600829299 /* TutorGuardianProfileViewController.swift */; };
 		3D0A6B701FB68388001CC7A9 /* TutorMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0A6B6F1FB68388001CC7A9 /* TutorMenuViewController.swift */; };
 		3D0A6B7F1FB692D0001CC7A9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D0A6B7E1FB692CF001CC7A9 /* Main.storyboard */; };
 		3D0A6B831FB694A5001CC7A9 /* TutorMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0A6B821FB694A5001CC7A9 /* TutorMenuTableViewCell.swift */; };
@@ -54,6 +55,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		071E0FC51FB74FE600829299 /* TutorGuardianProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorGuardianProfileViewController.swift; sourceTree = "<group>"; };
 		3127DB78AA7843104C70CF4E /* Pods-Tuto LearnTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tuto LearnTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tuto LearnTests/Pods-Tuto LearnTests.release.xcconfig"; sourceTree = "<group>"; };
 		3D0A6B6F1FB68388001CC7A9 /* TutorMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorMenuViewController.swift; sourceTree = "<group>"; };
 		3D0A6B7E1FB692CF001CC7A9 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -126,6 +128,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		071E0FC41FB74FB300829299 /* TutorProfileViewController */ = {
+			isa = PBXGroup;
+			children = (
+				071E0FC51FB74FE600829299 /* TutorGuardianProfileViewController.swift */,
+			);
+			path = TutorProfileViewController;
+			sourceTree = "<group>";
+		};
 		3D0A6B6E1FB68358001CC7A9 /* TutorMenuViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -153,6 +163,7 @@
 		3D1BD8631FB0E69D00DDB3BB /* TutorViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				071E0FC41FB74FB300829299 /* TutorProfileViewController */,
 				3D9AE04A1FB21E2B0061859F /* StudentRegistrationViewController.swift */,
 				3D1BD8641FB0E69D00DDB3BB /* ViewController.swift */,
 				3D4515CD1FB70F6F00591577 /* TutorTeachersListViewController */,
@@ -434,6 +445,7 @@
 				TargetAttributes = {
 					3D2278421FA39DF500D3B6E0 = {
 						CreatedOnToolsVersion = 9.0.1;
+						DevelopmentTeam = W5KCMKK9XT;
 						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
@@ -450,7 +462,7 @@
 				};
 			};
 			buildConfigurationList = 3D22783E1FA39DF500D3B6E0 /* Build configuration list for PBXProject "Tuto Learn" */;
-			compatibilityVersion = "Xcode 8.0";
+			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -749,6 +761,7 @@
 				3D1BD8671FB0E74300DDB3BB /* AppDelegate.swift in Sources */,
 				3D0A6B831FB694A5001CC7A9 /* TutorMenuTableViewCell.swift in Sources */,
 				3DBEC5901FAF852A0018CD66 /* TutorLoginModel.swift in Sources */,
+				071E0FC61FB74FE600829299 /* TutorGuardianProfileViewController.swift in Sources */,
 				3D9AE04B1FB21E2B0061859F /* StudentRegistrationViewController.swift in Sources */,
 				3D4515CF1FB70F9100591577 /* TutorTeachersListViewController.swift in Sources */,
 				3D9AE0521FB4058C0061859F /* TutorCommonPickerView.swift in Sources */,
@@ -923,7 +936,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3GH227U3JZ;
+				DEVELOPMENT_TEAM = W5KCMKK9XT;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -952,7 +965,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3GH227U3JZ;
+				DEVELOPMENT_TEAM = W5KCMKK9XT;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
