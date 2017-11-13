@@ -13,6 +13,7 @@ class Constants {
     enum Status:Int {
         case StatusOK = 200
         case TokenInvalid = 404
+        case serverInvalid = 1
     }
     // MARK: List of Constants
     static let baseUrl = "https://tutoruber.000webhostapp.com/auth/public/"

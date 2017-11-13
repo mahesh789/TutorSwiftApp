@@ -10,10 +10,10 @@ import UIKit
 
 
 // MARK: - Singleton
-final class TutorSharedClass {
+final class TutorSharedClass:NSObject {
     
     // Can't init is singleton
-    private init() { }
+     override init() { }
     
     // MARK: Shared Instance
     static let shared = TutorSharedClass()

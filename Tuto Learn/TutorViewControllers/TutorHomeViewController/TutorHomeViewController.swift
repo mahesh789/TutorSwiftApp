@@ -110,40 +110,22 @@ class TutorHomeViewController: UIViewController,TutorCommonPickerViewDelegate {
     
     // MARK:Topic List Api Implementation
     func getTopicList() -> Void {
+        TutorSharedClass.shared.token = ""
         let urlPath = String(format: "%@%@",Constants.baseUrl,Constants.topicList) as String
-        Alamofire.request(urlPath, method: .post, parameters:nil, encoding: JSONEncoding.default, headers:["Content-Type":"application/json","Authorization":String(format:"Bearer %@",TutorSharedClass.shared.token ?? "")])
-            .responseJSON { response in
-                if response.result.isSuccess
+        TutorNetworkManager.performRequestWithUrl(baseUrl: urlPath, parametersDictionary: nil) { (status, info) in
+            
+            if status == Constants.Status.StatusOK.rawValue
+            {
+              MBProgressHUD.hide(for: self.view, animated: true)
+                print(info as Any)
+            }else{
+                MBProgressHUD.hide(for: self.view, animated: true)
+                print(info as Any)
+                if let resultDict = info as? Dictionary<String,Any>
                 {
-                    if let resultDictionary = response.result.value as? NSDictionary
-                    {
-                        if Int(resultDictionary["status"] as! String) == Constants.Status.StatusOK.rawValue
-                        {
-                            print(resultDictionary)
-                            MBProgressHUD.hide(for: self.view, animated: true)
-                        }else if Int(resultDictionary["status"] as! String) == Constants.Status.TokenInvalid.rawValue
-                        {
-                            TutorGenerateToken.performGenerateTokenUrl(completionHandler: { (status, token) in
-                                if status == Constants.Status.StatusOK.rawValue
-                                {
-                                    self.getTopicList()
-                                }else{
-                                    print(token as Any)
-                                    MBProgressHUD.hide(for: self.view, animated: true)
-                                }
-                            })
-                        }else{
-                            TutorDefaultAlertController.showAlertController(alertMessage: resultDictionary["message"] as? String, showController: self)
-                        }
-                    }else
-                    {
-                       MBProgressHUD.hide(for: self.view, animated: true)
-                    }
-                }else if response.result.isFailure
-                {
-                    print(response.result.error as Any)
-                    MBProgressHUD.hide(for: self.view, animated: true)
+                    TutorDefaultAlertController.showAlertController(alertMessage: resultDict["message"] as? String, showController: self)
                 }
+            }
         }
     }
     

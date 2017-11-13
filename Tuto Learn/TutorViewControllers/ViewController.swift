@@ -59,20 +59,48 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
             TutorDefaultAlertController.showAlertController(alertMessage:"Please Enter Password" , showController: self)
             return
         }
-        self.setrootViewControllerAfterLogin()
-       // MBProgressHUD.showAdded(to: self.view, animated: true)
-      // self.loginApicall()
+       // self.setrootViewControllerAfterLogin()
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+       self.callLoginApiCallWithToken()
     }
+    
+    func callLoginApiCallWithToken() -> Void {
+        
+        TutorNetworkManager.performRequestWithUrl(baseUrl: Constants.baseUrl + Constants.token, parametersDictionary:nil) { (status, info) in
+            if status == Constants.Status.StatusOK.rawValue
+            {
+                if let resultDict = info as? Dictionary<String,Any>
+                {
+                    if let token = resultDict["token"] as? String
+                    {
+                        TutorSharedClass.shared.token = token
+                        self.loginApicall()
+                    }else{
+                        MBProgressHUD.hide(for: self.view, animated: true)
+                    }
+                }else{
+                    MBProgressHUD.hide(for: self.view, animated: true)
+                }
+            }else
+            {
+                MBProgressHUD.hide(for: self.view, animated: true)
+                if let resultDict = info as? Dictionary<String,Any>
+                {
+                    TutorDefaultAlertController.showAlertController(alertMessage: resultDict["message"] as? String, showController: self)
+                }
+            }
+        }
+    }
+    
     // MARK:Login Api Implementation
     func loginApicall() -> Void {
         let urlPath = String(format: "%@%@",Constants.baseUrl,Constants.studentLogin) as String
-        Alamofire.request(urlPath, method: .post, parameters: (["username":self.userNameTextField.text ?? "","password":self.passwordTextField.text ?? ""] as [String:Any]), encoding: JSONEncoding.default, headers:["Content-Type":"application/json"])
+        Alamofire.request(urlPath, method: .post, parameters: (["username":self.userNameTextField.text ?? "","password":self.passwordTextField.text ?? ""] as [String:Any]), encoding: JSONEncoding.default, headers:["Content-Type":"application/json","Authorization":"Bearer" + (TutorSharedClass.shared.token ?? "")])
             .responseJSON { response in
                 if response.result.isSuccess
                 {
                     if let resultDictionary = response.result.value as? NSDictionary
                     {
-                        
                         if Int(truncating: resultDictionary["status"] as! NSNumber) == Constants.Status.StatusOK.rawValue
                         {
                             if let resultParseLoginDictionary = resultDictionary.object(forKey: "Data")
@@ -120,6 +148,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
                     if let resultDictionary = response.result.value as? NSDictionary
                     {
                        let tokenId = resultDictionary["token"] as? String
+                        TutorSharedClass.shared.token = tokenId
                         self.loginSocialNetworkingApiCall(parametersDictionary: paramsDictionary as NSDictionary, token:tokenId)
                     }else{
                         MBProgressHUD.hide(for: self.view, animated: true)
