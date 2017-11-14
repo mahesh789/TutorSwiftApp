@@ -12,6 +12,10 @@ protocol TutorCommonPickerViewDelegate : class {
     func doneButtonClickedInPicker (Value value: NSString, InArray pickerArray:NSArray, AtRow row: Int, InComponent component: Int, AtOldRow oldRow:Int)
 }
 
+public enum PickerDataType:Int {
+    case SubjectListType,TopicListType
+}
+
 class TutorCommonPickerView: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
 
     weak var delegate: TutorCommonPickerViewDelegate?
@@ -19,6 +23,7 @@ class TutorCommonPickerView: UIView, UIPickerViewDelegate, UIPickerViewDataSourc
     @IBOutlet weak var toolBarDoneButton: UIBarButtonItem!
     @IBOutlet weak var toolBarCancelButton: UIBarButtonItem!
     @IBOutlet weak var commonPickerView: UIPickerView!
+    public var selectedPickerDataType:PickerDataType?
     var pickerListArray : NSArray = []
     var selectedComponent : Int! = 0
     var selectedRow : Int! = 0
@@ -47,7 +52,16 @@ class TutorCommonPickerView: UIView, UIPickerViewDelegate, UIPickerViewDataSourc
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return pickerListArray.object(at: row) as? String
+        if selectedPickerDataType == .SubjectListType
+        {
+            let subjectListDictionary = pickerListArray[row] as! NSDictionary
+            return subjectListDictionary["cs_course_name"] as? String
+        }else if selectedPickerDataType == .TopicListType
+        {
+            let topicListDictionary = pickerListArray[row] as! NSDictionary
+            return topicListDictionary["sub_subject_name"] as? String
+        }
+        return ""
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {

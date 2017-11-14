@@ -24,6 +24,7 @@ class Constants {
     static let cityList = "city_list"
     static let topicList = "topic_list"
     static let editStudent = "edit_student"
+    static let subjectList = "subject_list"
 
     static let screenSize = UIScreen.main.bounds
     static let phoneScreenWidth = screenSize.width

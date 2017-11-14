@@ -17,6 +17,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
     @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var signInButton: UIButton!
+     @IBOutlet weak var createAccountButton: UIButton!
     @IBOutlet weak var fbLoginButton: UIButton!
     @IBOutlet weak var linkedInLoginButton: UIButton!
     @IBOutlet weak var googlePlusLoginButton: UIButton!
@@ -33,15 +34,14 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
         self.userNameTextField.placeholder = "Email or Username"
         self.passwordTextField.placeholder = "Password"
         self.signInButton.setTitle("Sign In", for:UIControlState.normal)
-        self.fbLoginButton.setTitle("FB LoginIn", for:UIControlState.normal)
-        self.linkedInLoginButton.setTitle("Linked In", for:UIControlState.normal)
-        self.googlePlusLoginButton.setTitle("Google Plus", for:UIControlState.normal)
         fbLoginButton.addTarget(self, action: #selector(self.facebookLoginButtonClicked), for: .touchUpInside)
-        contentView.backgroundColor = UIColor.tutorAppBackgroungColor()
-        self.view.backgroundColor = UIColor.tutorAppBackgroungColor()
         //temporary
         self.userNameTextField.text = "ankita@test.com"
         self.passwordTextField.text = "12345"
+        self.contentView.isOpaque = true
+        self.createAccountButton.layer.cornerRadius = 5
+        self.createAccountButton.layer.borderColor = UIColor.white.cgColor
+        self.createAccountButton.layer.borderWidth = 1
     }
     
     //MARK:SignIn Button Action
