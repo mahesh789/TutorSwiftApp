@@ -16,6 +16,7 @@ class TutorNetworkManager: NSObject {
             .responseJSON { response in
                 if response.result.isSuccess
                 {
+                    print(response.result.value ?? "")
                     if let resultDictionary = response.result.value as? NSDictionary
                     {
                         if Int(truncating: resultDictionary["status"] as! NSNumber) == Constants.Status.StatusOK.rawValue

@@ -18,6 +18,7 @@ public class TutorLoginModel {
 	public var pincode : Int?
 	public var profileImage : String?
 	public var schoolNameString : String?
+    public var loginId : String?
 
 /**
     Returns an array of models based on given dictionary.
@@ -64,6 +65,7 @@ public class TutorLoginModel {
 		pincode = dictionary["sm_pin"] as? Int
 		profileImage = dictionary["sm_profile_img_url"] as? String
 		schoolNameString = dictionary["sm_school_name"] as? String
+        loginId = dictionary["sm_id"] as? String
 	}
 
 		
@@ -88,6 +90,7 @@ public class TutorLoginModel {
 		dictionary.setValue(self.mobile, forKey: "sm_mobile")
 		dictionary.setValue(self.pincode, forKey: "sm_pin")
 		dictionary.setValue(self.profileImage, forKey: "sm_profile_img_url")
+        dictionary.setValue(self.loginId, forKey: "sm_id")
 
 		return dictionary
 	}

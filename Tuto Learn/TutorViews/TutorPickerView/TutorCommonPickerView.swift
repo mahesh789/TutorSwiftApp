@@ -9,11 +9,11 @@ import UIKit
 
 protocol TutorCommonPickerViewDelegate : class {
     func cancelButtonClickedInPicker ()
-    func doneButtonClickedInPicker (Value value: NSString, InArray pickerArray:NSArray, AtRow row: Int, InComponent component: Int, AtOldRow oldRow:Int)
+    func doneButtonClickedInPicker (Value value: String?, InDictionary pickerDictionary:Dictionary<String,Any>?,selectedPickerDataType:PickerDataType?)
 }
 
 public enum PickerDataType:Int {
-    case SubjectListType,TopicListType
+    case SubjectListType,TopicListType,SelectStudentType
 }
 
 class TutorCommonPickerView: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
@@ -60,6 +60,9 @@ class TutorCommonPickerView: UIView, UIPickerViewDelegate, UIPickerViewDataSourc
         {
             let topicListDictionary = pickerListArray[row] as! NSDictionary
             return topicListDictionary["sub_subject_name"] as? String
+        }else if selectedPickerDataType == .SelectStudentType
+        {
+            return pickerListArray[row] as? String
         }
         return ""
     }
@@ -76,8 +79,21 @@ class TutorCommonPickerView: UIView, UIPickerViewDelegate, UIPickerViewDataSourc
     
     @IBAction func doneButtonClicked(_ sender: Any) {
         if pickerListArray.count>0 {
-            let result = pickerListArray.object(at: selectedRow) as? NSString
-            delegate?.doneButtonClickedInPicker(Value: result!,InArray: pickerListArray, AtRow: selectedRow, InComponent: selectedComponent,AtOldRow: oldSelectedRow)
+            var selectedString:String?
+            var selectedDictionary:Dictionary<String,Any>?
+            if selectedPickerDataType == .SubjectListType
+            {
+                selectedDictionary = pickerListArray[selectedRow] as? Dictionary<String, Any>
+                selectedString = selectedDictionary?["cs_course_name"] as? String
+            }else if selectedPickerDataType == .TopicListType
+            {
+                selectedDictionary = pickerListArray[selectedRow] as? Dictionary<String, Any>
+                selectedString = selectedDictionary?["sub_subject_name"] as? String
+            }else if selectedPickerDataType == .SelectStudentType
+            {
+                selectedString = pickerListArray[selectedRow] as? String
+            }
+            delegate?.doneButtonClickedInPicker(Value: selectedString, InDictionary: selectedDictionary, selectedPickerDataType: selectedPickerDataType)
         }
     }
     

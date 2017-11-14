@@ -24,6 +24,12 @@ class TutorHomeViewController: UIViewController,TutorCommonPickerViewDelegate {
     @IBOutlet weak var groupSizeButton: UIButton!
     @IBOutlet weak var findTutorButton: UIButton!
     var  tutorCommonPickerView:TutorCommonPickerView?
+    //Variables For Find Tutor
+    var selectStudentString:String?
+    var selectedSubjectDictionary:Dictionary<String,Any>?
+    var selectedTopicDictionary:Dictionary<String,Any>?
+    
+    
     @IBOutlet weak var picker: AAPickerView!
 
     
@@ -73,7 +79,8 @@ class TutorHomeViewController: UIViewController,TutorCommonPickerViewDelegate {
     //MARK: IBACTIONS
 
     @IBAction func selectStudentButtonAction(_ sender: Any) {
-     self.openpickerViewController(pickerArray: [])
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        self.getStudentList()
     }
    
     @IBAction func selectSubjectButtonAction(_ sender: Any) {
@@ -88,39 +95,42 @@ class TutorHomeViewController: UIViewController,TutorCommonPickerViewDelegate {
        
     }
     @IBAction func specifyTimeSlotButtonAction(_ sender: Any) {
-        self.openpickerViewController(pickerArray: [])
+        //self.openpickerViewController(pickerArray: [])
     }
     @IBAction func tutionTypeButtonAction(_ sender: Any) {
-        self.openpickerViewController(pickerArray: [])
+        //self.openpickerViewController(pickerArray: [])
     }
     @IBAction func groupSizeButtonAction(_ sender: Any) {
-        self.openpickerViewController(pickerArray: [])
+       // self.openpickerViewController(pickerArray: [])
     }
     @IBAction func findTutorButtonAction(_ sender: Any) {
-        
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        self.getSearchTutorList()
     }
     
-    func openpickerViewController(pickerArray:Array<Any>?) -> Void {
+    func openpickerViewController(pickerArray:Array<Any>?,selectedPickerType:PickerDataType) -> Void {
         tutorCommonPickerView = Bundle.main.loadNibNamed("TutorCommonPickerView", owner: self, options: nil)?.first as? TutorCommonPickerView
         tutorCommonPickerView?.pickerListArray = pickerArray! as NSArray
         tutorCommonPickerView?.frame = self.view.bounds
         tutorCommonPickerView?.delegate = self
-        tutorCommonPickerView?.selectedPickerDataType = .TopicListType
+        tutorCommonPickerView?.selectedPickerDataType = selectedPickerType
         tutorCommonPickerView?.selectedRowInPicker(Row:0, InComponent: 0)
         self.view.addSubview(tutorCommonPickerView!)
     }
-    // MARK:Topic List Api Implementation
-    func getTopicList() -> Void {
-        let urlPath = String(format: "%@%@",Constants.baseUrl,Constants.topicList) as String
-        TutorNetworkManager.performRequestWithUrl(baseUrl: urlPath, parametersDictionary: ["course_id":"59e4960a0b739"]) { (status, info) in
+   
+    // MARK:Select Student List Api Implementation
+    func getStudentList() -> Void {
+        //(TutorSharedClass.shared.loginTutorLoginObject?.loginId) ?? ""
+        let urlPath = String(format: "%@%@",Constants.baseUrl,Constants.studentList) as String
+        TutorNetworkManager.performRequestWithUrl(baseUrl: urlPath, parametersDictionary: ["login_id":"46DA9D2D56"]) { (status, info) in
             if status == Constants.Status.StatusOK.rawValue
             {
-              MBProgressHUD.hide(for: self.view, animated: true)
+                MBProgressHUD.hide(for: self.view, animated: true)
                 if let resultDictionary = info as? Dictionary<String,Any>
                 {
                     if let pickerArray = resultDictionary["Data"] as? Array<Any>
                     {
-                        self.openpickerViewController(pickerArray: pickerArray)
+                        self.openpickerViewController(pickerArray: pickerArray, selectedPickerType: .SelectStudentType)
                     }
                 }
             }else{
@@ -133,7 +143,7 @@ class TutorHomeViewController: UIViewController,TutorCommonPickerViewDelegate {
             }
         }
     }
-    
+   
     // MARK:Subject List Api Implementation
     func getSubjectList() -> Void {
         let urlPath = String(format: "%@%@",Constants.baseUrl,Constants.subjectList) as String
@@ -145,7 +155,7 @@ class TutorHomeViewController: UIViewController,TutorCommonPickerViewDelegate {
                 {
                     if let pickerArray = resultDictionary["Data"] as? Array<Any>
                     {
-                        self.openpickerViewController(pickerArray: pickerArray)
+                        self.openpickerViewController(pickerArray: pickerArray, selectedPickerType: .SubjectListType)
                     }
                 }
             }else{
@@ -159,12 +169,87 @@ class TutorHomeViewController: UIViewController,TutorCommonPickerViewDelegate {
         }
     }
     
+    // MARK:Topic List Api Implementation
+    func getTopicList() -> Void {
+        let urlPath = String(format: "%@%@",Constants.baseUrl,Constants.topicList) as String
+        TutorNetworkManager.performRequestWithUrl(baseUrl: urlPath, parametersDictionary: ["course_id":"59e4960a0b739"]) { (status, info) in
+            if status == Constants.Status.StatusOK.rawValue
+            {
+                MBProgressHUD.hide(for: self.view, animated: true)
+                if let resultDictionary = info as? Dictionary<String,Any>
+                {
+                    if let pickerArray = resultDictionary["Data"] as? Array<Any>
+                    {
+                        self.openpickerViewController(pickerArray: pickerArray, selectedPickerType: .TopicListType)
+                    }
+                }
+            }else{
+                MBProgressHUD.hide(for: self.view, animated: true)
+                print(info as Any)
+                if let resultDict = info as? Dictionary<String,Any>
+                {
+                    TutorDefaultAlertController.showAlertController(alertMessage: resultDict["message"] as? String, showController: self)
+                }
+            }
+        }
+    }
+    
+    // MARK:Topic List Api Implementation
+    func getSearchTutorList() -> Void {
+        let urlPath = String(format: "%@%@",Constants.baseUrl,Constants.searchTutor) as String
+        let parametersDict = ["student_id":"0595D56345","sel_sub":"IT","sel_topic":"html","sel_date":"11-11-2017","sel_start_time":"12","sel_end_time":"13","sel_tution_type":"solo"]
+        TutorNetworkManager.performRequestWithUrl(baseUrl: urlPath, parametersDictionary: parametersDict) { (status, info) in
+            if status == Constants.Status.StatusOK.rawValue
+            {
+                MBProgressHUD.hide(for: self.view, animated: true)
+                if let resultDictionary = info as? Dictionary<String,Any>
+                {
+                    if let techaerListArray = resultDictionary["Data"] as? Array<Any>
+                    {
+                        let tutorTeachersList = TutorTeacherModel.modelsFromDictionaryArray(array: techaerListArray as NSArray)
+                        self.navigateTeachersViewController(teachersListArray: tutorTeachersList)
+  
+                    }
+                }
+            }else{
+                MBProgressHUD.hide(for: self.view, animated: true)
+                print(info as Any)
+                if let resultDict = info as? Dictionary<String,Any>
+                {
+                    TutorDefaultAlertController.showAlertController(alertMessage: resultDict["message"] as? String, showController: self)
+                }
+            }
+        }
+    }
+    
+    func navigateTeachersViewController(teachersListArray:Array<TutorTeacherModel>) -> Void {
+        let tutorTeachersListViewController:TutorTeachersListViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TutorTeachersListViewController") as! TutorTeachersListViewController
+        tutorTeachersListViewController.teachersListArray = teachersListArray
+        self.navigationController?.pushViewController(tutorTeachersListViewController, animated: true)
+    }
+    
+    
     //MARK: TutorCommonPickerDelegate
     func cancelButtonClickedInPicker() {
         self.tutorCommonPickerView?.removeFromSuperview()
     }
-    func doneButtonClickedInPicker(Value value: NSString, InArray pickerArray: NSArray, AtRow row: Int, InComponent component: Int, AtOldRow oldRow: Int) {
-        
+    func doneButtonClickedInPicker(Value value: String?, InDictionary pickerDictionary: Dictionary<String, Any>?, selectedPickerDataType: PickerDataType?) {
+        if selectedPickerDataType == .SelectStudentType
+        {
+            selectStudentString = value
+            self.selectStudentButton.setTitle(selectStudentString, for: .normal)
+            
+        }else if selectedPickerDataType == .SubjectListType
+        {
+           selectedSubjectDictionary = pickerDictionary
+           self.selectSubjectButton.setTitle(value, for: .normal)
+            
+        }else if selectedPickerDataType == .TopicListType
+        {
+             selectedTopicDictionary = pickerDictionary
+             self.selectTopicButton.setTitle(value, for: .normal)
+        }
+        self.tutorCommonPickerView?.removeFromSuperview()
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
