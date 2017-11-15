@@ -44,8 +44,9 @@ class TutorHomeViewController: UIViewController,TutorCommonPickerViewDelegate {
     }
     func configureDatePicker() -> Void {
         picker.pickerType = .DatePicker
+        picker.datePicker?.minimumDate = Date()
         picker.datePicker?.datePickerMode = .date
-        picker.dateFormatter.dateFormat = "dd/MM/YYYY"
+        picker.dateFormatter.dateFormat = "dd-MM-YYYY"
         picker.dateDidChange = { date in
             print("selectedDate ", date )
         }
@@ -88,6 +89,10 @@ class TutorHomeViewController: UIViewController,TutorCommonPickerViewDelegate {
         self.getSubjectList()
     }
     @IBAction func selectTopicButtonAction(_ sender: Any) {
+        guard  (self.selectedSubjectDictionary != nil)  else {
+            TutorDefaultAlertController.showAlertController(alertMessage:"Please select subject" , showController: self)
+            return
+        }
         MBProgressHUD.showAdded(to: self.view, animated: true)
         self.getTopicList()
     }
@@ -104,8 +109,25 @@ class TutorHomeViewController: UIViewController,TutorCommonPickerViewDelegate {
        // self.openpickerViewController(pickerArray: [])
     }
     @IBAction func findTutorButtonAction(_ sender: Any) {
+        guard (self.selectStudentString != nil)  else {
+            TutorDefaultAlertController.showAlertController(alertMessage:"Please select student" , showController: self)
+            return
+        }
+        guard  (self.selectedSubjectDictionary != nil)  else {
+            TutorDefaultAlertController.showAlertController(alertMessage:"Please select subject" , showController: self)
+            return
+        }
+        guard  (self.selectedTopicDictionary != nil)  else {
+            TutorDefaultAlertController.showAlertController(alertMessage:"Please select topic" , showController: self)
+            return
+        }
+        guard  !(self.picker.text?.isEmpty)!  else {
+            TutorDefaultAlertController.showAlertController(alertMessage:"Please select date" , showController: self)
+            return
+        }
+         let parametersDict = ["student_id":"0595D56345","sel_sub":self.selectedSubjectDictionary?["cs_course_name"],"sel_topic":self.selectedTopicDictionary?["sub_subject_name"],"sel_date":picker.text!,"sel_start_time":"12","sel_end_time":"13","sel_tution_type":"solo"]
         MBProgressHUD.showAdded(to: self.view, animated: true)
-        self.getSearchTutorList()
+        self.getSearchTutorList(parametersDict: parametersDict as NSDictionary)
     }
     
     func openpickerViewController(pickerArray:Array<Any>?,selectedPickerType:PickerDataType) -> Void {
@@ -120,12 +142,11 @@ class TutorHomeViewController: UIViewController,TutorCommonPickerViewDelegate {
    
     // MARK:Select Student List Api Implementation
     func getStudentList() -> Void {
-        //(TutorSharedClass.shared.loginTutorLoginObject?.loginId) ?? ""
         let urlPath = String(format: "%@%@",Constants.baseUrl,Constants.studentList) as String
-        TutorNetworkManager.performRequestWithUrl(baseUrl: urlPath, parametersDictionary: ["login_id":"46DA9D2D56"]) { (status, info) in
+        TutorNetworkManager.performRequestWithUrl(baseUrl: urlPath, parametersDictionary: ["login_id":(TutorSharedClass.shared.loginTutorLoginObject?.loginId) ?? ""]) { (status, info) in
+            MBProgressHUD.hide(for: self.view, animated: true)
             if status == Constants.Status.StatusOK.rawValue
             {
-                MBProgressHUD.hide(for: self.view, animated: true)
                 if let resultDictionary = info as? Dictionary<String,Any>
                 {
                     if let pickerArray = resultDictionary["Data"] as? Array<Any>
@@ -134,7 +155,6 @@ class TutorHomeViewController: UIViewController,TutorCommonPickerViewDelegate {
                     }
                 }
             }else{
-                MBProgressHUD.hide(for: self.view, animated: true)
                 print(info as Any)
                 if let resultDict = info as? Dictionary<String,Any>
                 {
@@ -148,9 +168,9 @@ class TutorHomeViewController: UIViewController,TutorCommonPickerViewDelegate {
     func getSubjectList() -> Void {
         let urlPath = String(format: "%@%@",Constants.baseUrl,Constants.subjectList) as String
         TutorNetworkManager.performRequestWithUrl(baseUrl: urlPath, parametersDictionary: nil) { (status, info) in
+            MBProgressHUD.hide(for: self.view, animated: true)
             if status == Constants.Status.StatusOK.rawValue
             {
-                MBProgressHUD.hide(for: self.view, animated: true)
                 if let resultDictionary = info as? Dictionary<String,Any>
                 {
                     if let pickerArray = resultDictionary["Data"] as? Array<Any>
@@ -159,7 +179,6 @@ class TutorHomeViewController: UIViewController,TutorCommonPickerViewDelegate {
                     }
                 }
             }else{
-                MBProgressHUD.hide(for: self.view, animated: true)
                 print(info as Any)
                 if let resultDict = info as? Dictionary<String,Any>
                 {
@@ -172,10 +191,10 @@ class TutorHomeViewController: UIViewController,TutorCommonPickerViewDelegate {
     // MARK:Topic List Api Implementation
     func getTopicList() -> Void {
         let urlPath = String(format: "%@%@",Constants.baseUrl,Constants.topicList) as String
-        TutorNetworkManager.performRequestWithUrl(baseUrl: urlPath, parametersDictionary: ["course_id":"59e4960a0b739"]) { (status, info) in
+        TutorNetworkManager.performRequestWithUrl(baseUrl: urlPath, parametersDictionary: ["course_id":(self.selectedSubjectDictionary?["cs_cid"] ?? "")]) { (status, info) in
+            MBProgressHUD.hide(for: self.view, animated: true)
             if status == Constants.Status.StatusOK.rawValue
             {
-                MBProgressHUD.hide(for: self.view, animated: true)
                 if let resultDictionary = info as? Dictionary<String,Any>
                 {
                     if let pickerArray = resultDictionary["Data"] as? Array<Any>
@@ -184,7 +203,6 @@ class TutorHomeViewController: UIViewController,TutorCommonPickerViewDelegate {
                     }
                 }
             }else{
-                MBProgressHUD.hide(for: self.view, animated: true)
                 print(info as Any)
                 if let resultDict = info as? Dictionary<String,Any>
                 {
@@ -195,10 +213,10 @@ class TutorHomeViewController: UIViewController,TutorCommonPickerViewDelegate {
     }
     
     // MARK:Topic List Api Implementation
-    func getSearchTutorList() -> Void {
+    func getSearchTutorList(parametersDict:NSDictionary?) -> Void {
         let urlPath = String(format: "%@%@",Constants.baseUrl,Constants.searchTutor) as String
-        let parametersDict = ["student_id":"0595D56345","sel_sub":"IT","sel_topic":"html","sel_date":"11-11-2017","sel_start_time":"12","sel_end_time":"13","sel_tution_type":"solo"]
-        TutorNetworkManager.performRequestWithUrl(baseUrl: urlPath, parametersDictionary: parametersDict) { (status, info) in
+        let temparametersDict = ["student_id":"0595D56345","sel_sub":"IT","sel_topic":"html","sel_date":"11-11-2017","sel_start_time":"12","sel_end_time":"13","sel_tution_type":"solo"]
+        TutorNetworkManager.performRequestWithUrl(baseUrl: urlPath, parametersDictionary:temparametersDict) { (status, info) in
             if status == Constants.Status.StatusOK.rawValue
             {
                 MBProgressHUD.hide(for: self.view, animated: true)
@@ -241,6 +259,8 @@ class TutorHomeViewController: UIViewController,TutorCommonPickerViewDelegate {
             
         }else if selectedPickerDataType == .SubjectListType
         {
+            selectedTopicDictionary = nil
+            self.selectTopicButton.setTitle("Select Topic", for: .normal)
            selectedSubjectDictionary = pickerDictionary
            self.selectSubjectButton.setTitle(value, for: .normal)
             
