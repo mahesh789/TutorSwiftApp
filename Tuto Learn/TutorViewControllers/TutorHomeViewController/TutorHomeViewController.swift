@@ -28,8 +28,9 @@ class TutorHomeViewController: UIViewController,TutorCommonPickerViewDelegate {
     var selectStudentString:String?
     var selectedSubjectDictionary:Dictionary<String,Any>?
     var selectedTopicDictionary:Dictionary<String,Any>?
-    
-    
+    var selectedTimeSlotString:String?
+    var selectedTutionTypeString:String?
+    var selectedGroupSizeString:String?
     @IBOutlet weak var picker: AAPickerView!
 
     
@@ -58,6 +59,7 @@ class TutorHomeViewController: UIViewController,TutorCommonPickerViewDelegate {
         self.findTutorButton.setTitle("Find a Tutor", for: .normal)
         self.view.backgroundColor = UIColor.tutorAppBackgroungColor()
         self.contentView.backgroundColor = UIColor.tutorAppBackgroungColor()
+        self.groupSizeButton.isHidden = true
     }
     
     // MARK:Login Api Implementation
@@ -100,13 +102,13 @@ class TutorHomeViewController: UIViewController,TutorCommonPickerViewDelegate {
        
     }
     @IBAction func specifyTimeSlotButtonAction(_ sender: Any) {
-        //self.openpickerViewController(pickerArray: [])
+        self.openpickerViewController(pickerArray: ["1 PM : 2 PM","3 PM : 4 PM"], selectedPickerType: .TimeSlotType)
     }
     @IBAction func tutionTypeButtonAction(_ sender: Any) {
-        //self.openpickerViewController(pickerArray: [])
+       self.openpickerViewController(pickerArray: ["solo","group"], selectedPickerType: .TutionType)
     }
     @IBAction func groupSizeButtonAction(_ sender: Any) {
-       // self.openpickerViewController(pickerArray: [])
+       self.openpickerViewController(pickerArray: ["2","3","4"], selectedPickerType: .GroupSizeType)
     }
     @IBAction func findTutorButtonAction(_ sender: Any) {
         guard (self.selectStudentString != nil)  else {
@@ -125,7 +127,22 @@ class TutorHomeViewController: UIViewController,TutorCommonPickerViewDelegate {
             TutorDefaultAlertController.showAlertController(alertMessage:"Please select date" , showController: self)
             return
         }
-         let parametersDict = ["student_id":"0595D56345","sel_sub":self.selectedSubjectDictionary?["cs_course_name"],"sel_topic":self.selectedTopicDictionary?["sub_subject_name"],"sel_date":picker.text!,"sel_start_time":"12","sel_end_time":"13","sel_tution_type":"solo"]
+        guard (self.selectedTimeSlotString != nil)  else {
+            TutorDefaultAlertController.showAlertController(alertMessage:"Please select Time Slot" , showController: self)
+            return
+        }
+        guard (self.selectedTutionTypeString != nil)  else {
+            TutorDefaultAlertController.showAlertController(alertMessage:"Please select Tution Type" , showController: self)
+            return
+        }
+        if self.groupSizeButton.titleLabel?.text == "group"
+        {
+            guard (self.selectedGroupSizeString != nil)  else {
+                TutorDefaultAlertController.showAlertController(alertMessage:"Please select Group Size" , showController: self)
+                return
+            }
+        }
+        let parametersDict = ["student_id":"0595D56345","sel_sub":self.selectedSubjectDictionary?["cs_course_name"],"sel_topic":self.selectedTopicDictionary?["sub_subject_name"],"sel_date":picker.text!,"sel_start_time":"12","sel_end_time":"13","sel_tution_type":selectedTutionTypeString,"sel_group_size":selectedGroupSizeString]
         MBProgressHUD.showAdded(to: self.view, animated: true)
         self.getSearchTutorList(parametersDict: parametersDict as NSDictionary)
     }
@@ -215,8 +232,7 @@ class TutorHomeViewController: UIViewController,TutorCommonPickerViewDelegate {
     // MARK:Topic List Api Implementation
     func getSearchTutorList(parametersDict:NSDictionary?) -> Void {
         let urlPath = String(format: "%@%@",Constants.baseUrl,Constants.searchTutor) as String
-        let temparametersDict = ["student_id":"0595D56345","sel_sub":"IT","sel_topic":"html","sel_date":"11-11-2017","sel_start_time":"12","sel_end_time":"13","sel_tution_type":"solo"]
-        TutorNetworkManager.performRequestWithUrl(baseUrl: urlPath, parametersDictionary:temparametersDict) { (status, info) in
+        TutorNetworkManager.performRequestWithUrl(baseUrl: urlPath, parametersDictionary:parametersDict as? Dictionary<String, Any>) { (status, info) in
             if status == Constants.Status.StatusOK.rawValue
             {
                 MBProgressHUD.hide(for: self.view, animated: true)
@@ -252,23 +268,49 @@ class TutorHomeViewController: UIViewController,TutorCommonPickerViewDelegate {
         self.tutorCommonPickerView?.removeFromSuperview()
     }
     func doneButtonClickedInPicker(Value value: String?, InDictionary pickerDictionary: Dictionary<String, Any>?, selectedPickerDataType: PickerDataType?) {
-        if selectedPickerDataType == .SelectStudentType
-        {
+        
+        switch selectedPickerDataType {
+        case .SelectStudentType?:
             selectStudentString = value
             self.selectStudentButton.setTitle(selectStudentString, for: .normal)
+           break
             
-        }else if selectedPickerDataType == .SubjectListType
-        {
+        case .SubjectListType?:
             selectedTopicDictionary = nil
             self.selectTopicButton.setTitle("Select Topic", for: .normal)
-           selectedSubjectDictionary = pickerDictionary
-           self.selectSubjectButton.setTitle(value, for: .normal)
+            selectedSubjectDictionary = pickerDictionary
+            self.selectSubjectButton.setTitle(value, for: .normal)
+            break
+        case .TopicListType?:
+            selectedTopicDictionary = pickerDictionary
+            self.selectTopicButton.setTitle(value, for: .normal)
+            break
             
-        }else if selectedPickerDataType == .TopicListType
-        {
-             selectedTopicDictionary = pickerDictionary
-             self.selectTopicButton.setTitle(value, for: .normal)
+        case .TimeSlotType?:
+          self.selectedTimeSlotString = value
+          self.specifyTimeSlotButton.setTitle(value, for: .normal)
+            break
+            
+        case .TutionType?:
+            self.selectedTutionTypeString = value
+            if value == "solo"
+            {
+                self.groupSizeButton.isHidden = true
+            }else{
+                 self.groupSizeButton.isHidden = false
+            }
+            self.tutionTypeButton.setTitle(value, for: .normal)
+            break
+            
+        case .GroupSizeType?:
+            self.selectedGroupSizeString = value
+            self.groupSizeButton.setTitle(value, for: .normal)
+            break
+            
+        default:
+            break
         }
+        
         self.tutorCommonPickerView?.removeFromSuperview()
     }
     override func didReceiveMemoryWarning() {
