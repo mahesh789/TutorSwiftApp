@@ -14,7 +14,6 @@ class TutorMenuViewController: UIViewController,UITableViewDelegate,UITableViewD
     let menuArray:Array<String> = ["Profile","Student Profile","Preference Settings","Logout"]
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
         self.menuTableView.estimatedRowHeight = 100
         self.menuTableView.rowHeight = UITableViewAutomaticDimension
@@ -40,7 +39,25 @@ class TutorMenuViewController: UIViewController,UITableViewDelegate,UITableViewD
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-       
+        switch indexPath.row
+        {
+        case 0:      //when profie is clicked...
+            let profilControllerObj = self.storyboard?.instantiateViewController(withIdentifier: "TutorGuardianProfileViewController") as? TutorGuardianProfileViewController
+            self.navigationController?.pushViewController(profilControllerObj!, animated: true)
+            break
+        case 1:      //when  is clicked...
+            
+            break
+        case 2:      //when  is clicked...
+
+            break
+        case 3:      //when logout is clicked...
+            let loginControllerObj = self.storyboard?.instantiateViewController(withIdentifier: "ViewController") as? ViewController
+            self.navigationController?.pushViewController(loginControllerObj!, animated: true)
+            
+            break
+        default: print("Other...")
+        }
     }
 
     override func didReceiveMemoryWarning() {
