@@ -103,7 +103,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
                     {
                         if Int(truncating: resultDictionary["status"] as! NSNumber) == Constants.Status.StatusOK.rawValue
                         {
-                            if let resultParseLoginDictionary = resultDictionary.object(forKey: "Data")
+                            if let resultParseLoginDictionary = resultDictionary.object(forKey:"Data")
                             {
                                 print(resultParseLoginDictionary)
                                 let loginModelArray = TutorLoginModel.modelsFromDictionaryArray(array: [resultParseLoginDictionary])
@@ -126,7 +126,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
         }
     }
     func setrootViewControllerAfterLogin() -> Void {
-         let tutorHomeViewController:TutorHomeViewController = self.storyboard?.instantiateViewController(withIdentifier: "TutorHomeViewController") as! TutorHomeViewController
+        let tutorHomeViewController:TutorHomeViewController = self.storyboard?.instantiateViewController(withIdentifier: "TutorHomeViewController") as! TutorHomeViewController
         let navigationController = UINavigationController(rootViewController: tutorHomeViewController)
         navigationController.isNavigationBarHidden = true
         UIApplication.shared.keyWindow?.rootViewController = navigationController
