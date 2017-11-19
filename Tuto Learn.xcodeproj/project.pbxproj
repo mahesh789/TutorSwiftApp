@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		071E0FC61FB74FE600829299 /* TutorGuardianProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071E0FC51FB74FE600829299 /* TutorGuardianProfileViewController.swift */; };
+		07266CE41FBE03CE004A4FDE /* StudentRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07266CE31FBE03CE004A4FDE /* StudentRegistrationViewController.swift */; };
 		3D0A6B701FB68388001CC7A9 /* TutorMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0A6B6F1FB68388001CC7A9 /* TutorMenuViewController.swift */; };
 		3D0A6B7F1FB692D0001CC7A9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D0A6B7E1FB692CF001CC7A9 /* Main.storyboard */; };
 		3D0A6B831FB694A5001CC7A9 /* TutorMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0A6B821FB694A5001CC7A9 /* TutorMenuTableViewCell.swift */; };
@@ -23,7 +24,6 @@
 		3D623F381FBB76010087AF13 /* TutorViewProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D623F371FBB76010087AF13 /* TutorViewProfileTableViewCell.swift */; };
 		3D8B98561FA59C300083FC8F /* linkedin-sdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D8B98551FA59C300083FC8F /* linkedin-sdk.framework */; };
 		3D92C7751FAAFDD4001B7A91 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D92C7741FAAFDD4001B7A91 /* GoogleService-Info.plist */; };
-		3D9AE04B1FB21E2B0061859F /* StudentRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9AE04A1FB21E2B0061859F /* StudentRegistrationViewController.swift */; };
 		3D9AE04E1FB36E160061859F /* TutorHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9AE04D1FB36E160061859F /* TutorHomeViewController.swift */; };
 		3D9AE0521FB4058C0061859F /* TutorCommonPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9AE0501FB4058C0061859F /* TutorCommonPickerView.swift */; };
 		3D9AE0531FB4058C0061859F /* TutorCommonPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D9AE0511FB4058C0061859F /* TutorCommonPickerView.xib */; };
@@ -78,6 +78,7 @@
 
 /* Begin PBXFileReference section */
 		071E0FC51FB74FE600829299 /* TutorGuardianProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorGuardianProfileViewController.swift; sourceTree = "<group>"; };
+		07266CE31FBE03CE004A4FDE /* StudentRegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentRegistrationViewController.swift; sourceTree = "<group>"; };
 		3127DB78AA7843104C70CF4E /* Pods-Tuto LearnTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tuto LearnTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tuto LearnTests/Pods-Tuto LearnTests.release.xcconfig"; sourceTree = "<group>"; };
 		3D0A6B6F1FB68388001CC7A9 /* TutorMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorMenuViewController.swift; sourceTree = "<group>"; };
 		3D0A6B7E1FB692CF001CC7A9 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -101,7 +102,6 @@
 		3D8B98551FA59C300083FC8F /* linkedin-sdk.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = "linkedin-sdk.framework"; sourceTree = "<group>"; };
 		3D92C76D1FAAE4CD001B7A91 /* Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		3D92C7741FAAFDD4001B7A91 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		3D9AE04A1FB21E2B0061859F /* StudentRegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentRegistrationViewController.swift; sourceTree = "<group>"; };
 		3D9AE04D1FB36E160061859F /* TutorHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorHomeViewController.swift; sourceTree = "<group>"; };
 		3D9AE0501FB4058C0061859F /* TutorCommonPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorCommonPickerView.swift; sourceTree = "<group>"; };
 		3D9AE0511FB4058C0061859F /* TutorCommonPickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TutorCommonPickerView.xib; sourceTree = "<group>"; };
@@ -180,6 +180,14 @@
 			path = TutorProfileViewController;
 			sourceTree = "<group>";
 		};
+		07266CE21FBE03CE004A4FDE /* TutorRegistrationViewController */ = {
+			isa = PBXGroup;
+			children = (
+				07266CE31FBE03CE004A4FDE /* StudentRegistrationViewController.swift */,
+			);
+			path = TutorRegistrationViewController;
+			sourceTree = "<group>";
+		};
 		3D0A6B6E1FB68358001CC7A9 /* TutorMenuViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -207,8 +215,8 @@
 		3D1BD8631FB0E69D00DDB3BB /* TutorViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				07266CE21FBE03CE004A4FDE /* TutorRegistrationViewController */,
 				071E0FC41FB74FB300829299 /* TutorProfileViewController */,
-				3D9AE04A1FB21E2B0061859F /* StudentRegistrationViewController.swift */,
 				3D1BD8641FB0E69D00DDB3BB /* ViewController.swift */,
 				3D4515CD1FB70F6F00591577 /* TutorTeachersListViewController */,
 				3D0A6B6E1FB68358001CC7A9 /* TutorMenuViewController */,
@@ -551,17 +559,19 @@
 				TargetAttributes = {
 					3D2278421FA39DF500D3B6E0 = {
 						CreatedOnToolsVersion = 9.0.1;
-						DevelopmentTeam = W5KCMKK9XT;
+						DevelopmentTeam = 9SSCTGR44S;
 						LastSwiftMigration = 0900;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 					3D2278561FA39DF600D3B6E0 = {
 						CreatedOnToolsVersion = 9.0.1;
+						DevelopmentTeam = 9SSCTGR44S;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 3D2278421FA39DF500D3B6E0;
 					};
 					3D2278611FA39DF600D3B6E0 = {
 						CreatedOnToolsVersion = 9.0.1;
+						DevelopmentTeam = 9SSCTGR44S;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 3D2278421FA39DF500D3B6E0;
 					};
@@ -887,7 +897,6 @@
 				3D0A6B831FB694A5001CC7A9 /* TutorMenuTableViewCell.swift in Sources */,
 				3DBEC5901FAF852A0018CD66 /* TutorLoginModel.swift in Sources */,
 				071E0FC61FB74FE600829299 /* TutorGuardianProfileViewController.swift in Sources */,
-				3D9AE04B1FB21E2B0061859F /* StudentRegistrationViewController.swift in Sources */,
 				3D1F70D31FBA03D200AF03DE /* TutorNetworkManager.swift in Sources */,
 				3D4515CF1FB70F9100591577 /* TutorTeachersListViewController.swift in Sources */,
 				3D9AE0521FB4058C0061859F /* TutorCommonPickerView.swift in Sources */,
@@ -895,6 +904,7 @@
 				3DC357971FB013D50084F898 /* TutorHomeNavigationBar.swift in Sources */,
 				3DD68B821FB800AF008B2C0C /* TutorViewProfileViewController.swift in Sources */,
 				3DBEC58C1FAF81050018CD66 /* TutorSharedClass.swift in Sources */,
+				07266CE41FBE03CE004A4FDE /* StudentRegistrationViewController.swift in Sources */,
 				3D9AE04E1FB36E160061859F /* TutorHomeViewController.swift in Sources */,
 				3DBEC5961FAF85730018CD66 /* CommonUtils.swift in Sources */,
 				3D1BD8651FB0E69D00DDB3BB /* ViewController.swift in Sources */,
@@ -978,9 +988,11 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 9SSCTGR44S;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1035,9 +1047,11 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 9SSCTGR44S;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1063,8 +1077,10 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = W5KCMKK9XT;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 9SSCTGR44S;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1074,10 +1090,12 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				INFOPLIST_FILE = "Tuto Learn/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.Tuto.Tuto-Learn";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tuto.tutolearn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "e51c4efe-55fd-4045-823e-bc9fab06e8f9";
+				PROVISIONING_PROFILE_SPECIFIER = TutoriOSDistribution;
 				SWIFT_OBJC_BRIDGING_HEADER = "Tuto Learn/Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
@@ -1092,8 +1110,10 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = W5KCMKK9XT;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 9SSCTGR44S;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1101,10 +1121,12 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				INFOPLIST_FILE = "Tuto Learn/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.Tuto.Tuto-Learn";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tuto.tutolearn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "e51c4efe-55fd-4045-823e-bc9fab06e8f9";
+				PROVISIONING_PROFILE_SPECIFIER = TutoriOSDistribution;
 				SWIFT_OBJC_BRIDGING_HEADER = "Tuto Learn/Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
