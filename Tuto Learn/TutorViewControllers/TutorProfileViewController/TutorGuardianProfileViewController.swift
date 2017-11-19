@@ -68,45 +68,35 @@ class TutorGuardianProfileViewController: UIViewController ,UITextFieldDelegate 
 
     func studentDetailApicall() -> Void {
         
-        let urlPath = String(format: "%@%@",Constants.baseUrl,Constants.studentRegister) as String
+        let urlPath = String(format: "%@%@",Constants.baseUrl,Constants.editStudent) as String
         
-        let dictionary = NSMutableDictionary()
-        //dictionary.setValue(TutorSharedClass.shared.studentId, forKey: "se_id")
-        dictionary.setValue("D2AC2B31D5", forKey: "se_id")
+//        let dictionary = NSMutableDictionary()
+//        //dictionary.setValue(TutorSharedClass.shared.studentId, forKey: "se_id")
+//        dictionary.setValue("D2AC2B31D5", forKey: "se_id")
 
-        Alamofire.request(urlPath, method: .post, parameters: (dictionary as! [String:Any]), encoding: JSONEncoding.default, headers:["Content-Type":"application/json","Authorization":String(format:"Bearer %@",TutorSharedClass.shared.token ?? "")]) .responseJSON { response in
-            if response.result.isSuccess
+        TutorNetworkManager.performRequestWithUrl(baseUrl: urlPath, parametersDictionary: ["se_id":(TutorSharedClass.shared.studentId) ?? "D2AC2B31D5"]) { (status, info) in
+            MBProgressHUD.hide(for: self.view, animated: true)
+            if status == Constants.Status.StatusOK.rawValue
             {
-                if let resultDictionary = response.result.value as? NSDictionary
+                if let resultDictionary = info as? Dictionary<String,Any>
                 {
-                    if Int(truncating: resultDictionary["status"] as! NSNumber) == Constants.Status.StatusOK.rawValue
-                    {
-                        print(resultDictionary)
+                    if let profileDetailArray = resultDictionary["Data"] as? Array<Any> {
+                        print(profileDetailArray as Any)
                         MBProgressHUD.hide(for: self.view, animated: true)
-                        TutorDefaultAlertController.showAlertController(alertMessage: resultDictionary["message"] as? String, showController: self)
-                        
-                    }else if Int(truncating: resultDictionary["status"] as! NSNumber) == Constants.Status.TokenInvalid.rawValue
-                    {
-                        TutorGenerateToken.performGenerateTokenUrl(completionHandler: { (status, token) in
-                            if status == Constants.Status.StatusOK.rawValue
-                            {
-                                self.studentDetailApicall()
-                            }else{
-                                print(token as Any)
-                                MBProgressHUD.hide(for: self.view, animated: true)
-                            }
-                        })
-                    }else{
                         TutorDefaultAlertController.showAlertController(alertMessage: resultDictionary["message"] as? String, showController: self)
                     }
                 }
-                
             }
-            else if response.result.isFailure {
-                print(response.result.error as Any)
+            else {
+                print(info as Any)
+                if let resultDict = info as? Dictionary<String,Any> {
+                    TutorDefaultAlertController.showAlertController(alertMessage: resultDict["message"] as? String, showController: self)
+                }
             }
-            MBProgressHUD.hide(for: self.view, animated: true)
         }
+    }
+    
+    func updateUI(dictionary:Dictionary<String,Any>?) -> Void {
     }
     
     func configureDatePicker() -> Void {
