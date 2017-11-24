@@ -31,6 +31,9 @@ class StudentRegistrationViewController: UIViewController,UITextFieldDelegate,UI
     @IBOutlet weak var guardianButton: UIButton!
     @IBOutlet weak var agreeTCButton: UIButton!
     
+    var dataArray :NSMutableArray?
+    
+    
     let gender = ["Male","Female"]
     let thePicker = UIPickerView()
     var cityArray = Array<Any>()
@@ -66,6 +69,40 @@ class StudentRegistrationViewController: UIViewController,UITextFieldDelegate,UI
         
         self.genderTextField.inputView = self.thePicker
         self.districtTextField.inputView = self.thePicker
+        
+        
+        let registrationNameDetails: NSMutableDictionary? = ["First Name":"leftTitle","Last Name":"rightTitle","":"leftValue","":"rightValue","1":"type"]
+        
+        let registrationgenderDetails: NSMutableDictionary? = ["Gender":"leftTitle","Date of Birth":"rightTitle","":"leftValue","":"rightValue","2":"type"]
+
+        let registrationEmailDetails: NSMutableDictionary? = ["Email":"leftTitle","Mobile":"rightTitle","":"leftValue","":"rightValue","3":"type"]
+        
+        let registrationNRICDetails: NSMutableDictionary? = ["NRIC/FIN":"leftTitle","":"rightTitle","":"leftValue","":"rightValue","4":"type"]
+        
+        let registrationPassDetails: NSMutableDictionary? = ["Password":"leftTitle","Confirm Password":"rightTitle","":"leftValue","":"rightValue","5":"type","Password should be minimum 8 character s with at least one special character and one capital letter and one number":"bottomValue"]
+        
+        let registrationAddress1Details: NSMutableDictionary? = ["Address line 1":"leftTitle","":"rightTitle","":"leftValue","":"rightValue","6":"type"]
+        
+        let registrationAddress2Details: NSMutableDictionary? = ["Address line 2":"leftTitle","":"rightTitle","":"leftValue","":"rightValue","7":"type"]
+
+
+        let registrationDistrictDetails: NSMutableDictionary? = ["District":"leftTitle","":"rightTitle","":"leftValue","":"rightValue","8":"type"]
+        
+        let registrationPincodeDetails: NSMutableDictionary? = ["Pincode":"leftTitle","":"rightTitle","":"leftValue","":"rightValue","9":"type"]
+
+
+        dataArray = NSMutableArray()
+        dataArray?.add(registrationNameDetails ?? NSDictionary.init())
+        dataArray?.add(registrationgenderDetails ?? NSDictionary.init())
+        dataArray?.add(registrationEmailDetails ?? NSDictionary.init())
+        dataArray?.add(registrationNRICDetails ?? NSDictionary.init())
+        dataArray?.add(registrationPassDetails ?? NSDictionary.init())
+        dataArray?.add(registrationAddress1Details ?? NSDictionary.init())
+        dataArray?.add(registrationAddress2Details ?? NSDictionary.init())
+        dataArray?.add(registrationDistrictDetails ?? NSDictionary.init())
+        dataArray?.add(registrationPincodeDetails ?? NSDictionary.init())
+
+        
     }
     
     // MARK:: Button Action
@@ -172,23 +209,41 @@ class StudentRegistrationViewController: UIViewController,UITextFieldDelegate,UI
         
         let urlPath = String(format: "%@%@",Constants.baseUrl,Constants.studentRegister) as String
         
-        let dictionary = NSMutableDictionary()
-        dictionary.setValue(self.regiterTypeString, forKey: "register_type")
-        dictionary.setValue(self.firstNameTextField.text, forKey: "s_name")
-        dictionary.setValue(self.lastNameTextField.text, forKey: "s_lastname")
-        dictionary.setValue(self.mobNoTextField.text, forKey: "s_mobile")
-        dictionary.setValue(self.eMailTextField.text, forKey: "s_email")
-        dictionary.setValue(self.passwordTextField.text, forKey: "s_password")
-        dictionary.setValue(self.dobTextField.text, forKey: "s_dob")
-        dictionary.setValue(self.genderTextField.text, forKey: "s_gender")
-        dictionary.setValue(self.address1TextField.text, forKey: "s_address1")
-        dictionary.setValue(self.address2TextField.text, forKey: "s_address2")
-        dictionary.setValue("400001", forKey: "s_pin")
-        dictionary.setValue("L6783452H", forKey: "s_nric")
-        dictionary.setValue("Mobile", forKey: "s_oauth")
-        dictionary.setValue(self.cityIdString, forKey: "s_city_id")
+        var dictionary = [String: String]()
+    
+        dictionary["register_type"] = self.regiterTypeString
+        dictionary["s_name"] = self.firstNameTextField.text
+        dictionary["s_lastname"] = self.lastNameTextField.text
+        dictionary["s_mobile"] = self.mobNoTextField.text
+        dictionary["s_email"] = self.eMailTextField.text
+        dictionary["s_password"] = self.passwordTextField.text
+        dictionary["s_dob"] = self.dobTextField.text
+        dictionary["s_gender"] = self.genderTextField.text
+        dictionary["s_address1"] = self.address1TextField.text
+        dictionary["s_address2"] = self.address2TextField.text
+        dictionary["s_pin"] = "400001"
+        dictionary["s_nric"] = "L6783452H"
+        dictionary["s_oauth"] = "Mobile"
+        dictionary["s_city_id"] = self.cityIdString
 
-        Alamofire.request(urlPath, method: .post, parameters: nil, encoding: JSONEncoding.default, headers:["Content-Type":"application/json","Authorization":String(format:"Bearer %@",TutorSharedClass.shared.token ?? "")]) .responseJSON { response in
+
+
+//        dictionary.setValue(self.regiterTypeString, forKey: "register_type")
+//        dictionary.setValue(self.firstNameTextField.text, forKey: "s_name")
+//        dictionary.setValue(self.lastNameTextField.text, forKey: "s_lastname")
+//        dictionary.setValue(self.mobNoTextField.text, forKey: "s_mobile")
+//        dictionary.setValue(self.eMailTextField.text, forKey: "s_email")
+//        dictionary.setValue(self.passwordTextField.text, forKey: "s_password")
+//        dictionary.setValue(self.dobTextField.text, forKey: "s_dob")
+//        dictionary.setValue(self.genderTextField.text, forKey: "s_gender")
+//        dictionary.setValue(self.address1TextField.text, forKey: "s_address1")
+//        dictionary.setValue(self.address2TextField.text, forKey: "s_address2")
+//        dictionary.setValue("400001", forKey: "s_pin")
+//        dictionary.setValue("L6783452H", forKey: "s_nric")
+//        dictionary.setValue("Mobile", forKey: "s_oauth")
+//        dictionary.setValue(self.cityIdString, forKey: "s_city_id")
+
+        Alamofire.request(urlPath, method: .post, parameters: dictionary , encoding: JSONEncoding.default, headers:["Content-Type":"application/json","Authorization":String(format:"Bearer %@",TutorSharedClass.shared.token ?? "")]) .responseJSON { response in
             if response.result.isSuccess
             {
                 if let resultDictionary = response.result.value as? NSDictionary
