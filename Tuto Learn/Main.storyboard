@@ -1573,6 +1573,9 @@ special character and one capital letter and one number.</string>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Guardian Details" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D3e-IA-UcF">
                                 <rect key="frame" x="0.0" y="76" width="414" height="70"/>
                                 <color key="backgroundColor" red="0.024838246410000001" green="0.66795229909999998" blue="0.66595339779999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="K5f-en-aiR"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="22"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -1583,10 +1586,14 @@ special character and one capital letter and one number.</string>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1qR-9G-uJQ">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="605"/>
                                         <subviews>
-                                            <textField opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder=" First Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PkN-6F-vj4">
+                                            <textField opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder=" First Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PkN-6F-vj4">
                                                 <rect key="frame" x="52" y="243" width="140" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" red="0.3111903667" green="0.70265263320000004" blue="0.72514331340000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="140" id="2ZU-F4-fvK"/>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="NZH-0e-TXn"/>
+                                                    <constraint firstAttribute="height" constant="30" id="cs2-mz-ckl"/>
+                                                </constraints>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -1599,10 +1606,14 @@ special character and one capital letter and one number.</string>
                                                     <outlet property="delegate" destination="SHp-Cd-Meh" id="GON-8P-M6V"/>
                                                 </connections>
                                             </textField>
-                                            <textField opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder=" Last Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HPE-t0-jXu">
+                                            <textField opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder=" Last Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HPE-t0-jXu">
                                                 <rect key="frame" x="222" y="243" width="140" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" red="0.3111903667" green="0.70265263320000004" blue="0.72514331340000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="140" id="Bhq-rl-eaM"/>
+                                                    <constraint firstAttribute="height" constant="30" id="bCA-7k-pCP"/>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="jrC-2g-r4k"/>
+                                                </constraints>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -1615,10 +1626,12 @@ special character and one capital letter and one number.</string>
                                                     <outlet property="delegate" destination="SHp-Cd-Meh" id="rV7-Wy-ahG"/>
                                                 </connections>
                                             </textField>
-                                            <textField opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder=" Gender" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bIg-yn-TrG">
+                                            <textField opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder=" Gender" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bIg-yn-TrG">
                                                 <rect key="frame" x="52" y="319" width="140" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" red="0.3111903667" green="0.70265263320000004" blue="0.72514331340000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="EAu-lp-oNU"/>
+                                                </constraints>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -1631,10 +1644,12 @@ special character and one capital letter and one number.</string>
                                                     <outlet property="delegate" destination="SHp-Cd-Meh" id="UBy-aa-06H"/>
                                                 </connections>
                                             </textField>
-                                            <textField opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder=" Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9Kn-65-UyV">
+                                            <textField opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder=" Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9Kn-65-UyV">
                                                 <rect key="frame" x="52" y="395" width="140" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" red="0.3111903667" green="0.70265263320000004" blue="0.72514331340000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="hCj-zm-Ttc"/>
+                                                </constraints>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -1647,10 +1662,12 @@ special character and one capital letter and one number.</string>
                                                     <outlet property="delegate" destination="SHp-Cd-Meh" id="XTW-Vs-rOI"/>
                                                 </connections>
                                             </textField>
-                                            <textField opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder=" Mobile" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oC0-lF-04x">
+                                            <textField opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder=" Mobile" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oC0-lF-04x">
                                                 <rect key="frame" x="222" y="395" width="140" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" red="0.3111903667" green="0.70265263320000004" blue="0.72514331340000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="REb-KX-SKN"/>
+                                                </constraints>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -1663,10 +1680,12 @@ special character and one capital letter and one number.</string>
                                                     <outlet property="delegate" destination="SHp-Cd-Meh" id="w9e-Tw-u13"/>
                                                 </connections>
                                             </textField>
-                                            <textField opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder=" Occupation" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9bO-bT-PBg">
+                                            <textField opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder=" Occupation" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9bO-bT-PBg">
                                                 <rect key="frame" x="52" y="471" width="310" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" red="0.3111903667" green="0.70265263320000004" blue="0.72514331340000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="MfO-Ol-BZK"/>
+                                                </constraints>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -1679,81 +1698,113 @@ special character and one capital letter and one number.</string>
                                                     <outlet property="delegate" destination="SHp-Cd-Meh" id="ogu-0M-N95"/>
                                                 </connections>
                                             </textField>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="First Name*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zfw-az-gqz">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First Name*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zfw-az-gqz">
                                                 <rect key="frame" x="52" y="212" width="111" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="21" id="HUG-xP-hdx"/>
+                                                    <constraint firstAttribute="width" constant="111" id="r13-YG-GGC"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Last Name*" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="swK-MG-XAE">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Name*" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="swK-MG-XAE">
                                                 <rect key="frame" x="222" y="212" width="111" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="21" id="8Aa-rt-5Ph"/>
+                                                    <constraint firstAttribute="width" constant="111" id="WBr-YH-iep"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Gender*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ux8-8R-EQu">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gender*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ux8-8R-EQu">
                                                 <rect key="frame" x="52" y="288" width="111" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="111" id="9gl-Oy-74n"/>
+                                                    <constraint firstAttribute="height" constant="21" id="FEr-85-nPl"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date of Birth*" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ft-Td-nDS">
-                                                <rect key="frame" x="223" y="288" width="111" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date of Birth*" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ft-Td-nDS">
+                                                <rect key="frame" x="222" y="288" width="111" height="21"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="21" id="S89-NH-VRA"/>
+                                                    <constraint firstAttribute="width" constant="111" id="zs4-rC-8Er"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Email ID*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pav-Eg-V44">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email ID*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pav-Eg-V44">
                                                 <rect key="frame" x="52" y="364" width="111" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="111" id="Imx-WC-xPp"/>
+                                                    <constraint firstAttribute="height" constant="21" id="tWw-8O-A9q"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Mobile No." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WFC-iA-z7F">
-                                                <rect key="frame" x="223" y="364" width="111" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mobile No." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WFC-iA-z7F">
+                                                <rect key="frame" x="222" y="364" width="111" height="21"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="111" id="4l1-G4-70u"/>
+                                                    <constraint firstAttribute="height" constant="21" id="JFR-MT-arW"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Occupation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uAn-Dh-FUR">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Occupation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uAn-Dh-FUR">
                                                 <rect key="frame" x="52" y="440" width="111" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="111" id="3Zd-iT-Mir"/>
+                                                    <constraint firstAttribute="height" constant="21" id="TWg-E6-vu7"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="profileImage" translatesAutoresizingMaskIntoConstraints="NO" id="PFz-MH-ngu">
-                                                <rect key="frame" x="128" y="12" width="158" height="120"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profileImage" translatesAutoresizingMaskIntoConstraints="NO" id="PFz-MH-ngu">
+                                                <rect key="frame" x="147" y="18" width="120" height="120"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="120" id="8Nf-Je-hZU"/>
+                                                    <constraint firstAttribute="width" constant="120" id="xgJ-aR-VJF"/>
+                                                </constraints>
                                             </imageView>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R7x-1q-Qrq">
-                                                <rect key="frame" x="128" y="142" width="158" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R7x-1q-Qrq">
+                                                <rect key="frame" x="128" y="143" width="158" height="36"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="36" id="3fw-EP-1zT"/>
+                                                    <constraint firstAttribute="width" constant="158" id="tmu-m0-Hfb"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                                 <state key="normal" title="Upload Photo">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3H1-cP-59z">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3H1-cP-59z">
                                                 <rect key="frame" x="123" y="534" width="168" height="36"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" red="0.89047574996948242" green="0.44694197177886963" blue="0.21005439758300781" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="168" id="DQj-zt-CtV"/>
+                                                    <constraint firstAttribute="height" constant="36" id="R1c-qu-Jqp"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                                 <state key="normal" title="Save &amp; Proceed"/>
                                                 <connections>
                                                     <action selector="saveProceedButtonClicked:" destination="SHp-Cd-Meh" eventType="touchUpInside" id="16g-dK-61C"/>
                                                 </connections>
                                             </button>
-                                            <textField opaque="NO" alpha="0.80000001192092896" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder=" Date of Birth" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dXh-rT-PnT" customClass="AAPickerView" customModule="AAPickerView">
+                                            <textField opaque="NO" alpha="0.80000001192092896" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder=" Date of Birth" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dXh-rT-PnT" customClass="AAPickerView" customModule="AAPickerView">
                                                 <rect key="frame" x="222" y="319" width="140" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" red="0.3111903667" green="0.70265263320000004" blue="0.72514331340000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="jjO-se-4Db"/>
+                                                </constraints>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -1763,11 +1814,59 @@ special character and one capital letter and one number.</string>
                                             </textField>
                                         </subviews>
                                         <color key="backgroundColor" red="0.0" green="0.57309991120000003" blue="0.60387867689999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="uAn-Dh-FUR" firstAttribute="leading" secondItem="1qR-9G-uJQ" secondAttribute="leading" constant="52" id="0Rt-wM-X7B"/>
+                                            <constraint firstItem="bIg-yn-TrG" firstAttribute="height" secondItem="PkN-6F-vj4" secondAttribute="height" id="0Tg-eI-Ijd"/>
+                                            <constraint firstItem="dXh-rT-PnT" firstAttribute="width" secondItem="PkN-6F-vj4" secondAttribute="width" id="1a6-2a-4pj"/>
+                                            <constraint firstItem="dXh-rT-PnT" firstAttribute="height" secondItem="PkN-6F-vj4" secondAttribute="height" id="6ug-AF-hUD"/>
+                                            <constraint firstItem="oC0-lF-04x" firstAttribute="leading" secondItem="9Kn-65-UyV" secondAttribute="trailing" constant="30" id="827-CA-VVa"/>
+                                            <constraint firstItem="Ux8-8R-EQu" firstAttribute="leading" secondItem="1qR-9G-uJQ" secondAttribute="leading" constant="52" id="CGM-K9-RyC"/>
+                                            <constraint firstItem="WFC-iA-z7F" firstAttribute="leading" secondItem="pav-Eg-V44" secondAttribute="trailing" constant="59" id="CIX-zg-uHM"/>
+                                            <constraint firstItem="oC0-lF-04x" firstAttribute="top" secondItem="WFC-iA-z7F" secondAttribute="bottom" constant="10" id="CUw-Z6-pOT"/>
+                                            <constraint firstItem="PkN-6F-vj4" firstAttribute="top" secondItem="Zfw-az-gqz" secondAttribute="bottom" constant="10" id="Cq3-4k-vHY"/>
+                                            <constraint firstItem="dXh-rT-PnT" firstAttribute="leading" secondItem="bIg-yn-TrG" secondAttribute="trailing" constant="30" id="FOA-Nn-2ZG"/>
+                                            <constraint firstItem="PkN-6F-vj4" firstAttribute="leading" secondItem="1qR-9G-uJQ" secondAttribute="leading" constant="52" id="FQf-yx-BuJ"/>
+                                            <constraint firstItem="3H1-cP-59z" firstAttribute="top" secondItem="9bO-bT-PBg" secondAttribute="bottom" constant="33" id="Fqt-HB-AXe"/>
+                                            <constraint firstItem="9Kn-65-UyV" firstAttribute="width" secondItem="PkN-6F-vj4" secondAttribute="width" id="Gn7-xd-hZ3"/>
+                                            <constraint firstItem="bIg-yn-TrG" firstAttribute="width" secondItem="PkN-6F-vj4" secondAttribute="width" id="IQq-Rf-vEt"/>
+                                            <constraint firstItem="dXh-rT-PnT" firstAttribute="top" secondItem="7ft-Td-nDS" secondAttribute="bottom" constant="10" id="OVJ-KE-Shw"/>
+                                            <constraint firstItem="7ft-Td-nDS" firstAttribute="leading" secondItem="Ux8-8R-EQu" secondAttribute="trailing" constant="59" id="OVY-Pe-9r6"/>
+                                            <constraint firstItem="9Kn-65-UyV" firstAttribute="leading" secondItem="1qR-9G-uJQ" secondAttribute="leading" constant="52" id="RY1-z3-Ean"/>
+                                            <constraint firstItem="WFC-iA-z7F" firstAttribute="top" secondItem="dXh-rT-PnT" secondAttribute="bottom" constant="15" id="UTx-gy-xNk"/>
+                                            <constraint firstItem="Zfw-az-gqz" firstAttribute="top" secondItem="R7x-1q-Qrq" secondAttribute="bottom" constant="33" id="UrE-P2-K5p"/>
+                                            <constraint firstAttribute="trailing" secondItem="9bO-bT-PBg" secondAttribute="trailing" constant="52" id="Vtk-H5-zMd"/>
+                                            <constraint firstItem="bIg-yn-TrG" firstAttribute="leading" secondItem="1qR-9G-uJQ" secondAttribute="leading" constant="52" id="WAL-T1-LDi"/>
+                                            <constraint firstItem="9bO-bT-PBg" firstAttribute="leading" secondItem="1qR-9G-uJQ" secondAttribute="leading" constant="52" id="apY-Bn-eqa"/>
+                                            <constraint firstItem="oC0-lF-04x" firstAttribute="height" secondItem="PkN-6F-vj4" secondAttribute="height" id="asZ-MN-LRj"/>
+                                            <constraint firstItem="oC0-lF-04x" firstAttribute="width" secondItem="PkN-6F-vj4" secondAttribute="width" id="dCf-eu-8hY"/>
+                                            <constraint firstItem="uAn-Dh-FUR" firstAttribute="top" secondItem="9Kn-65-UyV" secondAttribute="bottom" constant="15" id="dQL-O0-aVw"/>
+                                            <constraint firstItem="Ux8-8R-EQu" firstAttribute="top" secondItem="PkN-6F-vj4" secondAttribute="bottom" constant="15" id="fW0-Ns-OM1"/>
+                                            <constraint firstItem="PFz-MH-ngu" firstAttribute="top" secondItem="1qR-9G-uJQ" secondAttribute="top" constant="18" id="fZj-40-lUF"/>
+                                            <constraint firstItem="HPE-t0-jXu" firstAttribute="height" secondItem="PkN-6F-vj4" secondAttribute="height" id="fcw-2l-0yj"/>
+                                            <constraint firstItem="HPE-t0-jXu" firstAttribute="width" secondItem="PkN-6F-vj4" secondAttribute="width" id="iqo-dD-nnE"/>
+                                            <constraint firstItem="pav-Eg-V44" firstAttribute="leading" secondItem="1qR-9G-uJQ" secondAttribute="leading" constant="52" id="kTk-eM-EDS"/>
+                                            <constraint firstItem="HPE-t0-jXu" firstAttribute="top" secondItem="swK-MG-XAE" secondAttribute="bottom" constant="10" id="pOd-Hs-WVy"/>
+                                            <constraint firstItem="9Kn-65-UyV" firstAttribute="top" secondItem="pav-Eg-V44" secondAttribute="bottom" constant="10" id="qGr-ha-XbQ"/>
+                                            <constraint firstItem="bIg-yn-TrG" firstAttribute="top" secondItem="Ux8-8R-EQu" secondAttribute="bottom" constant="10" id="tlR-tG-pZ2"/>
+                                            <constraint firstItem="pav-Eg-V44" firstAttribute="top" secondItem="bIg-yn-TrG" secondAttribute="bottom" constant="15" id="uCq-oB-ro7"/>
+                                            <constraint firstItem="9bO-bT-PBg" firstAttribute="top" secondItem="uAn-Dh-FUR" secondAttribute="bottom" constant="10" id="uW5-SU-BNZ"/>
+                                            <constraint firstItem="swK-MG-XAE" firstAttribute="leading" secondItem="Zfw-az-gqz" secondAttribute="trailing" constant="59" id="w1o-dC-4Id"/>
+                                            <constraint firstItem="swK-MG-XAE" firstAttribute="top" secondItem="R7x-1q-Qrq" secondAttribute="bottom" constant="33" id="w3p-MD-5NS"/>
+                                            <constraint firstItem="R7x-1q-Qrq" firstAttribute="top" secondItem="PFz-MH-ngu" secondAttribute="bottom" constant="5" id="wsg-rZ-4Ph"/>
+                                            <constraint firstItem="Zfw-az-gqz" firstAttribute="leading" secondItem="1qR-9G-uJQ" secondAttribute="leading" constant="52" id="wxD-kc-eCm"/>
+                                            <constraint firstItem="7ft-Td-nDS" firstAttribute="top" secondItem="HPE-t0-jXu" secondAttribute="bottom" constant="15" id="xLD-2X-fXM"/>
+                                            <constraint firstItem="HPE-t0-jXu" firstAttribute="leading" secondItem="PkN-6F-vj4" secondAttribute="trailing" constant="30" id="xk0-Xx-BPj"/>
+                                            <constraint firstItem="HPE-t0-jXu" firstAttribute="top" secondItem="swK-MG-XAE" secondAttribute="bottom" constant="10" id="z8X-f5-9lh"/>
+                                            <constraint firstItem="9Kn-65-UyV" firstAttribute="height" secondItem="PkN-6F-vj4" secondAttribute="height" id="zmY-xa-vxT"/>
+                                        </constraints>
                                     </view>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="3H1-cP-59z" firstAttribute="centerX" secondItem="crl-Ph-Ogi" secondAttribute="centerX" id="9NX-dg-0yj"/>
                                     <constraint firstAttribute="bottom" secondItem="1qR-9G-uJQ" secondAttribute="bottom" constant="3" id="GYR-P3-6SD"/>
                                     <constraint firstItem="1qR-9G-uJQ" firstAttribute="top" secondItem="crl-Ph-Ogi" secondAttribute="top" id="H5W-lP-X2U"/>
+                                    <constraint firstItem="PFz-MH-ngu" firstAttribute="centerX" secondItem="crl-Ph-Ogi" secondAttribute="centerX" id="Njy-O5-EqD"/>
+                                    <constraint firstItem="R7x-1q-Qrq" firstAttribute="centerX" secondItem="crl-Ph-Ogi" secondAttribute="centerX" id="Ynd-Ku-Ex0"/>
                                     <constraint firstItem="1qR-9G-uJQ" firstAttribute="height" secondItem="crl-Ph-Ogi" secondAttribute="height" id="cc8-16-xeI"/>
                                     <constraint firstItem="1qR-9G-uJQ" firstAttribute="width" secondItem="crl-Ph-Ogi" secondAttribute="width" id="fR2-8I-C4N"/>
                                     <constraint firstItem="1qR-9G-uJQ" firstAttribute="leading" secondItem="crl-Ph-Ogi" secondAttribute="leading" id="kg2-rB-SAf"/>
@@ -1789,7 +1888,6 @@ special character and one capital letter and one number.</string>
                             <constraint firstItem="D3e-IA-UcF" firstAttribute="top" secondItem="xSa-y8-WGL" secondAttribute="bottom" id="JMx-LA-z1k"/>
                             <constraint firstItem="crl-Ph-Ogi" firstAttribute="leading" secondItem="eyu-k6-Rkl" secondAttribute="leading" id="O30-ml-cOv"/>
                             <constraint firstItem="crl-Ph-Ogi" firstAttribute="top" secondItem="eyu-k6-Rkl" secondAttribute="top" constant="143" id="ODu-wV-9t0"/>
-                            <constraint firstItem="a73-ck-cg1" firstAttribute="top" secondItem="D3e-IA-UcF" secondAttribute="bottom" constant="590" id="OPa-xu-0Pk"/>
                             <constraint firstItem="crl-Ph-Ogi" firstAttribute="trailing" secondItem="eyu-k6-Rkl" secondAttribute="trailing" id="Psp-J8-Ukx"/>
                             <constraint firstItem="xSa-y8-WGL" firstAttribute="leading" secondItem="eyu-k6-Rkl" secondAttribute="leading" id="Wmu-0q-9nA"/>
                             <constraint firstItem="D3e-IA-UcF" firstAttribute="leading" secondItem="eyu-k6-Rkl" secondAttribute="leading" id="aa2-Xd-cGL"/>
