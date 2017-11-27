@@ -24,10 +24,17 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
     @IBOutlet weak var contentView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        //Mahesh
-        self.setLayoutAndSetTexts()
-        self.setUpForGoogleSignIn()
+        if UserDefaults.standard.bool(forKey: "isUserLoggedIn") {
+            // Redirect to TutorHome
+            NSLog("==== LOGIN SUCCESS ====")
+            self.setrootViewControllerAfterLogin()
+        } else
+        {
+            // Do any additional setup after loading the view, typically from a nib.
+            //Mahesh
+            self.setLayoutAndSetTexts()
+            self.setUpForGoogleSignIn()
+        }
     }
     
     func setLayoutAndSetTexts() -> Void {
@@ -111,6 +118,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
                                 {
                                     TutorSharedClass.shared.loginTutorLoginObject = loginModelArray.first
                                     self.setrootViewControllerAfterLogin()
+                                    UserDefaults.standard.set(true, forKey: "isUserLoggedIn")
                                 }
                             }
                         }else{
@@ -179,6 +187,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
                                 {
                                     TutorSharedClass.shared.loginTutorLoginObject = loginModelArray.first
                                     self.setrootViewControllerAfterLogin()
+                                    UserDefaults.standard.set(true, forKey: "isUserLoggedIn")
                                 }
                             }
                         }else{
