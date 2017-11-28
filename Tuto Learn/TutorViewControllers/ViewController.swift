@@ -27,6 +27,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
         if UserDefaults.standard.bool(forKey: "isUserLoggedIn") {
             // Redirect to TutorHome
             NSLog("==== LOGIN SUCCESS ====")
+            TutorSharedClass.shared.token = UserDefaults.standard.string(forKey: "loginToken")
             self.setrootViewControllerAfterLogin()
         } else
         {
@@ -80,6 +81,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
                 {
                     if let token = resultDict["token"] as? String
                     {
+                        UserDefaults.standard.set(token, forKey: "loginToken")
                         TutorSharedClass.shared.token = token
                         self.loginApicall()
                     }else{
@@ -156,6 +158,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
                     if let resultDictionary = response.result.value as? NSDictionary
                     {
                        let tokenId = resultDictionary["token"] as? String
+                        UserDefaults.standard.set(tokenId, forKey: "loginToken")
                         TutorSharedClass.shared.token = tokenId
                         self.loginSocialNetworkingApiCall(parametersDictionary: paramsDictionary as NSDictionary, token:tokenId)
                     }else{

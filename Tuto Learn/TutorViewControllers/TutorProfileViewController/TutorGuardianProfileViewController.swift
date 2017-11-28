@@ -26,6 +26,8 @@ class TutorGuardianProfileViewController: UIViewController ,UITextFieldDelegate 
     @IBOutlet weak var eMailTextField: UITextField!
     @IBOutlet weak var occupationTextField: UITextField!
     
+    @IBOutlet weak var saveProceedButton: UIButton!
+    
     var regiterTypeString : String?
     var genderTypeString : String?
     
@@ -47,7 +49,9 @@ class TutorGuardianProfileViewController: UIViewController ,UITextFieldDelegate 
         self.uploadButton.layer.cornerRadius = self.uploadButton.frame.size.height / 2
         self.uploadButton.layer.borderColor = UIColor.white.cgColor
         self.uploadButton.layer.borderWidth = 1.0
-        self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.width / 2
+        self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.height / 2
+        
+        self.saveProceedButton.layer.cornerRadius = 4.0
         
         self.studentDetailApicall()
     }
