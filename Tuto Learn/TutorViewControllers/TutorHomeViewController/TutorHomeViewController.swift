@@ -166,7 +166,7 @@ class TutorHomeViewController: UIViewController,TutorCommonPickerViewDelegate {
             {
                 if let resultDictionary = info as? Dictionary<String,Any>
                 {
-                    if let pickerArray = resultDictionary["Data"] as? Array<Any>
+                    if let pickerArray = resultDictionary["data"] as? Array<Any>
                     {
                         self.openpickerViewController(pickerArray: pickerArray, selectedPickerType: .SelectStudentType)
                     }
@@ -190,7 +190,7 @@ class TutorHomeViewController: UIViewController,TutorCommonPickerViewDelegate {
             {
                 if let resultDictionary = info as? Dictionary<String,Any>
                 {
-                    if let pickerArray = resultDictionary["Data"] as? Array<Any>
+                    if let pickerArray = resultDictionary["data"] as? Array<Any>
                     {
                         self.openpickerViewController(pickerArray: pickerArray, selectedPickerType: .SubjectListType)
                     }
@@ -214,7 +214,7 @@ class TutorHomeViewController: UIViewController,TutorCommonPickerViewDelegate {
             {
                 if let resultDictionary = info as? Dictionary<String,Any>
                 {
-                    if let pickerArray = resultDictionary["Data"] as? Array<Any>
+                    if let pickerArray = resultDictionary["data"] as? Array<Any>
                     {
                         self.openpickerViewController(pickerArray: pickerArray, selectedPickerType: .TopicListType)
                     }
@@ -238,7 +238,7 @@ class TutorHomeViewController: UIViewController,TutorCommonPickerViewDelegate {
                 MBProgressHUD.hide(for: self.view, animated: true)
                 if let resultDictionary = info as? Dictionary<String,Any>
                 {
-                    if let techaerListArray = resultDictionary["Data"] as? Array<Any>
+                    if let techaerListArray = resultDictionary["data"] as? Array<Any>
                     {
                         let tutorTeachersList = TutorTeacherModel.modelsFromDictionaryArray(array: techaerListArray as NSArray)
                         self.navigateTeachersViewController(teachersListArray: tutorTeachersList)

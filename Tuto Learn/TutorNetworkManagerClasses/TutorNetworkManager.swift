@@ -25,7 +25,11 @@ class TutorNetworkManager: NSObject {
                         }else if Int(truncating: resultDictionary["status"] as! NSNumber) == Constants.Status.TokenInvalid.rawValue
                         {
                             //need to push login controller
-                            self.setrootViewControllerTaokenFailed()
+                            if UserDefaults.standard.bool(forKey: "isUserLoggedIn") {
+                                TutorSharedClass.navigateLoadingViewController()
+                            }else{
+                                self.setrootViewControllerTokenFailed()
+                            }
                         }else{
                             completionHandler(Int(truncating: resultDictionary["status"] as! NSNumber),resultDictionary)
                         }
@@ -38,7 +42,7 @@ class TutorNetworkManager: NSObject {
         }
     }
     
-   class func setrootViewControllerTaokenFailed() -> Void {
+   class func setrootViewControllerTokenFailed() -> Void {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let tutorLoginViewController:ViewController = storyboard.instantiateViewController(withIdentifier: "ViewController") as! ViewController
         let navigationController = UINavigationController(rootViewController: tutorLoginViewController)

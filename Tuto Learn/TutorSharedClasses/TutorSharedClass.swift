@@ -10,7 +10,7 @@ import UIKit
 
 
 // MARK: - Singleton
-final class TutorSharedClass:NSObject {
+public class TutorSharedClass:NSObject {
     
     // Can't init is singleton
      override init() { }
@@ -25,6 +25,28 @@ final class TutorSharedClass:NSObject {
     var token:String?
     var studentId:String?
 
+   public class func navigateLoginViewController() -> Void {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let tutorLoginViewController:ViewController = storyboard.instantiateViewController(withIdentifier: "ViewController") as! ViewController
+        let navigationController = UINavigationController(rootViewController: tutorLoginViewController)
+        navigationController.isNavigationBarHidden = true
+        UIApplication.shared.keyWindow?.rootViewController = navigationController
+
+    }
+    public class func navigateLoadingViewController() -> Void {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let tutorLoadingViewController:TutorLoadingViewController = storyboard.instantiateViewController(withIdentifier: "TutorLoadingViewController") as! TutorLoadingViewController
+        let navigationController = UINavigationController(rootViewController: tutorLoadingViewController)
+        navigationController.isNavigationBarHidden = true
+        UIApplication.shared.keyWindow?.rootViewController = navigationController
+    }
+    
+  public class func removeLoginCredentialsAndSetRootViewControllerLogin() -> Void {
+        UserDefaults.standard.set(false, forKey: "isUserLoggedIn")
+        UserDefaults.standard.set(nil, forKey: "userName")
+        UserDefaults.standard.set(nil, forKey: "passWord")
+        TutorSharedClass.navigateLoginViewController()
+    }
      
 }
 

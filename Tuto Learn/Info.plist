@@ -19,9 +19,11 @@
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb127124514665284</string>
+				<string>fb305341286536308</string>
 			</array>
 		</dict>
 		<dict>
@@ -52,7 +54,7 @@
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>FacebookAppID</key>
-	<string>127124514665284</string>
+	<string>305341286536308</string>
 	<key>FacebookDisplayName</key>
 	<string>Tuto Learn</string>
 	<key>LIAppId</key>

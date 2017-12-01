@@ -52,16 +52,13 @@ class TutorMenuViewController: UIViewController,UITableViewDelegate,UITableViewD
 
             break
         case 3:      //when logout is clicked...
-            UserDefaults.standard.set(false, forKey: "isUserLoggedIn")
-            UserDefaults.standard.set(nil, forKey: "loginToken")
-            TutorSharedClass.shared.token = nil;
-            let loginControllerObj = self.storyboard?.instantiateViewController(withIdentifier: "ViewController") as? ViewController
-            self.navigationController?.pushViewController(loginControllerObj!, animated: true)
-            
+           
+            TutorSharedClass.removeLoginCredentialsAndSetRootViewControllerLogin()
             break
         default: print("Other...")
         }
     }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

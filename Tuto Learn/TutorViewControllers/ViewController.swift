@@ -22,20 +22,13 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
     @IBOutlet weak var linkedInLoginButton: UIButton!
     @IBOutlet weak var googlePlusLoginButton: UIButton!
     @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var rememberButton:UIButton!
+    var ischeckMark:Bool!=false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        if UserDefaults.standard.bool(forKey: "isUserLoggedIn") {
-            // Redirect to TutorHome
-            NSLog("==== LOGIN SUCCESS ====")
-            TutorSharedClass.shared.token = UserDefaults.standard.string(forKey: "loginToken")
-            self.setrootViewControllerAfterLogin()
-        } else
-        {
-            // Do any additional setup after loading the view, typically from a nib.
-            //Mahesh
             self.setLayoutAndSetTexts()
             self.setUpForGoogleSignIn()
-        }
     }
     
     func setLayoutAndSetTexts() -> Void {
@@ -50,9 +43,22 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
         self.createAccountButton.layer.cornerRadius = 5
         self.createAccountButton.layer.borderColor = UIColor.white.cgColor
         self.createAccountButton.layer.borderWidth = 1
+        self.rememberButton.setBackgroundImage(UIImage(named: "uncheckbox_icon"), for: .normal)
+         self.rememberButton.setBackgroundImage(UIImage(named: "checkbox_icon"), for: .selected)
     }
     
     //MARK:SignIn Button Action
+    @IBAction func rememberCheckMarkButton(_ sender:UIButton)
+    {
+        if sender.isSelected == true {
+            sender.isSelected = false
+            self.ischeckMark=false
+        }
+        else {
+            sender.isSelected = true
+            self.ischeckMark=true
+        }
+    }
     @IBAction func signInButtonAction(_ sender: Any) {
         
         guard  !(self.userNameTextField.text?.isEmpty)!  else {
@@ -120,7 +126,12 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
                                 {
                                     TutorSharedClass.shared.loginTutorLoginObject = loginModelArray.first
                                     self.setrootViewControllerAfterLogin()
-                                    UserDefaults.standard.set(true, forKey: "isUserLoggedIn")
+                                    if self.ischeckMark
+                                    {
+                                        UserDefaults.standard.set(true, forKey: "isUserLoggedIn")
+                                        UserDefaults.standard.set(self.userNameTextField.text, forKey: "userName")
+                                        UserDefaults.standard.set(self.passwordTextField.text, forKey: "passWord")
+                                    }
                                 }
                             }
                         }else{
@@ -191,6 +202,8 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
                                     TutorSharedClass.shared.loginTutorLoginObject = loginModelArray.first
                                     self.setrootViewControllerAfterLogin()
                                     UserDefaults.standard.set(true, forKey: "isUserLoggedIn")
+                                    UserDefaults.standard.set(self.userNameTextField.text, forKey: "userName")
+                                    UserDefaults.standard.set(self.passwordTextField.text, forKey: "passWord")
                                 }
                             }
                         }else{
