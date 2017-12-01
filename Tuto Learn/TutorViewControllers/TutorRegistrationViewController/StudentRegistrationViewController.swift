@@ -10,7 +10,16 @@ import UIKit
 import Alamofire
 import AAPickerView
 
-class StudentRegistrationViewController: UIViewController,UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource {
+
+class StudentRegistrationViewController: UIViewController,UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource,UITableViewDelegate,UITableViewDataSource {
+    
+    @IBOutlet weak var registrationTableview: UITableView!
+    @IBOutlet weak var gaurdianButton: UIButton!
+    @IBOutlet weak var studentButton: UIButton!
+    @IBOutlet weak var registrationFooterView: RegistrationFooterView!
+    var genderValue: String!
+    var districtValue: NSDictionary!
+    
     
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
@@ -27,8 +36,8 @@ class StudentRegistrationViewController: UIViewController,UITextFieldDelegate,UI
     @IBOutlet weak var pinCodeTextField: UITextField!
     @IBOutlet weak var tutorNavigationBar: TutorHomeNavigationBar!
     @IBOutlet weak var contentView: UIView!
-    @IBOutlet weak var studentButton: UIButton!
-    @IBOutlet weak var guardianButton: UIButton!
+    //@IBOutlet weak var studentButton: UIButton!
+    // @IBOutlet weak var guardianButton: UIButton!
     @IBOutlet weak var agreeTCButton: UIButton!
     
     var dataArray :NSMutableArray?
@@ -40,9 +49,9 @@ class StudentRegistrationViewController: UIViewController,UITextFieldDelegate,UI
     var regiterTypeString : String?
     var genderTypeString : String?
     var cityIdString : String?
-
+    
     // MARK:: View Life Cycle Methods
-
+    
     override func viewDidLoad() {
         // Do any additional setup after loading the view.
         super.viewDidLoad()
@@ -50,7 +59,7 @@ class StudentRegistrationViewController: UIViewController,UITextFieldDelegate,UI
         thePicker.delegate = self ;
         thePicker.dataSource = self ;
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -61,36 +70,36 @@ class StudentRegistrationViewController: UIViewController,UITextFieldDelegate,UI
         self.tutorNavigationBar.rightBarButton.isHidden = true
         self.tutorNavigationBar.navigationTitleLabel.text = "Registration"
         self.view.backgroundColor = UIColor.tutorAppBackgroungColor()
-        self.contentView.backgroundColor = UIColor.tutorAppBackgroungColor()
+        //  self.contentView.backgroundColor = UIColor.tutorAppBackgroungColor()
         
         self.regiterTypeString = "guardian"
-        self.guardianButton.backgroundColor = UIColor.orange
-        self.studentButton.backgroundColor = UIColor.white
+        //        self.guardianButton.backgroundColor = UIColor.orange
+        //        self.studentButton.backgroundColor = UIColor.white
+        //
+        //        self.genderTextField.inputView = self.thePicker
+        //        self.districtTextField.inputView = self.thePicker
         
-        self.genderTextField.inputView = self.thePicker
-        self.districtTextField.inputView = self.thePicker
+        
+        let registrationNameDetails: NSMutableDictionary? = ["leftTitle":"First Name","rightTitle":"Last Name","leftValue":"","rightValue":"","type":"1"]
+        
+        let registrationgenderDetails: NSMutableDictionary? = ["leftTitle":"Gender","rightTitle":"Date of Birth","leftValue":"","rightValue":"","type":"2"]
+        
+        let registrationEmailDetails: NSMutableDictionary? = ["leftTitle":"Email","rightTitle":"Mobile","leftValue":"","rightValue":"","type":"3"]
+        
+        let registrationNRICDetails: NSMutableDictionary? = ["leftTitle":"NRIC/FIN","rightTitle":"","leftValue":"","rightValue":"","type":"4"]
+        
+        let registrationPassDetails: NSMutableDictionary? = ["leftTitle":"Password","rightTitle":"Confirm Password","leftValue":"","rightValue":"","type":"5","bottomValue":"Password should be minimum 8 character s with at least one special character and one capital letter and one number"]
+        
+        let registrationAddress1Details: NSMutableDictionary? = ["rightTitle":"Address line 1","leftTitle":"","leftValue":"","rightValue":"","type":"6"]
+        
+        let registrationAddress2Details: NSMutableDictionary? = ["rightTitle":"Address line 2","leftTitle":"","leftValue":"","rightValue":"","type":"7"]
         
         
-        let registrationNameDetails: NSMutableDictionary? = ["First Name":"leftTitle","Last Name":"rightTitle","":"leftValue","":"rightValue","1":"type"]
+        let registrationDistrictDetails: NSMutableDictionary? = ["leftTitle":"District","rightTitle":"","leftValue":"","rightValue":"","type":"8"]
         
-        let registrationgenderDetails: NSMutableDictionary? = ["Gender":"leftTitle","Date of Birth":"rightTitle","":"leftValue","":"rightValue","2":"type"]
-
-        let registrationEmailDetails: NSMutableDictionary? = ["Email":"leftTitle","Mobile":"rightTitle","":"leftValue","":"rightValue","3":"type"]
+        let registrationPincodeDetails: NSMutableDictionary? = ["leftTitle":"Pincode","rightTitle":"","leftValue":"","rightValue":"","type":"9"]
         
-        let registrationNRICDetails: NSMutableDictionary? = ["NRIC/FIN":"leftTitle","":"rightTitle","":"leftValue","":"rightValue","4":"type"]
         
-        let registrationPassDetails: NSMutableDictionary? = ["Password":"leftTitle","Confirm Password":"rightTitle","":"leftValue","":"rightValue","5":"type","Password should be minimum 8 character s with at least one special character and one capital letter and one number":"bottomValue"]
-        
-        let registrationAddress1Details: NSMutableDictionary? = ["Address line 1":"leftTitle","":"rightTitle","":"leftValue","":"rightValue","6":"type"]
-        
-        let registrationAddress2Details: NSMutableDictionary? = ["Address line 2":"leftTitle","":"rightTitle","":"leftValue","":"rightValue","7":"type"]
-
-
-        let registrationDistrictDetails: NSMutableDictionary? = ["District":"leftTitle","":"rightTitle","":"leftValue","":"rightValue","8":"type"]
-        
-        let registrationPincodeDetails: NSMutableDictionary? = ["Pincode":"leftTitle","":"rightTitle","":"leftValue","":"rightValue","9":"type"]
-
-
         dataArray = NSMutableArray()
         dataArray?.add(registrationNameDetails ?? NSDictionary.init())
         dataArray?.add(registrationgenderDetails ?? NSDictionary.init())
@@ -101,9 +110,50 @@ class StudentRegistrationViewController: UIViewController,UITextFieldDelegate,UI
         dataArray?.add(registrationAddress2Details ?? NSDictionary.init())
         dataArray?.add(registrationDistrictDetails ?? NSDictionary.init())
         dataArray?.add(registrationPincodeDetails ?? NSDictionary.init())
-
+        
+        self.registrationTableview.estimatedRowHeight = 60.0
+        self.registrationTableview.rowHeight = UITableViewAutomaticDimension
+        
+        self.gaurdianButton.isSelected = true
+        self.studentButton.isSelected = false
+        self.registrationFooterView.updateViewLayout();
         
     }
+    
+    //MARK :: Tableview delegate
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return (self.dataArray?.count)!
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "registrationCell", for: indexPath) as? RegistrationTableViewCell
+        cell?.updateLayout(registrationData: self.dataArray?.object(at: indexPath.row) as! NSDictionary)
+        cell?.leftTextField.delegate = self
+        cell?.rightTextField.delegate = self
+        cell?.leftTextField.tag = indexPath.row
+        cell?.rightTextField.tag = indexPath.row
+        return cell!
+    }
+    
+    
+    // MARK:: Header Button Action
+    @IBAction func headerButtonClicked(_ sender: UIButton)
+    {
+        if sender.tag == 101
+        {
+            self.gaurdianButton.isSelected = true
+            self.studentButton.isSelected = false
+        }else
+        {
+            self.gaurdianButton.isSelected = false
+            self.studentButton.isSelected = true
+        }
+    }
+    
+    
+    
+    
     
     // MARK:: Button Action
     @IBAction func registerTypeButtonClicked(_ sender: Any) {
@@ -111,13 +161,13 @@ class StudentRegistrationViewController: UIViewController,UITextFieldDelegate,UI
         {
         case 0:      //when guardian isclicked...
             self.regiterTypeString = "guardian"
-            self.guardianButton.backgroundColor = UIColor.orange
+            //  self.guardianButton.backgroundColor = UIColor.orange
             self.studentButton.backgroundColor = UIColor.white
             break
         case 1:      //when student is clicked...
             self.regiterTypeString = "student"
             self.studentButton.backgroundColor = UIColor.orange
-            self.guardianButton.backgroundColor = UIColor.white
+            //self.guardianButton.backgroundColor = UIColor.white
             
             break
         default: print("Other...")
@@ -133,117 +183,435 @@ class StudentRegistrationViewController: UIViewController,UITextFieldDelegate,UI
         
     }
     
-    @IBAction func submitButtonClicked(_ sender: Any) {
-        
-        guard  !(self.firstNameTextField.text?.isEmpty)!  else {
-            TutorDefaultAlertController.showAlertController(alertMessage: "Please Enter First Name" , showController: self)
-            return
-        }
-        guard !(self.lastNameTextField.text?.isEmpty)! else {
-            TutorDefaultAlertController.showAlertController(alertMessage: "Please Enter Last Name" , showController: self)
-            return
-        }
-        guard !(self.genderTextField.text?.isEmpty)! else {
-            TutorDefaultAlertController.showAlertController(alertMessage: "Please Enter Gender" , showController: self)
-            return
-        }
-        guard !(self.dobTextField.text?.isEmpty)! else {
-            TutorDefaultAlertController.showAlertController(alertMessage: "Please Enter Date of Birth" , showController: self)
-            return
-        }
-        guard (self.eMailTextField.text! as NSString).isValidEmail() else {
-            TutorDefaultAlertController.showAlertController(alertMessage: "Please Enter Email" , showController: self)
-            return
-        }
-        guard !(self.mobNoTextField.text?.isEmpty)! else {
-            TutorDefaultAlertController.showAlertController(alertMessage: "Please Enter Mobile No" , showController: self)
-            return
-        }
-        guard !(self.passwordTextField.text?.isEmpty)! else {
-            TutorDefaultAlertController.showAlertController(alertMessage: "Please Enter Password" , showController: self)
-            return
-        }
-        guard !(self.address1TextField.text?.isEmpty)! else {
-            TutorDefaultAlertController.showAlertController(alertMessage: "Please Enter Address 1 Field" , showController: self)
-            return
-        }
-        guard !(self.address2TextField.text?.isEmpty)! else {
-            TutorDefaultAlertController.showAlertController(alertMessage: "Please Enter Address 2 Field" , showController: self)
-            return
-        }
-        guard !(self.districtTextField.text?.isEmpty)! else {
-            TutorDefaultAlertController.showAlertController(alertMessage: "Please Enter District" , showController: self)
-            return
-        }
-        guard !(self.pinCodeTextField.text?.isEmpty)! else {
-            TutorDefaultAlertController.showAlertController(alertMessage: "Please Enter Pin Code" , showController: self)
-            return
-        }
-        guard !(self.cnfPassTextField.text?.isEmpty)! else {
-            TutorDefaultAlertController.showAlertController(alertMessage: "Please Enter Cofirm Password" , showController: self)
-            return
-        }
-        guard (self.passwordTextField.text == self.cnfPassTextField.text) else {
-            TutorDefaultAlertController.showAlertController(alertMessage: "Confirmed password not matched please try again." , showController: self)
-            return
-        }
-//        guard (self.agreeTCButton.isSelected) else {
-//            TutorDefaultAlertController.showAlertController(alertMessage: "Please select Terms and Conditions", showController: self)
-//            return
-//        }
-        MBProgressHUD.showAdded(to: self.view, animated: true)
-        self.registrationApicall()
+   
+    //MARK: Default AlertViewController
+    func showAlertController(alertMessage:String?) -> Void {
+        let alert = UIAlertController(title: "", message: alertMessage, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default){ action -> Void in
+            // Put your code here
+//            let profilControllerObj = self.storyboard?.instantiateViewController(withIdentifier: "TutorGuardianProfileViewController") as? TutorGuardianProfileViewController
+            self.navigationController?.popViewController(animated: true)
+            
+        })
+        self.present(alert, animated: true, completion: nil)
     }
     
-    @IBAction func canelButtonClicked(_ sender: Any) {
+    func configureDatePicker(textField:AAPickerView) -> Void {
+        textField.pickerType = .DatePicker
+        textField.datePicker?.datePickerMode = .date
+        textField.dateFormatter.dateFormat = "YYYY-MM-dd"
+        textField.dateDidChange = { date in
+            print("selectedDate ", date )
+            textField.text = textField.dateFormatter.string(from: date)
+        }
+    }
+    
+    //MARK:: TextField Delegate & Datasource
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool // called when 'return' key pressed. return false to ignore.
+    {
+        if textField == self.genderTextField {
+            return false; //do not show keyboard nor cursor
+        }
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    public func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool // return NO to disallow editing.
+    {
+        if let textFieldTemp =  textField as? CustomTextField
+        {
+            let datadictionary = self.dataArray?.object(at: textField.tag) as? NSMutableDictionary
+            if datadictionary?.value(forKey: "type") as? String == "2" && textFieldTemp.customTag == 2
+            {
+                self.configureDatePicker(textField: textFieldTemp)
+            }
+            else if datadictionary?.value(forKey: "type") as? String == "8" && textFieldTemp.customTag == 1
+            {
+                textFieldTemp.inputView = self.thePicker
+                self.thePicker.tag = 1
+                if self.cityArray.isEmpty == true {
+                    MBProgressHUD.showAdded(to: self.view, animated: true)
+                    self.cityListApiCall(districTextField: textFieldTemp)
+                }
+            }
+            else if datadictionary?.value(forKey: "type") as? String == "2" && textFieldTemp.customTag == 1
+            {
+                self.thePicker.tag = 0
+                textFieldTemp.inputView = self.thePicker
+            }
+        }
+        return true
+    }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if let textFieldTemp =  textField as? CustomTextField
+        {
+            let datadictionary = self.dataArray?.object(at: textField.tag) as? NSMutableDictionary
+            if datadictionary?.value(forKey: "type") as? String == "8" && textFieldTemp.customTag == 1
+            {
+                if (districtValue != nil)
+                {
+                    datadictionary?["leftValue"] = districtValue?["city_name"]
+                }else
+                {
+                    if cityArray.isEmpty == false
+                    {
+                        let districtData = cityArray[0] as? NSDictionary
+                        datadictionary?["leftValue"] = districtData?["city_name"]
+                        districtValue = districtData
+                    }
+                }
+                registrationTableview.reloadData()
+
+            }
+            else if datadictionary?.value(forKey: "type") as? String == "2" && textFieldTemp.customTag == 1
+            {
+                if (genderValue != nil)
+                {
+                    datadictionary?["leftValue"] = genderValue
+                }else
+                {
+                    datadictionary?["leftValue"] = gender[0]
+
+                }
+                registrationTableview.reloadData()
+
+                
+            }else if textFieldTemp.customTag == 1
+            {
+                datadictionary?["leftValue"] = textFieldTemp.text
+            }else if textFieldTemp.customTag == 2
+            {
+                datadictionary?["rightValue"] = textFieldTemp.text
+            }
+        }
+    }
+    //MARK:: PickerView Delegate & Datasource
+    
+    // Sets number of columns in picker view
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    // Sets the number of rows in the picker view
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        if pickerView.tag == 1 {
+            return cityArray.count
+        }
+        return gender.count
+    }
+    
+    // This function sets the text of the picker view to the content of the "salutations" array
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        if pickerView.tag == 1 {
+            let postDictionary = cityArray[row] as? Dictionary<String,String>
+            self.cityIdString = postDictionary?["city_id"]
+            //  self.districtTextField.text = postDictionary?["city_name"]
+            return postDictionary?["city_name"]
+        }
+        self.genderTypeString = gender[row]
+        //  self.genderTextField.text = self.genderTypeString
+        return gender[row]
+    }
+    
+    // When user selects an option, this function will set the text of the text field to reflect the selected option.
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if pickerView.tag == 1 {
+            if cityArray.isEmpty == false
+            {
+                let postDictionary = cityArray[row] as? NSDictionary
+                districtValue = postDictionary
+                return
+            }
+        }
+        genderValue = gender[row]
+    }
+    
+    
+    
+    
+    //MARK:: Registration Button Action and API Call
+    
+    @IBAction func submitButtonClicked(_ sender: Any) {
+   
+        self.view.endEditing(true)
+        var isValidate:Bool
+        isValidate = true
+        var parameterData = [String: String]()
+
+        for dataDictionary in self.dataArray! {
+            if let dataContent = dataDictionary as? NSMutableDictionary
+            {
+                if dataContent["type"] as? String == "1"
+                {
+                    let leftValue =  dataContent["leftValue"] as? String
+                    if (leftValue?.isEmpty)!
+                    {
+                        TutorDefaultAlertController.showAlertController(alertMessage: "Please enter first name" , showController: self)
+                        isValidate = false
+                        break;
+                    }else
+                    {
+                        parameterData["s_name"] = leftValue
+                    }
+                    let rightValue =  dataContent["rightValue"] as? String
+                    if (rightValue?.isEmpty)!
+                    {
+                        TutorDefaultAlertController.showAlertController(alertMessage: "Please enter last name" , showController: self)
+                        isValidate = false
+                        break;
+                    }else
+                    {
+                        parameterData["s_lastname"] = rightValue
+                        
+                    }
+                }else if dataContent["type"] as? String == "2"
+                {
+                    let leftValue =  dataContent["leftValue"] as? String
+                    if (leftValue?.isEmpty)!
+                    {
+                        TutorDefaultAlertController.showAlertController(alertMessage: "Please select gender" , showController: self)
+                        isValidate = false
+                        break;
+                    }else
+                    {
+                        parameterData["s_gender"] = leftValue
+                    }
+                    let rightValue =  dataContent["rightValue"] as? String
+                    if (rightValue?.isEmpty)!
+                    {
+                        TutorDefaultAlertController.showAlertController(alertMessage: "Please select date of birth" , showController: self)
+                        isValidate = false
+                        break;
+                    }else
+                    {
+                        let dateFormatterValue = DateFormatter()
+                        dateFormatterValue.dateFormat = "yyyy-MM-dd"
+                        let date = dateFormatterValue.date(from: rightValue!)!
+                        let calendar = Calendar.current
+                        let components = calendar.dateComponents([.year, .month, .day, .hour], from: date)
+                        let myDOB = Calendar.current.date(from: components)!
+                       
+                        if gaurdianButton.isSelected == true
+                        {
+                            if myDOB.age < 18
+                            {
+                                TutorDefaultAlertController.showAlertController(alertMessage: "Minimum 18 years required to register as guardian" , showController: self)
+                                isValidate = false
+                                break;
+                            }else
+                            {
+                                parameterData["s_dob"] = rightValue
+
+                            }
+                            
+                        }else
+                        {
+                            if myDOB.age < 3
+                            {
+                                TutorDefaultAlertController.showAlertController(alertMessage: "Minimum 3 years required to register as student" , showController: self)
+                                isValidate = false
+                                break;
+                            }else
+                            {
+                                parameterData["s_dob"] = rightValue
+
+                            }
+                        }
+                        
+                    }
+                }else if dataContent["type"] as? String == "3"
+                {
+                    let leftValue =  dataContent["leftValue"] as? NSString
+                    if leftValue?.length == 0
+                    {
+                        TutorDefaultAlertController.showAlertController(alertMessage: "Please enter email address" , showController: self)
+                        isValidate = false
+                        break;
+                    }else
+                    {
+                        if leftValue?.isValidEmail() == true
+                        {
+                            parameterData["s_email"] = leftValue as String?
+                        }else
+                        {
+                            TutorDefaultAlertController.showAlertController(alertMessage: "Please enter valid email address" , showController: self)
+                            isValidate = false
+                            break;
+                        }
+                        
+                    }
+                    let rightValue =  dataContent["rightValue"] as? String
+                    if (rightValue?.isEmpty)!
+                    {
+                        TutorDefaultAlertController.showAlertController(alertMessage: "Please enter mobile no" , showController: self)
+                        isValidate = false
+                        break;
+                    }else
+                    {
+                        if (rightValue?.count)!<10
+                        {
+                            TutorDefaultAlertController.showAlertController(alertMessage: "The Mobile Number must be at least 10 characters in length" , showController: self)
+                            isValidate = false
+                            break;
+                        }else
+                        {
+                            parameterData["s_mobile"] = rightValue
+                        }
+                        
+                    }
+                }
+                else if dataContent["type"] as? String == "4"
+                {
+                    let leftValue =  dataContent["leftValue"] as? String
+                    if (leftValue?.isEmpty)!
+                    {
+                        TutorDefaultAlertController.showAlertController(alertMessage: "Please enter NRIC/FIN" , showController: self)
+                        isValidate = false
+                        break;
+                    }else
+                    {
+                        parameterData["s_nric"] = leftValue
+                        
+                    }
+                }else if dataContent["type"] as? String == "5"
+                {
+                    let leftValue =  dataContent["leftValue"] as? NSString
+                    if leftValue?.length == 0
+                    {
+                        TutorDefaultAlertController.showAlertController(alertMessage: "Please enter password" , showController: self)
+                        isValidate = false
+                        break;
+                    }else
+                    {
+                        parameterData["s_password"] = leftValue! as String
+                        
+                    }
+                    let rightValue =  dataContent["rightValue"] as? String
+                    if (rightValue?.isEmpty)!
+                    {
+                        TutorDefaultAlertController.showAlertController(alertMessage: "Please enter confirm password" , showController: self)
+                        isValidate = false
+                        break;
+                    }else
+                    {
+                        if  leftValue?.isEqual(to: rightValue!) == false
+                        {
+                            TutorDefaultAlertController.showAlertController(alertMessage: "Password and confirm password does not match" , showController: self)
+                            isValidate = false
+                            break;
+                        }else if leftValue?.isValidPassword() == false
+                        {
+                            TutorDefaultAlertController.showAlertController(alertMessage: dataContent["bottomValue"] as? String , showController: self)
+                            isValidate = false
+                        }
+                    }
+                }
+                else if dataContent["type"] as? String == "6"
+                {
+                    let rightValue =  dataContent["rightValue"] as? String
+                    if (rightValue?.isEmpty)!
+                    {
+                        TutorDefaultAlertController.showAlertController(alertMessage: "Please enter address 1 field" , showController: self)
+                        isValidate = false
+                        break;
+                    }else
+                    {
+                        parameterData["s_address1"] = rightValue
+                        
+                    }
+                }
+                else if dataContent["type"] as? String == "7"
+                {
+                    let rightValue =  dataContent["rightValue"] as? String
+                    if (rightValue?.isEmpty)!
+                    {
+                        TutorDefaultAlertController.showAlertController(alertMessage: "Please enter address 2 field" , showController: self)
+                        isValidate = false
+                        break;
+                    }else
+                    {
+                        parameterData["s_address2"] = rightValue
+                        
+                    }
+                }
+                else if dataContent["type"] as? String == "8"
+                {
+                    let leftValue =  dataContent["leftValue"] as? String
+                    if (leftValue?.isEmpty)!
+                    {
+                        TutorDefaultAlertController.showAlertController(alertMessage: "Please select district" , showController: self)
+                        isValidate = false
+                        break;
+                    }else
+                    {
+                        if (districtValue != nil)
+                        {
+                            parameterData["s_city_id"] = districtValue["city_id"] as? String
+                        }
+                        
+                    }
+                }else if dataContent["type"] as? String == "9"
+                {
+                    let leftValue =  dataContent["leftValue"] as? String
+                    if (leftValue?.isEmpty)!
+                    {
+                        TutorDefaultAlertController.showAlertController(alertMessage: "Please enter pincode" , showController: self)
+                        isValidate = false
+                        break;
+                    }else
+                    {
+                        parameterData["s_pin"] = leftValue
+                        
+                    }
+                }
+            }
+        }
+        
+        if isValidate == true
+        {
+            if registrationFooterView.checkBoxButton.isSelected == true
+            {
+                if gaurdianButton.isSelected == true
+                {
+                    parameterData["register_type"] = "guardian"
+                }else
+                {
+                    parameterData["register_type"] = "student"
+                }
+                parameterData["s_oauth"] = "Mobile"
+                MBProgressHUD.showAdded(to: self.view, animated: true)
+                self.registrationApicall(parameterData: parameterData)
+            }else
+            {
+                TutorDefaultAlertController.showAlertController(alertMessage: "Please accept terms and condition" , showController: self)
+
+            }
+        }
+        
+        
+        
+       
+    }
+    
+    @IBAction func cancelButtonClicked(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
     
+    @IBAction func checkBoxButtonClicked(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+    }
     @objc func backButtonAction(sender:UIButton!) {
         self.navigationController?.popViewController(animated: true)
     }
     
     // MARK:: Registration Api Implementation
-
-    func registrationApicall() -> Void {
+    
+    func registrationApicall(parameterData:Dictionary<String, String>) -> Void {
         
         let urlPath = String(format: "%@%@",Constants.baseUrl,Constants.studentRegister) as String
-        
-        var dictionary = [String: String]()
-    
-        dictionary["register_type"] = self.regiterTypeString
-        dictionary["s_name"] = self.firstNameTextField.text
-        dictionary["s_lastname"] = self.lastNameTextField.text
-        dictionary["s_mobile"] = self.mobNoTextField.text
-        dictionary["s_email"] = self.eMailTextField.text
-        dictionary["s_password"] = self.passwordTextField.text
-        dictionary["s_dob"] = self.dobTextField.text
-        dictionary["s_gender"] = self.genderTextField.text
-        dictionary["s_address1"] = self.address1TextField.text
-        dictionary["s_address2"] = self.address2TextField.text
-        dictionary["s_pin"] = "400001"
-        dictionary["s_nric"] = "L6783452H"
-        dictionary["s_oauth"] = "Mobile"
-        dictionary["s_city_id"] = self.cityIdString
-
-
-
-//        dictionary.setValue(self.regiterTypeString, forKey: "register_type")
-//        dictionary.setValue(self.firstNameTextField.text, forKey: "s_name")
-//        dictionary.setValue(self.lastNameTextField.text, forKey: "s_lastname")
-//        dictionary.setValue(self.mobNoTextField.text, forKey: "s_mobile")
-//        dictionary.setValue(self.eMailTextField.text, forKey: "s_email")
-//        dictionary.setValue(self.passwordTextField.text, forKey: "s_password")
-//        dictionary.setValue(self.dobTextField.text, forKey: "s_dob")
-//        dictionary.setValue(self.genderTextField.text, forKey: "s_gender")
-//        dictionary.setValue(self.address1TextField.text, forKey: "s_address1")
-//        dictionary.setValue(self.address2TextField.text, forKey: "s_address2")
-//        dictionary.setValue("400001", forKey: "s_pin")
-//        dictionary.setValue("L6783452H", forKey: "s_nric")
-//        dictionary.setValue("Mobile", forKey: "s_oauth")
-//        dictionary.setValue(self.cityIdString, forKey: "s_city_id")
-
-        Alamofire.request(urlPath, method: .post, parameters: dictionary , encoding: JSONEncoding.default, headers:["Content-Type":"application/json","Authorization":String(format:"Bearer %@",TutorSharedClass.shared.token ?? "")]) .responseJSON { response in
+        print(parameterData)
+        Alamofire.request(urlPath, method: .post, parameters:parameterData , encoding: JSONEncoding.default, headers:["Content-Type":"application/json","Authorization":String(format:"Bearer %@",TutorSharedClass.shared.token ?? "")]) .responseJSON { response in
             if response.result.isSuccess
             {
                 if let resultDictionary = response.result.value as? NSDictionary
@@ -261,7 +629,7 @@ class StudentRegistrationViewController: UIViewController,UITextFieldDelegate,UI
                     {
                         TutorGenerateToken.performGenerateTokenUrl(completionHandler: { (status, token) in
                             if status == Constants.Status.StatusOK.rawValue {
-                                self.cityListApiCall()
+                                //self.cityListApiCall()
                             }
                             else {
                                 print(token as Any)
@@ -281,7 +649,7 @@ class StudentRegistrationViewController: UIViewController,UITextFieldDelegate,UI
         }
     }
     
-    func cityListApiCall() -> Void {
+    func cityListApiCall(districTextField:AAPickerView) -> Void {
         let urlPath = String(format: "%@%@",Constants.baseUrl,Constants.cityList) as String
         Alamofire.request(urlPath, method: .post, parameters: nil, encoding: JSONEncoding.default, headers:["Content-Type":"application/json","Authorization":String(format:"Bearer %@",TutorSharedClass.shared.token ?? "")]) .responseJSON { response in
             if response.result.isSuccess
@@ -303,7 +671,7 @@ class StudentRegistrationViewController: UIViewController,UITextFieldDelegate,UI
                         TutorGenerateToken.performGenerateTokenUrl(completionHandler: { (status, token) in
                             if status == Constants.Status.StatusOK.rawValue
                             {
-                                self.cityListApiCall()
+                                self.cityListApiCall(districTextField: districTextField)
                             }else{
                                 print(token as Any)
                                 MBProgressHUD.hide(for: self.view, animated: true)
@@ -321,94 +689,5 @@ class StudentRegistrationViewController: UIViewController,UITextFieldDelegate,UI
             MBProgressHUD.hide(for: self.view, animated: true)
         }
     }
-
-    //MARK: Default AlertViewController
-    func showAlertController(alertMessage:String?) -> Void {
-        let alert = UIAlertController(title: "", message: alertMessage, preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default){ action -> Void in
-            // Put your code here
-            let profilControllerObj = self.storyboard?.instantiateViewController(withIdentifier: "TutorGuardianProfileViewController") as? TutorGuardianProfileViewController
-            self.navigationController?.pushViewController(profilControllerObj!, animated: true)
-            
-        })
-        self.present(alert, animated: true, completion: nil)
-    }
     
-    func configureDatePicker() -> Void {
-        self.dobTextField.pickerType = .DatePicker
-        self.dobTextField.datePicker?.datePickerMode = .date
-        self.dobTextField.dateFormatter.dateFormat = "YYYY/MM/dd"
-        self.dobTextField.dateDidChange = { date in
-            print("selectedDate ", date )
-            self.dobTextField.text = self.dobTextField.dateFormatter.string(from: date)
-        }
-    }
-    
-    //MARK:: TextField Delegate & Datasource
-
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool // called when 'return' key pressed. return false to ignore.
-    {
-        if textField == self.genderTextField {
-            return false; //do not show keyboard nor cursor
-        }
-        textField.resignFirstResponder()
-        return true
-    }
-    
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        
-        if textField == self.genderTextField {
-            thePicker.tag = 0
-        }
-        else if textField == self.districtTextField {
-            self.thePicker.tag = 1
-            if self.cityArray.isEmpty == true {
-                MBProgressHUD.showAdded(to: self.view, animated: true)
-                self.cityListApiCall()
-            }
-        }
-        else if textField == self.dobTextField {
-            self.configureDatePicker()
-        }
-        return true
-    }
-    
-    //MARK:: PickerView Delegate & Datasource
-
-    // Sets number of columns in picker view
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    // Sets the number of rows in the picker view
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        if pickerView.tag == 1 {
-            return cityArray.count
-        }
-        return gender.count
-    }
-    
-    // This function sets the text of the picker view to the content of the "salutations" array
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if pickerView.tag == 1 {
-            let postDictionary = cityArray[row] as? Dictionary<String,String>
-            self.cityIdString = postDictionary?["city_id"]
-            self.districtTextField.text = postDictionary?["city_name"]
-            return postDictionary?["city_name"]
-        }
-        self.genderTypeString = gender[row]
-        self.genderTextField.text = self.genderTypeString
-        return gender[row]
-    }
-    
-    // When user selects an option, this function will set the text of the text field to reflect the selected option.
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if pickerView.tag == 1 {
-            let postDictionary = cityArray[row] as? Dictionary<String,String>
-            districtTextField.text = postDictionary?["city_name"]
-            return
-        }
-        genderTextField.text = gender[row]
-    }
-
 }

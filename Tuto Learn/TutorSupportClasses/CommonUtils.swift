@@ -15,6 +15,19 @@ extension NSString {
         
         return predicate.evaluate(with: self)
     }
+    
+    func isValidPassword() -> Bool {
+        let regex : NSString = "^(?=.*[A-Z])(?=.*\\d)(?=.*[$@$!%*?&])[A-Za-z\\d$@$!%*?&]{8,}"
+        let predicate = NSPredicate(format: "SELF MATCHES %@", regex)
+        
+        return predicate.evaluate(with: self)
+    }
+    
+}
+extension Date {
+    var age: Int {
+        return Calendar.current.dateComponents([.year], from: self, to: Date()).year!
+    }
 }
 extension UIColor
 {
