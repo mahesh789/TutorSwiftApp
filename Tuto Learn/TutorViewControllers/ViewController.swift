@@ -45,6 +45,10 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
         self.createAccountButton.layer.borderWidth = 1
         self.rememberButton.setBackgroundImage(UIImage(named: "uncheckbox_icon"), for: .normal)
          self.rememberButton.setBackgroundImage(UIImage(named: "checkbox_icon"), for: .selected)
+        self.userNameTextField.attributedPlaceholder = NSAttributedString(string:self.userNameTextField.placeholder!,
+                                                                 attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
+        self.passwordTextField.attributedPlaceholder = NSAttributedString(string:self.passwordTextField.placeholder!,
+                                                                          attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
     }
     
     //MARK:SignIn Button Action
@@ -120,7 +124,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
                         {
                             print(resultDictionary)
 
-                            if let resultParseLoginDictionary = resultDictionary.object(forKey:"data")
+                            if let resultParseLoginDictionary = resultDictionary.object(forKey:"Data")
                             {
                                 print(resultParseLoginDictionary)
                                 let loginModelArray = TutorLoginModel.modelsFromDictionaryArray(array: [resultParseLoginDictionary])
@@ -131,8 +135,8 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
                                     if self.ischeckMark
                                     {
                                         UserDefaults.standard.set(true, forKey: "isUserLoggedIn")
-                                        UserDefaults.standard.set(self.userNameTextField.text, forKey: "userName")
-                                        UserDefaults.standard.set(self.passwordTextField.text, forKey: "passWord")
+                                       let loginDictionary = TutorSharedClass.shared.loginTutorLoginObject?.dictionaryRepresentation()
+                                        UserDefaults.standard.set(loginDictionary, forKey: "LoginDetails")
                                     }
                                     if TutorSharedClass.shared.loginTutorLoginObject?.registrationType == "0"
                                     {
