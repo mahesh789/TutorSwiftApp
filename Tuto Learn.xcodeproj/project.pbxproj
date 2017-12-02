@@ -61,6 +61,7 @@
 		3DF48C181FBA222700EB5A57 /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3DF48C051FBA222600EB5A57 /* Roboto-Black.ttf */; };
 		50326AC26D61E7C64B569E55 /* Pods_Tuto_Learn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73D4B75396E27E1A8CBE1C7F /* Pods_Tuto_Learn.framework */; };
 		8587B336F013EEC2FF92572C /* Pods_Tuto_LearnUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F25EC7011674942482E84582 /* Pods_Tuto_LearnUITests.framework */; };
+		BA3112671FD2C5B80073A577 /* TutorPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3112661FD2C5B80073A577 /* TutorPreferencesViewController.swift */; };
 		E0B999ABA2457D53A1E5523A /* Pods_Tuto_LearnTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E14C71DF087A30B77F81C24F /* Pods_Tuto_LearnTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -147,6 +148,7 @@
 		6AC1441E8797F5AA2CE644E7 /* Pods-Tuto Learn.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tuto Learn.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tuto Learn/Pods-Tuto Learn.release.xcconfig"; sourceTree = "<group>"; };
 		73D4B75396E27E1A8CBE1C7F /* Pods_Tuto_Learn.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tuto_Learn.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		90548A21F77BA925D6F12405 /* Pods-Tuto Learn.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tuto Learn.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tuto Learn/Pods-Tuto Learn.debug.xcconfig"; sourceTree = "<group>"; };
+		BA3112661FD2C5B80073A577 /* TutorPreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorPreferencesViewController.swift; sourceTree = "<group>"; };
 		D9FA219B8107D4DE7C99BE06 /* Pods-Tuto LearnTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tuto LearnTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tuto LearnTests/Pods-Tuto LearnTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DEF8B6D153567D6F4DFD6E95 /* Pods-Tuto LearnUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tuto LearnUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tuto LearnUITests/Pods-Tuto LearnUITests.release.xcconfig"; sourceTree = "<group>"; };
 		E14C71DF087A30B77F81C24F /* Pods_Tuto_LearnTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tuto_LearnTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -244,6 +246,7 @@
 		3D1BD8631FB0E69D00DDB3BB /* TutorViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				BA3112651FD2C5950073A577 /* TutorPreferencesViewController */,
 				07266CE21FBE03CE004A4FDE /* TutorRegistrationViewController */,
 				071E0FC41FB74FB300829299 /* TutorProfileViewController */,
 				3D1BD8641FB0E69D00DDB3BB /* ViewController.swift */,
@@ -498,6 +501,14 @@
 				F25EC7011674942482E84582 /* Pods_Tuto_LearnUITests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BA3112651FD2C5950073A577 /* TutorPreferencesViewController */ = {
+			isa = PBXGroup;
+			children = (
+				BA3112661FD2C5B80073A577 /* TutorPreferencesViewController.swift */,
+			);
+			path = TutorPreferencesViewController;
 			sourceTree = "<group>";
 		};
 		C9E1321C5889B5168FEFBB57 /* Pods */ = {
@@ -925,6 +936,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D1BD8671FB0E74300DDB3BB /* AppDelegate.swift in Sources */,
+				BA3112671FD2C5B80073A577 /* TutorPreferencesViewController.swift in Sources */,
 				3D0A6B831FB694A5001CC7A9 /* TutorMenuTableViewCell.swift in Sources */,
 				3DBEC5901FAF852A0018CD66 /* TutorLoginModel.swift in Sources */,
 				071E0FC61FB74FE600829299 /* TutorGuardianProfileViewController.swift in Sources */,

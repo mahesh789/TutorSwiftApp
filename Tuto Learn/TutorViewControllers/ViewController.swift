@@ -140,10 +140,10 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
                                     }
                                     if TutorSharedClass.shared.loginTutorLoginObject?.registrationType == "0"
                                     {
-                                        self.setProfilerootViewController()
+                                        self.setPreferencesrootViewController()
                                     }else
                                     {
-                                        self.setProfilerootViewController()
+                                        self.setPreferencesrootViewController()
                                     }
                                     
                                 }
@@ -170,6 +170,13 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
     func setProfilerootViewController() -> Void {
         let tutorHomeViewController:TutorProfileViewController = self.storyboard?.instantiateViewController(withIdentifier: "TutorProfileViewController") as! TutorProfileViewController
         tutorHomeViewController.currentProfilType = ProfileType.ProfileTypeGuardian.rawValue
+        let navigationController = UINavigationController(rootViewController: tutorHomeViewController)
+        navigationController.isNavigationBarHidden = true
+        UIApplication.shared.keyWindow?.rootViewController = navigationController
+    }
+    
+    func setPreferencesrootViewController() -> Void {
+        let tutorHomeViewController:TutorPreferencesViewController = self.storyboard?.instantiateViewController(withIdentifier: "TutorPreferencesViewController") as! TutorPreferencesViewController
         let navigationController = UINavigationController(rootViewController: tutorHomeViewController)
         navigationController.isNavigationBarHidden = true
         UIApplication.shared.keyWindow?.rootViewController = navigationController
