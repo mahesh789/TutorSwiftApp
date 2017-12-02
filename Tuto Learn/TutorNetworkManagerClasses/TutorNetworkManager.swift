@@ -10,8 +10,10 @@ import UIKit
 import Alamofire
 
 class TutorNetworkManager: NSObject {
-
+    var loopCount = 0
+    
   public class func performRequestWithUrl(baseUrl:String,parametersDictionary:Dictionary<String,Any>?,completionHandler: @escaping (NSInteger?,Any?) -> Void) {
+    
         Alamofire.request(baseUrl, method: .post, parameters:parametersDictionary, encoding: JSONEncoding.default, headers:["Content-Type":"application/json","Authorization":String(format:"Bearer %@",TutorSharedClass.shared.token ?? "")])
             .responseJSON { response in
                 if response.result.isSuccess
@@ -24,12 +26,27 @@ class TutorNetworkManager: NSObject {
                              completionHandler(Constants.Status.StatusOK.rawValue,resultDictionary)
                         }else if Int(truncating: resultDictionary["status"] as! NSNumber) == Constants.Status.TokenInvalid.rawValue
                         {
-                            //need to push login controller
-                            if UserDefaults.standard.bool(forKey: "isUserLoggedIn") {
-                                TutorSharedClass.navigateLoadingViewController()
-                            }else{
+                            TutorSharedClass.shared.loopCount += 1
+                            if TutorSharedClass.shared.loopCount > 1
+                            {
+                                TutorSharedClass.shared.loopCount = 0
+                                //need to push login controller
                                 self.setrootViewControllerTokenFailed()
                             }
+                            TutorGenerateToken.performGenerateTokenUrl(completionHandler: { (status, token) in
+                                if Constants.Status.StatusOK.rawValue == status
+                                {
+                                    TutorSharedClass.shared.token = token
+                                    TutorNetworkManager.performRequestWithUrl(baseUrl: baseUrl, parametersDictionary: parametersDictionary, completionHandler: { (status, info) in
+                                        TutorSharedClass.shared.loopCount = 0
+                                        completionHandler(status,info)
+                                    })
+                                }else{
+                                    self.setrootViewControllerTokenFailed()
+                                }
+                              
+                            })
+
                         }else{
                             completionHandler(Int(truncating: resultDictionary["status"] as! NSNumber),resultDictionary)
                         }
@@ -51,3 +68,4 @@ class TutorNetworkManager: NSObject {
     }
     
 }
+

@@ -22,9 +22,12 @@ public class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         IQKeyboardManager.sharedManager().enable = true
         if UserDefaults.standard.bool(forKey: "isUserLoggedIn") {
+            if let loginDictionary = UserDefaults.standard.object(forKey: "LoginDetails") {
+                TutorSharedClass.shared.loginTutorLoginObject  = TutorLoginModel.init(dictionary: loginDictionary as! NSDictionary)
+            }
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let tutorLoadingViewController:TutorLoadingViewController = storyboard.instantiateViewController(withIdentifier: "TutorLoadingViewController") as! TutorLoadingViewController
-            let navigationController = UINavigationController(rootViewController: tutorLoadingViewController)
+            let tutorHomeViewController:TutorHomeViewController = storyboard.instantiateViewController(withIdentifier: "TutorHomeViewController") as! TutorHomeViewController
+            let navigationController = UINavigationController(rootViewController: tutorHomeViewController)
             navigationController.isNavigationBarHidden = true
             self.window?.rootViewController = navigationController
             self.window?.makeKeyAndVisible()

@@ -24,6 +24,7 @@ public class TutorSharedClass:NSObject {
     // MARK: Local Variables
     var token:String?
     var studentId:String?
+    var loopCount:Int = 0
 
    public class func navigateLoginViewController() -> Void {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -33,14 +34,7 @@ public class TutorSharedClass:NSObject {
         UIApplication.shared.keyWindow?.rootViewController = navigationController
 
     }
-    public class func navigateLoadingViewController() -> Void {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let tutorLoadingViewController:TutorLoadingViewController = storyboard.instantiateViewController(withIdentifier: "TutorLoadingViewController") as! TutorLoadingViewController
-        let navigationController = UINavigationController(rootViewController: tutorLoadingViewController)
-        navigationController.isNavigationBarHidden = true
-        UIApplication.shared.keyWindow?.rootViewController = navigationController
-    }
-    
+  
   public class func removeLoginCredentialsAndSetRootViewControllerLogin() -> Void {
         UserDefaults.standard.set(false, forKey: "isUserLoggedIn")
         UserDefaults.standard.set(nil, forKey: "userName")
@@ -50,3 +44,24 @@ public class TutorSharedClass:NSObject {
      
 }
 
+extension Int{
+    static prefix func ++(x: inout Int) -> Int {
+        x += 1
+        return x
+    }
+    
+    static postfix func ++(x: inout  Int) -> Int {
+        defer {x += 1}
+        return x
+    }
+    
+    static prefix func --(x: inout Int) -> Int {
+        x -= 1
+        return x
+    }
+    
+    static postfix func --(x: inout Int) -> Int {
+        defer {x -= 1}
+        return x
+    }
+}
