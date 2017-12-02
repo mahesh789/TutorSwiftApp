@@ -118,20 +118,30 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
                     {
                         if Int(truncating: resultDictionary["status"] as! NSNumber) == Constants.Status.StatusOK.rawValue
                         {
-                            if let resultParseLoginDictionary = resultDictionary.object(forKey:"Data")
+                            print(resultDictionary)
+
+                            if let resultParseLoginDictionary = resultDictionary.object(forKey:"data")
                             {
                                 print(resultParseLoginDictionary)
                                 let loginModelArray = TutorLoginModel.modelsFromDictionaryArray(array: [resultParseLoginDictionary])
                                 if (loginModelArray.first != nil)
                                 {
                                     TutorSharedClass.shared.loginTutorLoginObject = loginModelArray.first
-                                    self.setrootViewControllerAfterLogin()
+                                    
                                     if self.ischeckMark
                                     {
                                         UserDefaults.standard.set(true, forKey: "isUserLoggedIn")
                                         UserDefaults.standard.set(self.userNameTextField.text, forKey: "userName")
                                         UserDefaults.standard.set(self.passwordTextField.text, forKey: "passWord")
                                     }
+                                    if TutorSharedClass.shared.loginTutorLoginObject?.registrationType == "0"
+                                    {
+                                        self.setrootViewControllerAfterLogin()
+                                    }else
+                                    {
+                                        self.setrootViewControllerAfterLogin()
+                                    }
+                                    
                                 }
                             }
                         }else{

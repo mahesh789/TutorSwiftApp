@@ -7,18 +7,19 @@ import Foundation
 public class TutorLoginModel {
 	public var address1 : String?
 	public var address2 : String?
-	public var cityId : Int?
+	public var cityId : String?
 	public var dOB : String?
 	public var email : String?
     public var firstName : String?
 	public var gender : String?
 	public var lastName : String?
 	public var loginKey : String?
-	public var mobile : Int?
-	public var pincode : Int?
+	public var mobile : String?
+	public var pincode : String?
 	public var profileImage : String?
 	public var schoolNameString : String?
     public var loginId : String?
+    public var registrationType : String?
 
 /**
     Returns an array of models based on given dictionary.
@@ -54,18 +55,20 @@ public class TutorLoginModel {
 
 		address1 = dictionary["sm_address1"] as? String
 		address2 = dictionary["sm_address2"] as? String
-		cityId = dictionary["sm_city_id"] as? Int
+		cityId = dictionary["sm_city_id"] as? String
 		dOB = dictionary["sm_dob"] as? String
 		email = dictionary["sm_email"] as? String
 		firstName = dictionary["sm_first"] as? String
 		gender = dictionary["sm_gender"] as? String
 		lastName = dictionary["sm_last"] as? String
 		loginKey = dictionary["sm_login_key"] as? String
-		mobile = dictionary["sm_mobile"] as? Int
-		pincode = dictionary["sm_pin"] as? Int
-		profileImage = dictionary["sm_profile_img_url"] as? String
+		mobile = dictionary["sm_mobile"] as? String
+		pincode = dictionary["sm_pin"] as? String
+		profileImage = dictionary["sm_profile_image"] as? String
 		schoolNameString = dictionary["sm_school_name"] as? String
         loginId = dictionary["sm_id"] as? String
+        registrationType = dictionary["sm_register_type"] as? String
+
 	}
 
 		
@@ -91,6 +94,7 @@ public class TutorLoginModel {
 		dictionary.setValue(self.pincode, forKey: "sm_pin")
 		dictionary.setValue(self.profileImage, forKey: "sm_profile_img_url")
         dictionary.setValue(self.loginId, forKey: "sm_id")
+        dictionary.setValue(self.registrationType, forKey: "sm_register_type")
 
 		return dictionary
 	}

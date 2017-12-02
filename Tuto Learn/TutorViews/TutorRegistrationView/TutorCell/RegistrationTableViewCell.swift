@@ -54,12 +54,14 @@ class RegistrationTableViewCell: UITableViewCell {
             leftDropImageView.isHidden = false
         }
         
-        if registrationData.value(forKey: "type") as? String == "3" ||  registrationData.value(forKey: "type") as? String == "9"
+       
+        
+        if registrationData.value(forKey: "type") as? String == "4" || registrationData.value(forKey: "type") as? String == "9"
         {
-            rightTextField.keyboardType = .numberPad
+            leftTextField.keyboardType = .numberPad
         }else
         {
-            rightTextField.keyboardType = .default
+            leftTextField.keyboardType = .default
         }
         
         if registrationData.value(forKey: "type") as? String == "5"
@@ -76,7 +78,7 @@ class RegistrationTableViewCell: UITableViewCell {
             leftTextField.isSecureTextEntry = false
             rightTextField.isSecureTextEntry = false
         }
-        if registrationData.value(forKey: "type") as? String == "6" || registrationData.value(forKey: "type") as? String == "7"
+        if registrationData.value(forKey: "type") as? String == "6" || registrationData.value(forKey: "type") as? String == "7" || registrationData.value(forKey: "type") as? String == "3"
         {
             self.leftTextFieldcontraint.constant = -(self.frame.size.width - 40)
             rightTextField.isHidden = true
@@ -86,7 +88,7 @@ class RegistrationTableViewCell: UITableViewCell {
             rightTextField.isHidden = false
         }
         
-        if registrationData.value(forKey: "type") as? String == "4" || registrationData.value(forKey: "type") as? String == "8" || registrationData.value(forKey: "type") as? String == "9"
+        if registrationData.value(forKey: "type") as? String == "3" || registrationData.value(forKey: "type") as? String == "8" || registrationData.value(forKey: "type") as? String == "9"
         {
             rightTextField.isHidden = true
         }else

@@ -84,9 +84,9 @@ class StudentRegistrationViewController: UIViewController,UITextFieldDelegate,UI
         
         let registrationgenderDetails: NSMutableDictionary? = ["leftTitle":"Gender","rightTitle":"Date of Birth","leftValue":"","rightValue":"","type":"2"]
         
-        let registrationEmailDetails: NSMutableDictionary? = ["leftTitle":"Email","rightTitle":"Mobile","leftValue":"","rightValue":"","type":"3"]
+        let registrationEmailDetails: NSMutableDictionary? = ["leftTitle":"Email","rightTitle":"","leftValue":"","rightValue":"","type":"3"]
         
-        let registrationNRICDetails: NSMutableDictionary? = ["leftTitle":"NRIC/FIN","rightTitle":"","leftValue":"","rightValue":"","type":"4"]
+        let registrationNRICDetails: NSMutableDictionary? = ["leftTitle":"Mobile","rightTitle":"NRIC/FIN","leftValue":"","rightValue":"","type":"4"]
         
         let registrationPassDetails: NSMutableDictionary? = ["leftTitle":"Password","rightTitle":"Confirm Password","leftValue":"","rightValue":"","type":"5","bottomValue":"Password should be minimum 8 character s with at least one special character and one capital letter and one number"]
         
@@ -441,7 +441,12 @@ class StudentRegistrationViewController: UIViewController,UITextFieldDelegate,UI
                         }
                         
                     }
-                    let rightValue =  dataContent["rightValue"] as? String
+                 
+                }
+                else if dataContent["type"] as? String == "4"
+                {
+                    
+                    let rightValue =  dataContent["leftValue"] as? String
                     if (rightValue?.isEmpty)!
                     {
                         TutorDefaultAlertController.showAlertController(alertMessage: "Please enter mobile no" , showController: self)
@@ -460,10 +465,8 @@ class StudentRegistrationViewController: UIViewController,UITextFieldDelegate,UI
                         }
                         
                     }
-                }
-                else if dataContent["type"] as? String == "4"
-                {
-                    let leftValue =  dataContent["leftValue"] as? String
+                    
+                    let leftValue =  dataContent["rightValue"] as? String
                     if (leftValue?.isEmpty)!
                     {
                         TutorDefaultAlertController.showAlertController(alertMessage: "Please enter NRIC/FIN" , showController: self)
@@ -474,6 +477,7 @@ class StudentRegistrationViewController: UIViewController,UITextFieldDelegate,UI
                         parameterData["s_nric"] = leftValue
                         
                     }
+                    
                 }else if dataContent["type"] as? String == "5"
                 {
                     let leftValue =  dataContent["leftValue"] as? NSString
@@ -638,6 +642,8 @@ class StudentRegistrationViewController: UIViewController,UITextFieldDelegate,UI
                         })
                     }
                     else{
+                        MBProgressHUD.hide(for: self.view, animated: true)
+
                         TutorDefaultAlertController.showAlertController(alertMessage: resultDictionary["message"] as? String, showController: self)
                     }
                 }
@@ -656,17 +662,28 @@ class StudentRegistrationViewController: UIViewController,UITextFieldDelegate,UI
             {
                 if let resultDictionary = response.result.value as? NSDictionary
                 {
-                    if Int(truncating: resultDictionary["status"] as! NSNumber) == Constants.Status.StatusOK.rawValue
+                    let statusCode:Int
+                    
+                    if let statusValue = resultDictionary["status"] as? NSString
+                    {
+                        statusCode = statusValue.integerValue
+                    }else
+                    {
+                       statusCode = Int(truncating: resultDictionary["status"] as! NSNumber)
+                    }
+                    
+                    
+                    if statusCode == Constants.Status.StatusOK.rawValue
                     {
                         print(resultDictionary)
-                        if let resultParseLoginDictionary = resultDictionary["Data"] as? NSArray {
+                        if let resultParseLoginDictionary = resultDictionary["data"] as? NSArray {
                             print(resultParseLoginDictionary)
                             self.cityArray = resultParseLoginDictionary as! [Any]
                             self.thePicker.reloadAllComponents()
                         }
                         MBProgressHUD.hide(for: self.view, animated: true)
                     }
-                    else if Int(truncating: resultDictionary["status"] as! NSNumber) == Constants.Status.TokenInvalid.rawValue
+                    else if statusCode == Constants.Status.TokenInvalid.rawValue || statusCode == Constants.Status.TokenNotFound.rawValue
                     {
                         TutorGenerateToken.performGenerateTokenUrl(completionHandler: { (status, token) in
                             if status == Constants.Status.StatusOK.rawValue
