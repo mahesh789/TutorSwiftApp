@@ -87,7 +87,7 @@ class RegistrationTableViewCell: UITableViewCell {
         }
         if registrationData.value(forKey: "type") as? Int == RegistrationDataType.RegistrationDataTypeAddress1.rawValue || registrationData.value(forKey: "type") as? Int == RegistrationDataType.RegistrationDataTypeAddress2.rawValue || registrationData.value(forKey: "type") as? Int == RegistrationDataType.RegistrationDataTypeEmail.rawValue
         {
-            self.leftTextFieldcontraint.constant = -(self.frame.size.width - 40)
+            self.leftTextFieldcontraint.constant = -( UIScreen.main.bounds.size.width - 40)
             rightTextField.isHidden = true
         }else
         {
@@ -125,16 +125,19 @@ class RegistrationTableViewCell: UITableViewCell {
         leftTextField.isSecureTextEntry = false
         rightTextField.isSecureTextEntry = false
         
+       // DispatchQueue.main.async {
+            
+        
         if registrationData.value(forKey: "type") as? Int == ProfileDataType.ProfileDataTypeOccupation.rawValue ||  registrationData.value(forKey: "type") as? Int == ProfileDataType.ProfileDataTypeEmail.rawValue
         {
-            self.leftTextFieldcontraint.constant = -(self.frame.size.width - 40)
-            rightTextField.isHidden = true
+            self.leftTextFieldcontraint.constant = -(UIScreen.main.bounds.size.width - 40)
+            self.rightTextField.isHidden = true
         }else
         {
             self.leftTextFieldcontraint.constant = 20
-            rightTextField.isHidden = false
+            self.rightTextField.isHidden = false
         }
-        
+      //  }
         if registrationData.value(forKey: "type") as? Int == ProfileDataType.ProfileDataTypeMobile.rawValue
         {
             rightTextField.isHidden = true
