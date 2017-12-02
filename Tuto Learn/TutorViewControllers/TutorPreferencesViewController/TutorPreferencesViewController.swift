@@ -123,4 +123,10 @@ class TutorPreferencesViewController: UIViewController, UITextFieldDelegate, UIT
         genderValue = genderArray[row]
     }
     
+    //Mark:: Save Button Click
+    @IBAction func submitButtonClicked(sender: AnyObject)
+    {
+        print("Submit Button Clicked....")
+    }
+    
 }

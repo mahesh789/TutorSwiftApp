@@ -1956,6 +1956,9 @@
                                             </constraints>
                                             <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
                                             <state key="normal" title="Save &amp; Finish"/>
+                                            <connections>
+                                                <action selector="submitButtonClickedWithSender:" destination="9t1-5L-Rbg" eventType="touchUpInside" id="oZI-6P-5vZ"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" red="0.0" green="0.57309991120000003" blue="0.60387867689999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
