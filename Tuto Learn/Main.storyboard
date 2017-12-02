@@ -2181,7 +2181,7 @@ special character and one capital letter and one number.</string>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oub-hM-8d7">
-                                            <rect key="frame" x="79" y="0.0" width="114" height="60"/>
+                                            <rect key="frame" x="76" y="0.0" width="114" height="60"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="114" id="Vvc-Au-vIr"/>
                                             </constraints>
@@ -2193,7 +2193,7 @@ special character and one capital letter and one number.</string>
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3X6-cF-fQz">
-                                            <rect key="frame" x="203" y="0.0" width="106" height="60"/>
+                                            <rect key="frame" x="200" y="0.0" width="97" height="60"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="97" id="tkX-TP-vIZ"/>
                                             </constraints>
@@ -2213,7 +2213,7 @@ special character and one capital letter and one number.</string>
                                         <constraint firstAttribute="bottom" secondItem="Oub-hM-8d7" secondAttribute="bottom" id="Vn2-Bx-cVF"/>
                                         <constraint firstItem="3X6-cF-fQz" firstAttribute="leading" secondItem="Oub-hM-8d7" secondAttribute="trailing" constant="10" id="aH3-s1-wek"/>
                                         <constraint firstItem="Oub-hM-8d7" firstAttribute="top" secondItem="V2a-xT-POt" secondAttribute="top" id="bQp-6r-WvL"/>
-                                        <constraint firstItem="Oub-hM-8d7" firstAttribute="leading" secondItem="ibC-vP-Yh3" secondAttribute="trailing" constant="4" id="dSP-8j-Td5"/>
+                                        <constraint firstItem="Oub-hM-8d7" firstAttribute="leading" secondItem="ibC-vP-Yh3" secondAttribute="trailing" constant="1" id="dSP-8j-Td5"/>
                                         <constraint firstItem="3X6-cF-fQz" firstAttribute="top" secondItem="V2a-xT-POt" secondAttribute="top" id="dnt-0x-QKU"/>
                                         <constraint firstAttribute="bottom" secondItem="ibC-vP-Yh3" secondAttribute="bottom" constant="11" id="fso-qb-Hcw"/>
                                     </constraints>
@@ -2222,19 +2222,21 @@ special character and one capital letter and one number.</string>
                                     <rect key="frame" x="0.0" y="168" width="414" height="106"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2XT-Zn-476">
-                                            <rect key="frame" x="20" y="10" width="30" height="30"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2XT-Zn-476">
+                                            <rect key="frame" x="13" y="10" width="30" height="30"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="30" id="bUc-AD-zTO"/>
                                                 <constraint firstAttribute="width" constant="30" id="rFn-Sf-86U"/>
                                             </constraints>
+                                            <state key="normal" image="uncheckbox_icon"/>
+                                            <state key="selected" image="checkbox_icon"/>
                                             <connections>
                                                 <action selector="checkBoxButtonClicked:" destination="wug-7I-TO0" eventType="touchUpInside" id="u2e-JB-fdQ"/>
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TPa-7Z-aoS">
-                                            <rect key="frame" x="58" y="10" width="249" height="30"/>
+                                            <rect key="frame" x="45" y="10" width="249" height="30"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="30" id="Mid-e4-PTH"/>
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="237" id="a1L-Ch-lgC"/>
@@ -2280,14 +2282,13 @@ special character and one capital letter and one number.</string>
                                     </subviews>
                                     <color key="backgroundColor" red="0.0" green="0.57309991120000003" blue="0.60387867689999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
-                                        <constraint firstItem="TPa-7Z-aoS" firstAttribute="leading" secondItem="2XT-Zn-476" secondAttribute="trailing" constant="8" id="4aZ-g8-Z1O"/>
+                                        <constraint firstItem="TPa-7Z-aoS" firstAttribute="leading" secondItem="2XT-Zn-476" secondAttribute="trailing" constant="2" id="4aZ-g8-Z1O"/>
                                         <constraint firstItem="2XT-Zn-476" firstAttribute="top" secondItem="wal-zZ-xpQ" secondAttribute="top" constant="10" id="NGd-bN-XWG"/>
                                         <constraint firstItem="9LD-uk-jwK" firstAttribute="top" secondItem="TPa-7Z-aoS" secondAttribute="bottom" constant="10" id="Ubg-ri-yIu"/>
                                         <constraint firstItem="9LD-uk-jwK" firstAttribute="centerX" secondItem="wal-zZ-xpQ" secondAttribute="centerX" id="hmm-eI-GPd"/>
                                         <constraint firstItem="TPa-7Z-aoS" firstAttribute="top" secondItem="wal-zZ-xpQ" secondAttribute="top" constant="10" id="ppe-fe-pg0"/>
                                         <constraint firstAttribute="bottom" secondItem="9LD-uk-jwK" secondAttribute="bottom" constant="5" id="vMi-Md-uAR"/>
-                                        <constraint firstItem="TPa-7Z-aoS" firstAttribute="leading" secondItem="2XT-Zn-476" secondAttribute="trailing" constant="8" id="vQE-tO-wCW"/>
-                                        <constraint firstItem="2XT-Zn-476" firstAttribute="leading" secondItem="wal-zZ-xpQ" secondAttribute="leading" constant="20" id="zEy-vE-PfR"/>
+                                        <constraint firstItem="2XT-Zn-476" firstAttribute="leading" secondItem="wal-zZ-xpQ" secondAttribute="leading" constant="13" id="zEy-vE-PfR"/>
                                     </constraints>
                                     <connections>
                                         <outlet property="cancelButton" destination="99T-Bg-iiT" id="yZZ-H2-9WP"/>
@@ -2428,15 +2429,17 @@ special character and one capital letter and one number.</string>
         </scene>
     </scenes>
     <resources>
+        <image name="checkbox_icon" width="20" height="20"/>
         <image name="dropdownMenuIcon" width="14" height="14"/>
         <image name="fb" width="47" height="47"/>
         <image name="googlePlus" width="47" height="47"/>
         <image name="home_icon" width="20" height="20"/>
         <image name="linkedIn" width="47" height="47"/>
         <image name="profileImage" width="226" height="305"/>
-        <image name="radiobuttonselected" width="36" height="46"/>
-        <image name="radiobuttonunseleccted" width="36" height="46"/>
+        <image name="radiobuttonselected" width="20" height="20"/>
+        <image name="radiobuttonunseleccted" width="20" height="20"/>
         <image name="splashScreenImg" width="414" height="736"/>
         <image name="tutoLearnLogo" width="172" height="75"/>
+        <image name="uncheckbox_icon" width="20" height="20"/>
     </resources>
 </document>
