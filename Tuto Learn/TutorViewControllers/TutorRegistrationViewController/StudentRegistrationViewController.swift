@@ -217,9 +217,7 @@ class StudentRegistrationViewController: UIViewController,UITextFieldDelegate,UI
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool // called when 'return' key pressed. return false to ignore.
     {
-        if textField == self.genderTextField {
-            return false; //do not show keyboard nor cursor
-        }
+     
         textField.resignFirstResponder()
         return true
     }

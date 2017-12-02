@@ -17,6 +17,9 @@
         <array key="HelveticaNeueLights.ttc">
             <string>HelveticaNeue-Light</string>
         </array>
+        <array key="Roboto-Italic.ttf">
+            <string>Roboto-Italic</string>
+        </array>
         <array key="Roboto-Light.ttf">
             <string>Roboto-Light</string>
         </array>
@@ -1122,472 +1125,6 @@
             </objects>
             <point key="canvasLocation" x="640" y="878"/>
         </scene>
-        <!--Student Registration View Controller-->
-        <scene sceneID="oak-am-c3b">
-            <objects>
-                <viewController storyboardIdentifier="StudentRegistrationViewController1" id="EKs-La-WDo" customClass="StudentRegistrationViewController" customModule="Tuto_Learn" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="83Y-27-os1"/>
-                        <viewControllerLayoutGuide type="bottom" id="tI4-HF-Ibh"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="I3u-r2-wAz">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GEj-9U-KD6">
-                                <rect key="frame" x="0.0" y="76" width="414" height="672"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cf0-1B-pNb">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="998"/>
-                                        <subviews>
-                                            <textField opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder=" First Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4Pt-Sl-4JW">
-                                                <rect key="frame" x="52" y="113" width="140" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.31119036674499512" green="0.70265263319015503" blue="0.72514331340789795" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderLabel.textColor">
-                                                        <color key="value" red="0.99019607843137258" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <outlet property="delegate" destination="EKs-La-WDo" id="wi4-eB-eaa"/>
-                                                </connections>
-                                            </textField>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z4h-qt-yzq">
-                                                <rect key="frame" x="82" y="934" width="110" height="36"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.31455734369999999" green="0.71428519489999998" blue="0.74507206680000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                                                <state key="normal" title="Submit"/>
-                                                <connections>
-                                                    <action selector="submitButtonClicked:" destination="EKs-La-WDo" eventType="touchUpInside" id="YzP-KA-gIL"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Jg-ZI-G5Z">
-                                                <rect key="frame" x="222" y="933" width="110" height="36"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.31455734369999999" green="0.71428519489999998" blue="0.74507206680000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                                                <state key="normal" title="Cancel"/>
-                                                <connections>
-                                                    <action selector="canelButtonClicked:" destination="EKs-La-WDo" eventType="touchUpInside" id="PP4-kP-X4Y"/>
-                                                </connections>
-                                            </button>
-                                            <textField opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder=" Last Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YPV-AU-36i">
-                                                <rect key="frame" x="222" y="113" width="140" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.31119036674499512" green="0.70265263319015503" blue="0.72514331340789795" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderLabel.textColor">
-                                                        <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <outlet property="delegate" destination="EKs-La-WDo" id="FBX-c7-I6X"/>
-                                                </connections>
-                                            </textField>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="I am a" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ty-n4-suu">
-                                                <rect key="frame" x="42" y="21" width="66" height="24"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <textField opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder=" Gender" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gJf-eZ-hR5">
-                                                <rect key="frame" x="54" y="192" width="140" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.31119036674499512" green="0.70265263319015503" blue="0.72514331340789795" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderLabel.textColor">
-                                                        <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <outlet property="delegate" destination="EKs-La-WDo" id="1uz-HD-QCJ"/>
-                                                </connections>
-                                            </textField>
-                                            <textField opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder=" Date of Birth" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="p5o-qx-7fG" customClass="AAPickerView" customModule="AAPickerView">
-                                                <rect key="frame" x="223" y="192" width="140" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.31119036674499512" green="0.70265263319015503" blue="0.72514331340789795" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderLabel.textColor">
-                                                        <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <outlet property="delegate" destination="EKs-La-WDo" id="ude-dB-3kt"/>
-                                                </connections>
-                                            </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder=" Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wKx-dn-GEy">
-                                                <rect key="frame" x="54" y="269" width="140" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.31119036674499512" green="0.70265263319015503" blue="0.72514331340789795" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderLabel.textColor">
-                                                        <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <outlet property="delegate" destination="EKs-La-WDo" id="CbV-A8-ilV"/>
-                                                </connections>
-                                            </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder=" Mobile" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1gg-sU-xyr">
-                                                <rect key="frame" x="222" y="269" width="140" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.31119036674499512" green="0.70265263319015503" blue="0.72514331340789795" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderLabel.textColor">
-                                                        <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <outlet property="delegate" destination="EKs-La-WDo" id="dtF-SO-dgs"/>
-                                                </connections>
-                                            </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder=" NRIC/FIN" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="o9f-Xn-3DL">
-                                                <rect key="frame" x="52" y="341" width="140" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.31119036674499512" green="0.70265263319015503" blue="0.72514331340789795" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderLabel.textColor">
-                                                        <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <outlet property="delegate" destination="EKs-La-WDo" id="N3Y-fE-rOE"/>
-                                                </connections>
-                                            </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder=" Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jjW-oh-Nvb">
-                                                <rect key="frame" x="52" y="409" width="140" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.31119036674499512" green="0.70265263319015503" blue="0.72514331340789795" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderLabel.textColor">
-                                                        <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <outlet property="delegate" destination="EKs-La-WDo" id="QbC-pf-bJI"/>
-                                                </connections>
-                                            </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder=" Confirm Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UTV-MV-2bs">
-                                                <rect key="frame" x="222" y="409" width="140" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.31119036674499512" green="0.70265263319015503" blue="0.72514331340789795" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderLabel.textColor">
-                                                        <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <outlet property="delegate" destination="EKs-La-WDo" id="6ET-hp-fdo"/>
-                                                </connections>
-                                            </textField>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="First Name*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IhL-LK-7MT">
-                                                <rect key="frame" x="54" y="79" width="111" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Last Name*" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m9d-gz-Lg0">
-                                                <rect key="frame" x="222" y="77" width="111" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Gender*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l1L-Ai-vEf">
-                                                <rect key="frame" x="52" y="160" width="111" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date of Birth*" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C2K-Vd-VrC">
-                                                <rect key="frame" x="223" y="160" width="111" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Email ID*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2xO-Y2-I8m">
-                                                <rect key="frame" x="54" y="239" width="111" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Mobile No." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AYI-Up-qMs">
-                                                <rect key="frame" x="223" y="237" width="111" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="NRIC/FIN*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sri-PH-Eue">
-                                                <rect key="frame" x="54" y="313" width="111" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Password*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="elm-8J-6JQ">
-                                                <rect key="frame" x="52" y="381" width="111" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Confirm Password*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s5a-fp-o5a">
-                                                <rect key="frame" x="222" y="381" width="155" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qmN-3N-AV6">
-                                                <rect key="frame" x="17" y="462" width="381" height="86"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <string key="text">Password should be minimum 8 charcters with at least one
-special character and one capital letter and one number.</string>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Italic" family="Helvetica Neue" pointSize="18"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Address Line 1*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VdX-kl-hF7">
-                                                <rect key="frame" x="54" y="567" width="137" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder=" Address Line 1" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gFF-Kj-iiG">
-                                                <rect key="frame" x="54" y="597" width="309" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.31119036674499512" green="0.70265263319015503" blue="0.72514331340789795" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderLabel.textColor">
-                                                        <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <outlet property="delegate" destination="EKs-La-WDo" id="SRn-nJ-B4q"/>
-                                                </connections>
-                                            </textField>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Address Line 2*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lAa-Hg-BeJ">
-                                                <rect key="frame" x="54" y="642" width="137" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder=" Address Line 2" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1uU-CC-nqv">
-                                                <rect key="frame" x="54" y="672" width="309" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.31119036674499512" green="0.70265263319015503" blue="0.72514331340789795" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderLabel.textColor">
-                                                        <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <outlet property="delegate" destination="EKs-La-WDo" id="Cq6-Zu-Ckv"/>
-                                                </connections>
-                                            </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder=" District" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SSg-o0-Kgk">
-                                                <rect key="frame" x="54" y="742" width="140" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.31119036674499512" green="0.70265263319015503" blue="0.72514331340789795" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderLabel.textColor">
-                                                        <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <outlet property="delegate" destination="EKs-La-WDo" id="qGp-qv-G9h"/>
-                                                </connections>
-                                            </textField>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="District*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j5T-4s-Fs8">
-                                                <rect key="frame" x="54" y="714" width="111" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Guardian" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zPh-bH-uKB">
-                                                <rect key="frame" x="134" y="23" width="111" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="SINGAPORE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eak-1P-t4x">
-                                                <rect key="frame" x="251" y="745" width="111" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder=" Pincode" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Grm-IJ-MUY">
-                                                <rect key="frame" x="52" y="815" width="140" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.31119036674499512" green="0.70265263319015503" blue="0.72514331340789795" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderLabel.textColor">
-                                                        <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <outlet property="delegate" destination="EKs-La-WDo" id="Urm-ST-yZQ"/>
-                                                </connections>
-                                            </textField>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Pincode*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="blW-PH-Rko">
-                                                <rect key="frame" x="52" y="787" width="111" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WJJ-Ka-Q5P">
-                                                <rect key="frame" x="52" y="873" width="25" height="25"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                                                <connections>
-                                                    <action selector="agreeTnCButtonClicked:" destination="EKs-La-WDo" eventType="touchUpInside" id="YrV-1m-0my"/>
-                                                </connections>
-                                            </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="I agree to the Terms and Conditions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tAP-fj-8rF">
-                                                <rect key="frame" x="106" y="878" width="292" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2hS-s5-0Uy">
-                                                <rect key="frame" x="101" y="21" width="25" height="25"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <connections>
-                                                    <action selector="registerTypeButtonClicked:" destination="EKs-La-WDo" eventType="touchUpInside" id="ShT-mB-oDK"/>
-                                                </connections>
-                                            </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Student" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AdM-N7-H2Z">
-                                                <rect key="frame" x="252" y="22" width="111" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="peU-oV-1sY">
-                                                <rect key="frame" x="219" y="20" width="25" height="25"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <connections>
-                                                    <action selector="registerTypeButtonClicked:" destination="EKs-La-WDo" eventType="touchUpInside" id="CrE-NF-yNm"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <color key="backgroundColor" red="0.0" green="0.57309991121292114" blue="0.6038786768913269" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="998" id="Ffn-6h-hhd"/>
-                                        </constraints>
-                                    </view>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="Cf0-1B-pNb" secondAttribute="trailing" id="2jH-Uo-lPZ"/>
-                                    <constraint firstAttribute="bottom" secondItem="Cf0-1B-pNb" secondAttribute="bottom" id="4kj-J8-dHM"/>
-                                    <constraint firstItem="Cf0-1B-pNb" firstAttribute="leading" secondItem="GEj-9U-KD6" secondAttribute="leading" id="8ZD-J8-PRM"/>
-                                    <constraint firstItem="Cf0-1B-pNb" firstAttribute="top" secondItem="GEj-9U-KD6" secondAttribute="top" id="hTx-r8-xp0"/>
-                                    <constraint firstItem="Cf0-1B-pNb" firstAttribute="width" secondItem="GEj-9U-KD6" secondAttribute="width" id="ihr-gy-DZc"/>
-                                </constraints>
-                            </scrollView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kic-Nu-G5q" customClass="TutorHomeNavigationBar" customModule="Tuto_Learn" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="76"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="76" id="rLh-0B-jH7"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="GEj-9U-KD6" firstAttribute="top" secondItem="Kic-Nu-G5q" secondAttribute="bottom" id="782-Dr-jZf"/>
-                            <constraint firstItem="GEj-9U-KD6" firstAttribute="trailing" secondItem="I3u-r2-wAz" secondAttribute="trailing" id="E2n-hw-9e1"/>
-                            <constraint firstItem="GEj-9U-KD6" firstAttribute="bottom" secondItem="tI4-HF-Ibh" secondAttribute="top" constant="12" id="HqJ-jX-WLe"/>
-                            <constraint firstItem="Kic-Nu-G5q" firstAttribute="top" secondItem="I3u-r2-wAz" secondAttribute="top" id="gMK-76-NFP"/>
-                            <constraint firstItem="GEj-9U-KD6" firstAttribute="leading" secondItem="I3u-r2-wAz" secondAttribute="leading" id="iHN-SK-hRG"/>
-                            <constraint firstItem="Kic-Nu-G5q" firstAttribute="leading" secondItem="I3u-r2-wAz" secondAttribute="leading" id="nSi-2h-qVU"/>
-                            <constraint firstAttribute="trailing" secondItem="Kic-Nu-G5q" secondAttribute="trailing" id="t6p-8t-fTr"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="tq4-UR-DvZ"/>
-                    <connections>
-                        <outlet property="address1TextField" destination="gFF-Kj-iiG" id="2VX-Mc-N7L"/>
-                        <outlet property="address2TextField" destination="1uU-CC-nqv" id="8gX-Wx-TY1"/>
-                        <outlet property="agreeTCButton" destination="WJJ-Ka-Q5P" id="DnA-wB-VN2"/>
-                        <outlet property="cnfPassTextField" destination="UTV-MV-2bs" id="d9I-tL-tPc"/>
-                        <outlet property="contentView" destination="Cf0-1B-pNb" id="eov-Dw-ifk"/>
-                        <outlet property="districtTextField" destination="SSg-o0-Kgk" id="LZP-DN-CFB"/>
-                        <outlet property="dobTextField" destination="p5o-qx-7fG" id="fSn-pd-Wcs"/>
-                        <outlet property="eMailTextField" destination="wKx-dn-GEy" id="4aG-R1-0jb"/>
-                        <outlet property="finTextField" destination="o9f-Xn-3DL" id="eCf-8h-6CO"/>
-                        <outlet property="firstNameTextField" destination="4Pt-Sl-4JW" id="fWh-7B-g1v"/>
-                        <outlet property="genderTextField" destination="gJf-eZ-hR5" id="OJi-n8-qc9"/>
-                        <outlet property="guardianButton" destination="2hS-s5-0Uy" id="Bg3-yf-p50"/>
-                        <outlet property="lastNameTextField" destination="YPV-AU-36i" id="9Za-uF-ZHL"/>
-                        <outlet property="mobNoTextField" destination="1gg-sU-xyr" id="MvB-wa-sj6"/>
-                        <outlet property="passwordTextField" destination="jjW-oh-Nvb" id="1c2-TB-uGc"/>
-                        <outlet property="pinCodeTextField" destination="Grm-IJ-MUY" id="3vm-UX-TXp"/>
-                        <outlet property="studentButton" destination="peU-oV-1sY" id="BiY-RM-81x"/>
-                        <outlet property="tutorNavigationBar" destination="Kic-Nu-G5q" id="BWy-dr-grU"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="5x5-Aj-S9q" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="640.57971014492762" y="68.478260869565219"/>
-        </scene>
         <!--View Controller-->
         <scene sceneID="Jyp-cP-viX">
             <objects>
@@ -1881,7 +1418,7 @@ special character and one capital letter and one number.</string>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="55" id="2k5-9w-zga"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -1890,7 +1427,7 @@ special character and one capital letter and one number.</string>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="114" id="Vvc-Au-vIr"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
                                             <state key="normal" title="  Guardian" image="radiobuttonunseleccted"/>
                                             <state key="selected" image="radiobuttonselected"/>
                                             <connections>
@@ -1902,7 +1439,7 @@ special character and one capital letter and one number.</string>
                                             <constraints>
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="97" id="tkX-TP-vIZ"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
                                             <state key="normal" title="  Student" image="radiobuttonunseleccted"/>
                                             <state key="selected" image="radiobuttonselected"/>
                                             <connections>
@@ -1941,11 +1478,12 @@ special character and one capital letter and one number.</string>
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TPa-7Z-aoS">
-                                            <rect key="frame" x="45" y="10" width="249" height="30"/>
+                                            <rect key="frame" x="45" y="10" width="237" height="30"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="30" id="Mid-e4-PTH"/>
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="237" id="a1L-Ch-lgC"/>
                                             </constraints>
+                                            <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
                                             <state key="normal" title="I agree the Term and Condition"/>
                                         </button>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9LD-uk-jwK">
@@ -1954,7 +1492,7 @@ special character and one capital letter and one number.</string>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="99T-Bg-iiT">
                                                     <rect key="frame" x="108.33333333333331" y="8" width="82.666666666666686" height="36"/>
                                                     <color key="backgroundColor" red="0.85882352939999995" green="0.4823529412" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
                                                     <state key="normal" title="Cancel"/>
                                                     <connections>
                                                         <action selector="cancelButtonClicked:" destination="wug-7I-TO0" eventType="touchUpInside" id="Mpw-eP-BWb"/>
@@ -1963,7 +1501,7 @@ special character and one capital letter and one number.</string>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j3t-bn-rTm">
                                                     <rect key="frame" x="10" y="8" width="83.333333333333329" height="36"/>
                                                     <color key="backgroundColor" red="0.85882352939999995" green="0.4823529412" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
                                                     <state key="normal" title="Submit"/>
                                                     <connections>
                                                         <action selector="submitButtonClicked:" destination="wug-7I-TO0" eventType="touchUpInside" id="ruB-Ik-WPU"/>
@@ -2012,7 +1550,7 @@ special character and one capital letter and one number.</string>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aEF-6W-AHq">
                                                     <rect key="frame" x="20" y="53" width="374" height="16.666666666666671"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Italic" family="Helvetica Neue" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" name="Roboto-Italic" family="Roboto" pointSize="14"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -2023,7 +1561,7 @@ special character and one capital letter and one number.</string>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="38" id="NQF-a9-LTS"/>
                                                     </constraints>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
@@ -2041,7 +1579,7 @@ special character and one capital letter and one number.</string>
                                                         <constraint firstAttribute="height" constant="38" id="Pp0-98-mua"/>
                                                     </constraints>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
@@ -2155,34 +1693,89 @@ special character and one capital letter and one number.</string>
                                 <rect key="frame" x="0.0" y="76" width="414" height="660"/>
                                 <color key="backgroundColor" red="0.0" green="0.57309991120000003" blue="0.60387867689999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="H0m-ZB-UxL">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="255"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Guardian Details" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="slD-8u-3xz">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                            <color key="backgroundColor" red="0.28627450980392155" green="0.65490196078431373" blue="0.66274509803921566" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="50" id="4O0-Nn-ihC"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dummyPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="whW-96-oB7">
+                                            <rect key="frame" x="147" y="65" width="120" height="120"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="120" id="LH5-QL-AP5"/>
+                                                <constraint firstAttribute="height" constant="120" id="Y7C-xx-N4o"/>
+                                            </constraints>
+                                        </imageView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yg6-WD-TJG">
+                                            <rect key="frame" x="152" y="196" width="110" height="30"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="110" id="Dfn-DA-h5Q"/>
+                                                <constraint firstAttribute="height" constant="30" id="GVf-i8-Mpr"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
+                                            <state key="normal" title="Upload photo"/>
+                                            <connections>
+                                                <action selector="uploadPhotoButtonClick" destination="BbB-HA-aQb" eventType="touchUpInside" id="JCm-Ey-R22"/>
+                                            </connections>
+                                        </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pUH-di-Pib">
+                                            <rect key="frame" x="0.0" y="244" width="414" height="1"/>
+                                            <color key="backgroundColor" red="0.28627450980000002" green="0.65490196079999996" blue="0.66274509800000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="1" id="4tF-si-Ry8"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                     <color key="backgroundColor" red="0.0" green="0.57309991120000003" blue="0.60387867689999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstItem="whW-96-oB7" firstAttribute="top" secondItem="slD-8u-3xz" secondAttribute="bottom" constant="15" id="5yh-fZ-Zwh"/>
+                                        <constraint firstItem="Yg6-WD-TJG" firstAttribute="top" secondItem="whW-96-oB7" secondAttribute="bottom" constant="11" id="DoB-Fx-aUT"/>
+                                        <constraint firstAttribute="bottom" secondItem="pUH-di-Pib" secondAttribute="bottom" constant="10" id="EsB-on-bB9"/>
+                                        <constraint firstItem="pUH-di-Pib" firstAttribute="leading" secondItem="H0m-ZB-UxL" secondAttribute="leading" id="PVI-8K-NXK"/>
+                                        <constraint firstItem="whW-96-oB7" firstAttribute="centerX" secondItem="H0m-ZB-UxL" secondAttribute="centerX" id="Vct-K9-mhB"/>
+                                        <constraint firstItem="slD-8u-3xz" firstAttribute="leading" secondItem="H0m-ZB-UxL" secondAttribute="leading" id="bSw-y5-jqu"/>
+                                        <constraint firstAttribute="trailing" secondItem="slD-8u-3xz" secondAttribute="trailing" id="dfA-v9-JZe"/>
+                                        <constraint firstItem="Yg6-WD-TJG" firstAttribute="centerX" secondItem="H0m-ZB-UxL" secondAttribute="centerX" id="icj-ge-qJL"/>
+                                        <constraint firstItem="slD-8u-3xz" firstAttribute="top" secondItem="H0m-ZB-UxL" secondAttribute="top" id="nC3-M4-okR"/>
+                                        <constraint firstAttribute="bottom" secondItem="Yg6-WD-TJG" secondAttribute="bottom" constant="29" id="uuY-bF-jsn"/>
+                                        <constraint firstAttribute="trailing" secondItem="pUH-di-Pib" secondAttribute="trailing" id="zdV-l1-Q7V"/>
+                                    </constraints>
                                 </view>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="96a-Lm-mmT">
-                                    <rect key="frame" x="0.0" y="308" width="414" height="50"/>
+                                    <rect key="frame" x="0.0" y="363" width="414" height="50"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qgx-Fb-mE0">
-                                            <rect key="frame" x="143" y="10" width="140" height="30"/>
+                                            <rect key="frame" x="137" y="7" width="140" height="35"/>
                                             <color key="backgroundColor" red="0.85882352939999995" green="0.4823529412" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
+                                                <constraint firstAttribute="height" constant="35" id="IPS-jx-o12"/>
+                                                <constraint firstAttribute="width" constant="140" id="Uzh-H2-0Ib"/>
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="140" id="f00-8M-8Y7"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
-                                            <state key="normal" title="Save &amp; Procced"/>
+                                            <state key="normal" title="Save &amp; Proceed"/>
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" red="0.0" green="0.57309991120000003" blue="0.60387867689999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
-                                        <constraint firstItem="Qgx-Fb-mE0" firstAttribute="leading" secondItem="96a-Lm-mmT" secondAttribute="leading" constant="143" id="3OZ-1S-4cD"/>
-                                        <constraint firstItem="Qgx-Fb-mE0" firstAttribute="centerY" secondItem="96a-Lm-mmT" secondAttribute="centerY" id="pyX-tJ-fN1"/>
-                                        <constraint firstItem="Qgx-Fb-mE0" firstAttribute="top" secondItem="96a-Lm-mmT" secondAttribute="top" constant="10" id="xuo-3g-48e"/>
+                                        <constraint firstItem="Qgx-Fb-mE0" firstAttribute="centerX" secondItem="96a-Lm-mmT" secondAttribute="centerX" id="KTv-au-XR7"/>
+                                        <constraint firstItem="Qgx-Fb-mE0" firstAttribute="centerY" secondItem="96a-Lm-mmT" secondAttribute="centerY" id="jnV-Xa-RKm"/>
                                     </constraints>
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="registrationCell" rowHeight="80" id="gp4-7x-ncd" customClass="RegistrationTableViewCell" customModule="Tuto_Learn" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="228" width="414" height="80"/>
+                                        <rect key="frame" x="0.0" y="283" width="414" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gp4-7x-ncd" id="Jli-fk-Qie">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
@@ -2201,7 +1794,7 @@ special character and one capital letter and one number.</string>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="38" id="lod-Hs-78Z"/>
                                                     </constraints>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
@@ -2219,7 +1812,7 @@ special character and one capital letter and one number.</string>
                                                         <constraint firstAttribute="height" constant="38" id="UJA-6t-IgU"/>
                                                     </constraints>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
@@ -2293,17 +1886,23 @@ special character and one capital letter and one number.</string>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="profileImageView" destination="whW-96-oB7" id="vFS-24-Mqb"/>
                         <outlet property="profileTableview" destination="PQs-gI-Ymb" id="z8T-H0-eFw"/>
+                        <outlet property="submitButton" destination="Qgx-Fb-mE0" id="Zq7-L7-z73"/>
+                        <outlet property="titleLabel" destination="slD-8u-3xz" id="y5K-sB-Ctl"/>
+                        <outlet property="tutorNavigationBar" destination="7eJ-7C-gZM" id="QkS-w4-IJT"/>
+                        <outlet property="uploadButton" destination="Yg6-WD-TJG" id="c4x-ez-Jks"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CVB-Kd-clZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3364" y="62"/>
+            <point key="canvasLocation" x="3363.7681159420295" y="61.956521739130437"/>
         </scene>
     </scenes>
     <resources>
         <image name="checkbox_icon" width="20" height="20"/>
         <image name="dropdownMenuIcon" width="14" height="14"/>
+        <image name="dummyPhoto" width="120" height="120"/>
         <image name="fb" width="47" height="47"/>
         <image name="googlePlus" width="47" height="47"/>
         <image name="home_icon" width="20" height="20"/>

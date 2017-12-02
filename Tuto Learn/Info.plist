@@ -85,6 +85,10 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>set profile picture</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>set profile piccture of user</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Roboto</string>
