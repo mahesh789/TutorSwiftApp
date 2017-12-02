@@ -140,10 +140,10 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
                                     }
                                     if TutorSharedClass.shared.loginTutorLoginObject?.registrationType == "0"
                                     {
-                                        self.setrootViewControllerAfterLogin()
+                                        self.setProfilerootViewController()
                                     }else
                                     {
-                                        self.setrootViewControllerAfterLogin()
+                                        self.setProfilerootViewController()
                                     }
                                     
                                 }
@@ -167,6 +167,13 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
         UIApplication.shared.keyWindow?.rootViewController = navigationController
     }
    
+    func setProfilerootViewController() -> Void {
+        let tutorHomeViewController:TutorProfileViewController = self.storyboard?.instantiateViewController(withIdentifier: "TutorProfileViewController") as! TutorProfileViewController
+        tutorHomeViewController.currentProfilType = ProfileType.ProfileTypeGuardian.rawValue
+        let navigationController = UINavigationController(rootViewController: tutorHomeViewController)
+        navigationController.isNavigationBarHidden = true
+        UIApplication.shared.keyWindow?.rootViewController = navigationController
+    }
     
     @IBAction func signUpButtonAction(_ sender: Any)
     {

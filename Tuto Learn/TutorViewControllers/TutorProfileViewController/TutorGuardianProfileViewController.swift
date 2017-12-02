@@ -40,7 +40,7 @@ class TutorGuardianProfileViewController: UIViewController ,UITextFieldDelegate 
     
     func setLayoutAndSetTexts() -> Void {
         self.tutorHomeNavigationBar.leftBarButton.addTarget(self, action: #selector(backBarButtonAction), for:.touchUpInside)
-        self.tutorHomeNavigationBar.rightBarButton.isHidden = true
+        self.tutorHomeNavigationBar.rightBarButton.isHidden = false
         self.tutorHomeNavigationBar.navigationTitleLabel.text = "Your Profile"
         self.view.backgroundColor = UIColor.tutorAppBackgroungColor()
         self.contentView.backgroundColor = UIColor.tutorAppBackgroungColor()

@@ -20,6 +20,7 @@ public class TutorLoginModel {
 	public var schoolNameString : String?
     public var loginId : String?
     public var registrationType : String?
+    public var studentArray : Array<Any>?
 
 /**
     Returns an array of models based on given dictionary.

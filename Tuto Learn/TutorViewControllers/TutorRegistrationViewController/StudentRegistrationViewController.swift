@@ -10,6 +10,13 @@ import UIKit
 import Alamofire
 import AAPickerView
 
+enum RegistrationDataType:Int {
+    case RegistrationDataTypeFirstName = 1,RegistrationDataTypeGender,RegistrationDataTypeEmail,RegistrationDataTypeMobile,RegistrationDataTypePassword,RegistrationDataTypeAddress1,RegistrationDataTypeAddress2,RegistrationDataTypeDistrict,RegistrationDataTypePincode
+}
+
+enum RegistrationCellType:Int {
+    case RegistrationCellTypeRegistration = 1,RegistrationCellTypeGuardianProfile
+}
 
 class StudentRegistrationViewController: UIViewController,UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource,UITableViewDelegate,UITableViewDataSource {
     
@@ -80,24 +87,24 @@ class StudentRegistrationViewController: UIViewController,UITextFieldDelegate,UI
         //        self.districtTextField.inputView = self.thePicker
         
         
-        let registrationNameDetails: NSMutableDictionary? = ["leftTitle":"First Name","rightTitle":"Last Name","leftValue":"","rightValue":"","type":"1"]
+        let registrationNameDetails: NSMutableDictionary? = ["leftTitle":"First Name","rightTitle":"Last Name","leftValue":"","rightValue":"","type":NSNumber.init(value: RegistrationDataType.RegistrationDataTypeFirstName.rawValue) ]
         
-        let registrationgenderDetails: NSMutableDictionary? = ["leftTitle":"Gender","rightTitle":"Date of Birth","leftValue":"","rightValue":"","type":"2"]
+        let registrationgenderDetails: NSMutableDictionary? = ["leftTitle":"Gender","rightTitle":"Date of Birth","leftValue":"","rightValue":"","type":NSNumber.init(value: RegistrationDataType.RegistrationDataTypeGender.rawValue)]
         
-        let registrationEmailDetails: NSMutableDictionary? = ["leftTitle":"Email","rightTitle":"","leftValue":"","rightValue":"","type":"3"]
+        let registrationEmailDetails: NSMutableDictionary? = ["leftTitle":"Email","rightTitle":"","leftValue":"","rightValue":"","type":NSNumber.init(value: RegistrationDataType.RegistrationDataTypeEmail.rawValue)]
         
-        let registrationNRICDetails: NSMutableDictionary? = ["leftTitle":"Mobile","rightTitle":"NRIC/FIN","leftValue":"","rightValue":"","type":"4"]
+        let registrationNRICDetails: NSMutableDictionary? = ["leftTitle":"Mobile","rightTitle":"NRIC/FIN","leftValue":"","rightValue":"","type":NSNumber.init(value: RegistrationDataType.RegistrationDataTypeMobile.rawValue)]
         
-        let registrationPassDetails: NSMutableDictionary? = ["leftTitle":"Password","rightTitle":"Confirm Password","leftValue":"","rightValue":"","type":"5","bottomValue":"Password should be minimum 8 character s with at least one special character and one capital letter and one number"]
+        let registrationPassDetails: NSMutableDictionary? = ["leftTitle":"Password","rightTitle":"Confirm Password","leftValue":"","rightValue":"","type":NSNumber.init(value: RegistrationDataType.RegistrationDataTypePassword.rawValue),"bottomValue":"Password should be minimum 8 character s with at least one special character and one capital letter and one number"]
         
-        let registrationAddress1Details: NSMutableDictionary? = ["rightTitle":"Address line 1","leftTitle":"","leftValue":"","rightValue":"","type":"6"]
+        let registrationAddress1Details: NSMutableDictionary? = ["rightTitle":"Address line 1","leftTitle":"","leftValue":"","rightValue":"","type":NSNumber.init(value: RegistrationDataType.RegistrationDataTypeAddress1.rawValue)]
         
-        let registrationAddress2Details: NSMutableDictionary? = ["rightTitle":"Address line 2","leftTitle":"","leftValue":"","rightValue":"","type":"7"]
+        let registrationAddress2Details: NSMutableDictionary? = ["rightTitle":"Address line 2","leftTitle":"","leftValue":"","rightValue":"","type":NSNumber.init(value: RegistrationDataType.RegistrationDataTypeAddress2.rawValue)]
         
         
-        let registrationDistrictDetails: NSMutableDictionary? = ["leftTitle":"District","rightTitle":"","leftValue":"","rightValue":"","type":"8"]
+        let registrationDistrictDetails: NSMutableDictionary? = ["leftTitle":"District","rightTitle":"","leftValue":"","rightValue":"","type":NSNumber.init(value: RegistrationDataType.RegistrationDataTypeDistrict.rawValue)]
         
-        let registrationPincodeDetails: NSMutableDictionary? = ["leftTitle":"Pincode","rightTitle":"","leftValue":"","rightValue":"","type":"9"]
+        let registrationPincodeDetails: NSMutableDictionary? = ["leftTitle":"Pincode","rightTitle":"","leftValue":"","rightValue":"","type":NSNumber.init(value: RegistrationDataType.RegistrationDataTypePincode.rawValue)]
         
         
         dataArray = NSMutableArray()
@@ -128,7 +135,7 @@ class StudentRegistrationViewController: UIViewController,UITextFieldDelegate,UI
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "registrationCell", for: indexPath) as? RegistrationTableViewCell
-        cell?.updateLayout(registrationData: self.dataArray?.object(at: indexPath.row) as! NSDictionary)
+        cell?.updateLayout(registrationData: self.dataArray?.object(at: indexPath.row) as! NSDictionary, cellType: RegistrationCellType.RegistrationCellTypeRegistration)
         cell?.leftTextField.delegate = self
         cell?.rightTextField.delegate = self
         cell?.leftTextField.tag = indexPath.row
@@ -222,11 +229,11 @@ class StudentRegistrationViewController: UIViewController,UITextFieldDelegate,UI
         if let textFieldTemp =  textField as? CustomTextField
         {
             let datadictionary = self.dataArray?.object(at: textField.tag) as? NSMutableDictionary
-            if datadictionary?.value(forKey: "type") as? String == "2" && textFieldTemp.customTag == 2
+            if datadictionary?.value(forKey: "type") as? Int == RegistrationDataType.RegistrationDataTypeGender.rawValue && textFieldTemp.customTag == 2
             {
                 self.configureDatePicker(textField: textFieldTemp)
             }
-            else if datadictionary?.value(forKey: "type") as? String == "8" && textFieldTemp.customTag == 1
+            else if datadictionary?.value(forKey: "type") as? Int == RegistrationDataType.RegistrationDataTypeDistrict.rawValue && textFieldTemp.customTag == 1
             {
                 textFieldTemp.inputView = self.thePicker
                 self.thePicker.tag = 1
@@ -235,7 +242,7 @@ class StudentRegistrationViewController: UIViewController,UITextFieldDelegate,UI
                     self.cityListApiCall(districTextField: textFieldTemp)
                 }
             }
-            else if datadictionary?.value(forKey: "type") as? String == "2" && textFieldTemp.customTag == 1
+            else if datadictionary?.value(forKey: "type") as? Int == RegistrationDataType.RegistrationDataTypeGender.rawValue && textFieldTemp.customTag == 1
             {
                 self.thePicker.tag = 0
                 textFieldTemp.inputView = self.thePicker
@@ -247,7 +254,7 @@ class StudentRegistrationViewController: UIViewController,UITextFieldDelegate,UI
         if let textFieldTemp =  textField as? CustomTextField
         {
             let datadictionary = self.dataArray?.object(at: textField.tag) as? NSMutableDictionary
-            if datadictionary?.value(forKey: "type") as? String == "8" && textFieldTemp.customTag == 1
+            if datadictionary?.value(forKey: "type") as? Int == RegistrationDataType.RegistrationDataTypeDistrict.rawValue && textFieldTemp.customTag == 1
             {
                 if (districtValue != nil)
                 {
@@ -264,7 +271,7 @@ class StudentRegistrationViewController: UIViewController,UITextFieldDelegate,UI
                 registrationTableview.reloadData()
 
             }
-            else if datadictionary?.value(forKey: "type") as? String == "2" && textFieldTemp.customTag == 1
+            else if datadictionary?.value(forKey: "type") as? Int == RegistrationDataType.RegistrationDataTypeGender.rawValue && textFieldTemp.customTag == 1
             {
                 if (genderValue != nil)
                 {
@@ -342,7 +349,7 @@ class StudentRegistrationViewController: UIViewController,UITextFieldDelegate,UI
         for dataDictionary in self.dataArray! {
             if let dataContent = dataDictionary as? NSMutableDictionary
             {
-                if dataContent["type"] as? String == "1"
+                if dataContent["type"] as? Int == RegistrationDataType.RegistrationDataTypeFirstName.rawValue
                 {
                     let leftValue =  dataContent["leftValue"] as? String
                     if (leftValue?.isEmpty)!
@@ -365,7 +372,7 @@ class StudentRegistrationViewController: UIViewController,UITextFieldDelegate,UI
                         parameterData["s_lastname"] = rightValue
                         
                     }
-                }else if dataContent["type"] as? String == "2"
+                }else if dataContent["type"] as? Int == RegistrationDataType.RegistrationDataTypeGender.rawValue
                 {
                     let leftValue =  dataContent["leftValue"] as? String
                     if (leftValue?.isEmpty)!
@@ -420,7 +427,7 @@ class StudentRegistrationViewController: UIViewController,UITextFieldDelegate,UI
                         }
                         
                     }
-                }else if dataContent["type"] as? String == "3"
+                }else if dataContent["type"] as? Int == RegistrationDataType.RegistrationDataTypeEmail.rawValue
                 {
                     let leftValue =  dataContent["leftValue"] as? NSString
                     if leftValue?.length == 0
@@ -443,7 +450,7 @@ class StudentRegistrationViewController: UIViewController,UITextFieldDelegate,UI
                     }
                  
                 }
-                else if dataContent["type"] as? String == "4"
+                else if dataContent["type"] as? Int == RegistrationDataType.RegistrationDataTypeMobile.rawValue
                 {
                     
                     let rightValue =  dataContent["leftValue"] as? String
@@ -478,7 +485,7 @@ class StudentRegistrationViewController: UIViewController,UITextFieldDelegate,UI
                         
                     }
                     
-                }else if dataContent["type"] as? String == "5"
+                }else if dataContent["type"] as? Int == RegistrationDataType.RegistrationDataTypePassword.rawValue
                 {
                     let leftValue =  dataContent["leftValue"] as? NSString
                     if leftValue?.length == 0
@@ -511,7 +518,7 @@ class StudentRegistrationViewController: UIViewController,UITextFieldDelegate,UI
                         }
                     }
                 }
-                else if dataContent["type"] as? String == "6"
+                else if dataContent["type"] as? Int == RegistrationDataType.RegistrationDataTypeAddress1.rawValue
                 {
                     let rightValue =  dataContent["rightValue"] as? String
                     if (rightValue?.isEmpty)!
@@ -525,7 +532,7 @@ class StudentRegistrationViewController: UIViewController,UITextFieldDelegate,UI
                         
                     }
                 }
-                else if dataContent["type"] as? String == "7"
+                else if dataContent["type"] as? Int == RegistrationDataType.RegistrationDataTypeAddress2.rawValue
                 {
                     let rightValue =  dataContent["rightValue"] as? String
                     if (rightValue?.isEmpty)!
@@ -539,7 +546,7 @@ class StudentRegistrationViewController: UIViewController,UITextFieldDelegate,UI
                         
                     }
                 }
-                else if dataContent["type"] as? String == "8"
+                else if dataContent["type"] as? Int == RegistrationDataType.RegistrationDataTypeDistrict.rawValue
                 {
                     let leftValue =  dataContent["leftValue"] as? String
                     if (leftValue?.isEmpty)!
@@ -555,7 +562,7 @@ class StudentRegistrationViewController: UIViewController,UITextFieldDelegate,UI
                         }
                         
                     }
-                }else if dataContent["type"] as? String == "9"
+                }else if dataContent["type"] as? Int == RegistrationDataType.RegistrationDataTypePincode.rawValue
                 {
                     let leftValue =  dataContent["leftValue"] as? String
                     if (leftValue?.isEmpty)!

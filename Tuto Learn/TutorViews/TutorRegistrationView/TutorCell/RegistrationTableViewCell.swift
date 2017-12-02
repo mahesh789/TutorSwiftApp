@@ -30,7 +30,7 @@ class RegistrationTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
-    func updateLayout(registrationData:NSDictionary) {
+    func updateLayout(registrationData:NSDictionary,cellType:RegistrationCellType) {
         
         leftTextField.placeholder = registrationData.value(forKey: "leftTitle") as? String
         rightTextField.placeholder = registrationData.value(forKey: "rightTitle") as? String
@@ -42,21 +42,28 @@ class RegistrationTableViewCell: UITableViewCell {
         rightTextField.customTag = 2
         rightDropImageView.isHidden = true
         leftDropImageView.isHidden = true
+        if(cellType.rawValue == RegistrationCellType.RegistrationCellTypeRegistration.rawValue)
+        {
+            self.setLayoutForRegistration(registrationData: registrationData)
+        }else if(cellType.rawValue == RegistrationCellType.RegistrationCellTypeGuardianProfile.rawValue)
+        {
+            self.setLayoutForGuardianProfile(registrationData: registrationData)
+        }
+    }
+    
+    func setLayoutForRegistration(registrationData:NSDictionary) {
         
-        if registrationData.value(forKey: "type") as? String == "2"
+        if registrationData.value(forKey: "type") as? Int == RegistrationDataType.RegistrationDataTypeGender.rawValue
         {
             rightDropImageView.isHidden = false
             leftDropImageView.isHidden = false
         }
         
-        if registrationData.value(forKey: "type") as? String == "8"
+        if registrationData.value(forKey: "type") as? Int == RegistrationDataType.RegistrationDataTypeDistrict.rawValue
         {
             leftDropImageView.isHidden = false
         }
-        
-       
-        
-        if registrationData.value(forKey: "type") as? String == "4" || registrationData.value(forKey: "type") as? String == "9"
+        if registrationData.value(forKey: "type") as? Int == RegistrationDataType.RegistrationDataTypeMobile.rawValue || registrationData.value(forKey: "type") as? Int == RegistrationDataType.RegistrationDataTypePincode.rawValue
         {
             leftTextField.keyboardType = .numberPad
         }else
@@ -64,7 +71,7 @@ class RegistrationTableViewCell: UITableViewCell {
             leftTextField.keyboardType = .default
         }
         
-        if registrationData.value(forKey: "type") as? String == "5"
+        if registrationData.value(forKey: "type") as? Int == RegistrationDataType.RegistrationDataTypePassword.rawValue
         {
             self.bottomLabelcontraint.constant = 10
             bottomLabel.isHidden = false
@@ -78,7 +85,7 @@ class RegistrationTableViewCell: UITableViewCell {
             leftTextField.isSecureTextEntry = false
             rightTextField.isSecureTextEntry = false
         }
-        if registrationData.value(forKey: "type") as? String == "6" || registrationData.value(forKey: "type") as? String == "7" || registrationData.value(forKey: "type") as? String == "3"
+        if registrationData.value(forKey: "type") as? Int == RegistrationDataType.RegistrationDataTypeAddress1.rawValue || registrationData.value(forKey: "type") as? Int == RegistrationDataType.RegistrationDataTypeAddress2.rawValue || registrationData.value(forKey: "type") as? Int == RegistrationDataType.RegistrationDataTypeEmail.rawValue
         {
             self.leftTextFieldcontraint.constant = -(self.frame.size.width - 40)
             rightTextField.isHidden = true
@@ -88,7 +95,47 @@ class RegistrationTableViewCell: UITableViewCell {
             rightTextField.isHidden = false
         }
         
-        if registrationData.value(forKey: "type") as? String == "3" || registrationData.value(forKey: "type") as? String == "8" || registrationData.value(forKey: "type") as? String == "9"
+        if registrationData.value(forKey: "type") as? Int == RegistrationDataType.RegistrationDataTypeEmail.rawValue || registrationData.value(forKey: "type") as? Int == RegistrationDataType.RegistrationDataTypeDistrict.rawValue || registrationData.value(forKey: "type") as? Int == RegistrationDataType.RegistrationDataTypePincode.rawValue
+        {
+            rightTextField.isHidden = true
+        }else
+        {
+            rightTextField.isHidden = false
+        }
+    }
+    
+    func setLayoutForGuardianProfile(registrationData:NSDictionary) {
+        
+        if registrationData.value(forKey: "type") as? Int == ProfileDataType.ProfileDataTypeGender.rawValue
+        {
+            rightDropImageView.isHidden = false
+            leftDropImageView.isHidden = false
+        }
+        
+        if registrationData.value(forKey: "type") as? Int == ProfileDataType.ProfileDataTypeMobile.rawValue
+        {
+            leftTextField.keyboardType = .numberPad
+        }else
+        {
+            leftTextField.keyboardType = .default
+        }
+        
+        self.bottomLabelcontraint.constant = -15
+        bottomLabel.isHidden = true
+        leftTextField.isSecureTextEntry = false
+        rightTextField.isSecureTextEntry = false
+        
+        if registrationData.value(forKey: "type") as? Int == ProfileDataType.ProfileDataTypeOccupation.rawValue ||  registrationData.value(forKey: "type") as? Int == ProfileDataType.ProfileDataTypeEmail.rawValue
+        {
+            self.leftTextFieldcontraint.constant = -(self.frame.size.width - 40)
+            rightTextField.isHidden = true
+        }else
+        {
+            self.leftTextFieldcontraint.constant = 20
+            rightTextField.isHidden = false
+        }
+        
+        if registrationData.value(forKey: "type") as? Int == ProfileDataType.ProfileDataTypeMobile.rawValue
         {
             rightTextField.isHidden = true
         }else

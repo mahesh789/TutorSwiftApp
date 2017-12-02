@@ -11,6 +11,7 @@
 		07266CE41FBE03CE004A4FDE /* StudentRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07266CE31FBE03CE004A4FDE /* StudentRegistrationViewController.swift */; };
 		3B258D421FC7311400ADDE0D /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B258D411FC7311400ADDE0D /* CustomTextField.swift */; };
 		3B28334C1FCC74580059D115 /* RegistrationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B28334B1FCC74580059D115 /* RegistrationTableViewCell.swift */; };
+		3B28AD181FD2733B008BC962 /* TutorProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B28AD171FD2733B008BC962 /* TutorProfileViewController.swift */; };
 		3B31EA541FCE6FDD00F6134E /* RegistrationFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B31EA531FCE6FDD00F6134E /* RegistrationFooterView.swift */; };
 		3B31EA561FCE6FF900F6134E /* RegistrationFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B31EA551FCE6FF900F6134E /* RegistrationFooterView.xib */; };
 		3D0A6B701FB68388001CC7A9 /* TutorMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0A6B6F1FB68388001CC7A9 /* TutorMenuViewController.swift */; };
@@ -86,6 +87,7 @@
 		3127DB78AA7843104C70CF4E /* Pods-Tuto LearnTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tuto LearnTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tuto LearnTests/Pods-Tuto LearnTests.release.xcconfig"; sourceTree = "<group>"; };
 		3B258D411FC7311400ADDE0D /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		3B28334B1FCC74580059D115 /* RegistrationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationTableViewCell.swift; sourceTree = "<group>"; };
+		3B28AD171FD2733B008BC962 /* TutorProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorProfileViewController.swift; sourceTree = "<group>"; };
 		3B31EA531FCE6FDD00F6134E /* RegistrationFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationFooterView.swift; sourceTree = "<group>"; };
 		3B31EA551FCE6FF900F6134E /* RegistrationFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegistrationFooterView.xib; sourceTree = "<group>"; };
 		3D0A6B6F1FB68388001CC7A9 /* TutorMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorMenuViewController.swift; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 			isa = PBXGroup;
 			children = (
 				071E0FC51FB74FE600829299 /* TutorGuardianProfileViewController.swift */,
+				3B28AD171FD2733B008BC962 /* TutorProfileViewController.swift */,
 			);
 			path = TutorProfileViewController;
 			sourceTree = "<group>";
@@ -942,6 +945,7 @@
 				3DD68B801FB7E20C008B2C0C /* TutorTeachersListCollectionViewCell.swift in Sources */,
 				3B28334C1FCC74580059D115 /* RegistrationTableViewCell.swift in Sources */,
 				3D623F341FBB5AE60087AF13 /* TutorTeacherModel.swift in Sources */,
+				3B28AD181FD2733B008BC962 /* TutorProfileViewController.swift in Sources */,
 				3DBEC59A1FAF85900018CD66 /* MBProgressHUD.m in Sources */,
 				3D623F381FBB76010087AF13 /* TutorViewProfileTableViewCell.swift in Sources */,
 			);
