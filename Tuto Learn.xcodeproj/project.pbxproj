@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		071E0FC61FB74FE600829299 /* TutorGuardianProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071E0FC51FB74FE600829299 /* TutorGuardianProfileViewController.swift */; };
 		07266CE41FBE03CE004A4FDE /* StudentRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07266CE31FBE03CE004A4FDE /* StudentRegistrationViewController.swift */; };
+		3B258D421FC7311400ADDE0D /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B258D411FC7311400ADDE0D /* CustomTextField.swift */; };
+		3B28334C1FCC74580059D115 /* RegistrationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B28334B1FCC74580059D115 /* RegistrationTableViewCell.swift */; };
+		3B31EA541FCE6FDD00F6134E /* RegistrationFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B31EA531FCE6FDD00F6134E /* RegistrationFooterView.swift */; };
+		3B31EA561FCE6FF900F6134E /* RegistrationFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B31EA551FCE6FF900F6134E /* RegistrationFooterView.xib */; };
 		3D0A6B701FB68388001CC7A9 /* TutorMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0A6B6F1FB68388001CC7A9 /* TutorMenuViewController.swift */; };
 		3D0A6B7F1FB692D0001CC7A9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D0A6B7E1FB692CF001CC7A9 /* Main.storyboard */; };
 		3D0A6B831FB694A5001CC7A9 /* TutorMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0A6B821FB694A5001CC7A9 /* TutorMenuTableViewCell.swift */; };
@@ -81,6 +85,10 @@
 		071E0FC51FB74FE600829299 /* TutorGuardianProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorGuardianProfileViewController.swift; sourceTree = "<group>"; };
 		07266CE31FBE03CE004A4FDE /* StudentRegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentRegistrationViewController.swift; sourceTree = "<group>"; };
 		3127DB78AA7843104C70CF4E /* Pods-Tuto LearnTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tuto LearnTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tuto LearnTests/Pods-Tuto LearnTests.release.xcconfig"; sourceTree = "<group>"; };
+		3B258D411FC7311400ADDE0D /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		3B28334B1FCC74580059D115 /* RegistrationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationTableViewCell.swift; sourceTree = "<group>"; };
+		3B31EA531FCE6FDD00F6134E /* RegistrationFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationFooterView.swift; sourceTree = "<group>"; };
+		3B31EA551FCE6FF900F6134E /* RegistrationFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegistrationFooterView.xib; sourceTree = "<group>"; };
 		3D0A6B6F1FB68388001CC7A9 /* TutorMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorMenuViewController.swift; sourceTree = "<group>"; };
 		3D0A6B7E1FB692CF001CC7A9 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		3D0A6B821FB694A5001CC7A9 /* TutorMenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorMenuTableViewCell.swift; sourceTree = "<group>"; };
@@ -188,6 +196,24 @@
 				07266CE31FBE03CE004A4FDE /* StudentRegistrationViewController.swift */,
 			);
 			path = TutorRegistrationViewController;
+			sourceTree = "<group>";
+		};
+		3B2833491FCC74290059D115 /* TutorRegistrationView */ = {
+			isa = PBXGroup;
+			children = (
+				3B28334A1FCC74400059D115 /* TutorCell */,
+				3B31EA531FCE6FDD00F6134E /* RegistrationFooterView.swift */,
+				3B31EA551FCE6FF900F6134E /* RegistrationFooterView.xib */,
+			);
+			path = TutorRegistrationView;
+			sourceTree = "<group>";
+		};
+		3B28334A1FCC74400059D115 /* TutorCell */ = {
+			isa = PBXGroup;
+			children = (
+				3B28334B1FCC74580059D115 /* RegistrationTableViewCell.swift */,
+			);
+			path = TutorCell;
 			sourceTree = "<group>";
 		};
 		3D0A6B6E1FB68358001CC7A9 /* TutorMenuViewController */ = {
@@ -394,6 +420,7 @@
 			isa = PBXGroup;
 			children = (
 				3DBEC5951FAF85730018CD66 /* CommonUtils.swift */,
+				3B258D411FC7311400ADDE0D /* CustomTextField.swift */,
 			);
 			path = TutorSupportClasses;
 			sourceTree = "<group>";
@@ -410,6 +437,7 @@
 		3DC357941FB013960084F898 /* TutorViews */ = {
 			isa = PBXGroup;
 			children = (
+				3B2833491FCC74290059D115 /* TutorRegistrationView */,
 				3D623F351FBB75D30087AF13 /* TutorViewProfileViews */,
 				3DD68B7D1FB7E1D1008B2C0C /* TutorTeachersListViews */,
 				3D0A6B801FB6947B001CC7A9 /* TutoMenuView */,
@@ -617,6 +645,7 @@
 				3D9AE0531FB4058C0061859F /* TutorCommonPickerView.xib in Resources */,
 				3DF48C091FBA222700EB5A57 /* RobotoCondensed-Light.ttf in Resources */,
 				3DF48C161FBA222700EB5A57 /* Roboto-Bold.ttf in Resources */,
+				3B31EA561FCE6FF900F6134E /* RegistrationFooterView.xib in Resources */,
 				3DF48C0E1FBA222700EB5A57 /* Apache License.txt in Resources */,
 				3DF48C0A1FBA222700EB5A57 /* Roboto-Regular.ttf in Resources */,
 				3D0A6B7F1FB692D0001CC7A9 /* Main.storyboard in Resources */,
@@ -916,11 +945,14 @@
 				3DD68B821FB800AF008B2C0C /* TutorViewProfileViewController.swift in Sources */,
 				3DBEC58C1FAF81050018CD66 /* TutorSharedClass.swift in Sources */,
 				07266CE41FBE03CE004A4FDE /* StudentRegistrationViewController.swift in Sources */,
+				3B31EA541FCE6FDD00F6134E /* RegistrationFooterView.swift in Sources */,
 				3D9AE04E1FB36E160061859F /* TutorHomeViewController.swift in Sources */,
 				3DBEC5961FAF85730018CD66 /* CommonUtils.swift in Sources */,
+				3B258D421FC7311400ADDE0D /* CustomTextField.swift in Sources */,
 				3D1BD8651FB0E69D00DDB3BB /* ViewController.swift in Sources */,
 				3D0A6B701FB68388001CC7A9 /* TutorMenuViewController.swift in Sources */,
 				3DD68B801FB7E20C008B2C0C /* TutorTeachersListCollectionViewCell.swift in Sources */,
+				3B28334C1FCC74580059D115 /* RegistrationTableViewCell.swift in Sources */,
 				3D623F341FBB5AE60087AF13 /* TutorTeacherModel.swift in Sources */,
 				3DBEC59A1FAF85900018CD66 /* MBProgressHUD.m in Sources */,
 				3D623F381FBB76010087AF13 /* TutorViewProfileTableViewCell.swift in Sources */,
