@@ -73,6 +73,7 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
     
     func setHeaderView()  {
         self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.height/2
+        self.profileImageView.layer.masksToBounds = true
         self.uploadButton.layer.cornerRadius = 5.0;
         self.uploadButton.layer.borderColor = UIColor.init(red: 73, green: 167, blue: 169).cgColor
         self.uploadButton.layer.masksToBounds = true
@@ -256,5 +257,16 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
             self.profileImageView.image = image
         })
         
+    }
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        print("called")
+        self.dismiss(animated: true, completion: { () -> Void in
+            
+            if let bigImage = info[UIImagePickerControllerOriginalImage] as? UIImage
+            {
+                    self.profileImageView.image = bigImage
+
+            }
+        })
     }
 }

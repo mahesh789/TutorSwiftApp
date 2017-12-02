@@ -124,7 +124,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
                         {
                             print(resultDictionary)
 
-                            if let resultParseLoginDictionary = resultDictionary.object(forKey:"Data")
+                            if let resultParseLoginDictionary = resultDictionary.object(forKey:"data")
                             {
                                 print(resultParseLoginDictionary)
                                 let loginModelArray = TutorLoginModel.modelsFromDictionaryArray(array: [resultParseLoginDictionary])
@@ -138,12 +138,19 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
                                        let loginDictionary = TutorSharedClass.shared.loginTutorLoginObject?.dictionaryRepresentation()
                                         UserDefaults.standard.set(loginDictionary, forKey: "LoginDetails")
                                     }
-                                    if TutorSharedClass.shared.loginTutorLoginObject?.registrationType == "0"
+                                    if TutorSharedClass.shared.loginTutorLoginObject?.sm_register_type == 0
                                     {
-                                        self.setPreferencesrootViewController()
+                                        self.setrootViewControllerAfterLogin()
                                     }else
                                     {
-                                        self.setPreferencesrootViewController()
+                                        if TutorSharedClass.shared.loginTutorLoginObject?.student?.isEmpty == false
+                                        {
+                                            self.setrootViewControllerAfterLogin()
+
+                                        }else
+                                        {
+                                            self.setProfilerootViewController()
+                                        }
                                     }
                                     
                                 }

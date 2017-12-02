@@ -625,6 +625,8 @@ class StudentRegistrationViewController: UIViewController,UITextFieldDelegate,UI
             {
                 if let resultDictionary = response.result.value as? NSDictionary
                 {
+                    print(resultDictionary)
+
                     if Int(truncating: resultDictionary["status"] as! NSNumber) == Constants.Status.StatusOK.rawValue
                     {
                         print(resultDictionary)

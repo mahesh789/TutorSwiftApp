@@ -125,9 +125,6 @@ class RegistrationTableViewCell: UITableViewCell {
         leftTextField.isSecureTextEntry = false
         rightTextField.isSecureTextEntry = false
         
-       // DispatchQueue.main.async {
-            
-        
         if registrationData.value(forKey: "type") as? Int == ProfileDataType.ProfileDataTypeOccupation.rawValue ||  registrationData.value(forKey: "type") as? Int == ProfileDataType.ProfileDataTypeEmail.rawValue
         {
             self.leftTextFieldcontraint.constant = -(UIScreen.main.bounds.size.width - 40)
@@ -137,7 +134,7 @@ class RegistrationTableViewCell: UITableViewCell {
             self.leftTextFieldcontraint.constant = 20
             self.rightTextField.isHidden = false
         }
-      //  }
+
         if registrationData.value(forKey: "type") as? Int == ProfileDataType.ProfileDataTypeMobile.rawValue
         {
             rightTextField.isHidden = true

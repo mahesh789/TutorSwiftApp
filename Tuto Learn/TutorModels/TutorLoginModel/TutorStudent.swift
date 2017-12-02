@@ -12,35 +12,27 @@ import Foundation
  
 /* For support, please feel free to contact me at https://www.linkedin.com/in/syedabsar */
 
-public class TutorLoginModel {
+public class TutorStudent {
 	public var sm_id : String?
 	public var sm_name : String?
 	public var sm_last : String?
-	public var sm_email : String?
-	public var sm_mobile : Int?
-	public var sm_gender : String?
-	public var sm_dob : String?
-	public var sm_profile_image : String?
-	public var sm_register_type : Int?
-	public var spm_occupation : String?
-	public var student : Array<TutorStudent>?
 
 /**
     Returns an array of models based on given dictionary.
     
     Sample usage:
-    let json4Swift_Base_list = Json4Swift_Base.modelsFromDictionaryArray(someDictionaryArrayFromJSON)
+    let student_list = Student.modelsFromDictionaryArray(someDictionaryArrayFromJSON)
 
     - parameter array:  NSArray from JSON dictionary.
 
-    - returns: Array of Json4Swift_Base Instances.
+    - returns: Array of Student Instances.
 */
-    public class func modelsFromDictionaryArray(array:NSArray) -> [TutorLoginModel]
+    public class func modelsFromDictionaryArray(array:NSArray) -> [TutorStudent]
     {
-        var models:[TutorLoginModel] = []
+        var models:[TutorStudent] = []
         for item in array
         {
-            models.append(TutorLoginModel(dictionary: item as! NSDictionary)!)
+            models.append(TutorStudent(dictionary: item as! NSDictionary)!)
         }
         return models
     }
@@ -49,25 +41,17 @@ public class TutorLoginModel {
     Constructs the object based on the given dictionary.
     
     Sample usage:
-    let json4Swift_Base = Json4Swift_Base(someDictionaryFromJSON)
+    let student = Student(someDictionaryFromJSON)
 
     - parameter dictionary:  NSDictionary from JSON.
 
-    - returns: Json4Swift_Base Instance.
+    - returns: Student Instance.
 */
 	required public init?(dictionary: NSDictionary) {
 
 		sm_id = dictionary["sm_id"] as? String
 		sm_name = dictionary["sm_name"] as? String
 		sm_last = dictionary["sm_last"] as? String
-		sm_email = dictionary["sm_email"] as? String
-		sm_mobile = dictionary["sm_mobile"] as? Int
-		sm_gender = dictionary["sm_gender"] as? String
-		sm_dob = dictionary["sm_dob"] as? String
-		sm_profile_image = dictionary["sm_profile_image"] as? String
-		sm_register_type = dictionary["sm_register_type"] as? Int
-		spm_occupation = dictionary["spm_occupation"] as? String
-        if (dictionary["student"] != nil) { student = TutorStudent.modelsFromDictionaryArray(array: dictionary["student"] as! NSArray) }
 	}
 
 		
@@ -83,13 +67,6 @@ public class TutorLoginModel {
 		dictionary.setValue(self.sm_id, forKey: "sm_id")
 		dictionary.setValue(self.sm_name, forKey: "sm_name")
 		dictionary.setValue(self.sm_last, forKey: "sm_last")
-		dictionary.setValue(self.sm_email, forKey: "sm_email")
-		dictionary.setValue(self.sm_mobile, forKey: "sm_mobile")
-		dictionary.setValue(self.sm_gender, forKey: "sm_gender")
-		dictionary.setValue(self.sm_dob, forKey: "sm_dob")
-		dictionary.setValue(self.sm_profile_image, forKey: "sm_profile_image")
-		dictionary.setValue(self.sm_register_type, forKey: "sm_register_type")
-		dictionary.setValue(self.spm_occupation, forKey: "spm_occupation")
 
 		return dictionary
 	}
