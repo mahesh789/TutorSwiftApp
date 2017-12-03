@@ -29,6 +29,7 @@ class Constants {
     static let studentList = "select_student"
     static let searchTutor = "search_tutor"
     static let forgot_Password = "student_forgot_password"
+    static let set_Forgot_Password = "set_forgot_password"
     static let screenSize = UIScreen.main.bounds
     static let phoneScreenWidth = screenSize.width
     static let phoneScreenHeight = screenSize.height
