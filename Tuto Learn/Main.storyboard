@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -73,7 +72,7 @@
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tutoLearnLogo" translatesAutoresizingMaskIntoConstraints="NO" id="X2k-s5-g1P">
                                                 <rect key="frame" x="121" y="74" width="172" height="75"/>
                                             </imageView>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" background="textBoxShort" translatesAutoresizingMaskIntoConstraints="NO" id="AUi-mI-8wM">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" background="textBoxShort" translatesAutoresizingMaskIntoConstraints="NO" id="AUi-mI-8wM" customClass="CustomTextField" customModule="Tuto_Learn">
                                                 <rect key="frame" x="72" y="249" width="270" height="45"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -87,7 +86,7 @@
                                                     <outlet property="delegate" destination="BYZ-38-t0r" id="fUM-fa-qX6"/>
                                                 </connections>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email or Username" minimumFontSize="17" background="textBoxShort" translatesAutoresizingMaskIntoConstraints="NO" id="p5K-7r-AwR">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email or Username" minimumFontSize="17" background="textBoxShort" translatesAutoresizingMaskIntoConstraints="NO" id="p5K-7r-AwR" customClass="CustomTextField" customModule="Tuto_Learn">
                                                 <rect key="frame" x="72" y="189" width="270" height="45"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -116,7 +115,11 @@
                                                     <action selector="signInButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="W0T-8g-ExP"/>
                                                 </connections>
                                             </button>
-                                            <view alpha="0.40000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7y9-gP-xvv" userLabel="SocialSignInView">
+                                            <view alpha="0.40000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mnr-Gt-k9c">
+                                                <rect key="frame" x="0.0" y="449" width="414" height="120"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7y9-gP-xvv" userLabel="SocialSignInView">
                                                 <rect key="frame" x="0.0" y="449" width="414" height="120"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign in with" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="lZI-BZ-4Un">
@@ -126,14 +129,14 @@
                                                             <constraint firstAttribute="height" constant="21" id="xmQ-mV-lTJ"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="15"/>
-                                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WrY-zR-y3Z">
                                                         <rect key="frame" x="101" y="35.666666666666686" width="47" height="47"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                                                        <state key="normal" image="fb"/>
+                                                        <state key="normal" image="facebook"/>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fVa-dE-Chs">
                                                         <rect key="frame" x="183" y="36" width="47" height="47"/>
@@ -148,13 +151,13 @@
                                                         <rect key="frame" x="265" y="36" width="47" height="47"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                                                        <state key="normal" image="googlePlus"/>
+                                                        <state key="normal" image="google"/>
                                                         <connections>
                                                             <action selector="googleSignInSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6QF-CJ-rvs"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstItem="fVa-dE-Chs" firstAttribute="top" secondItem="lZI-BZ-4Un" secondAttribute="bottom" constant="13" id="2mx-WN-MRg"/>
                                                     <constraint firstItem="lZI-BZ-4Un" firstAttribute="top" secondItem="7y9-gP-xvv" secondAttribute="top" constant="2" id="9aH-5A-bLS"/>
@@ -234,16 +237,19 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="m5v-4i-L1O" firstAttribute="centerX" secondItem="AUi-mI-8wM" secondAttribute="centerX" id="2uc-kc-u1S"/>
+                                            <constraint firstItem="mnr-Gt-k9c" firstAttribute="top" secondItem="7y9-gP-xvv" secondAttribute="top" id="3bd-Vd-TBX"/>
                                             <constraint firstAttribute="trailing" secondItem="7y9-gP-xvv" secondAttribute="trailing" id="50D-fc-QzV"/>
                                             <constraint firstItem="AUi-mI-8wM" firstAttribute="centerX" secondItem="p5K-7r-AwR" secondAttribute="centerX" id="9Fq-mN-zWX"/>
                                             <constraint firstItem="X2k-s5-g1P" firstAttribute="top" secondItem="s9l-6p-GIL" secondAttribute="top" constant="74" id="DVJ-He-YP1"/>
                                             <constraint firstItem="m5v-4i-L1O" firstAttribute="top" secondItem="AUi-mI-8wM" secondAttribute="bottom" constant="15" id="Deq-Dl-zQn"/>
                                             <constraint firstItem="FrI-OW-Le5" firstAttribute="leading" secondItem="m5v-4i-L1O" secondAttribute="leading" id="EJ8-19-XHx"/>
+                                            <constraint firstItem="mnr-Gt-k9c" firstAttribute="trailing" secondItem="7y9-gP-xvv" secondAttribute="trailing" id="Ibh-HA-g2u"/>
                                             <constraint firstItem="7y9-gP-xvv" firstAttribute="leading" secondItem="s9l-6p-GIL" secondAttribute="leading" id="J0O-qh-56g"/>
                                             <constraint firstItem="7y9-gP-xvv" firstAttribute="top" secondItem="uQJ-V7-LrM" secondAttribute="bottom" constant="17" id="LQA-2H-0Vq"/>
                                             <constraint firstItem="bSz-b3-Pd6" firstAttribute="trailing" secondItem="m5v-4i-L1O" secondAttribute="trailing" id="Pt0-WT-5WO"/>
                                             <constraint firstItem="uQJ-V7-LrM" firstAttribute="top" secondItem="bSz-b3-Pd6" secondAttribute="bottom" constant="11" id="SWw-t0-Kzz"/>
                                             <constraint firstItem="AUi-mI-8wM" firstAttribute="top" secondItem="p5K-7r-AwR" secondAttribute="bottom" constant="15" id="TRO-Sg-SpT"/>
+                                            <constraint firstItem="mnr-Gt-k9c" firstAttribute="bottom" secondItem="7y9-gP-xvv" secondAttribute="bottom" id="V79-Cg-fi2"/>
                                             <constraint firstItem="smS-m5-SMq" firstAttribute="leading" secondItem="FrI-OW-Le5" secondAttribute="trailing" constant="10" id="W5V-cK-QEQ"/>
                                             <constraint firstItem="Eie-SQ-790" firstAttribute="top" secondItem="7y9-gP-xvv" secondAttribute="bottom" constant="30" id="WaW-yC-lkJ"/>
                                             <constraint firstItem="X2k-s5-g1P" firstAttribute="centerX" secondItem="s9l-6p-GIL" secondAttribute="centerX" id="WgK-Lc-iei"/>
@@ -253,6 +259,7 @@
                                             <constraint firstItem="smS-m5-SMq" firstAttribute="top" secondItem="m5v-4i-L1O" secondAttribute="bottom" constant="20" id="gVo-6Z-GXp"/>
                                             <constraint firstItem="bSz-b3-Pd6" firstAttribute="leading" secondItem="F5o-XT-DTe" secondAttribute="trailing" constant="5" id="hWp-he-YXI"/>
                                             <constraint firstItem="uQJ-V7-LrM" firstAttribute="centerX" secondItem="s9l-6p-GIL" secondAttribute="centerX" id="nJJ-Cy-NwE"/>
+                                            <constraint firstItem="mnr-Gt-k9c" firstAttribute="leading" secondItem="7y9-gP-xvv" secondAttribute="leading" id="ot9-1Y-p4P"/>
                                             <constraint firstItem="F5o-XT-DTe" firstAttribute="leading" secondItem="smS-m5-SMq" secondAttribute="trailing" constant="3" id="pXS-mM-rhn"/>
                                             <constraint firstItem="FrI-OW-Le5" firstAttribute="top" secondItem="m5v-4i-L1O" secondAttribute="bottom" constant="15" id="psf-oQ-4aA"/>
                                             <constraint firstAttribute="height" constant="700" id="q3s-kq-GOf"/>
@@ -2130,8 +2137,8 @@
         <image name="closeButton" width="14" height="14"/>
         <image name="dropdownMenuIcon" width="14" height="14"/>
         <image name="dummyPhoto" width="120" height="120"/>
-        <image name="fb" width="47" height="47"/>
-        <image name="googlePlus" width="47" height="47"/>
+        <image name="facebook" width="47" height="47"/>
+        <image name="google" width="47" height="47"/>
         <image name="home_icon" width="20" height="20"/>
         <image name="linkedIn" width="47" height="47"/>
         <image name="profileImage" width="226" height="305"/>
