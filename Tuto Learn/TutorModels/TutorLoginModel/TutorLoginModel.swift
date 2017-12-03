@@ -17,12 +17,19 @@ public class TutorLoginModel {
 	public var sm_name : String?
 	public var sm_last : String?
 	public var sm_email : String?
-	public var sm_mobile : Int?
+	public var sm_mobile : String?
 	public var sm_gender : String?
 	public var sm_dob : String?
 	public var sm_profile_image : String?
-	public var sm_register_type : Int?
+	public var sm_register_type : String?
 	public var spm_occupation : String?
+    public var sm_address1 : String?
+    public var sm_address2 : String?
+    public var sm_city_id : String?
+    public var sm_level : String?
+    public var sm_pin : String?
+    public var sm_school_name : String?
+
 	public var student : Array<TutorStudent>?
 
 /**
@@ -37,6 +44,7 @@ public class TutorLoginModel {
 */
     public class func modelsFromDictionaryArray(array:NSArray) -> [TutorLoginModel]
     {
+        print(array)
         var models:[TutorLoginModel] = []
         for item in array
         {
@@ -61,13 +69,23 @@ public class TutorLoginModel {
 		sm_name = dictionary["sm_name"] as? String
 		sm_last = dictionary["sm_last"] as? String
 		sm_email = dictionary["sm_email"] as? String
-		sm_mobile = dictionary["sm_mobile"] as? Int
+		sm_mobile = dictionary["sm_mobile"] as? String
 		sm_gender = dictionary["sm_gender"] as? String
 		sm_dob = dictionary["sm_dob"] as? String
 		sm_profile_image = dictionary["sm_profile_image"] as? String
-		sm_register_type = dictionary["sm_register_type"] as? Int
+		sm_register_type = dictionary["sm_register_type"] as? String
 		spm_occupation = dictionary["spm_occupation"] as? String
-        if (dictionary["student"] != nil) { student = TutorStudent.modelsFromDictionaryArray(array: dictionary["student"] as! NSArray) }
+        sm_address1 = dictionary["sm_address1"] as? String
+        sm_address2 = dictionary["sm_address2"] as? String
+        sm_city_id = dictionary["sm_city_id"] as? String
+        sm_level = dictionary["sm_level"] as? String
+        sm_pin = dictionary["sm_pin"] as? String
+        sm_school_name = dictionary["sm_school_name"] as? String
+
+        if (dictionary["student"] as? NSArray) != nil
+        {
+            if (dictionary["student"] != nil) { student = TutorStudent.modelsFromDictionaryArray(array: dictionary["student"] as! NSArray) }
+        }
 	}
 
 		

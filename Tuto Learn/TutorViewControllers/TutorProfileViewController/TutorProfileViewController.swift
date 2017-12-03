@@ -45,16 +45,16 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
     }
 
     func setGuardianData()  {
-        let profileNameDetails: NSMutableDictionary? = ["leftTitle":"First Name","rightTitle":"Last Name","leftValue":"","rightValue":"","type":NSNumber.init(value: ProfileDataType.ProfileDataTypeFirstName.rawValue)]
+        let profileNameDetails: NSMutableDictionary? = ["leftTitle":"First Name","rightTitle":"Last Name","leftValue":TutorSharedClass.shared.loginTutorLoginObject?.sm_name ?? "","rightValue":TutorSharedClass.shared.loginTutorLoginObject?.sm_last ?? "" ,"type":NSNumber.init(value: ProfileDataType.ProfileDataTypeFirstName.rawValue)]
         
-        let profilegenderDetails: NSMutableDictionary? = ["leftTitle":"Gender","rightTitle":"Date of Birth","leftValue":"","rightValue":"","type":NSNumber.init(value: ProfileDataType.ProfileDataTypeGender.rawValue)]
+        let profilegenderDetails: NSMutableDictionary? = ["leftTitle":"Gender","rightTitle":"Date of Birth","leftValue":TutorSharedClass.shared.loginTutorLoginObject?.sm_gender ?? "","rightValue":TutorSharedClass.shared.loginTutorLoginObject?.sm_dob ?? "","type":NSNumber.init(value: ProfileDataType.ProfileDataTypeGender.rawValue)]
         
-        let profileEmailDetails: NSMutableDictionary? = ["rightTitle":"Email","leftTitle":"","leftValue":"","rightValue":"","type":NSNumber.init(value: ProfileDataType.ProfileDataTypeEmail.rawValue)]
+        let profileEmailDetails: NSMutableDictionary? = ["rightTitle":"Email","leftTitle":"","leftValue":"","rightValue":TutorSharedClass.shared.loginTutorLoginObject?.sm_email ?? "","type":NSNumber.init(value: ProfileDataType.ProfileDataTypeEmail.rawValue)]
         
-        let profileMobileDetails: NSMutableDictionary? = ["leftTitle":"Mobile","rightTitle":"","leftValue":"","rightValue":"","type":NSNumber.init(value: ProfileDataType.ProfileDataTypeMobile.rawValue)]
+        let profileMobileDetails: NSMutableDictionary? = ["leftTitle":"Mobile","rightTitle":"","leftValue":TutorSharedClass.shared.loginTutorLoginObject?.sm_mobile ?? "","rightValue":"","type":NSNumber.init(value: ProfileDataType.ProfileDataTypeMobile.rawValue)]
         
         
-        let profileOccupationDetail: NSMutableDictionary? = ["rightTitle":"Occupation","leftTitle":"","leftValue":"","rightValue":"","type":NSNumber.init(value: ProfileDataType.ProfileDataTypeOccupation.rawValue)]
+        let profileOccupationDetail: NSMutableDictionary? = ["rightTitle":"Occupation","leftTitle":"","leftValue":"","rightValue":TutorSharedClass.shared.loginTutorLoginObject?.spm_occupation ?? "","type":NSNumber.init(value: ProfileDataType.ProfileDataTypeOccupation.rawValue)]
         
         dataArray = NSMutableArray()
         dataArray?.add(profileNameDetails ?? NSDictionary.init())

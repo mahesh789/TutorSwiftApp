@@ -138,14 +138,14 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
                                        let loginDictionary = TutorSharedClass.shared.loginTutorLoginObject?.dictionaryRepresentation()
                                         UserDefaults.standard.set(loginDictionary, forKey: "LoginDetails")
                                     }
-                                    if TutorSharedClass.shared.loginTutorLoginObject?.sm_register_type == 0
+                                    if TutorSharedClass.shared.loginTutorLoginObject?.sm_register_type == "0"
                                     {
-                                        self.setrootViewControllerAfterLogin()
+                                        self.setProfilerootViewController()
                                     }else
                                     {
                                         if TutorSharedClass.shared.loginTutorLoginObject?.student?.isEmpty == false
                                         {
-                                            self.setrootViewControllerAfterLogin()
+                                            self.setProfilerootViewController()
 
                                         }else
                                         {
