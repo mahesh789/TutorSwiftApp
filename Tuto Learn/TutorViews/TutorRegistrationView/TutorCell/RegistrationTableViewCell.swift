@@ -29,7 +29,7 @@ class RegistrationTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    
     func updateLayout(registrationData:NSDictionary,cellType:RegistrationCellType) {
         
         leftTextField.placeholder = registrationData.value(forKey: "leftTitle") as? String
@@ -48,6 +48,9 @@ class RegistrationTableViewCell: UITableViewCell {
         }else if(cellType.rawValue == RegistrationCellType.RegistrationCellTypeGuardianProfile.rawValue)
         {
             self.setLayoutForGuardianProfile(registrationData: registrationData)
+        }else if (cellType.rawValue == RegistrationCellType.RegistrationCellTypeFindTutor.rawValue)
+        {
+            self.setLayoutForFindTutor(findTutor: registrationData)
         }
     }
     
@@ -143,4 +146,44 @@ class RegistrationTableViewCell: UITableViewCell {
             rightTextField.isHidden = false
         }
     }
+    
+    func setLayoutForFindTutor(findTutor:NSDictionary) {
+        
+        if findTutor.value(forKey: "type") as? Int == FindTutorDataType.FindTutorDataTypeEnterTopic.rawValue
+        {
+            self.leftTextFieldcontraint.constant = -(self.frame.size.width - 40)
+            rightTextField.isHidden = true
+            rightDropImageView.isHidden = true
+            leftDropImageView.isHidden = true
+
+        }else
+        {
+            self.leftTextFieldcontraint.constant = 20
+            rightTextField.isHidden = false
+            rightDropImageView.isHidden = false
+            leftDropImageView.isHidden = false
+        }
+        
+        if findTutor.value(forKey: "type") as? Int == FindTutorDataType.FindTutorDataTypeNoOfSessions.rawValue
+        {
+            self.rightTextField.isHidden = true
+            rightDropImageView.isHidden = true
+        }
+        
+        if findTutor.value(forKey: "type") as? Int == FindTutorDataType.FindTutorDataTypeTutionType.rawValue
+        {
+           if rightTextField.customTag == 2
+           {
+            if leftTextField.text == "One-on-One"
+            {
+                rightTextField.isEnabled = false
+                rightTextField.text = ""
+            }else{
+                rightTextField.isEnabled = true
+            }
+           }
+        }
+      
+    }
+    
 }
