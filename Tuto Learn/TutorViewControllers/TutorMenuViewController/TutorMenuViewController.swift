@@ -8,16 +8,20 @@
 
 import UIKit
 
+enum MenuActionType:Int {
+    case MenuActionTypeFindTutor = 1,MenuActionTypeMyAccount,MenuActionTypeHistory,MenuActionTypeHelp,MenuActionTypeContactUs
+}
+
 class TutorMenuViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
 
     @IBOutlet weak var menuTableView:UITableView!
-    let menuArray:Array<String> = ["Find A Tutor","My Account","History","Help","Contact Us"]
+    let menuArray = [["menuTitle":"Find A Tutor","actionType":MenuActionType.MenuActionTypeFindTutor.rawValue],["menuTitle":"My Account","actionType":MenuActionType.MenuActionTypeMyAccount.rawValue],["menuTitle":"History","actionType":MenuActionType.MenuActionTypeHistory.rawValue],["menuTitle":"Help","actionType":MenuActionType.MenuActionTypeHelp.rawValue],["menuTitle":"Contact Us","actionType":MenuActionType.MenuActionTypeContactUs.rawValue]]
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         self.menuTableView.estimatedRowHeight = 100
         self.menuTableView.rowHeight = UITableViewAutomaticDimension
-        self.menuTableView.backgroundColor = UIColor.tutorAppBackgroungColor()
+        self.menuTableView.backgroundColor = UIColor (red: 14.0/255.0, green: 104.0/255.0, blue: 119/255.0, alpha: 1.0)
         self.menuTableView.tableFooterView = UIView()
     }
     
@@ -30,31 +34,38 @@ class TutorMenuViewController: UIViewController,UITableViewDelegate,UITableViewD
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TutorMenuTableViewCell", for: indexPath as IndexPath) as! TutorMenuTableViewCell
-        cell.menuOptionsLabel.text = menuArray[indexPath.row]
+        let menuDictionary = menuArray[indexPath.row]
+        cell.menuOptionsLabel.text = menuDictionary["menuTitle"] as? String
         cell.menuOptionsLabel.textColor = UIColor.white
-        cell.iconImageView.image = UIImage.init(named: menuArray[indexPath.row])
-        cell.contentView.backgroundColor = UIColor.tutorAppBackgroungColor()
+        if  let menuImageName = menuDictionary["menuTitle"] as? String {
+            cell.iconImageView.image = UIImage.init(named:menuImageName)
+        }
         cell.selectionStyle = .none
+        cell.contentView.backgroundColor = UIColor (red: 14.0/255.0, green: 104.0/255.0, blue: 119/255.0, alpha: 1.0)
         return cell
     }
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-        switch indexPath.row
+        let menuDictionary = menuArray[indexPath.row]
+        let actionType = menuDictionary["actionType"] as! Int
+        
+        switch actionType
         {
-        case 0:      //when profie is clicked...
-            let profilControllerObj = self.storyboard?.instantiateViewController(withIdentifier: "TutorGuardianProfileViewController") as? TutorGuardianProfileViewController
-            self.navigationController?.pushViewController(profilControllerObj!, animated: true)
+        case MenuActionType.MenuActionTypeFindTutor.rawValue:
+             dismiss(animated: true, completion: nil)
             break
-        case 1:      //when  is clicked...
+        case MenuActionType.MenuActionTypeMyAccount.rawValue:
             
             break
-        case 2:      //when  is clicked...
+        case MenuActionType.MenuActionTypeHistory.rawValue:
 
             break
-        case 3:      //when logout is clicked...
+        case MenuActionType.MenuActionTypeHelp.rawValue:
            
-            TutorSharedClass.removeLoginCredentialsAndSetRootViewControllerLogin()
+            break
+        case MenuActionType.MenuActionTypeContactUs.rawValue:
+            
             break
         default: print("Other...")
         }
