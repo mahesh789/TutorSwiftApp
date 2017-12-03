@@ -22,6 +22,7 @@ public class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         IQKeyboardManager.sharedManager().enable = true
         if UserDefaults.standard.bool(forKey: "isUserLoggedIn") {
+           self.callFirstTimeLoginToken()
             if let loginDictionary = UserDefaults.standard.object(forKey: "LoginDetails") {
                 TutorSharedClass.shared.loginTutorLoginObject  = TutorLoginModel.init(dictionary: loginDictionary as! NSDictionary)
             }
@@ -40,6 +41,14 @@ public class AppDelegate: UIResponder, UIApplicationDelegate {
             self.window?.makeKeyAndVisible()
         }
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+    }
+    func callFirstTimeLoginToken() -> Void {
+        TutorGenerateToken.performGenerateTokenUrl(completionHandler: { (status, token) in
+            if Constants.Status.StatusOK.rawValue == status
+            {
+                TutorSharedClass.shared.token = token
+            }
+        })
     }
     
     public func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
