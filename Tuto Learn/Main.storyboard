@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -399,7 +400,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="N94-O5-ARZ">
-                                <rect key="frame" x="0.0" y="76" width="414" height="660"/>
+                                <rect key="frame" x="0.0" y="92" width="414" height="660"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="tO8-gV-V27">
                                     <rect key="frame" x="0.0" y="108" width="414" height="50"/>
@@ -527,12 +528,13 @@
                                 </connections>
                             </tableView>
                         </subviews>
+                        <color key="backgroundColor" red="0.31455734369999999" green="0.71428519489999998" blue="0.74507206680000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="N94-O5-ARZ" firstAttribute="leading" secondItem="9Od-Rh-7lS" secondAttribute="leading" id="D9J-Sc-uUp"/>
-                            <constraint firstItem="N94-O5-ARZ" firstAttribute="top" secondItem="4jx-YW-cZx" secondAttribute="bottom" id="Haa-Bf-79A"/>
+                            <constraint firstItem="N94-O5-ARZ" firstAttribute="top" secondItem="4jx-YW-cZx" secondAttribute="bottom" constant="16" id="Haa-Bf-79A"/>
                             <constraint firstAttribute="trailing" secondItem="4jx-YW-cZx" secondAttribute="trailing" id="K31-8y-dve"/>
                             <constraint firstItem="4jx-YW-cZx" firstAttribute="leading" secondItem="9Od-Rh-7lS" secondAttribute="leading" id="Sph-6Q-pt5"/>
-                            <constraint firstItem="quF-Ei-4ie" firstAttribute="top" secondItem="N94-O5-ARZ" secondAttribute="bottom" id="cg6-rL-gaS"/>
+                            <constraint firstItem="quF-Ei-4ie" firstAttribute="top" secondItem="N94-O5-ARZ" secondAttribute="bottom" constant="-16" id="cg6-rL-gaS"/>
                             <constraint firstAttribute="trailing" secondItem="N94-O5-ARZ" secondAttribute="trailing" id="eWP-9V-3JH"/>
                             <constraint firstItem="4jx-YW-cZx" firstAttribute="top" secondItem="9Od-Rh-7lS" secondAttribute="top" id="wyC-Gj-R1G"/>
                         </constraints>
@@ -1078,7 +1080,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LWs-EO-u7S">
-                                <rect key="frame" x="0.0" y="160" width="414" height="576"/>
+                                <rect key="frame" x="0.0" y="120" width="414" height="616"/>
                                 <color key="backgroundColor" red="0.0087710237130522728" green="0.40742847323417664" blue="0.470680832862854" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
@@ -1124,13 +1126,17 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aRZ-EW-hf3">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="160"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="120"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tutoLearnLogo" translatesAutoresizingMaskIntoConstraints="NO" id="QLt-EU-hUC">
-                                        <rect key="frame" x="30" y="42.666666666666657" width="172" height="75"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tutoLearnLogo" translatesAutoresizingMaskIntoConstraints="NO" id="QLt-EU-hUC">
+                                        <rect key="frame" x="30" y="28.666666666666671" width="130" height="65"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="65" id="4Ik-h6-tXd"/>
+                                            <constraint firstAttribute="width" constant="130" id="hYg-rS-Hul"/>
+                                        </constraints>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bcr-Hx-gfD">
-                                        <rect key="frame" x="379" y="42.666666666666664" width="14" height="21.999999999999993"/>
+                                        <rect key="frame" x="379" y="28.666666666666664" width="14" height="22"/>
                                         <state key="normal" image="closeButton"/>
                                         <connections>
                                             <action selector="dismissMenuActionWith_sender:" destination="oTs-K5-b4J" eventType="touchUpInside" id="eS1-1t-OHQ"/>
@@ -1140,10 +1146,10 @@
                                 <color key="backgroundColor" red="0.23918548226356506" green="0.23923307657241821" blue="0.23918247222900391" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="QLt-EU-hUC" firstAttribute="leading" secondItem="aRZ-EW-hf3" secondAttribute="leading" constant="30" id="JpY-Yy-G7F"/>
-                                    <constraint firstItem="QLt-EU-hUC" firstAttribute="centerY" secondItem="aRZ-EW-hf3" secondAttribute="centerY" id="Qr5-Mi-NBj"/>
+                                    <constraint firstItem="QLt-EU-hUC" firstAttribute="centerY" secondItem="aRZ-EW-hf3" secondAttribute="centerY" constant="1.1666666666666643" id="Qr5-Mi-NBj"/>
                                     <constraint firstAttribute="trailing" secondItem="Bcr-Hx-gfD" secondAttribute="trailing" constant="21" id="TyK-yj-V4A"/>
-                                    <constraint firstAttribute="height" constant="160" id="Ywi-vn-wSV"/>
-                                    <constraint firstItem="Bcr-Hx-gfD" firstAttribute="top" secondItem="QLt-EU-hUC" secondAttribute="top" id="sfC-WO-p7I"/>
+                                    <constraint firstAttribute="height" constant="120" id="Ywi-vn-wSV"/>
+                                    <constraint firstItem="Bcr-Hx-gfD" firstAttribute="top" secondItem="QLt-EU-hUC" secondAttribute="top" constant="-7.1054273576010019e-15" id="sfC-WO-p7I"/>
                                 </constraints>
                             </view>
                         </subviews>

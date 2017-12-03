@@ -11,7 +11,7 @@ import UIKit
 class TutorMenuViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
 
     @IBOutlet weak var menuTableView:UITableView!
-    let menuArray:Array<String> = ["Find A Tutor","My Account","History","Help","Contect Us"]
+    let menuArray:Array<String> = ["Find A Tutor","My Account","History","Help","Contact Us"]
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.

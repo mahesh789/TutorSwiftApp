@@ -129,24 +129,16 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
                                     if self.rememberButton.isSelected
                                     {
                                         UserDefaults.standard.set(true, forKey: "isUserLoggedIn")
-                                       let loginDictionary = TutorSharedClass.shared.loginTutorLoginObject?.dictionaryRepresentation()
+                                        let loginDictionary = TutorSharedClass.shared.loginTutorLoginObject?.dictionaryRepresentation()
                                         UserDefaults.standard.set(loginDictionary, forKey: "LoginDetails")
                                     }
-                                    if TutorSharedClass.shared.loginTutorLoginObject?.sm_register_type == "0"
+                                    if (TutorSharedClass.shared.loginTutorLoginObject?.sm_register_type == "0") || (TutorSharedClass.shared.loginTutorLoginObject?.student?.isEmpty == false)
                                     {
-                                        self.setProfilerootViewController()
+                                        self.setrootViewControllerAfterLogin()
                                     }else
                                     {
-                                        if TutorSharedClass.shared.loginTutorLoginObject?.student?.isEmpty == false
-                                        {
-                                            self.setProfilerootViewController()
-
-                                        }else
-                                        {
-                                            self.setProfilerootViewController()
-                                        }
+                                        self.setProfilerootViewController()
                                     }
-                                    
                                 }
                             }
                         }else{
@@ -229,10 +221,22 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
                                 if (loginModelArray.first != nil)
                                 {
                                     TutorSharedClass.shared.loginTutorLoginObject = loginModelArray.first
-                                    self.setrootViewControllerAfterLogin()
-                                    UserDefaults.standard.set(true, forKey: "isUserLoggedIn")
-                                    UserDefaults.standard.set(self.userNameTextField.text, forKey: "userName")
-                                    UserDefaults.standard.set(self.passwordTextField.text, forKey: "passWord")
+                                    
+                                    if self.rememberButton.isSelected
+                                    {
+                                        UserDefaults.standard.set(true, forKey: "isUserLoggedIn")
+                                        let loginDictionary = TutorSharedClass.shared.loginTutorLoginObject?.dictionaryRepresentation()
+                                        UserDefaults.standard.set(loginDictionary, forKey: "LoginDetails")
+                                    }
+                                    
+                                    if (TutorSharedClass.shared.loginTutorLoginObject?.sm_register_type == "0") || (TutorSharedClass.shared.loginTutorLoginObject?.student?.isEmpty == false)
+                                    {
+                                        self.setrootViewControllerAfterLogin()
+                                    }else
+                                    {
+                                        self.setProfilerootViewController()
+                                    }
+                                    
                                 }
                             }
                         }else{

@@ -171,6 +171,10 @@ class TutorHomeViewController: UIViewController,UITextFieldDelegate,UITableViewD
                 if self.tutionTypeString != nil
                 {
                     datadictionary?["leftValue"] = self.tutionTypeString
+                    if self.tutionTypeString == "One-on-One"
+                    {
+                         datadictionary?["rightValue"] = ""
+                    }
                     
                 }
                  self.findTutorTableView.reloadData()
@@ -486,6 +490,7 @@ class TutorHomeViewController: UIViewController,UITextFieldDelegate,UITableViewD
     func cancelButtonClickedInPicker() {
         self.tutorCommonPickerView?.removeFromSuperview()
          self.tutorCommonPickerView = nil
+        self.view.endEditing(true)
     }
     func doneButtonClickedInPicker(Value value: String?, InDictionary pickerDictionary: Dictionary<String, Any>?, selectedPickerDataType: PickerDataType?) {
         switch selectedPickerDataType {

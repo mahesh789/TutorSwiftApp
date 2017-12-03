@@ -22,16 +22,29 @@ public class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         IQKeyboardManager.sharedManager().enable = true
         if UserDefaults.standard.bool(forKey: "isUserLoggedIn") {
-           self.callFirstTimeLoginToken()
+            self.callFirstTimeLoginToken()
             if let loginDictionary = UserDefaults.standard.object(forKey: "LoginDetails") {
                 TutorSharedClass.shared.loginTutorLoginObject  = TutorLoginModel.init(dictionary: loginDictionary as! NSDictionary)
             }
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let tutorHomeViewController:TutorHomeViewController = storyboard.instantiateViewController(withIdentifier: "TutorHomeViewController") as! TutorHomeViewController
-            let navigationController = UINavigationController(rootViewController: tutorHomeViewController)
-            navigationController.isNavigationBarHidden = true
-            self.window?.rootViewController = navigationController
-            self.window?.makeKeyAndVisible()
+            if (TutorSharedClass.shared.loginTutorLoginObject?.sm_register_type == "0") || (TutorSharedClass.shared.loginTutorLoginObject?.student?.isEmpty == false)
+            {
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let tutorHomeViewController:TutorHomeViewController = storyboard.instantiateViewController(withIdentifier: "TutorHomeViewController") as! TutorHomeViewController
+                let navigationController = UINavigationController(rootViewController: tutorHomeViewController)
+                navigationController.isNavigationBarHidden = true
+                self.window?.rootViewController = navigationController
+                self.window?.makeKeyAndVisible()
+                
+            }else{
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let tutorHomeViewController:TutorProfileViewController = storyboard.instantiateViewController(withIdentifier: "TutorProfileViewController") as! TutorProfileViewController
+                tutorHomeViewController.currentProfilType = ProfileType.ProfileTypeGuardian.rawValue
+                let navigationController = UINavigationController(rootViewController: tutorHomeViewController)
+                navigationController.isNavigationBarHidden = true
+                self.window?.rootViewController = navigationController
+                self.window?.makeKeyAndVisible()
+            }
+            
         }else{
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let tutorLoginViewController:ViewController = storyboard.instantiateViewController(withIdentifier: "ViewController") as! ViewController
