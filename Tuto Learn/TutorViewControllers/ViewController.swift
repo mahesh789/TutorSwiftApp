@@ -23,7 +23,6 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
     @IBOutlet weak var googlePlusLoginButton: UIButton!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var rememberButton:UIButton!
-    var ischeckMark:Bool!=false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,9 +36,10 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
         self.signInButton.setTitle("Sign In", for:UIControlState.normal)
         fbLoginButton.addTarget(self, action: #selector(self.facebookLoginButtonClicked), for: .touchUpInside)
         //temporary
-        self.userNameTextField.text = "guardian@gmail.com"//"ankita@test.com"
-        self.passwordTextField.text = "12341234"//"12345"
+        self.userNameTextField.text = "ankita@test.com"//"guardian@gmail.com"//
+        self.passwordTextField.text = "12345"//"12345"
         self.contentView.isOpaque = true
+        self.rememberButton.isSelected = true
         self.createAccountButton.layer.cornerRadius = 5
         self.createAccountButton.layer.borderColor = UIColor.white.cgColor
         self.createAccountButton.layer.borderWidth = 1
@@ -52,16 +52,10 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
     }
     
     //MARK:SignIn Button Action
-    @IBAction func rememberCheckMarkButton(_ sender:UIButton)
+    @IBAction func rememberCheckMarkButton(sender:UIButton)
     {
-        if sender.isSelected == true {
-            sender.isSelected = false
-            self.ischeckMark=false
-        }
-        else {
-            sender.isSelected = true
-            self.ischeckMark=true
-        }
+        sender.isSelected = !sender.isSelected
+        print(sender)
     }
     @IBAction func signInButtonAction(_ sender: Any) {
         
@@ -132,7 +126,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
                                 {
                                     TutorSharedClass.shared.loginTutorLoginObject = loginModelArray.first
                                     
-                                    if self.ischeckMark
+                                    if self.rememberButton.isSelected
                                     {
                                         UserDefaults.standard.set(true, forKey: "isUserLoggedIn")
                                        let loginDictionary = TutorSharedClass.shared.loginTutorLoginObject?.dictionaryRepresentation()
