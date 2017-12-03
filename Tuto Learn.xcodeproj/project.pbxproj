@@ -14,6 +14,8 @@
 		3B28AD181FD2733B008BC962 /* TutorProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B28AD171FD2733B008BC962 /* TutorProfileViewController.swift */; };
 		3B31EA541FCE6FDD00F6134E /* RegistrationFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B31EA531FCE6FDD00F6134E /* RegistrationFooterView.swift */; };
 		3B31EA561FCE6FF900F6134E /* RegistrationFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B31EA551FCE6FF900F6134E /* RegistrationFooterView.xib */; };
+		3BB5AA191FD3195600658103 /* TutorLoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB5AA171FD3195600658103 /* TutorLoginModel.swift */; };
+		3BB5AA1A1FD3195600658103 /* TutorStudent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB5AA181FD3195600658103 /* TutorStudent.swift */; };
 		3D0A6B701FB68388001CC7A9 /* TutorMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0A6B6F1FB68388001CC7A9 /* TutorMenuViewController.swift */; };
 		3D0A6B7F1FB692D0001CC7A9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D0A6B7E1FB692CF001CC7A9 /* Main.storyboard */; };
 		3D0A6B831FB694A5001CC7A9 /* TutorMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0A6B821FB694A5001CC7A9 /* TutorMenuTableViewCell.swift */; };
@@ -34,7 +36,6 @@
 		3D9AE0521FB4058C0061859F /* TutorCommonPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9AE0501FB4058C0061859F /* TutorCommonPickerView.swift */; };
 		3D9AE0531FB4058C0061859F /* TutorCommonPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D9AE0511FB4058C0061859F /* TutorCommonPickerView.xib */; };
 		3DBEC58C1FAF81050018CD66 /* TutorSharedClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBEC58B1FAF81050018CD66 /* TutorSharedClass.swift */; };
-		3DBEC5901FAF852A0018CD66 /* TutorLoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBEC58F1FAF85290018CD66 /* TutorLoginModel.swift */; };
 		3DBEC5931FAF85510018CD66 /* TutorConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBEC5921FAF85510018CD66 /* TutorConstant.swift */; };
 		3DBEC5961FAF85730018CD66 /* CommonUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBEC5951FAF85730018CD66 /* CommonUtils.swift */; };
 		3DBEC59A1FAF85900018CD66 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBEC5991FAF85900018CD66 /* MBProgressHUD.m */; };
@@ -92,6 +93,8 @@
 		3B28AD171FD2733B008BC962 /* TutorProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorProfileViewController.swift; sourceTree = "<group>"; };
 		3B31EA531FCE6FDD00F6134E /* RegistrationFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationFooterView.swift; sourceTree = "<group>"; };
 		3B31EA551FCE6FF900F6134E /* RegistrationFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegistrationFooterView.xib; sourceTree = "<group>"; };
+		3BB5AA171FD3195600658103 /* TutorLoginModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorLoginModel.swift; sourceTree = "<group>"; };
+		3BB5AA181FD3195600658103 /* TutorStudent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorStudent.swift; sourceTree = "<group>"; };
 		3D0A6B6F1FB68388001CC7A9 /* TutorMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorMenuViewController.swift; sourceTree = "<group>"; };
 		3D0A6B7E1FB692CF001CC7A9 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		3D0A6B821FB694A5001CC7A9 /* TutorMenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorMenuTableViewCell.swift; sourceTree = "<group>"; };
@@ -119,7 +122,6 @@
 		3D9AE0501FB4058C0061859F /* TutorCommonPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorCommonPickerView.swift; sourceTree = "<group>"; };
 		3D9AE0511FB4058C0061859F /* TutorCommonPickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TutorCommonPickerView.xib; sourceTree = "<group>"; };
 		3DBEC58B1FAF81050018CD66 /* TutorSharedClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorSharedClass.swift; sourceTree = "<group>"; };
-		3DBEC58F1FAF85290018CD66 /* TutorLoginModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorLoginModel.swift; sourceTree = "<group>"; };
 		3DBEC5921FAF85510018CD66 /* TutorConstant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorConstant.swift; sourceTree = "<group>"; };
 		3DBEC5951FAF85730018CD66 /* CommonUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonUtils.swift; sourceTree = "<group>"; };
 		3DBEC5981FAF85900018CD66 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
@@ -409,7 +411,8 @@
 		3DBEC58E1FAF85290018CD66 /* TutorLoginModel */ = {
 			isa = PBXGroup;
 			children = (
-				3DBEC58F1FAF85290018CD66 /* TutorLoginModel.swift */,
+				3BB5AA171FD3195600658103 /* TutorLoginModel.swift */,
+				3BB5AA181FD3195600658103 /* TutorStudent.swift */,
 			);
 			path = TutorLoginModel;
 			sourceTree = "<group>";
@@ -950,7 +953,6 @@
 				3D1BD8671FB0E74300DDB3BB /* AppDelegate.swift in Sources */,
 				BA3112671FD2C5B80073A577 /* TutorPreferencesViewController.swift in Sources */,
 				3D0A6B831FB694A5001CC7A9 /* TutorMenuTableViewCell.swift in Sources */,
-				3DBEC5901FAF852A0018CD66 /* TutorLoginModel.swift in Sources */,
 				071E0FC61FB74FE600829299 /* TutorGuardianProfileViewController.swift in Sources */,
 				3D1F70D31FBA03D200AF03DE /* TutorNetworkManager.swift in Sources */,
 				3D4515CF1FB70F9100591577 /* TutorTeachersListViewController.swift in Sources */,
@@ -960,6 +962,7 @@
 				3DD68B821FB800AF008B2C0C /* TutorViewProfileViewController.swift in Sources */,
 				3DBEC58C1FAF81050018CD66 /* TutorSharedClass.swift in Sources */,
 				07266CE41FBE03CE004A4FDE /* StudentRegistrationViewController.swift in Sources */,
+				3BB5AA1A1FD3195600658103 /* TutorStudent.swift in Sources */,
 				3B31EA541FCE6FDD00F6134E /* RegistrationFooterView.swift in Sources */,
 				3D9AE04E1FB36E160061859F /* TutorHomeViewController.swift in Sources */,
 				3DBEC5961FAF85730018CD66 /* CommonUtils.swift in Sources */,
@@ -970,6 +973,7 @@
 				3B28334C1FCC74580059D115 /* RegistrationTableViewCell.swift in Sources */,
 				3D623F341FBB5AE60087AF13 /* TutorTeacherModel.swift in Sources */,
 				3B28AD181FD2733B008BC962 /* TutorProfileViewController.swift in Sources */,
+				3BB5AA191FD3195600658103 /* TutorLoginModel.swift in Sources */,
 				3D2538011FD3282D0078760C /* TutorForgotPasswordViewController.swift in Sources */,
 				3DBEC59A1FAF85900018CD66 /* MBProgressHUD.m in Sources */,
 				3D623F381FBB76010087AF13 /* TutorViewProfileTableViewCell.swift in Sources */,
