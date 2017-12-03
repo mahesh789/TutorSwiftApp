@@ -12,6 +12,8 @@ import AAPickerView
 class CustomTextField: AAPickerView {
 
     var customTag = 0
+    var section = 0
+    
     @IBInspectable var paddingLeft: CGFloat = 5
     @IBInspectable var paddingRight: CGFloat = 0
     /*

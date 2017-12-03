@@ -8,6 +8,7 @@
 
 import UIKit
 import AAPickerView
+import SideMenu
 enum ProfileType:Int {
     case ProfileTypeGuardian = 1,ProfileTypeStudent
 }
@@ -40,10 +41,21 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
         self.setGuardianData()
         self.setHeaderView()
         self.setFooterView()
+        self.setupSideMenu()
         
         // Do any additional setup after loading the view.
     }
-
+    fileprivate func setupSideMenu() {
+        // Define the menus
+        
+        SideMenuManager.default.menuRightNavigationController = storyboard!.instantiateViewController(withIdentifier: "RightMenuNavigationController") as? UISideMenuNavigationController
+        
+        SideMenuManager.default.menuAddPanGestureToPresent(toView: self.navigationController!.navigationBar)
+        SideMenuManager.default.menuAddScreenEdgePanGesturesToPresent(toView: self.navigationController!.view)
+        SideMenuManager.default.menuWidth = (Constants.phoneScreenWidth-120)
+        // Set up a cool background image for demo purposes
+        SideMenuManager.default.menuAnimationBackgroundColor = UIColor.clear
+    }
     func setGuardianData()  {
         let profileNameDetails: NSMutableDictionary? = ["leftTitle":"First Name","rightTitle":"Last Name","leftValue":TutorSharedClass.shared.loginTutorLoginObject?.sm_name ?? "","rightValue":TutorSharedClass.shared.loginTutorLoginObject?.sm_last ?? "" ,"type":NSNumber.init(value: ProfileDataType.ProfileDataTypeFirstName.rawValue)]
         
@@ -68,6 +80,8 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
         self.tutorNavigationBar.rightBarButton.isHidden = false
         self.tutorNavigationBar.navigationTitleLabel.text = "Your Profile"
         self.tutorNavigationBar.leftBarButton.isHidden = true
+        self.tutorNavigationBar.rightBarButton.addTarget(self, action: #selector(menuClickAction), for:.touchUpInside)
+
 
     }
     
@@ -134,6 +148,8 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
     {
         if let textFieldTemp =  textField as? CustomTextField
         {
+            textFieldTemp.inputView = nil
+            textFieldTemp.inputAccessoryView = nil;
             let datadictionary = self.dataArray?.object(at: textField.tag) as? NSMutableDictionary
             if datadictionary?.value(forKey: "type") as? Int == ProfileDataType.ProfileDataTypeGender.rawValue && textFieldTemp.customTag == 2
             {
@@ -153,7 +169,7 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
         {
             let datadictionary = self.dataArray?.object(at: textField.tag) as? NSMutableDictionary
             
-            if datadictionary?.value(forKey: "type") as? Int == RegistrationDataType.RegistrationDataTypeGender.rawValue && textFieldTemp.customTag == 1
+            if datadictionary?.value(forKey: "type") as? Int == ProfileDataType.ProfileDataTypeGender.rawValue && textFieldTemp.customTag == 1
             {
                 if (genderValue != nil)
                 {
@@ -179,7 +195,7 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
     func configureDatePicker(textField:AAPickerView) -> Void {
         textField.pickerType = .DatePicker
         textField.datePicker?.datePickerMode = .date
-        textField.dateFormatter.dateFormat = "YYYY-MM-dd"
+        textField.dateFormatter.dateFormat = "dd/MM/yyyy"
         textField.dateDidChange = { date in
             print("selectedDate ", date )
             textField.text = textField.dateFormatter.string(from: date)
@@ -268,5 +284,176 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
 
             }
         })
+    }
+    
+    
+    @IBAction func submitButtonClicked()
+    {
+        self.view.endEditing(true)
+        var isValidate:Bool
+        isValidate = true
+        var parameterData = [String: String]()
+        
+        for dataDictionary in self.dataArray! {
+            if let dataContent = dataDictionary as? NSMutableDictionary
+            {
+                if dataContent["type"] as? Int == ProfileDataType.ProfileDataTypeFirstName.rawValue
+                {
+                    let leftValue =  dataContent["leftValue"] as? String
+                    if (leftValue?.isEmpty)!
+                    {
+                        TutorDefaultAlertController.showAlertController(alertMessage: "Please enter first name" , showController: self)
+                        isValidate = false
+                        break;
+                    }else
+                    {
+                        parameterData["s_name"] = leftValue
+                    }
+                    let rightValue =  dataContent["rightValue"] as? String
+                    if (rightValue?.isEmpty)!
+                    {
+                        TutorDefaultAlertController.showAlertController(alertMessage: "Please enter last name" , showController: self)
+                        isValidate = false
+                        break;
+                    }else
+                    {
+                        parameterData["s_lastname"] = rightValue
+                        
+                    }
+                }else if dataContent["type"] as? Int == ProfileDataType.ProfileDataTypeGender.rawValue
+                {
+                    let leftValue =  dataContent["leftValue"] as? String
+                    if (leftValue?.isEmpty)!
+                    {
+                        TutorDefaultAlertController.showAlertController(alertMessage: "Please select gender" , showController: self)
+                        isValidate = false
+                        break;
+                    }else
+                    {
+                        parameterData["s_gender"] = leftValue
+                    }
+                    let rightValue =  dataContent["rightValue"] as? String
+                    if (rightValue?.isEmpty)!
+                    {
+                        TutorDefaultAlertController.showAlertController(alertMessage: "Please select date of birth" , showController: self)
+                        isValidate = false
+                        break;
+                    }else
+                    {
+                        let dateFormatterValue = DateFormatter()
+                        dateFormatterValue.dateFormat = "dd-MM-yyyy"
+                        let date = dateFormatterValue.date(from: rightValue!)!
+                        let calendar = Calendar.current
+                        let components = calendar.dateComponents([.year, .month, .day, .hour], from: date)
+                        let myDOB = Calendar.current.date(from: components)!
+                        
+                        if self.currentProfilType == ProfileType.ProfileTypeGuardian.rawValue
+                        {
+                            if myDOB.age < 18
+                            {
+                                TutorDefaultAlertController.showAlertController(alertMessage: "Minimum 18 years required to register as guardian" , showController: self)
+                                isValidate = false
+                                break;
+                            }else
+                            {
+                                parameterData["s_dob"] = rightValue
+                                
+                            }
+                            
+                        }else
+                        {
+                            if myDOB.age < 3
+                            {
+                                TutorDefaultAlertController.showAlertController(alertMessage: "Minimum 3 years required to register as student" , showController: self)
+                                isValidate = false
+                                break;
+                            }else
+                            {
+                                parameterData["s_dob"] = rightValue
+                                
+                            }
+                        }
+                        
+                    }
+                }else if dataContent["type"] as? Int == ProfileDataType.ProfileDataTypeEmail.rawValue
+                {
+                    let leftValue =  dataContent["rightValue"] as? NSString
+                    if leftValue?.length == 0
+                    {
+                        TutorDefaultAlertController.showAlertController(alertMessage: "Please enter email address" , showController: self)
+                        isValidate = false
+                        break;
+                    }else
+                    {
+                        if leftValue?.isValidEmail() == true
+                        {
+                            parameterData["s_email"] = leftValue as String?
+                        }else
+                        {
+                            TutorDefaultAlertController.showAlertController(alertMessage: "Please enter valid email address" , showController: self)
+                            isValidate = false
+                            break;
+                        }
+                        
+                    }
+                    
+                }
+                else if dataContent["type"] as? Int == ProfileDataType.ProfileDataTypeMobile.rawValue
+                {
+                    
+                    let rightValue =  dataContent["leftValue"] as? String
+                    if (rightValue?.isEmpty)!
+                    {
+                        TutorDefaultAlertController.showAlertController(alertMessage: "Please enter mobile no" , showController: self)
+                        isValidate = false
+                        break;
+                    }else
+                    {
+                        if (rightValue?.count)!<10
+                        {
+                            TutorDefaultAlertController.showAlertController(alertMessage: "The Mobile Number must be at least 10 characters in length" , showController: self)
+                            isValidate = false
+                            break;
+                        }else
+                        {
+                            parameterData["s_mobile"] = rightValue
+                        }
+                        
+                    }
+                    
+                }
+                else if dataContent["type"] as? Int == ProfileDataType.ProfileDataTypeOccupation.rawValue
+                {
+                    let rightValue =  dataContent["rightValue"] as? String
+                    if (rightValue?.isEmpty)!
+                    {
+                        TutorDefaultAlertController.showAlertController(alertMessage: "Please enter occupation" , showController: self)
+                        isValidate = false
+                        break;
+                    }else
+                    {
+                        parameterData["s_occupation"] = rightValue
+                        
+                    }
+                }
+                
+            }
+        }
+        
+        if isValidate == true
+        {
+            // perform API Action
+            self.openStudentProfileController()
+        }
+    }
+    
+    func openStudentProfileController()  {
+        
+         let tutorHomeViewController:TutorStudentProfileViewController = self.storyboard?.instantiateViewController(withIdentifier: "TutorStudentProfileViewController") as! TutorStudentProfileViewController
+        self.navigationController?.pushViewController(tutorHomeViewController, animated: true)
+    }
+    
+    @objc func menuClickAction(sender:UIButton!) {
+        present(SideMenuManager.default.menuRightNavigationController!, animated: true, completion: nil)
     }
 }

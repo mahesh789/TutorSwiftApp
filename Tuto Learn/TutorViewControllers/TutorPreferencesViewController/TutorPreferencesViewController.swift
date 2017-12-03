@@ -3,6 +3,7 @@
 //  Tuto Learn
 
 import UIKit
+import SideMenu
 
 enum PreferencesDataType:Int {
     case PreferencesDataTypeContact = 1, PreferencesDataTypeTimeOfContact
@@ -33,13 +34,23 @@ class TutorPreferencesViewController: UIViewController, UITextFieldDelegate, UIT
         self.setPreferencesData()
         self.setHeaderView()
         self.setFooterView()
+        self.setupSideMenu()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+    fileprivate func setupSideMenu() {
+        // Define the menus
+        SideMenuManager.default.menuRightNavigationController = storyboard!.instantiateViewController(withIdentifier: "RightMenuNavigationController") as? UISideMenuNavigationController
+        
+        SideMenuManager.default.menuAddPanGestureToPresent(toView: self.navigationController!.navigationBar)
+        SideMenuManager.default.menuAddScreenEdgePanGesturesToPresent(toView: self.navigationController!.view)
+        SideMenuManager.default.menuWidth = (Constants.phoneScreenWidth-120)
+        // Set up a cool background image for demo purposes
+        SideMenuManager.default.menuAnimationBackgroundColor = UIColor.clear
+    }
     func setPreferencesData()
     {
         let contactDetails: NSMutableDictionary? = ["leftTitle":"Time of Contact","rightTitle":"Mode of Contact","leftValue":"","rightValue":"","type":NSNumber.init(value: PreferencesDataType.PreferencesDataTypeTimeOfContact.rawValue)]
@@ -55,7 +66,11 @@ class TutorPreferencesViewController: UIViewController, UITextFieldDelegate, UIT
         
         self.tutorNavigationBar.rightBarButton.isHidden = false
         self.tutorNavigationBar.navigationTitleLabel.text = "Your Profile"
-        self.tutorNavigationBar.leftBarButton.isHidden = true
+        self.tutorNavigationBar.leftBarButton.isHidden = false
+        self.tutorNavigationBar.leftBarButton.addTarget(self, action: #selector(backButtonAction), for:.touchUpInside)
+        self.tutorNavigationBar.rightBarButton.addTarget(self, action: #selector(menuClickAction), for:.touchUpInside)
+
+
     }
     
     func setHeaderView()  {
@@ -129,4 +144,11 @@ class TutorPreferencesViewController: UIViewController, UITextFieldDelegate, UIT
         print("Submit Button Clicked....")
     }
     
+    @objc func backButtonAction(sender:UIButton!) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func menuClickAction(sender:UIButton!) {
+        present(SideMenuManager.default.menuRightNavigationController!, animated: true, completion: nil)
+    }
 }

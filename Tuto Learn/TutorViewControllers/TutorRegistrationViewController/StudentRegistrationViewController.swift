@@ -15,7 +15,7 @@ enum RegistrationDataType:Int {
 }
 
 enum RegistrationCellType:Int {
-    case RegistrationCellTypeRegistration = 1,RegistrationCellTypeGuardianProfile,RegistrationCellTypeFindTutor
+    case RegistrationCellTypeRegistration = 1,RegistrationCellTypeGuardianProfile,RegistrationCellTypeFindTutor,RegistrationCellTypeStudentProfile
 }
 
 class StudentRegistrationViewController: UIViewController,UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource,UITableViewDelegate,UITableViewDataSource {
@@ -206,7 +206,7 @@ class StudentRegistrationViewController: UIViewController,UITextFieldDelegate,UI
     func configureDatePicker(textField:AAPickerView) -> Void {
         textField.pickerType = .DatePicker
         textField.datePicker?.datePickerMode = .date
-        textField.dateFormatter.dateFormat = "YYYY-MM-dd"
+        textField.dateFormatter.dateFormat = "dd/MM/yyyy"
         textField.dateDidChange = { date in
             print("selectedDate ", date )
             textField.text = textField.dateFormatter.string(from: date)
@@ -226,6 +226,8 @@ class StudentRegistrationViewController: UIViewController,UITextFieldDelegate,UI
     {
         if let textFieldTemp =  textField as? CustomTextField
         {
+            textFieldTemp.inputView = nil
+            textFieldTemp.inputAccessoryView = nil;
             let datadictionary = self.dataArray?.object(at: textField.tag) as? NSMutableDictionary
             if datadictionary?.value(forKey: "type") as? Int == RegistrationDataType.RegistrationDataTypeGender.rawValue && textFieldTemp.customTag == 2
             {
@@ -391,7 +393,7 @@ class StudentRegistrationViewController: UIViewController,UITextFieldDelegate,UI
                     }else
                     {
                         let dateFormatterValue = DateFormatter()
-                        dateFormatterValue.dateFormat = "yyyy-MM-dd"
+                        dateFormatterValue.dateFormat = "dd/MM/yyyy"
                         let date = dateFormatterValue.date(from: rightValue!)!
                         let calendar = Calendar.current
                         let components = calendar.dateComponents([.year, .month, .day, .hour], from: date)

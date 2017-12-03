@@ -44,9 +44,9 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
         self.createAccountButton.layer.borderColor = UIColor.white.cgColor
         self.createAccountButton.layer.borderWidth = 1
         self.rememberButton.setBackgroundImage(UIImage(named: "uncheckbox_icon"), for: .normal)
-         self.rememberButton.setBackgroundImage(UIImage(named: "checkbox_icon"), for: .selected)
+        self.rememberButton.setBackgroundImage(UIImage(named: "checkbox_icon"), for: .selected)
         self.userNameTextField.attributedPlaceholder = NSAttributedString(string:self.userNameTextField.placeholder!,
-                                                                 attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
+                                                                          attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
         self.passwordTextField.attributedPlaceholder = NSAttributedString(string:self.passwordTextField.placeholder!,
                                                                           attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
     }

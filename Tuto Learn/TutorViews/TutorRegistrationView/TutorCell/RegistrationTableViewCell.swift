@@ -51,6 +51,9 @@ class RegistrationTableViewCell: UITableViewCell {
         }else if (cellType.rawValue == RegistrationCellType.RegistrationCellTypeFindTutor.rawValue)
         {
             self.setLayoutForFindTutor(findTutor: registrationData)
+        }else if(cellType.rawValue == RegistrationCellType.RegistrationCellTypeStudentProfile.rawValue)
+        {
+            self.setLayoutForStudentProfile(registrationData: registrationData)
         }
     }
     
@@ -184,6 +187,46 @@ class RegistrationTableViewCell: UITableViewCell {
            }
         }
       
+    }
+    
+    func setLayoutForStudentProfile(registrationData:NSDictionary) {
+        
+        if registrationData.value(forKey: "type") as? Int == StudentProfileDataType.StudentProfileDataTypeGender.rawValue || registrationData.value(forKey: "type") as? Int == StudentProfileDataType.StudentProfileDataTypeBoardName.rawValue
+        {
+            rightDropImageView.isHidden = false
+            leftDropImageView.isHidden = false
+        }
+        
+        if registrationData.value(forKey: "type") as? Int == StudentProfileDataType.StudentProfileDataTypeMobile.rawValue
+        {
+            leftTextField.keyboardType = .numberPad
+        }else
+        {
+            leftTextField.keyboardType = .default
+        }
+        
+        self.bottomLabelcontraint.constant = -15
+        bottomLabel.isHidden = true
+        leftTextField.isSecureTextEntry = false
+        rightTextField.isSecureTextEntry = false
+        
+        if registrationData.value(forKey: "type") as? Int == StudentProfileDataType.StudentProfileDataTypeSchoolName.rawValue ||  registrationData.value(forKey: "type") as? Int == StudentProfileDataType.StudentProfileDataTypeEmail.rawValue
+        {
+            self.leftTextFieldcontraint.constant = -(UIScreen.main.bounds.size.width - 40)
+            self.rightTextField.isHidden = true
+        }else
+        {
+            self.leftTextFieldcontraint.constant = 20
+            self.rightTextField.isHidden = false
+        }
+        
+        if registrationData.value(forKey: "type") as? Int == StudentProfileDataType.StudentProfileDataTypeMobile.rawValue
+        {
+            rightTextField.isHidden = true
+        }else
+        {
+            rightTextField.isHidden = false
+        }
     }
     
 }
