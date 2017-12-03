@@ -24,6 +24,7 @@
 		3D2278511FA39DF600D3B6E0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D22784F1FA39DF600D3B6E0 /* LaunchScreen.storyboard */; };
 		3D22785C1FA39DF600D3B6E0 /* Tuto_LearnTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D22785B1FA39DF600D3B6E0 /* Tuto_LearnTests.swift */; };
 		3D2278671FA39DF600D3B6E0 /* Tuto_LearnUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2278661FA39DF600D3B6E0 /* Tuto_LearnUITests.swift */; };
+		3D2538011FD3282D0078760C /* TutorForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2538001FD3282D0078760C /* TutorForgotPasswordViewController.swift */; };
 		3D4515CF1FB70F9100591577 /* TutorTeachersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4515CE1FB70F9100591577 /* TutorTeachersListViewController.swift */; };
 		3D623F341FBB5AE60087AF13 /* TutorTeacherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D623F331FBB5AE60087AF13 /* TutorTeacherModel.swift */; };
 		3D623F381FBB76010087AF13 /* TutorViewProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D623F371FBB76010087AF13 /* TutorViewProfileTableViewCell.swift */; };
@@ -107,6 +108,7 @@
 		3D2278621FA39DF600D3B6E0 /* Tuto LearnUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tuto LearnUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D2278661FA39DF600D3B6E0 /* Tuto_LearnUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tuto_LearnUITests.swift; sourceTree = "<group>"; };
 		3D2278681FA39DF600D3B6E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3D2538001FD3282D0078760C /* TutorForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		3D4515CE1FB70F9100591577 /* TutorTeachersListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorTeachersListViewController.swift; sourceTree = "<group>"; };
 		3D623F331FBB5AE60087AF13 /* TutorTeacherModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorTeacherModel.swift; sourceTree = "<group>"; };
 		3D623F371FBB76010087AF13 /* TutorViewProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorViewProfileTableViewCell.swift; sourceTree = "<group>"; };
@@ -246,6 +248,7 @@
 		3D1BD8631FB0E69D00DDB3BB /* TutorViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				3D2537FF1FD328140078760C /* TutorForgotPasswordController */,
 				BA3112651FD2C5950073A577 /* TutorPreferencesViewController */,
 				07266CE21FBE03CE004A4FDE /* TutorRegistrationViewController */,
 				071E0FC41FB74FB300829299 /* TutorProfileViewController */,
@@ -325,6 +328,14 @@
 				3D2278681FA39DF600D3B6E0 /* Info.plist */,
 			);
 			path = "Tuto LearnUITests";
+			sourceTree = "<group>";
+		};
+		3D2537FF1FD328140078760C /* TutorForgotPasswordController */ = {
+			isa = PBXGroup;
+			children = (
+				3D2538001FD3282D0078760C /* TutorForgotPasswordViewController.swift */,
+			);
+			path = TutorForgotPasswordController;
 			sourceTree = "<group>";
 		};
 		3D4515CD1FB70F6F00591577 /* TutorTeachersListViewController */ = {
@@ -601,8 +612,9 @@
 				TargetAttributes = {
 					3D2278421FA39DF500D3B6E0 = {
 						CreatedOnToolsVersion = 9.0.1;
+						DevelopmentTeam = 3GH227U3JZ;
 						LastSwiftMigration = 0900;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 					};
 					3D2278561FA39DF600D3B6E0 = {
 						CreatedOnToolsVersion = 9.0.1;
@@ -958,6 +970,7 @@
 				3B28334C1FCC74580059D115 /* RegistrationTableViewCell.swift in Sources */,
 				3D623F341FBB5AE60087AF13 /* TutorTeacherModel.swift in Sources */,
 				3B28AD181FD2733B008BC962 /* TutorProfileViewController.swift in Sources */,
+				3D2538011FD3282D0078760C /* TutorForgotPasswordViewController.swift in Sources */,
 				3DBEC59A1FAF85900018CD66 /* MBProgressHUD.m in Sources */,
 				3D623F381FBB76010087AF13 /* TutorViewProfileTableViewCell.swift in Sources */,
 			);
@@ -1126,8 +1139,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3GH227U3JZ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1139,7 +1152,7 @@
 				INFOPLIST_FILE = "Tuto Learn/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.tuto.tutolearn;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tuto1.tutolearn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1159,8 +1172,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3GH227U3JZ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1170,7 +1183,7 @@
 				INFOPLIST_FILE = "Tuto Learn/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.tuto.tutolearn;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tuto1.tutolearn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
