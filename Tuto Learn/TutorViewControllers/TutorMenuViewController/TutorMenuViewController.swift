@@ -11,7 +11,7 @@ import UIKit
 class TutorMenuViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
 
     @IBOutlet weak var menuTableView:UITableView!
-    let menuArray:Array<String> = ["Profile","Student Profile","Preference Settings","Logout"]
+    let menuArray:Array<String> = ["Find A Tutor","My Account","History","Help","Contect Us"]
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -32,6 +32,7 @@ class TutorMenuViewController: UIViewController,UITableViewDelegate,UITableViewD
         let cell = tableView.dequeueReusableCell(withIdentifier: "TutorMenuTableViewCell", for: indexPath as IndexPath) as! TutorMenuTableViewCell
         cell.menuOptionsLabel.text = menuArray[indexPath.row]
         cell.menuOptionsLabel.textColor = UIColor.white
+        cell.iconImageView.image = UIImage.init(named: menuArray[indexPath.row])
         cell.contentView.backgroundColor = UIColor.tutorAppBackgroungColor()
         cell.selectionStyle = .none
         return cell
@@ -59,6 +60,10 @@ class TutorMenuViewController: UIViewController,UITableViewDelegate,UITableViewD
         }
     }
     
+    @IBAction func dismissMenuAction(_sender:Any)
+    {
+        dismiss(animated: true, completion: nil)
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

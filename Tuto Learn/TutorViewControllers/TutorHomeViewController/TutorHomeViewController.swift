@@ -11,55 +11,203 @@ import SideMenu
 import Alamofire
 import AAPickerView
 
-class TutorHomeViewController: UIViewController,TutorCommonPickerViewDelegate {
+enum FindTutorDataType:Int {
+    case FindTutorDataTypeSelectStudent = 1,FindTutorDataTypeEnterTopic,FindTutorDataTypeSelectDate,FindTutorDataTypeTutionType,FindTutorDataTypeNoOfSessions
+}
+
+class TutorHomeViewController: UIViewController,UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource,TutorCommonPickerViewDelegate {
    
    @IBOutlet weak var tutorHomeNavigationBar:TutorHomeNavigationBar!
-    @IBOutlet weak var contentView:UIView!
-    @IBOutlet weak var selectStudentButton: UIButton!
-    @IBOutlet weak var selectSubjectButton: UIButton!
-    @IBOutlet weak var selectTopicButton: UIButton!
-    @IBOutlet weak var specifyTimeSlotButton: UIButton!
-    @IBOutlet weak var selectDateButton: UIButton!
-    @IBOutlet weak var tutionTypeButton: UIButton!
-    @IBOutlet weak var groupSizeButton: UIButton!
-    @IBOutlet weak var findTutorButton: UIButton!
-    var  tutorCommonPickerView:TutorCommonPickerView?
-    //Variables For Find Tutor
-    var selectStudentString:String?
-    var selectedSubjectDictionary:Dictionary<String,Any>?
-    var selectedTopicDictionary:Dictionary<String,Any>?
-    var selectedTimeSlotString:String?
-    var selectedTutionTypeString:String?
-    var selectedGroupSizeString:String?
-    @IBOutlet weak var picker: AAPickerView!
-
+    @IBOutlet weak var findTutorTableView:UITableView!
+    var dataArray :NSMutableArray?
+    var tutorCommonPickerView: TutorCommonPickerView?
+    
+    //===
+    var selectStudentDictionary:NSDictionary!
+    var selectSubjectDictionary:NSDictionary!
+    var preferedTimeSlotString:String!
+    var tutionTypeString:String!
+    var groupSizeString:String!
+    var numberOfSessionString:String!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-         configureDatePicker()
         self.setLayoutAndSetTexts()
         self.setupSideMenu()
-      
+        self.setFindTutorFieldsArray()
     }
-    func configureDatePicker() -> Void {
-        picker.pickerType = .DatePicker
-        picker.datePicker?.minimumDate = Date()
-        picker.datePicker?.datePickerMode = .date
-        picker.dateFormatter.dateFormat = "dd-MM-YYYY"
-        picker.dateDidChange = { date in
-            print("selectedDate ", date )
-        }
-    }
+   
     func setLayoutAndSetTexts() -> Void {
         self.tutorHomeNavigationBar.rightBarButton.addTarget(self, action: #selector(menuClickAction), for:.touchUpInside)
         self.tutorHomeNavigationBar.leftBarButton.isHidden = true
         self.tutorHomeNavigationBar.navigationTitleLabel.text = "Find a Tutor"
-        self.findTutorButton.setTitle("Find a Tutor", for: .normal)
         self.view.backgroundColor = UIColor.tutorAppBackgroungColor()
-        self.contentView.backgroundColor = UIColor.tutorAppBackgroungColor()
-        self.groupSizeButton.isHidden = true
+        self.findTutorTableView.backgroundColor = UIColor.tutorAppBackgroungColor()
+
+    }
+    
+    func setFindTutorFieldsArray() -> Void {
+         let findTutorSelectStudent: NSMutableDictionary? = ["leftTitle":"Select Student","rightTitle":"Select Subject","leftValue":"","rightValue":"","type":NSNumber.init(value: FindTutorDataType.FindTutorDataTypeSelectStudent.rawValue) ]
+         let findTutorEnterTopic: NSMutableDictionary? = ["leftTitle":"Enter Topic","rightTitle":"","leftValue":"","rightValue":"","type":NSNumber.init(value: FindTutorDataType.FindTutorDataTypeEnterTopic.rawValue) ]
+         let findTutorSelectDate: NSMutableDictionary? = ["leftTitle":"Select Date","rightTitle":"Prefered Time Slot","leftValue":"","rightValue":"","type":NSNumber.init(value: FindTutorDataType.FindTutorDataTypeSelectDate.rawValue) ]
+         let findTutorTutionType: NSMutableDictionary? = ["leftTitle":"Tution Type","rightTitle":"Group Size","leftValue":"","rightValue":"","type":NSNumber.init(value: FindTutorDataType.FindTutorDataTypeTutionType.rawValue) ]
+         let findTutorNoofSessions: NSMutableDictionary? = ["leftTitle":"No. of Sessions","rightTitle":"","leftValue":"","rightValue":"","type":NSNumber.init(value: FindTutorDataType.FindTutorDataTypeNoOfSessions.rawValue) ]
+        
+        dataArray = NSMutableArray()
+        dataArray?.add(findTutorSelectStudent ?? NSDictionary.init())
+        dataArray?.add(findTutorEnterTopic ?? NSDictionary.init())
+        dataArray?.add(findTutorSelectDate ?? NSDictionary.init())
+        dataArray?.add(findTutorTutionType ?? NSDictionary.init())
+        dataArray?.add(findTutorNoofSessions ?? NSDictionary.init())
+
+        self.findTutorTableView.estimatedRowHeight = 60.0
+        self.findTutorTableView.rowHeight = UITableViewAutomaticDimension
+
+    }
+    
+    //MARK :: Tableview delegate
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return (self.dataArray?.count)!
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "findTutorCell", for: indexPath) as? RegistrationTableViewCell
+        cell?.updateLayout(registrationData: self.dataArray?.object(at: indexPath.row) as! NSDictionary, cellType: RegistrationCellType.RegistrationCellTypeFindTutor)
+        cell?.leftTextField.delegate = self
+        cell?.rightTextField.delegate = self
+        cell?.leftTextField.tag = indexPath.row
+        cell?.rightTextField.tag = indexPath.row
+        return cell!
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+    {
+        return 65
+    }
+    //MARK: Textfield Delegate Methods
+    public func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool // return NO to disallow editing.
+    {
+        if let textFieldTemp =  textField as? CustomTextField
+        {
+            let datadictionary = self.dataArray?.object(at: textField.tag) as? NSMutableDictionary
+            if (datadictionary?.value(forKey: "type") as? Int == FindTutorDataType.FindTutorDataTypeSelectStudent.rawValue && textFieldTemp.customTag == 1)
+            {
+                textFieldTemp.inputAccessoryView = UIView()
+              self.openpickerViewController(pickerArray: nil, selectedPickerType: .SelectStudentType)
+                MBProgressHUD.showAdded(to: self.view, animated: true)
+                 self.getStudentList()
+            }
+           else if (datadictionary?.value(forKey: "type") as? Int == FindTutorDataType.FindTutorDataTypeSelectStudent.rawValue && textFieldTemp.customTag == 2)
+            {
+                textFieldTemp.inputAccessoryView = UIView()
+                self.openpickerViewController(pickerArray: nil, selectedPickerType: .SubjectListType)
+                MBProgressHUD.showAdded(to: self.view, animated: true)
+                self.getSubjectList()
+            }
+           else if (datadictionary?.value(forKey: "type") as? Int == FindTutorDataType.FindTutorDataTypeSelectDate.rawValue && textFieldTemp.customTag == 1)
+            {
+               self.configureDatePicker(textField: textFieldTemp)
+            }
+           else if (datadictionary?.value(forKey: "type") as? Int == FindTutorDataType.FindTutorDataTypeSelectDate.rawValue && textFieldTemp.customTag == 2)
+            {
+                textFieldTemp.inputAccessoryView = UIView()
+                self.openpickerViewController(pickerArray: ["9:00 AM - 1:00 PM","10:00 AM - 2.00 PM","11:00 AM - 3:00 PM","12:00 PM - 4:00 PM","1:00 PM - 5:00 PM","2:00 PM - 6:00 PM","3:00 PM - 7:00 PM","4:00 PM - 8:00 PM","5:00 PM - 9:00 PM"], selectedPickerType: .TimeSlotType)
+            }
+           else if (datadictionary?.value(forKey: "type") as? Int == FindTutorDataType.FindTutorDataTypeTutionType.rawValue && textFieldTemp.customTag == 1)
+            {
+                textFieldTemp.inputAccessoryView = UIView()
+                self.openpickerViewController(pickerArray: ["One-on-One","Group"], selectedPickerType: .TutionType)
+            }
+          else if (datadictionary?.value(forKey: "type") as? Int == FindTutorDataType.FindTutorDataTypeTutionType.rawValue && textFieldTemp.customTag == 2)
+            {
+                textFieldTemp.inputAccessoryView = UIView()
+                self.openpickerViewController(pickerArray: ["2","3","4","5"], selectedPickerType: .GroupSizeType)
+            }
+          else if (datadictionary?.value(forKey: "type") as? Int == FindTutorDataType.FindTutorDataTypeNoOfSessions.rawValue && textFieldTemp.customTag == 1)
+            {
+                textFieldTemp.inputAccessoryView = UIView()
+                self.openpickerViewController(pickerArray: ["1","2","3","4"], selectedPickerType: .NoofSessionType)
+            }
+            
+        }
+        return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if let textFieldTemp =  textField as? CustomTextField
+        {
+            let datadictionary = self.dataArray?.object(at: textField.tag) as? NSMutableDictionary
+            if (datadictionary?.value(forKey: "type") as? Int == FindTutorDataType.FindTutorDataTypeSelectStudent.rawValue && textFieldTemp.customTag == 1)
+            {
+               
+            }
+             else if (datadictionary?.value(forKey: "type") as? Int == FindTutorDataType.FindTutorDataTypeSelectStudent.rawValue && textFieldTemp.customTag == 2)
+            {
+                if (self.selectSubjectDictionary != nil)
+                {
+                    datadictionary?["rightValue"] = self.selectSubjectDictionary["cs_course_name"]
+                }
+                self.findTutorTableView.reloadData()
+            }
+            else  if (datadictionary?.value(forKey: "type") as? Int == FindTutorDataType.FindTutorDataTypeSelectDate.rawValue && textFieldTemp.customTag == 1)
+            {
+               datadictionary?["leftValue"] = textFieldTemp.text
+            }
+           else if (datadictionary?.value(forKey: "type") as? Int == FindTutorDataType.FindTutorDataTypeSelectDate.rawValue && textFieldTemp.customTag == 2)
+            {
+                if self.preferedTimeSlotString != nil
+                {
+                    datadictionary?["rightValue"] = self.preferedTimeSlotString
+
+                }
+                self.findTutorTableView.reloadData()
+            }
+           else if (datadictionary?.value(forKey: "type") as? Int == FindTutorDataType.FindTutorDataTypeTutionType.rawValue && textFieldTemp.customTag == 1)
+            {
+                if self.tutionTypeString != nil
+                {
+                    datadictionary?["leftValue"] = self.tutionTypeString
+                    
+                }
+                 self.findTutorTableView.reloadData()
+            }
+           else if (datadictionary?.value(forKey: "type") as? Int == FindTutorDataType.FindTutorDataTypeTutionType.rawValue && textFieldTemp.customTag == 2)
+            {
+                if self.groupSizeString != nil
+                {
+                    datadictionary?["rightValue"] = self.groupSizeString
+                    
+                }
+                 self.findTutorTableView.reloadData()
+            }
+           else if (datadictionary?.value(forKey: "type") as? Int == FindTutorDataType.FindTutorDataTypeNoOfSessions.rawValue && textFieldTemp.customTag == 1)
+            {
+                if self.numberOfSessionString != nil
+                {
+                    datadictionary?["leftValue"] = self.numberOfSessionString
+                    
+                }
+                 self.findTutorTableView.reloadData()
+            }else if textFieldTemp.customTag == 1
+            {
+                datadictionary?["leftValue"] = textFieldTemp.text
+            }
+            
+        }
+    }
+    func configureDatePicker(textField:AAPickerView) -> Void {
+        textField.pickerType = .DatePicker
+        textField.datePicker?.datePickerMode = .date
+        textField.datePicker?.minimumDate = Date()
+        textField.dateFormatter.dateFormat = "YYYY-MM-dd"
+        textField.dateDidChange = { date in
+            print("selectedDate ", date )
+            textField.text = textField.dateFormatter.string(from: date)
+        }
     }
     
     // MARK:Login Api Implementation
@@ -79,84 +227,151 @@ class TutorHomeViewController: UIViewController,TutorCommonPickerViewDelegate {
         SideMenuManager.default.menuAnimationBackgroundColor = UIColor.clear
     }
     
-    //MARK: IBACTIONS
 
-    @IBAction func selectStudentButtonAction(_ sender: Any) {
-        MBProgressHUD.showAdded(to: self.view, animated: true)
-        self.getStudentList()
-    }
-   
-    @IBAction func selectSubjectButtonAction(_ sender: Any) {
-        MBProgressHUD.showAdded(to: self.view, animated: true)
-        self.getSubjectList()
-    }
-    @IBAction func selectTopicButtonAction(_ sender: Any) {
-        guard  (self.selectedSubjectDictionary != nil)  else {
-            TutorDefaultAlertController.showAlertController(alertMessage:"Please select subject" , showController: self)
-            return
-        }
-        MBProgressHUD.showAdded(to: self.view, animated: true)
-        self.getTopicList()
-    }
-    @IBAction func selectDateButtonAction(_ sender: Any) {
-       
-    }
-    @IBAction func specifyTimeSlotButtonAction(_ sender: Any) {
-        self.openpickerViewController(pickerArray: ["1 PM : 2 PM","3 PM : 4 PM"], selectedPickerType: .TimeSlotType)
-    }
-    @IBAction func tutionTypeButtonAction(_ sender: Any) {
-       self.openpickerViewController(pickerArray: ["solo","group"], selectedPickerType: .TutionType)
-    }
-    @IBAction func groupSizeButtonAction(_ sender: Any) {
-       self.openpickerViewController(pickerArray: ["2","3","4"], selectedPickerType: .GroupSizeType)
-    }
     @IBAction func findTutorButtonAction(_ sender: Any) {
-        guard (self.selectStudentString != nil)  else {
-            TutorDefaultAlertController.showAlertController(alertMessage:"Please select student" , showController: self)
-            return
-        }
-        guard  (self.selectedSubjectDictionary != nil)  else {
-            TutorDefaultAlertController.showAlertController(alertMessage:"Please select subject" , showController: self)
-            return
-        }
-        guard  (self.selectedTopicDictionary != nil)  else {
-            TutorDefaultAlertController.showAlertController(alertMessage:"Please select topic" , showController: self)
-            return
-        }
-        guard  !(self.picker.text?.isEmpty)!  else {
-            TutorDefaultAlertController.showAlertController(alertMessage:"Please select date" , showController: self)
-            return
-        }
-        guard (self.selectedTimeSlotString != nil)  else {
-            TutorDefaultAlertController.showAlertController(alertMessage:"Please select Time Slot" , showController: self)
-            return
-        }
-        guard (self.selectedTutionTypeString != nil)  else {
-            TutorDefaultAlertController.showAlertController(alertMessage:"Please select Tution Type" , showController: self)
-            return
-        }
-        if self.groupSizeButton.titleLabel?.text == "group"
-        {
-            guard (self.selectedGroupSizeString != nil)  else {
-                TutorDefaultAlertController.showAlertController(alertMessage:"Please select Group Size" , showController: self)
-                return
+        self.view.endEditing(true)
+        var parameterData = [String: String]()
+        var isValidate:Bool = true
+        for dataDictionary in self.dataArray! {
+            if let dataContent = dataDictionary as? NSMutableDictionary
+            {
+                if dataContent["type"] as? Int == FindTutorDataType.FindTutorDataTypeSelectStudent.rawValue
+                {
+                    let leftValue =  dataContent["leftValue"] as? String
+                    if (leftValue?.isEmpty)!
+                    {
+                        TutorDefaultAlertController.showAlertController(alertMessage: "Please Select Student" , showController: self)
+                        isValidate = false
+                        break;
+                    }else
+                    {
+                        parameterData["student_id"] = leftValue
+                    }
+                    let rightValue =  dataContent["rightValue"] as? String
+                    if (rightValue?.isEmpty)!
+                    {
+                        TutorDefaultAlertController.showAlertController(alertMessage: "Please Select Subject" , showController: self)
+                        isValidate = false
+                        break;
+                    }else
+                    {
+                        parameterData["sel_sub"] = rightValue
+                        
+                    }
+                }else  if dataContent["type"] as? Int == FindTutorDataType.FindTutorDataTypeEnterTopic.rawValue
+                {
+                    let leftValue =  dataContent["leftValue"] as? String
+                    if (leftValue?.isEmpty)!
+                    {
+                        TutorDefaultAlertController.showAlertController(alertMessage: "Please Enter Topic" , showController: self)
+                        isValidate = false
+                        break;
+                    }else if ((leftValue?.count ?? 0) < 3)
+                    {
+                        TutorDefaultAlertController.showAlertController(alertMessage: "Please Enter Topic Minimum 3 characters" , showController: self)
+                        isValidate = false
+                        break;
+                    }else{
+                         parameterData["sel_topic"] = leftValue
+                    }
+                }else if dataContent["type"] as? Int == FindTutorDataType.FindTutorDataTypeSelectDate.rawValue
+                {
+                    let leftValue =  dataContent["leftValue"] as? String
+                    if (leftValue?.isEmpty)!
+                    {
+                        TutorDefaultAlertController.showAlertController(alertMessage: "Please Select Date" , showController: self)
+                        isValidate = false
+                        break;
+                    }else
+                    {
+                        parameterData["sel_date"] = leftValue
+                    }
+                    let rightValue =  dataContent["rightValue"] as? String
+                    if (rightValue?.isEmpty)!
+                    {
+                        TutorDefaultAlertController.showAlertController(alertMessage: "Please Select Time Slot" , showController: self)
+                        isValidate = false
+                        break;
+                    }else
+                    {
+                        let splitArray = rightValue?.split{$0 == "-"}.map(String.init)
+                        if ((splitArray?.count) != nil)
+                        {
+                            parameterData["sel_start_time"] = splitArray?[0]
+                            parameterData["sel_end_time"] = splitArray?[1]
+                        }
+                    }
+                }else if dataContent["type"] as? Int == FindTutorDataType.FindTutorDataTypeTutionType.rawValue
+                {
+                    let leftValue =  dataContent["leftValue"] as? String
+                    if (leftValue?.isEmpty)!
+                    {
+                        TutorDefaultAlertController.showAlertController(alertMessage: "Please Select Tution Type" , showController: self)
+                        isValidate = false
+                        break;
+                    }else
+                    {
+                        parameterData["sel_tution_type"] = leftValue
+                    }
+                    let rightValue =  dataContent["rightValue"] as? String
+                    if leftValue != "One-on-One"
+                    {
+                        if (rightValue?.isEmpty)!
+                        {
+                            TutorDefaultAlertController.showAlertController(alertMessage: "Please Select Group Size" , showController: self)
+                            isValidate = false
+                            break;
+                        }else
+                        {
+                            parameterData["sel_group_size"] = rightValue
+                        }
+                    }
+                   
+                }else if dataContent["type"] as? Int == FindTutorDataType.FindTutorDataTypeTutionType.rawValue
+                {
+                    let leftValue =  dataContent["leftValue"] as? String
+                    if (leftValue?.isEmpty)!
+                    {
+                        TutorDefaultAlertController.showAlertController(alertMessage: "Please Select No of Sessions" , showController: self)
+                        isValidate = false
+                        break;
+                    }else
+                    {
+                        parameterData["sel_session_type"] = leftValue
+                    }
+                }
             }
         }
-        let parametersDict = ["student_id":"0595D56345","sel_sub":self.selectedSubjectDictionary?["cs_course_name"],"sel_topic":self.selectedTopicDictionary?["sub_subject_name"],"sel_date":picker.text!,"sel_start_time":"12","sel_end_time":"13","sel_tution_type":selectedTutionTypeString,"sel_group_size":selectedGroupSizeString]
-        MBProgressHUD.showAdded(to: self.view, animated: true)
-        self.getSearchTutorList(parametersDict: parametersDict as NSDictionary)
+        
+        if isValidate
+        {
+            MBProgressHUD.showAdded(to: self.view, animated: true)
+            self.getSearchTutorList(parametersDict: parameterData as NSDictionary)
+        }
+        
     }
-    
+
     func openpickerViewController(pickerArray:Array<Any>?,selectedPickerType:PickerDataType) -> Void {
-        tutorCommonPickerView = Bundle.main.loadNibNamed("TutorCommonPickerView", owner: self, options: nil)?.first as? TutorCommonPickerView
-        tutorCommonPickerView?.pickerListArray = pickerArray! as NSArray
-        tutorCommonPickerView?.frame = self.view.bounds
-        tutorCommonPickerView?.delegate = self
-        tutorCommonPickerView?.selectedPickerDataType = selectedPickerType
-        tutorCommonPickerView?.selectedRowInPicker(Row:0, InComponent: 0)
-        self.view.addSubview(tutorCommonPickerView!)
+        if (tutorCommonPickerView == nil) {
+            tutorCommonPickerView = Bundle.main.loadNibNamed("TutorCommonPickerView", owner: self, options: nil)?.first as? TutorCommonPickerView
+            if (pickerArray != nil)
+            {
+                tutorCommonPickerView?.pickerListArray = pickerArray! as NSArray
+            }
+            tutorCommonPickerView?.frame = self.view.bounds
+            tutorCommonPickerView?.delegate = self
+            tutorCommonPickerView?.selectedPickerDataType = selectedPickerType
+            tutorCommonPickerView?.selectedRowInPicker(Row:0, InComponent: 0)
+            self.view.addSubview(tutorCommonPickerView!)
+        }else{
+            if (pickerArray != nil)
+            {
+                tutorCommonPickerView?.pickerListArray = pickerArray! as NSArray
+            }
+           tutorCommonPickerView?.commonPickerView.reloadAllComponents()
+        }
     }
-   
+
     // MARK:Select Student List Api Implementation
     func getStudentList() -> Void {
         let urlPath = String(format: "%@%@",Constants.baseUrl,Constants.studentList) as String
@@ -168,19 +383,22 @@ class TutorHomeViewController: UIViewController,TutorCommonPickerViewDelegate {
                 {
                     if let pickerArray = resultDictionary["data"] as? Array<Any>
                     {
-                        self.openpickerViewController(pickerArray: pickerArray, selectedPickerType: .SelectStudentType)
+                    self.openpickerViewController(pickerArray: pickerArray, selectedPickerType: .SelectStudentType)
                     }
                 }
-            }else{
-                print(info as Any)
-                if let resultDict = info as? Dictionary<String,Any>
-                {
-                    TutorDefaultAlertController.showAlertController(alertMessage: resultDict["message"] as? String, showController: self)
-                }
             }
+//            else{
+//                print(info as Any)
+//                if let resultDict = info as? Dictionary<String,Any>
+//                {
+//                    TutorDefaultAlertController.showAlertController(alertMessage: resultDict["message"] as? String, showController: self)
+//                }
+//            }
+            self.view.endEditing(true)
+
         }
     }
-   
+
     // MARK:Subject List Api Implementation
     func getSubjectList() -> Void {
         let urlPath = String(format: "%@%@",Constants.baseUrl,Constants.subjectList) as String
@@ -195,41 +413,42 @@ class TutorHomeViewController: UIViewController,TutorCommonPickerViewDelegate {
                         self.openpickerViewController(pickerArray: pickerArray, selectedPickerType: .SubjectListType)
                     }
                 }
-            }else{
-                print(info as Any)
-                if let resultDict = info as? Dictionary<String,Any>
-                {
-                    TutorDefaultAlertController.showAlertController(alertMessage: resultDict["message"] as? String, showController: self)
-                }
             }
+//            else{
+//                print(info as Any)
+//                if let resultDict = info as? Dictionary<String,Any>
+//                {
+//                    TutorDefaultAlertController.showAlertController(alertMessage: resultDict["message"] as? String, showController: self)
+//                }
+//            }
         }
     }
-    
-    // MARK:Topic List Api Implementation
-    func getTopicList() -> Void {
-        let urlPath = String(format: "%@%@",Constants.baseUrl,Constants.topicList) as String
-        TutorNetworkManager.performRequestWithUrl(baseUrl: urlPath, parametersDictionary: ["course_id":(self.selectedSubjectDictionary?["cs_cid"] ?? "")]) { (status, info) in
-            MBProgressHUD.hide(for: self.view, animated: true)
-            if status == Constants.Status.StatusOK.rawValue
-            {
-                if let resultDictionary = info as? Dictionary<String,Any>
-                {
-                    if let pickerArray = resultDictionary["data"] as? Array<Any>
-                    {
-                        self.openpickerViewController(pickerArray: pickerArray, selectedPickerType: .TopicListType)
-                    }
-                }
-            }else{
-                print(info as Any)
-                if let resultDict = info as? Dictionary<String,Any>
-                {
-                    TutorDefaultAlertController.showAlertController(alertMessage: resultDict["message"] as? String, showController: self)
-                }
-            }
-        }
-    }
-    
-    // MARK:Topic List Api Implementation
+//
+//    // MARK:Topic List Api Implementation
+//    func getTopicList() -> Void {
+//        let urlPath = String(format: "%@%@",Constants.baseUrl,Constants.topicList) as String
+//        TutorNetworkManager.performRequestWithUrl(baseUrl: urlPath, parametersDictionary: ["course_id":(self.selectedSubjectDictionary?["cs_cid"] ?? "")]) { (status, info) in
+//            MBProgressHUD.hide(for: self.view, animated: true)
+//            if status == Constants.Status.StatusOK.rawValue
+//            {
+//                if let resultDictionary = info as? Dictionary<String,Any>
+//                {
+//                    if let pickerArray = resultDictionary["data"] as? Array<Any>
+//                    {
+//                        self.openpickerViewController(pickerArray: pickerArray, selectedPickerType: .TopicListType)
+//                    }
+//                }
+//            }else{
+//                print(info as Any)
+//                if let resultDict = info as? Dictionary<String,Any>
+//                {
+//                    TutorDefaultAlertController.showAlertController(alertMessage: resultDict["message"] as? String, showController: self)
+//                }
+//            }
+//        }
+//    }
+//
+    // MARK:Search List Api Implementation
     func getSearchTutorList(parametersDict:NSDictionary?) -> Void {
         let urlPath = String(format: "%@%@",Constants.baseUrl,Constants.searchTutor) as String
         TutorNetworkManager.performRequestWithUrl(baseUrl: urlPath, parametersDictionary:parametersDict as? Dictionary<String, Any>) { (status, info) in
@@ -242,7 +461,7 @@ class TutorHomeViewController: UIViewController,TutorCommonPickerViewDelegate {
                     {
                         let tutorTeachersList = TutorTeacherModel.modelsFromDictionaryArray(array: techaerListArray as NSArray)
                         self.navigateTeachersViewController(teachersListArray: tutorTeachersList)
-  
+
                     }
                 }
             }else{
@@ -255,63 +474,52 @@ class TutorHomeViewController: UIViewController,TutorCommonPickerViewDelegate {
             }
         }
     }
-    
+
     func navigateTeachersViewController(teachersListArray:Array<TutorTeacherModel>) -> Void {
         let tutorTeachersListViewController:TutorTeachersListViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TutorTeachersListViewController") as! TutorTeachersListViewController
         tutorTeachersListViewController.teachersListArray = teachersListArray
         self.navigationController?.pushViewController(tutorTeachersListViewController, animated: true)
     }
-    
-    
+
+
     //MARK: TutorCommonPickerDelegate
     func cancelButtonClickedInPicker() {
         self.tutorCommonPickerView?.removeFromSuperview()
+         self.tutorCommonPickerView = nil
     }
     func doneButtonClickedInPicker(Value value: String?, InDictionary pickerDictionary: Dictionary<String, Any>?, selectedPickerDataType: PickerDataType?) {
-        
         switch selectedPickerDataType {
         case .SelectStudentType?:
-            selectStudentString = value
-            self.selectStudentButton.setTitle(selectStudentString, for: .normal)
-           break
             
+           break
         case .SubjectListType?:
-            selectedTopicDictionary = nil
-            self.selectTopicButton.setTitle("Select Topic", for: .normal)
-            selectedSubjectDictionary = pickerDictionary
-            self.selectSubjectButton.setTitle(value, for: .normal)
+            self.selectSubjectDictionary = pickerDictionary! as NSDictionary
             break
         case .TopicListType?:
-            selectedTopicDictionary = pickerDictionary
-            self.selectTopicButton.setTitle(value, for: .normal)
             break
-            
+
         case .TimeSlotType?:
-          self.selectedTimeSlotString = value
-          self.specifyTimeSlotButton.setTitle(value, for: .normal)
+            self.preferedTimeSlotString = value
             break
-            
+
         case .TutionType?:
-            self.selectedTutionTypeString = value
-            if value == "solo"
-            {
-                self.groupSizeButton.isHidden = true
-            }else{
-                 self.groupSizeButton.isHidden = false
-            }
-            self.tutionTypeButton.setTitle(value, for: .normal)
+             self.tutionTypeString = value
             break
-            
+
         case .GroupSizeType?:
-            self.selectedGroupSizeString = value
-            self.groupSizeButton.setTitle(value, for: .normal)
+           self.groupSizeString = value
             break
-            
+        case .NoofSessionType?:
+            self.numberOfSessionString = value
+            break
+
         default:
             break
         }
-        
+        self.view.endEditing(true)
         self.tutorCommonPickerView?.removeFromSuperview()
+        self.tutorCommonPickerView = nil
+
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
