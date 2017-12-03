@@ -15,12 +15,11 @@ enum FindTutorDataType:Int {
     case FindTutorDataTypeSelectStudent = 1,FindTutorDataTypeEnterTopic,FindTutorDataTypeSelectDate,FindTutorDataTypeTutionType,FindTutorDataTypeNoOfSessions
 }
 
-class TutorHomeViewController: UIViewController,UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource,TutorCommonPickerViewDelegate {
+class TutorHomeViewController: UIViewController,UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource,UIPickerViewDelegate,UIPickerViewDataSource {
    
    @IBOutlet weak var tutorHomeNavigationBar:TutorHomeNavigationBar!
     @IBOutlet weak var findTutorTableView:UITableView!
     var dataArray :NSMutableArray?
-    var tutorCommonPickerView: TutorCommonPickerView?
     
     //===
     var selectStudentDictionary:NSDictionary!
@@ -29,8 +28,11 @@ class TutorHomeViewController: UIViewController,UITextFieldDelegate,UITableViewD
     var tutionTypeString:String!
     var groupSizeString:String!
     var numberOfSessionString:String!
-    
-    
+    var customeTexfield: UITextField?
+    var thePicker = UIPickerView()
+    var pickerListArray : NSArray = []
+    var selectedRow : Int! = 0
+    public var selectedPickerDataType:PickerDataType?
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -38,6 +40,8 @@ class TutorHomeViewController: UIViewController,UITextFieldDelegate,UITableViewD
         self.setLayoutAndSetTexts()
         self.setupSideMenu()
         self.setFindTutorFieldsArray()
+        self.thePicker.delegate = self;
+        self.thePicker.dataSource = self;
     }
    
     func setLayoutAndSetTexts() -> Void {
@@ -93,18 +97,21 @@ class TutorHomeViewController: UIViewController,UITextFieldDelegate,UITableViewD
     {
         if let textFieldTemp =  textField as? CustomTextField
         {
+            customeTexfield = textFieldTemp
             let datadictionary = self.dataArray?.object(at: textField.tag) as? NSMutableDictionary
             if (datadictionary?.value(forKey: "type") as? Int == FindTutorDataType.FindTutorDataTypeSelectStudent.rawValue && textFieldTemp.customTag == 1)
             {
-                textFieldTemp.inputAccessoryView = UIView()
-              self.openpickerViewController(pickerArray: nil, selectedPickerType: .SelectStudentType)
+                 textFieldTemp.inputView = self.thePicker
+                 self.thePicker.reloadAllComponents()
+              //self.openpickerViewController(pickerArray: nil, selectedPickerType: .SelectStudentType)
                 MBProgressHUD.showAdded(to: self.view, animated: true)
                  self.getStudentList()
             }
            else if (datadictionary?.value(forKey: "type") as? Int == FindTutorDataType.FindTutorDataTypeSelectStudent.rawValue && textFieldTemp.customTag == 2)
             {
-                textFieldTemp.inputAccessoryView = UIView()
-                self.openpickerViewController(pickerArray: nil, selectedPickerType: .SubjectListType)
+                self.thePicker.reloadAllComponents()
+                 textFieldTemp.inputView = self.thePicker
+                //self.openpickerViewController(pickerArray: nil, selectedPickerType: .SubjectListType)
                 MBProgressHUD.showAdded(to: self.view, animated: true)
                 self.getSubjectList()
             }
@@ -114,30 +121,62 @@ class TutorHomeViewController: UIViewController,UITextFieldDelegate,UITableViewD
             }
            else if (datadictionary?.value(forKey: "type") as? Int == FindTutorDataType.FindTutorDataTypeSelectDate.rawValue && textFieldTemp.customTag == 2)
             {
-                textFieldTemp.inputAccessoryView = UIView()
-                self.openpickerViewController(pickerArray: ["9:00 AM - 1:00 PM","10:00 AM - 2.00 PM","11:00 AM - 3:00 PM","12:00 PM - 4:00 PM","1:00 PM - 5:00 PM","2:00 PM - 6:00 PM","3:00 PM - 7:00 PM","4:00 PM - 8:00 PM","5:00 PM - 9:00 PM"], selectedPickerType: .TimeSlotType)
+                self.pickerListArray = ["9:00 AM - 1:00 PM","10:00 AM - 2.00 PM","11:00 AM - 3:00 PM","12:00 PM - 4:00 PM","1:00 PM - 5:00 PM","2:00 PM - 6:00 PM","3:00 PM - 7:00 PM","4:00 PM - 8:00 PM","5:00 PM - 9:00 PM"]
+                self.selectedPickerDataType = .TimeSlotType
+                 textFieldTemp.inputView = self.thePicker
+                self.thePicker.selectRow(0, inComponent: 0, animated: true)
             }
            else if (datadictionary?.value(forKey: "type") as? Int == FindTutorDataType.FindTutorDataTypeTutionType.rawValue && textFieldTemp.customTag == 1)
             {
-                textFieldTemp.inputAccessoryView = UIView()
-                self.openpickerViewController(pickerArray: ["One-on-One","Group"], selectedPickerType: .TutionType)
+                self.pickerListArray = ["One-on-One","Group"]
+                self.selectedPickerDataType = .TutionType
+                textFieldTemp.inputView = self.thePicker
+                self.thePicker.selectRow(0, inComponent: 0, animated: true)
             }
           else if (datadictionary?.value(forKey: "type") as? Int == FindTutorDataType.FindTutorDataTypeTutionType.rawValue && textFieldTemp.customTag == 2)
             {
-                textFieldTemp.inputAccessoryView = UIView()
-                self.openpickerViewController(pickerArray: ["2","3","4","5"], selectedPickerType: .GroupSizeType)
+                self.pickerListArray = ["2","3","4","5"]
+                    self.selectedPickerDataType = .GroupSizeType
+                    textFieldTemp.inputView = self.thePicker
+                self.thePicker.selectRow(0, inComponent: 0, animated: true)
+                //self.openpickerViewController(pickerArray: ["2","3","4","5"], selectedPickerType: .GroupSizeType)
             }
           else if (datadictionary?.value(forKey: "type") as? Int == FindTutorDataType.FindTutorDataTypeNoOfSessions.rawValue && textFieldTemp.customTag == 1)
             {
-                textFieldTemp.inputAccessoryView = UIView()
-                self.openpickerViewController(pickerArray: ["1","2","3","4"], selectedPickerType: .NoofSessionType)
+                self.pickerListArray = ["1","2","3","4"]
+                self.selectedPickerDataType = .NoofSessionType
+                textFieldTemp.inputView = self.thePicker
+              self.thePicker.selectRow(0, inComponent: 0, animated: true)
+                //self.openpickerViewController(pickerArray: ["1","2","3","4"], selectedPickerType: .NoofSessionType)
             }
             
         }
         return true
     }
+    func getPickerDetails() -> Void {
+        if pickerListArray.count>0 {
+            var selectedString:String?
+            var selectedDictionary:Dictionary<String,Any>?
+            if selectedPickerDataType == .SubjectListType
+            {
+                selectedDictionary = pickerListArray[selectedRow] as? Dictionary<String, Any>
+                selectedString = selectedDictionary?["cs_course_name"] as? String
+            }else if selectedPickerDataType == .TopicListType
+            {
+                selectedDictionary = pickerListArray[selectedRow] as? Dictionary<String, Any>
+                selectedString = selectedDictionary?["sub_subject_name"] as? String
+            }else if selectedPickerDataType == .SelectStudentType || selectedPickerDataType == .TimeSlotType || selectedPickerDataType == .TutionType || selectedPickerDataType == .GroupSizeType || selectedPickerDataType == .NoofSessionType
+            {
+                selectedString = pickerListArray[selectedRow] as? String
+            }
+            self.doneButtonClickedInPicker(Value: selectedString, InDictionary: selectedDictionary, selectedPickerDataType: selectedPickerDataType)
+        }
+    }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
+        self.getPickerDetails()
+        self.pickerListArray = []
+        selectedRow = 0
         if let textFieldTemp =  textField as? CustomTextField
         {
             let datadictionary = self.dataArray?.object(at: textField.tag) as? NSMutableDictionary
@@ -355,27 +394,7 @@ class TutorHomeViewController: UIViewController,UITextFieldDelegate,UITableViewD
         
     }
 
-    func openpickerViewController(pickerArray:Array<Any>?,selectedPickerType:PickerDataType) -> Void {
-        if (tutorCommonPickerView == nil) {
-            tutorCommonPickerView = Bundle.main.loadNibNamed("TutorCommonPickerView", owner: self, options: nil)?.first as? TutorCommonPickerView
-            if (pickerArray != nil)
-            {
-                tutorCommonPickerView?.pickerListArray = pickerArray! as NSArray
-            }
-            tutorCommonPickerView?.frame = self.view.bounds
-            tutorCommonPickerView?.delegate = self
-            tutorCommonPickerView?.selectedPickerDataType = selectedPickerType
-            tutorCommonPickerView?.selectedRowInPicker(Row:0, InComponent: 0)
-            self.view.addSubview(tutorCommonPickerView!)
-        }else{
-            if (pickerArray != nil)
-            {
-                tutorCommonPickerView?.pickerListArray = pickerArray! as NSArray
-            }
-           tutorCommonPickerView?.commonPickerView.reloadAllComponents()
-        }
-    }
-
+    
     // MARK:Select Student List Api Implementation
     func getStudentList() -> Void {
         let urlPath = String(format: "%@%@",Constants.baseUrl,Constants.studentList) as String
@@ -387,7 +406,11 @@ class TutorHomeViewController: UIViewController,UITextFieldDelegate,UITableViewD
                 {
                     if let pickerArray = resultDictionary["data"] as? Array<Any>
                     {
-                    self.openpickerViewController(pickerArray: pickerArray, selectedPickerType: .SelectStudentType)
+                        self.pickerListArray = pickerArray as NSArray
+                        self.selectedPickerDataType = .SelectStudentType
+                        self.thePicker.reloadAllComponents()
+                        self.thePicker.selectRow(0, inComponent: 0, animated: true)
+                    //self.openpickerViewController(pickerArray: pickerArray, selectedPickerType: .SelectStudentType)
                     }
                 }
             }
@@ -398,7 +421,6 @@ class TutorHomeViewController: UIViewController,UITextFieldDelegate,UITableViewD
 //                    TutorDefaultAlertController.showAlertController(alertMessage: resultDict["message"] as? String, showController: self)
 //                }
 //            }
-            self.view.endEditing(true)
 
         }
     }
@@ -414,17 +436,24 @@ class TutorHomeViewController: UIViewController,UITextFieldDelegate,UITableViewD
                 {
                     if let pickerArray = resultDictionary["data"] as? Array<Any>
                     {
-                        self.openpickerViewController(pickerArray: pickerArray, selectedPickerType: .SubjectListType)
+                        DispatchQueue.main.async {
+                            self.pickerListArray = pickerArray as NSArray
+                            self.selectedPickerDataType = .SubjectListType
+                            self.thePicker.reloadAllComponents()
+                            self.thePicker.selectRow(0, inComponent: 0, animated: true)
+                        }
+                      
+                      
                     }
                 }
             }
-//            else{
-//                print(info as Any)
-//                if let resultDict = info as? Dictionary<String,Any>
-//                {
-//                    TutorDefaultAlertController.showAlertController(alertMessage: resultDict["message"] as? String, showController: self)
-//                }
-//            }
+            else{
+                print(info as Any)
+                if let resultDict = info as? Dictionary<String,Any>
+                {
+                    TutorDefaultAlertController.showAlertController(alertMessage: resultDict["message"] as? String, showController: self)
+                }
+            }
         }
     }
 //
@@ -485,13 +514,6 @@ class TutorHomeViewController: UIViewController,UITextFieldDelegate,UITableViewD
         self.navigationController?.pushViewController(tutorTeachersListViewController, animated: true)
     }
 
-
-    //MARK: TutorCommonPickerDelegate
-    func cancelButtonClickedInPicker() {
-        self.tutorCommonPickerView?.removeFromSuperview()
-         self.tutorCommonPickerView = nil
-        self.view.endEditing(true)
-    }
     func doneButtonClickedInPicker(Value value: String?, InDictionary pickerDictionary: Dictionary<String, Any>?, selectedPickerDataType: PickerDataType?) {
         switch selectedPickerDataType {
         case .SelectStudentType?:
@@ -521,11 +543,49 @@ class TutorHomeViewController: UIViewController,UITextFieldDelegate,UITableViewD
         default:
             break
         }
-        self.view.endEditing(true)
-        self.tutorCommonPickerView?.removeFromSuperview()
-        self.tutorCommonPickerView = nil
 
     }
+    
+    //MARK:: PickerView Delegate & Datasource
+    
+    // Sets number of columns in picker view
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    // Sets the number of rows in the picker view
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+            return self.pickerListArray.count
+        
+    }
+    
+    // This function sets the text of the picker view to the content of the "salutations" array
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        if selectedPickerDataType == .SubjectListType
+        {
+            let subjectListDictionary = pickerListArray[row] as! NSDictionary
+            return subjectListDictionary["cs_course_name"] as? String
+        }else if selectedPickerDataType == .TopicListType
+        {
+            let topicListDictionary = pickerListArray[row] as! NSDictionary
+            return topicListDictionary["sub_subject_name"] as? String
+        }else if selectedPickerDataType == .SelectStudentType || selectedPickerDataType == .TimeSlotType || selectedPickerDataType == .TutionType || selectedPickerDataType == .GroupSizeType || selectedPickerDataType == .NoofSessionType
+        {
+            return pickerListArray[row] as? String
+        }
+        
+        return ""
+    }
+    
+    // When user selects an option, this function will set the text of the text field to reflect the selected option.
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        selectedRow = row
+        
+    }
+    
+    
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
