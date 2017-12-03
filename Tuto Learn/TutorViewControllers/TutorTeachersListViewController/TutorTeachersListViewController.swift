@@ -56,10 +56,9 @@ class TutorTeachersListViewController: UIViewController,UICollectionViewDelegate
     func setLayoutForTeachersCollectionCell(teacherCollectionCell:TutorTeachersListCollectionViewCell,atIndex indexPath:IndexPath) -> Void {
         teacherCollectionCell.profileImageView.layer.cornerRadius = teacherCollectionCell.profileImageView.frame.size.height/2
         teacherCollectionCell.profileImageView.clipsToBounds = true
-        teacherCollectionCell.contentView.layer.cornerRadius = 5.0
-        teacherCollectionCell.contentView.layer.borderColor = UIColor.white.cgColor
-        teacherCollectionCell.contentView.layer.borderWidth = 1.0
-        teacherCollectionCell.contentView.backgroundColor = UIColor.tutorAppBackgroungColor()
+        teacherCollectionCell.layer.cornerRadius = 5.0
+       teacherCollectionCell.clipsToBounds = true
+        teacherCollectionCell.backgroundColor = UIColor (red: 27.0/255.0, green: 171.0/255.0, blue: 171/255.0, alpha: 1.0)
         teacherCollectionCell.viewProfieButton.layer.cornerRadius = 3
         teacherCollectionCell.viewProfieButton.layer.borderWidth = 1
         teacherCollectionCell.viewProfieButton.layer.borderColor = UIColor.white.cgColor
