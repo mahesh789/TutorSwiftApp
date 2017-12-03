@@ -37,8 +37,8 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
         self.signInButton.setTitle("Sign In", for:UIControlState.normal)
         fbLoginButton.addTarget(self, action: #selector(self.facebookLoginButtonClicked), for: .touchUpInside)
         //temporary
-        self.userNameTextField.text = "ankita@test.com"
-        self.passwordTextField.text = "12345"
+        self.userNameTextField.text = "guardian@gmail.com"//"ankita@test.com"
+        self.passwordTextField.text = "12341234"//"12345"
         self.contentView.isOpaque = true
         self.createAccountButton.layer.cornerRadius = 5
         self.createAccountButton.layer.borderColor = UIColor.white.cgColor
@@ -228,7 +228,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
                     {
                         if Int(truncating: resultDictionary["status"] as! NSNumber) == Constants.Status.StatusOK.rawValue
                         {
-                            if let resultParseLoginDictionary = resultDictionary.object(forKey: "Data")
+                            if let resultParseLoginDictionary = resultDictionary.object(forKey: "data")
                             {
                                 print(resultParseLoginDictionary)
                                 let loginModelArray = TutorLoginModel.modelsFromDictionaryArray(array: [resultParseLoginDictionary])
