@@ -13,7 +13,7 @@ protocol TutorCommonPickerViewDelegate : class {
 }
 
 public enum PickerDataType:Int {
-    case SubjectListType,TopicListType,SelectStudentType,TimeSlotType,TutionType,GroupSizeType
+    case SubjectListType,TopicListType,SelectStudentType,TimeSlotType,TutionType,GroupSizeType,NoofSessionType
 }
 
 class TutorCommonPickerView: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
@@ -60,7 +60,7 @@ class TutorCommonPickerView: UIView, UIPickerViewDelegate, UIPickerViewDataSourc
         {
             let topicListDictionary = pickerListArray[row] as! NSDictionary
             return topicListDictionary["sub_subject_name"] as? String
-        }else if selectedPickerDataType == .SelectStudentType || selectedPickerDataType == .TimeSlotType || selectedPickerDataType == .TutionType || selectedPickerDataType == .GroupSizeType
+        }else if selectedPickerDataType == .SelectStudentType || selectedPickerDataType == .TimeSlotType || selectedPickerDataType == .TutionType || selectedPickerDataType == .GroupSizeType || selectedPickerDataType == .NoofSessionType
         {
             return pickerListArray[row] as? String
         }
@@ -89,7 +89,7 @@ class TutorCommonPickerView: UIView, UIPickerViewDelegate, UIPickerViewDataSourc
             {
                 selectedDictionary = pickerListArray[selectedRow] as? Dictionary<String, Any>
                 selectedString = selectedDictionary?["sub_subject_name"] as? String
-            }else if selectedPickerDataType == .SelectStudentType || selectedPickerDataType == .TimeSlotType || selectedPickerDataType == .TutionType || selectedPickerDataType == .GroupSizeType
+            }else if selectedPickerDataType == .SelectStudentType || selectedPickerDataType == .TimeSlotType || selectedPickerDataType == .TutionType || selectedPickerDataType == .GroupSizeType || selectedPickerDataType == .NoofSessionType
             {
                 selectedString = pickerListArray[selectedRow] as? String
             }
