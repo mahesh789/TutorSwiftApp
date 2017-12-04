@@ -297,7 +297,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
                      {
                         profileUrlPicture = profileUrl as! String
                      }
-                        let paramDictionary = ["ac_type":"facebook","id":responseDictionary["id"] ?? "","first_name":responseDictionary["name"] ?? "","last_name": "dfdfd","email":responseDictionary["email"] ?? "","address":"mumbai","url":profileUrlPicture ,"oauth_token":FBSDKAccessToken.current().tokenString]
+                        let paramDictionary = ["ac_type":"facebook","id":responseDictionary["id"] ?? "","first_name":responseDictionary["name"] ?? "","last_name": "","email":responseDictionary["email"] ?? "","address":"","url":profileUrlPicture ,"oauth_token":FBSDKAccessToken.current().tokenString]
                         MBProgressHUD.showAdded(to: self.view, animated: true)
                         self.generateTokenApiCalling(paramsDictionary: paramDictionary as NSDictionary)
                     }
@@ -345,7 +345,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
             let picUrl = user.profile.imageURL(withDimension: UInt(dimension))
             profileUrl = String(format:"%@",(picUrl?.absoluteString)!)
         }
-         let paramDictionary = ["ac_type":"gmail","id":user.userID,"first_name":user.profile.name,"last_name": "dfdfd","email":user.profile.email,"address":"mumbai","url":profileUrl ,"oauth_token":user.authentication.accessToken]
+         let paramDictionary = ["ac_type":"gmail","id":user.userID,"first_name":user.profile.name,"last_name": "","email":user.profile.email,"address":"","url":profileUrl ,"oauth_token":user.authentication.accessToken]
         MBProgressHUD.showAdded(to: self.view, animated: true)
         self.generateTokenApiCalling(paramsDictionary: paramDictionary as NSDictionary)
     }
