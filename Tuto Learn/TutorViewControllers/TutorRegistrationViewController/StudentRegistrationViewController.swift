@@ -594,12 +594,14 @@ class StudentRegistrationViewController: UIViewController,UITextFieldDelegate,UI
                 if socialLoginData == nil
                 {
                     //manual registration
-                    
+                    parameterData["s_oauth"] = "mobile"
+
                 }else
                 {
                     //social registration
+                    parameterData["s_oauth"] = "social"
+
                 }
-                parameterData["s_oauth"] = "Mobile"
                 MBProgressHUD.showAdded(to: self.view, animated: true)
                 self.registrationApicall(parameterData: parameterData)
             }else
