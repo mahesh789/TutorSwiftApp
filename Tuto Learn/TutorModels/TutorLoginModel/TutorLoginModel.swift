@@ -109,6 +109,16 @@ public class TutorLoginModel {
 		dictionary.setValue(self.sm_register_type, forKey: "sm_register_type")
 		dictionary.setValue(self.spm_occupation, forKey: "spm_occupation")
 
+        if self.student?.isEmpty == false
+        {
+            let studentData = NSMutableArray()
+            for tutorStudentModel in self.student!
+            {
+                let dataDictionary = tutorStudentModel.dictionaryRepresentation()
+                studentData.add(dataDictionary);
+            }
+            dictionary.setValue(studentData, forKey: "student");
+        }
 		return dictionary
 	}
 

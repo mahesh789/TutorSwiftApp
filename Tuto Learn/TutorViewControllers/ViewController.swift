@@ -118,7 +118,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
                         {
                             print(resultDictionary)
 
-                            if let resultParseLoginDictionary = resultDictionary.object(forKey:"data")
+                            if let resultParseLoginDictionary = resultDictionary.object(forKey:"data") as? NSDictionary
                             {
                                 print(resultParseLoginDictionary)
                                 let loginModelArray = TutorLoginModel.modelsFromDictionaryArray(array: [resultParseLoginDictionary])

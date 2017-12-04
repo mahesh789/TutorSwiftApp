@@ -273,7 +273,7 @@ class TutorStudentProfileViewController: UIViewController,UITextFieldDelegate,UI
                                 }else
                                 {
                                     let dateFormatterValue = DateFormatter()
-                                    dateFormatterValue.dateFormat = "dd-MM-yyyy"
+                                    dateFormatterValue.dateFormat = Constants.dateFormatValue
                                     let date = dateFormatterValue.date(from: rightValue!)!
                                     let calendar = Calendar.current
                                     let components = calendar.dateComponents([.year, .month, .day, .hour], from: date)
@@ -465,7 +465,7 @@ class TutorStudentProfileViewController: UIViewController,UITextFieldDelegate,UI
     func configureDatePicker(textField:AAPickerView) -> Void {
         textField.pickerType = .DatePicker
         textField.datePicker?.datePickerMode = .date
-        textField.dateFormatter.dateFormat = "dd/MM/yyyy"
+        textField.dateFormatter.dateFormat = Constants.dateFormatValue
         textField.dateDidChange = { date in
             print("selectedDate ", date )
             textField.text = textField.dateFormatter.string(from: date)

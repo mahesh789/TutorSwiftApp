@@ -246,7 +246,7 @@ class TutorHomeViewController: UIViewController,UITextFieldDelegate,UITableViewD
         textField.pickerType = .DatePicker
         textField.datePicker?.datePickerMode = .date
         textField.datePicker?.minimumDate = Date()
-        textField.dateFormatter.dateFormat = "dd/MM/yyyy"
+        textField.dateFormatter.dateFormat = Constants.dateFormatValue
         textField.dateDidChange = { date in
             print("selectedDate ", date )
             textField.text = textField.dateFormatter.string(from: date)

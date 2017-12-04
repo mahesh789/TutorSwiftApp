@@ -18,7 +18,7 @@ class Constants {
     }
     // MARK: List of Constants
     static let baseUrl = "https://mytestserver.tech/api/auth/public/"
-    static let studentLogin = "student_login"
+    static let studentLogin = "student_login_screen"
     static let studentRegister = "student_register"
     static let socialStudentRegister = "social_student_register"
     static let token = "token"
@@ -33,6 +33,9 @@ class Constants {
     static let screenSize = UIScreen.main.bounds
     static let phoneScreenWidth = screenSize.width
     static let phoneScreenHeight = screenSize.height
+    
+  static let dateFormatValue = "yyyy-MM-dd"
+
 }
 
 class TutorGenerateToken {

@@ -106,7 +106,7 @@ class TutorGuardianProfileViewController: UIViewController ,UITextFieldDelegate 
     func configureDatePicker() -> Void {
         self.dobTextField.pickerType = .DatePicker
         self.dobTextField.datePicker?.datePickerMode = .date
-        self.dobTextField.dateFormatter.dateFormat = "dd/MM/YYYY"
+        self.dobTextField.dateFormatter.dateFormat = Constants.dateFormatValue
         self.dobTextField.dateDidChange = { date in
             print("selectedDate ", date )
             self.dobTextField.text = self.dobTextField.dateFormatter.string(from: date)
