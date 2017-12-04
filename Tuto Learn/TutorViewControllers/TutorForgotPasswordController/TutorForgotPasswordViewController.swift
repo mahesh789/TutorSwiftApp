@@ -55,6 +55,11 @@ class TutorForgotPasswordViewController: UIViewController {
                 TutorDefaultAlertController.showAlertController(alertMessage: "Please Enter New Password", showController: self)
                 return
             }
+            if self.passwordTextField.text?.isValidPassword() == false {
+                TutorDefaultAlertController.showAlertController(alertMessage: "Password should be minimum 8 character s with at least one special character and one capital letter and one number", showController: self)
+                return
+            }
+            
             MBProgressHUD.showAdded(to: self.view, animated: true)
             self.setOTPforgotApiCalling()
         }else{
@@ -99,7 +104,7 @@ class TutorForgotPasswordViewController: UIViewController {
             {
                 if let resultDictionary = info as? Dictionary<String,Any>
                 {
-                   print(resultDictionary)
+                    self.showAlertController(alertMessage: resultDictionary["message"] as? String)
                 }
             }
             else{
@@ -110,6 +115,15 @@ class TutorForgotPasswordViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    //MARK: Default AlertViewController
+    func showAlertController(alertMessage:String?) -> Void {
+        let alert = UIAlertController(title: "", message: alertMessage, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default){ action -> Void in
+            self.navigationController?.popViewController(animated: true)
+        })
+        self.present(alert, animated: true, completion: nil)
     }
     
     func otpTextFieldsHiddenAndShow(isValue:Bool) -> Void {

@@ -36,8 +36,8 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
         self.signInButton.setTitle("Sign In", for:UIControlState.normal)
         fbLoginButton.addTarget(self, action: #selector(self.facebookLoginButtonClicked), for: .touchUpInside)
         //temporary
-        self.userNameTextField.text = "ankita@test.com"//"guardian@gmail.com"//
-        self.passwordTextField.text = "12345"//"12345"
+//        self.userNameTextField.text = "ankita@test.com"//"guardian@gmail.com"//
+//        self.passwordTextField.text = "12345"//"12345"
         self.contentView.isOpaque = true
         self.rememberButton.isSelected = true
         self.createAccountButton.layer.cornerRadius = 5

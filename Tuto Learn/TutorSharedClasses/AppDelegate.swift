@@ -21,8 +21,8 @@ public class AppDelegate: UIResponder, UIApplicationDelegate {
     public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         IQKeyboardManager.sharedManager().enable = true
+        self.callFirstTimeLoginToken()
         if UserDefaults.standard.bool(forKey: "isUserLoggedIn") {
-            self.callFirstTimeLoginToken()
             if let loginDictionary = UserDefaults.standard.object(forKey: "LoginDetails") {
                 TutorSharedClass.shared.loginTutorLoginObject  = TutorLoginModel.init(dictionary: loginDictionary as! NSDictionary)
             }
