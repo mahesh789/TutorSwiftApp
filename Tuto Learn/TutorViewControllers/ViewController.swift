@@ -214,11 +214,12 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
                     {
                         if Int(truncating: resultDictionary["status"] as! NSNumber) == Constants.Status.StatusOK.rawValue
                         {
+                            print(resultDictionary)
                             if let resultParseLoginDictionary = resultDictionary.object(forKey: "data") as? NSDictionary
                             {
-                                if let isAlreadyRegister = resultParseLoginDictionary["isalreadyregisterstatus"] as? String
+                                if let isAlreadyRegister = resultParseLoginDictionary["isalreadyregisterstatus"] as? NSNumber
                                 {
-                                    if isAlreadyRegister == "0"
+                                    if isAlreadyRegister.intValue == 205
                                     {
                                         let commonChangeEmailController:StudentRegistrationViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "StudentRegistrationViewController") as! StudentRegistrationViewController
                                         commonChangeEmailController.socialLoginData = parametersDictionary
