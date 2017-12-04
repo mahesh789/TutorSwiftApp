@@ -88,7 +88,7 @@ class StudentRegistrationViewController: UIViewController,UITextFieldDelegate,UI
         //        self.districtTextField.inputView = self.thePicker
         
         
-        let registrationNameDetails: NSMutableDictionary? = ["leftTitle":"First Name","rightTitle":"Last Name","leftValue":socialLoginData?["name"] ?? "","rightValue":socialLoginData?["last_name"] ?? "","type":NSNumber.init(value: RegistrationDataType.RegistrationDataTypeFirstName.rawValue) ]
+        let registrationNameDetails: NSMutableDictionary? = ["leftTitle":"First Name","rightTitle":"Last Name","leftValue":socialLoginData?["first_name"] ?? "","rightValue":socialLoginData?["last_name"] ?? "","type":NSNumber.init(value: RegistrationDataType.RegistrationDataTypeFirstName.rawValue) ]
         
         let registrationgenderDetails: NSMutableDictionary? = ["leftTitle":"Gender","rightTitle":"Date of Birth","leftValue":"","rightValue":"","type":NSNumber.init(value: RegistrationDataType.RegistrationDataTypeGender.rawValue)]
         
@@ -590,6 +590,14 @@ class StudentRegistrationViewController: UIViewController,UITextFieldDelegate,UI
                 }else
                 {
                     parameterData["register_type"] = "student"
+                }
+                if socialLoginData == nil
+                {
+                    //manual registration
+                    
+                }else
+                {
+                    //social registration
                 }
                 parameterData["s_oauth"] = "Mobile"
                 MBProgressHUD.showAdded(to: self.view, animated: true)
