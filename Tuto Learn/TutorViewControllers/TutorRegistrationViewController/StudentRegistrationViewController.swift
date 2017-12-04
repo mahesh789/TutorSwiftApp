@@ -26,7 +26,8 @@ class StudentRegistrationViewController: UIViewController,UITextFieldDelegate,UI
     @IBOutlet weak var registrationFooterView: RegistrationFooterView!
     var genderValue: String!
     var districtValue: NSDictionary!
-    
+    var socialLoginData: NSDictionary?
+
     
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
@@ -87,11 +88,11 @@ class StudentRegistrationViewController: UIViewController,UITextFieldDelegate,UI
         //        self.districtTextField.inputView = self.thePicker
         
         
-        let registrationNameDetails: NSMutableDictionary? = ["leftTitle":"First Name","rightTitle":"Last Name","leftValue":"","rightValue":"","type":NSNumber.init(value: RegistrationDataType.RegistrationDataTypeFirstName.rawValue) ]
+        let registrationNameDetails: NSMutableDictionary? = ["leftTitle":"First Name","rightTitle":"Last Name","leftValue":socialLoginData?["name"] ?? "","rightValue":socialLoginData?["last_name"] ?? "","type":NSNumber.init(value: RegistrationDataType.RegistrationDataTypeFirstName.rawValue) ]
         
         let registrationgenderDetails: NSMutableDictionary? = ["leftTitle":"Gender","rightTitle":"Date of Birth","leftValue":"","rightValue":"","type":NSNumber.init(value: RegistrationDataType.RegistrationDataTypeGender.rawValue)]
         
-        let registrationEmailDetails: NSMutableDictionary? = ["leftTitle":"Email","rightTitle":"","leftValue":"","rightValue":"","type":NSNumber.init(value: RegistrationDataType.RegistrationDataTypeEmail.rawValue)]
+        let registrationEmailDetails: NSMutableDictionary? = ["leftTitle":"Email","rightTitle":"","leftValue":socialLoginData?["email"] ?? "","rightValue":"","type":NSNumber.init(value: RegistrationDataType.RegistrationDataTypeEmail.rawValue)]
         
         let registrationNRICDetails: NSMutableDictionary? = ["leftTitle":"Mobile","rightTitle":"NRIC/FIN","leftValue":"","rightValue":"","type":NSNumber.init(value: RegistrationDataType.RegistrationDataTypeMobile.rawValue)]
         

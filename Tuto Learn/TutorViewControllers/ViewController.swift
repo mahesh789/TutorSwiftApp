@@ -214,29 +214,22 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
                     {
                         if Int(truncating: resultDictionary["status"] as! NSNumber) == Constants.Status.StatusOK.rawValue
                         {
-                            if let resultParseLoginDictionary = resultDictionary.object(forKey: "data")
+                            if let resultParseLoginDictionary = resultDictionary.object(forKey: "data") as? NSDictionary
                             {
-                                print(resultParseLoginDictionary)
-                                let loginModelArray = TutorLoginModel.modelsFromDictionaryArray(array: [resultParseLoginDictionary])
-                                if (loginModelArray.first != nil)
+                                if let isAlreadyRegister = resultParseLoginDictionary["isalreadyregisterstatus"] as? String
                                 {
-                                    TutorSharedClass.shared.loginTutorLoginObject = loginModelArray.first
-                                    
-                                    if self.rememberButton.isSelected
+                                    if isAlreadyRegister == "0"
                                     {
-                                        UserDefaults.standard.set(true, forKey: "isUserLoggedIn")
-                                        let loginDictionary = TutorSharedClass.shared.loginTutorLoginObject?.dictionaryRepresentation()
-                                        UserDefaults.standard.set(loginDictionary, forKey: "LoginDetails")
-                                    }
-                                    
-                                    if (TutorSharedClass.shared.loginTutorLoginObject?.sm_register_type == "0") || (TutorSharedClass.shared.loginTutorLoginObject?.student?.isEmpty == false)
-                                    {
-                                        self.setrootViewControllerAfterLogin()
+                                        let commonChangeEmailController:StudentRegistrationViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "StudentRegistrationViewController") as! StudentRegistrationViewController
+                                        commonChangeEmailController.socialLoginData = parametersDictionary
+                                        self.navigationController?.pushViewController(commonChangeEmailController, animated: true)
                                     }else
                                     {
-                                        self.setProfilerootViewController()
+                                        self.pushControllerAccoringtoResponse(resultParseLoginDictionary: resultParseLoginDictionary)
                                     }
-                                    
+                                }else
+                                {
+                                    self.pushControllerAccoringtoResponse(resultParseLoginDictionary: resultParseLoginDictionary)
                                 }
                             }
                         }else{
@@ -251,6 +244,31 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
         }
     }
     
+    func pushControllerAccoringtoResponse(resultParseLoginDictionary:NSDictionary) {
+      
+        print(resultParseLoginDictionary)
+        let loginModelArray = TutorLoginModel.modelsFromDictionaryArray(array: [resultParseLoginDictionary])
+        if (loginModelArray.first != nil)
+        {
+            TutorSharedClass.shared.loginTutorLoginObject = loginModelArray.first
+            
+            if self.rememberButton.isSelected
+            {
+                UserDefaults.standard.set(true, forKey: "isUserLoggedIn")
+                let loginDictionary = TutorSharedClass.shared.loginTutorLoginObject?.dictionaryRepresentation()
+                UserDefaults.standard.set(loginDictionary, forKey: "LoginDetails")
+            }
+            
+            if (TutorSharedClass.shared.loginTutorLoginObject?.sm_register_type == "0") || (TutorSharedClass.shared.loginTutorLoginObject?.student?.isEmpty == false)
+            {
+                self.setrootViewControllerAfterLogin()
+            }else
+            {
+                self.setProfilerootViewController()
+            }
+            
+        }
+    }
     // MARK: -Facebook Login
     @objc func facebookLoginButtonClicked() {
         let loginManager = LoginManager()
