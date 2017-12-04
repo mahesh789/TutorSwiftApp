@@ -81,7 +81,6 @@ public class TutorLoginModel {
         sm_level = dictionary["sm_level"] as? String
         sm_pin = dictionary["sm_pin"] as? String
         sm_school_name = dictionary["sm_school_name"] as? String
-
         if (dictionary["student"] as? NSArray) != nil
         {
             if (dictionary["student"] != nil) { student = TutorStudent.modelsFromDictionaryArray(array: dictionary["student"] as! NSArray) }
@@ -94,21 +93,26 @@ public class TutorLoginModel {
     
     - returns: NSDictionary.
 */
-	public func dictionaryRepresentation() -> NSDictionary {
-
-		let dictionary = NSMutableDictionary()
-
-		dictionary.setValue(self.sm_id, forKey: "sm_id")
-		dictionary.setValue(self.sm_name, forKey: "sm_name")
-		dictionary.setValue(self.sm_last, forKey: "sm_last")
-		dictionary.setValue(self.sm_email, forKey: "sm_email")
-		dictionary.setValue(self.sm_mobile, forKey: "sm_mobile")
-		dictionary.setValue(self.sm_gender, forKey: "sm_gender")
-		dictionary.setValue(self.sm_dob, forKey: "sm_dob")
-		dictionary.setValue(self.sm_profile_image, forKey: "sm_profile_image")
-		dictionary.setValue(self.sm_register_type, forKey: "sm_register_type")
-		dictionary.setValue(self.spm_occupation, forKey: "spm_occupation")
-
+    public func dictionaryRepresentation() -> NSDictionary {
+        
+        let dictionary = NSMutableDictionary()
+        
+        dictionary.setValue(self.sm_id, forKey: "sm_id")
+        dictionary.setValue(self.sm_name, forKey: "sm_name")
+        dictionary.setValue(self.sm_last, forKey: "sm_last")
+        dictionary.setValue(self.sm_email, forKey: "sm_email")
+        dictionary.setValue(self.sm_mobile, forKey: "sm_mobile")
+        dictionary.setValue(self.sm_gender, forKey: "sm_gender")
+        dictionary.setValue(self.sm_dob, forKey: "sm_dob")
+        dictionary.setValue(self.sm_profile_image, forKey: "sm_profile_image")
+        dictionary.setValue(self.sm_register_type, forKey: "sm_register_type")
+        dictionary.setValue(self.spm_occupation, forKey: "spm_occupation")
+        dictionary.setValue(self.spm_occupation, forKey: "sm_address1")
+        dictionary.setValue(self.sm_address2, forKey: "sm_address2")
+        dictionary.setValue(self.sm_city_id, forKey: "sm_city_id")
+        dictionary.setValue(self.sm_level, forKey: "sm_level")
+        dictionary.setValue(self.sm_pin, forKey: "sm_pin")
+        dictionary.setValue(self.sm_school_name, forKey: "sm_school_name")
         if self.student?.isEmpty == false
         {
             let studentData = NSMutableArray()
@@ -119,7 +123,7 @@ public class TutorLoginModel {
             }
             dictionary.setValue(studentData, forKey: "student");
         }
-		return dictionary
-	}
-
+        
+        return dictionary
+    }
 }

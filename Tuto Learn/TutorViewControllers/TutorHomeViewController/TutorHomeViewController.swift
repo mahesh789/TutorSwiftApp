@@ -165,9 +165,13 @@ class TutorHomeViewController: UIViewController,UITextFieldDelegate,UITableViewD
             {
                 selectedDictionary = pickerListArray[selectedRow] as? Dictionary<String, Any>
                 selectedString = selectedDictionary?["sub_subject_name"] as? String
-            }else if selectedPickerDataType == .SelectStudentType || selectedPickerDataType == .TimeSlotType || selectedPickerDataType == .TutionType || selectedPickerDataType == .GroupSizeType || selectedPickerDataType == .NoofSessionType
+            }else if selectedPickerDataType == .TimeSlotType || selectedPickerDataType == .TutionType || selectedPickerDataType == .GroupSizeType || selectedPickerDataType == .NoofSessionType
             {
                 selectedString = pickerListArray[selectedRow] as? String
+            }else if selectedPickerDataType == .SelectStudentType
+            {
+                selectedDictionary = pickerListArray[selectedRow] as? Dictionary<String, Any>
+                selectedString = selectedDictionary?["sm_name"] as? String
             }
             self.doneButtonClickedInPicker(Value: selectedString, InDictionary: selectedDictionary, selectedPickerDataType: selectedPickerDataType)
         }
@@ -182,7 +186,11 @@ class TutorHomeViewController: UIViewController,UITextFieldDelegate,UITableViewD
             let datadictionary = self.dataArray?.object(at: textField.tag) as? NSMutableDictionary
             if (datadictionary?.value(forKey: "type") as? Int == FindTutorDataType.FindTutorDataTypeSelectStudent.rawValue && textFieldTemp.customTag == 1)
             {
-               
+                if (self.selectStudentDictionary != nil)
+                {
+                    datadictionary?["leftValue"] = self.selectStudentDictionary["sm_name"]
+                }
+                self.findTutorTableView.reloadData()
             }
              else if (datadictionary?.value(forKey: "type") as? Int == FindTutorDataType.FindTutorDataTypeSelectStudent.rawValue && textFieldTemp.customTag == 2)
             {
@@ -288,7 +296,7 @@ class TutorHomeViewController: UIViewController,UITextFieldDelegate,UITableViewD
                         break;
                     }else
                     {
-                        parameterData["student_id"] = leftValue
+                        parameterData["student_id"] = self.selectStudentDictionary["sm_id"] as? String
                     }
                     let rightValue =  dataContent["rightValue"] as? String
                     if (rightValue?.isEmpty)!
@@ -410,7 +418,6 @@ class TutorHomeViewController: UIViewController,UITextFieldDelegate,UITableViewD
                         self.selectedPickerDataType = .SelectStudentType
                         self.thePicker.reloadAllComponents()
                         self.thePicker.selectRow(0, inComponent: 0, animated: true)
-                    //self.openpickerViewController(pickerArray: pickerArray, selectedPickerType: .SelectStudentType)
                     }
                 }
             }
@@ -517,7 +524,7 @@ class TutorHomeViewController: UIViewController,UITextFieldDelegate,UITableViewD
     func doneButtonClickedInPicker(Value value: String?, InDictionary pickerDictionary: Dictionary<String, Any>?, selectedPickerDataType: PickerDataType?) {
         switch selectedPickerDataType {
         case .SelectStudentType?:
-            
+                self.selectStudentDictionary = pickerDictionary! as NSDictionary
            break
         case .SubjectListType?:
             self.selectSubjectDictionary = pickerDictionary! as NSDictionary
@@ -561,6 +568,7 @@ class TutorHomeViewController: UIViewController,UITextFieldDelegate,UITableViewD
     
     // This function sets the text of the picker view to the content of the "salutations" array
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+       
         if selectedPickerDataType == .SubjectListType
         {
             let subjectListDictionary = pickerListArray[row] as! NSDictionary
@@ -569,9 +577,13 @@ class TutorHomeViewController: UIViewController,UITextFieldDelegate,UITableViewD
         {
             let topicListDictionary = pickerListArray[row] as! NSDictionary
             return topicListDictionary["sub_subject_name"] as? String
-        }else if selectedPickerDataType == .SelectStudentType || selectedPickerDataType == .TimeSlotType || selectedPickerDataType == .TutionType || selectedPickerDataType == .GroupSizeType || selectedPickerDataType == .NoofSessionType
+        }else if selectedPickerDataType == .TimeSlotType || selectedPickerDataType == .TutionType || selectedPickerDataType == .GroupSizeType || selectedPickerDataType == .NoofSessionType
         {
             return pickerListArray[row] as? String
+        }else if selectedPickerDataType == .SelectStudentType
+        {
+            let topicListDictionary = pickerListArray[row] as! NSDictionary
+            return topicListDictionary["sm_name"] as? String
         }
         
         return ""
