@@ -34,7 +34,7 @@ class Constants {
     static let phoneScreenWidth = screenSize.width
     static let phoneScreenHeight = screenSize.height
     
-  static let dateFormatValue = "yyyy-MM-dd"
+  static let dateFormatValue = "dd-MM-yyyy"
 
 }
 
