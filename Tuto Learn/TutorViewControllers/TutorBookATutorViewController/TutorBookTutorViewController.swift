@@ -75,7 +75,10 @@ class TutorBookTutorViewController: UIViewController,UITableViewDelegate,UITable
         cell.rightValueLabel.text = booktutorDictionary?["rightValueLabel"] as? String
         return cell
     }
-    
+    public func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String?
+    {
+        return "Session Details"
+    }
     @IBAction func makePaymentAction(sender:Any)
     {
         

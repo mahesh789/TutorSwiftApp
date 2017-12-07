@@ -404,7 +404,7 @@ class TutorHomeViewController: UIViewController,UITextFieldDelegate,UITableViewD
     // MARK:Select Student List Api Implementation
     func getStudentList() -> Void {
         let urlPath = String(format: "%@%@",Constants.baseUrl,Constants.studentList) as String
-        TutorNetworkManager.performRequestWithUrl(baseUrl: urlPath, parametersDictionary: ["login_id":(TutorSharedClass.shared.loginTutorLoginObject?.sm_id) ?? ""]) { (status, info) in
+        TutorNetworkManager.performRequestWithUrl(baseUrl: urlPath, parametersDictionary: ["login_id":(TutorSharedClass.shared.loginTutorLoginObject?.sm_id) ?? "","register_type":(TutorSharedClass.shared.loginTutorLoginObject?.sm_register_type) as Any]) { (status, info) in
             MBProgressHUD.hide(for: self.view, animated: true)
             if status == Constants.Status.StatusOK.rawValue
             {

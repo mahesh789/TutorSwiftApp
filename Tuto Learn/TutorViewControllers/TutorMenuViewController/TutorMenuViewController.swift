@@ -53,7 +53,7 @@ class TutorMenuViewController: UIViewController,UITableViewDelegate,UITableViewD
         switch actionType
         {
         case MenuActionType.MenuActionTypeFindTutor.rawValue:
-             dismiss(animated: true, completion: nil)
+           self.disMissMenuView()
             break
         case MenuActionType.MenuActionTypeMyAccount.rawValue:
             
@@ -73,7 +73,16 @@ class TutorMenuViewController: UIViewController,UITableViewDelegate,UITableViewD
     
     @IBAction func dismissMenuAction(_sender:Any)
     {
-        dismiss(animated: true, completion: nil)
+        self.disMissMenuView()
+    }
+    
+    func disMissMenuView() -> Void {
+        CATransaction.begin()
+        CATransaction.setCompletionBlock( { () -> Void in
+            self.dismiss(animated: true, completion: nil)
+            
+        })
+        CATransaction.commit()
     }
 
     override func didReceiveMemoryWarning() {
