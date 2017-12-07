@@ -16,7 +16,10 @@ class TutorViewProfileViewController: UIViewController,UITableViewDelegate,UITab
     @IBOutlet weak var teacherRatingValueLabel:UILabel!
     @IBOutlet weak var teacherExpValueLabel:UILabel!
     @IBOutlet weak var teacherProfileImageView:UIImageView!
+     @IBOutlet weak var bookNowButton:UIButton!
     var viewProfileArray:NSArray = []
+    var tutorTeacherObject : TutorTeacherModel!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +29,10 @@ class TutorViewProfileViewController: UIViewController,UITableViewDelegate,UITab
         self.profileTableView.reloadData()
     }
     func getArrayOfViewProfile() -> Void {
-        viewProfileArray = [["title":"Rate per Session","TitleValue":"One-on-One $ 20 \nGroup $ 15"],["title":"Educational Qualifications","TitleValue":"Bachelore Of Science"],["title":"Subjectes Taught","TitleValue":"Chemistry, Physics"],["title":"Bio","TitleValue":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse quam nibh, ullamcorper eget velit ut, convallis luctus nibh. Integer vel nunc tempor, suscipit tellus vel, suscipit velit."]]
+        viewProfileArray = [["title":"Rate per Session","TitleValue":"One-on-One $ \(tutorTeacherObject.teacherSoloChargesInt ?? 0) \nGroup $ \(tutorTeacherObject.teacherGroupChargesInt ?? 0)"],["title":"Educational Qualifications","TitleValue":"\(tutorTeacherObject.teacherQualificationString ?? "")"],["title":"Subjectes Taught","TitleValue":"\(tutorTeacherObject.teacherSubjectString ?? "")"],["title":"Bio","TitleValue":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse quam nibh, ullamcorper eget velit ut, convallis luctus nibh. Integer vel nunc tempor, suscipit tellus vel, suscipit velit."]]
+        self.teacherNameLabel.text = String(format:"%@%@",(tutorTeacherObject.teacherNameString ?? ""), (tutorTeacherObject.teacherLastNameString ?? ""))
+        self.teacherRatingValueLabel.text = tutorTeacherObject.teacherRatingString
+        self.teacherExpValueLabel.text = tutorTeacherObject.teacherExperienceString
     }
     
     func setLayoutAndSetTexts() -> Void {
@@ -38,6 +44,7 @@ class TutorViewProfileViewController: UIViewController,UITableViewDelegate,UITab
         profileTableView.tableFooterView = UIView.init()
         teacherProfileImageView.layer.cornerRadius = self.teacherProfileImageView.frame.size.height/2
         teacherProfileImageView.clipsToBounds = true
+        self.bookNowButton.layer.cornerRadius = 2.0
     }
     @objc func backBarButtonAction() -> Void {
         self.navigationController?.popViewController(animated: true)
@@ -56,6 +63,17 @@ class TutorViewProfileViewController: UIViewController,UITableViewDelegate,UITab
         cell.profileTitleLabel.text = profileDict?["title"] as? String
         cell.profileValueLabel.text = profileDict?["TitleValue"] as? String
         return cell
+    }
+    
+    @IBAction func bookNowButtonAction(sender:Any)
+    {
+        self.navigateBookTutorViewController(tutorTeacherModel: tutorTeacherObject)
+    }
+    
+    func navigateBookTutorViewController(tutorTeacherModel:TutorTeacherModel) -> Void {
+        let tutorBookTutorViewController:TutorBookTutorViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TutorBookTutorViewController") as! TutorBookTutorViewController
+        tutorBookTutorViewController.tutorTeacherObject = tutorTeacherModel
+        self.navigationController?.pushViewController(tutorBookTutorViewController, animated: true)
     }
 
     override func didReceiveMemoryWarning() {

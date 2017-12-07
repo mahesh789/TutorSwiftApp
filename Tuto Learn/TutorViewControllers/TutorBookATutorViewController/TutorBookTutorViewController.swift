@@ -16,6 +16,7 @@ class TutorBookTutorViewController: UIViewController,UITableViewDelegate,UITable
     @IBOutlet weak var teacherProfileImageView:UIImageView!
     @IBOutlet weak var makePaymentButton:UIButton!
      var bookTutorArray:NSArray = []
+     var tutorTeacherObject : TutorTeacherModel!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -24,13 +25,28 @@ class TutorBookTutorViewController: UIViewController,UITableViewDelegate,UITable
         self.getArrayOfBookTutor()
     }
     func getArrayOfBookTutor() -> Void {
-        bookTutorArray = [["leftTitleLabel":"Date","leftValueLabel":"Nov 30, 2017","middleTitleLabel":"Time","middleValueLabel":"14:00 to 16:00","rightTitleLabel":"","rightValueLabel":""],["leftTitleLabel":"No. of Sessions","leftValueLabel":"2","middleTitleLabel":"Session Type","middleValueLabel":"Group","rightTitleLabel":"Group Size","rightValueLabel":"4"],["leftTitleLabel":"Subject","leftValueLabel":"Chemistry","middleTitleLabel":"Topic","middleValueLabel":"Hydrocarbons","rightTitleLabel":"Total Cost","rightValueLabel":"$120"]]
+        self.teacherNameLabel.text = (tutorTeacherObject.teacherNameString ?? "") + (tutorTeacherObject.teacherLastNameString ?? "")
+        var groupSize:String = ""
+        var totalCost:Int = 0
+        
+        if (TutorSharedClass.shared.findTutorDictionary?.object(forKey: "sel_tution_type") as? String) == "One-on-One" {
+            groupSize = "1"
+            totalCost = (tutorTeacherObject.teacherSoloChargesInt ?? 0)
+        }else
+        {
+           // sel_group_size
+            groupSize = ((TutorSharedClass.shared.findTutorDictionary?.object(forKey: "sel_group_size") ?? "") as? String)!
+            totalCost = (tutorTeacherObject.teacherGroupChargesInt ?? 0)
+        }
+        
+        bookTutorArray = [["leftTitleLabel":"Date","leftValueLabel":"\(TutorSharedClass.shared.findTutorDictionary?.object(forKey: "sel_date") ?? "")","middleTitleLabel":"Time","middleValueLabel":"\(TutorSharedClass.shared.findTutorDictionary?.object(forKey: "sel_start_time") ?? "") to \(TutorSharedClass.shared.findTutorDictionary?.object(forKey: "sel_end_time") ?? "") ","rightTitleLabel":"","rightValueLabel":""],["leftTitleLabel":"No. of Sessions","leftValueLabel":"\(TutorSharedClass.shared.findTutorDictionary?.object(forKey: "no_session") ?? "")","middleTitleLabel":"Session Type","middleValueLabel":"\(TutorSharedClass.shared.findTutorDictionary?.object(forKey: "sel_tution_type") ?? "")","rightTitleLabel":"Group Size","rightValueLabel":"\(groupSize)"],["leftTitleLabel":"Subject","leftValueLabel":"\(tutorTeacherObject.teacherSubjectString ?? "")","middleTitleLabel":"Topic","middleValueLabel":"\(TutorSharedClass.shared.findTutorDictionary?.object(forKey: "sel_topic") ?? "")","rightTitleLabel":"","rightValueLabel":""],["leftTitleLabel":"Total Cost","leftValueLabel":"$\(totalCost)","middleTitleLabel":"","middleValueLabel":"","rightTitleLabel":"","rightValueLabel":""]]
+        
     }
     
     func setLayoutAndSetTexts() -> Void {
         self.tutorHomeNavigationBar.leftBarButton.addTarget(self, action: #selector(backBarButtonAction), for:.touchUpInside)
         self.tutorHomeNavigationBar.rightBarButton.isHidden = true
-        self.tutorHomeNavigationBar.navigationTitleLabel.text = "Find a Tutor"
+        self.tutorHomeNavigationBar.navigationTitleLabel.text = "Book a Tutor"
         bookTutorTableView.estimatedRowHeight = 85.0
         bookTutorTableView.rowHeight = UITableViewAutomaticDimension
         bookTutorTableView.tableFooterView = UIView.init()

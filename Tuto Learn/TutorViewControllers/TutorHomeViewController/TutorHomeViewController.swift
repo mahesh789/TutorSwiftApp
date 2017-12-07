@@ -19,6 +19,7 @@ class TutorHomeViewController: UIViewController,UITextFieldDelegate,UITableViewD
    
    @IBOutlet weak var tutorHomeNavigationBar:TutorHomeNavigationBar!
     @IBOutlet weak var findTutorTableView:UITableView!
+    @IBOutlet weak var findTutorButton:UIButton!
     var dataArray :NSMutableArray?
     
     //===
@@ -42,6 +43,7 @@ class TutorHomeViewController: UIViewController,UITextFieldDelegate,UITableViewD
         self.setFindTutorFieldsArray()
         self.thePicker.delegate = self;
         self.thePicker.dataSource = self;
+
     }
    
     func setLayoutAndSetTexts() -> Void {
@@ -50,7 +52,7 @@ class TutorHomeViewController: UIViewController,UITextFieldDelegate,UITableViewD
         self.tutorHomeNavigationBar.navigationTitleLabel.text = "Find a Tutor"
         self.view.backgroundColor = UIColor.tutorAppBackgroungColor()
         self.findTutorTableView.backgroundColor = UIColor.tutorAppBackgroungColor()
-
+        self.findTutorButton.layer.cornerRadius = 2
     }
     
     func setFindTutorFieldsArray() -> Void {
@@ -103,7 +105,6 @@ class TutorHomeViewController: UIViewController,UITextFieldDelegate,UITableViewD
             {
                  textFieldTemp.inputView = self.thePicker
                  self.thePicker.reloadAllComponents()
-              //self.openpickerViewController(pickerArray: nil, selectedPickerType: .SelectStudentType)
                 MBProgressHUD.showAdded(to: self.view, animated: true)
                  self.getStudentList()
             }
@@ -111,7 +112,6 @@ class TutorHomeViewController: UIViewController,UITextFieldDelegate,UITableViewD
             {
                 self.thePicker.reloadAllComponents()
                  textFieldTemp.inputView = self.thePicker
-                //self.openpickerViewController(pickerArray: nil, selectedPickerType: .SubjectListType)
                 MBProgressHUD.showAdded(to: self.view, animated: true)
                 self.getSubjectList()
             }
@@ -139,7 +139,6 @@ class TutorHomeViewController: UIViewController,UITextFieldDelegate,UITableViewD
                     self.selectedPickerDataType = .GroupSizeType
                     textFieldTemp.inputView = self.thePicker
                 self.thePicker.selectRow(0, inComponent: 0, animated: true)
-                //self.openpickerViewController(pickerArray: ["2","3","4","5"], selectedPickerType: .GroupSizeType)
             }
           else if (datadictionary?.value(forKey: "type") as? Int == FindTutorDataType.FindTutorDataTypeNoOfSessions.rawValue && textFieldTemp.customTag == 1)
             {
@@ -147,7 +146,6 @@ class TutorHomeViewController: UIViewController,UITextFieldDelegate,UITableViewD
                 self.selectedPickerDataType = .NoofSessionType
                 textFieldTemp.inputView = self.thePicker
               self.thePicker.selectRow(0, inComponent: 0, animated: true)
-                //self.openpickerViewController(pickerArray: ["1","2","3","4"], selectedPickerType: .NoofSessionType)
             }
             
         }
@@ -288,7 +286,7 @@ class TutorHomeViewController: UIViewController,UITextFieldDelegate,UITableViewD
             {
                 if dataContent["type"] as? Int == FindTutorDataType.FindTutorDataTypeSelectStudent.rawValue
                 {
-                    let leftValue =  dataContent["leftValue"] as? String
+                    let leftValue = dataContent["leftValue"] as? String
                     if (leftValue?.isEmpty)!
                     {
                         TutorDefaultAlertController.showAlertController(alertMessage: "Please Select Student" , showController: self)
@@ -378,7 +376,7 @@ class TutorHomeViewController: UIViewController,UITextFieldDelegate,UITableViewD
                         }
                     }
                    
-                }else if dataContent["type"] as? Int == FindTutorDataType.FindTutorDataTypeTutionType.rawValue
+                }else if dataContent["type"] as? Int == FindTutorDataType.FindTutorDataTypeNoOfSessions.rawValue
                 {
                     let leftValue =  dataContent["leftValue"] as? String
                     if (leftValue?.isEmpty)!
@@ -388,7 +386,7 @@ class TutorHomeViewController: UIViewController,UITextFieldDelegate,UITableViewD
                         break;
                     }else
                     {
-                        parameterData["sel_session_type"] = leftValue
+                        parameterData["no_session"] = leftValue
                     }
                 }
             }
@@ -490,6 +488,7 @@ class TutorHomeViewController: UIViewController,UITextFieldDelegate,UITableViewD
 //
     // MARK:Search List Api Implementation
     func getSearchTutorList(parametersDict:NSDictionary?) -> Void {
+        TutorSharedClass.shared.findTutorDictionary = parametersDict
         let urlPath = String(format: "%@%@",Constants.baseUrl,Constants.searchTutor) as String
         TutorNetworkManager.performRequestWithUrl(baseUrl: urlPath, parametersDictionary:parametersDict as? Dictionary<String, Any>) { (status, info) in
             if status == Constants.Status.StatusOK.rawValue

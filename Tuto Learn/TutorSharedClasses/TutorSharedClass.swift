@@ -25,6 +25,8 @@ public class TutorSharedClass:NSObject {
     var token:String?
     var studentId:String?
     var loopCount:Int = 0
+    var findTutorDictionary:NSDictionary?
+    
 
    public class func navigateLoginViewController() -> Void {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)

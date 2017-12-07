@@ -67,20 +67,55 @@ class TutorTeachersListViewController: UIViewController,UICollectionViewDelegate
         let tutorTeacherObject = teachersListArray[indexPath.row] as TutorTeacherModel
         teacherCollectionCell.teacherNameLabel.text = tutorTeacherObject.teacherNameString
         teacherCollectionCell.experianceValueLabel.text = tutorTeacherObject.teacherExperienceString
+        teacherCollectionCell.ratingValueLabel.text = tutorTeacherObject.teacherRatingString
          teacherCollectionCell.oneOnOneValueLabel.text = String(format:"$ %d",tutorTeacherObject.teacherSoloChargesInt ?? 0)
          teacherCollectionCell.groupValueLabel.text = String(format:"$ %d",tutorTeacherObject.teacherGroupChargesInt ?? 0)
+         teacherCollectionCell.viewProfieButton.addTarget(self, action: #selector(viewProfileButtonAction), for:.touchUpInside)
+         teacherCollectionCell.bookNowButton.addTarget(self, action: #selector(bookNowButtonAction), for:.touchUpInside)
+        teacherCollectionCell.viewProfieButton.tag = indexPath.row
         if tutorTeacherObject.teacherAvailableInt == TeacherAvailabLeType.TeacherAvailable.rawValue
         {
             teacherCollectionCell.unavailableMsgLabel.isHidden = true
             teacherCollectionCell.bookNowButton.setTitle("Book Now", for: .normal)
+            teacherCollectionCell.bookNowButton.tag = indexPath.row
 
         }else{
             teacherCollectionCell.unavailableMsgLabel.isHidden = false
             teacherCollectionCell.unavailableMsgLabel.text = "Tutor unavailable for time slot entered."
              teacherCollectionCell.viewProfieButton.isHidden = true
             teacherCollectionCell.bookNowButton.setTitle("View Availability", for: .normal)
+            teacherCollectionCell.bookNowButton.tag = indexPath.row
         }
+        teacherCollectionCell.bookNowButton.layer.cornerRadius = 2
         
+    }
+    
+    @IBAction func viewProfileButtonAction(sender:UIButton)
+    {
+        let tutorTeacherObject = teachersListArray[sender.tag] as TutorTeacherModel
+        self.navigateViewProfileViewController(tutorTeacherModel: tutorTeacherObject)
+    }
+    @IBAction func bookNowButtonAction(sender:UIButton)
+    {
+        if sender.titleLabel?.text == "Book Now"
+        {
+            let tutorTeacherObject = teachersListArray[sender.tag] as TutorTeacherModel
+            self.navigateBookNowViewController(tutorTeacherModel: tutorTeacherObject)
+        }else{
+            
+        }
+    }
+    
+    func navigateViewProfileViewController(tutorTeacherModel:TutorTeacherModel) -> Void {
+        let tutorViewProfileViewController:TutorViewProfileViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TutorViewProfileViewController") as! TutorViewProfileViewController
+        tutorViewProfileViewController.tutorTeacherObject = tutorTeacherModel
+        self.navigationController?.pushViewController(tutorViewProfileViewController, animated: true)
+    }
+    
+    func navigateBookNowViewController(tutorTeacherModel:TutorTeacherModel) -> Void {
+        let tutorBookTutorViewController:TutorBookTutorViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TutorBookTutorViewController") as! TutorBookTutorViewController
+        tutorBookTutorViewController.tutorTeacherObject = tutorTeacherModel
+        self.navigationController?.pushViewController(tutorBookTutorViewController, animated: true)
     }
     
    public func collectionView(_ collectionView: UICollectionView,

@@ -25,6 +25,7 @@ public class TutorTeacherModel {
 	public var teacherGroupChargesInt : Int?
 	public var teacherSoloChargesInt : Int?
 	public var teacherAvailableInt : Int?
+    public var teacherRatingString : String?
 
 /**
     Returns an array of models based on given dictionary.
@@ -70,6 +71,7 @@ public class TutorTeacherModel {
 		teacherGroupChargesInt = dictionary["tm_group_charges"] as? Int
 		teacherSoloChargesInt = dictionary["tm_solo_charges"] as? Int
 		teacherAvailableInt = dictionary["available"] as? Int
+        teacherRatingString = dictionary["rate"] as? String
 	}
 
 		
@@ -94,6 +96,7 @@ public class TutorTeacherModel {
 		dictionary.setValue(self.teacherGroupChargesInt, forKey: "tm_group_charges")
 		dictionary.setValue(self.teacherSoloChargesInt, forKey: "tm_solo_charges")
 		dictionary.setValue(self.teacherAvailableInt, forKey: "available")
+        dictionary.setValue(self.teacherRatingString, forKey: "rate")
 
 		return dictionary
 	}
