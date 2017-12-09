@@ -875,6 +875,185 @@
             </objects>
             <point key="canvasLocation" x="-891.304347826087" y="1493.4782608695652"/>
         </scene>
+        <!--Tutor Time Slot View Controller-->
+        <scene sceneID="eS1-bg-R10">
+            <objects>
+                <viewController storyboardIdentifier="TutorTimeSlotViewController" id="eS5-S4-drv" customClass="TutorTimeSlotViewController" customModule="Tuto_Learn" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="RGY-CB-vd7"/>
+                        <viewControllerLayoutGuide type="bottom" id="tjo-6Z-bYs"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="LXZ-66-TsE">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sdp-K8-Oqw" customClass="TutorHomeNavigationBar" customModule="Tuto_Learn" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="76"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="76" id="ubf-pJ-gcJ"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jVS-ny-cwb">
+                                <rect key="frame" x="0.0" y="76" width="414" height="660"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <view key="tableHeaderView" contentMode="scaleToFill" id="4VG-ww-6g1" userLabel="TableHeaderView">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="250"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Available Time Slots for" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eeI-Jl-86s">
+                                            <rect key="frame" x="16" y="13" width="382" height="25"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="25" id="Jad-Ez-7sa"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Andrew Tech" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OOq-1j-z4u">
+                                            <rect key="frame" x="16" y="46" width="382" height="25"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="25" id="ZkR-9X-A55"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profileImage" translatesAutoresizingMaskIntoConstraints="NO" id="WRG-dv-xdt">
+                                            <rect key="frame" x="133" y="85" width="148" height="148"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="148.00000000000003" id="1PE-sr-0C4"/>
+                                                <constraint firstAttribute="height" constant="148" id="nlz-RM-xhs"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.0052303462289999998" green="0.67181247470000005" blue="0.67396217579999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstItem="WRG-dv-xdt" firstAttribute="top" secondItem="OOq-1j-z4u" secondAttribute="bottom" constant="14" id="0N8-JZ-teR"/>
+                                        <constraint firstItem="eeI-Jl-86s" firstAttribute="leading" secondItem="4VG-ww-6g1" secondAttribute="leading" constant="16" id="B7d-CU-TPS"/>
+                                        <constraint firstAttribute="trailing" secondItem="OOq-1j-z4u" secondAttribute="trailing" constant="16" id="Gx5-Yw-cTU"/>
+                                        <constraint firstAttribute="trailing" secondItem="eeI-Jl-86s" secondAttribute="trailing" constant="16" id="ecN-kF-g42"/>
+                                        <constraint firstItem="OOq-1j-z4u" firstAttribute="top" secondItem="eeI-Jl-86s" secondAttribute="bottom" constant="8" id="m2q-St-5j6"/>
+                                        <constraint firstItem="WRG-dv-xdt" firstAttribute="centerX" secondItem="OOq-1j-z4u" secondAttribute="centerX" id="ncy-LV-4cC"/>
+                                        <constraint firstItem="OOq-1j-z4u" firstAttribute="leading" secondItem="4VG-ww-6g1" secondAttribute="leading" constant="16" id="r7j-zD-fLa"/>
+                                        <constraint firstItem="eeI-Jl-86s" firstAttribute="top" secondItem="4VG-ww-6g1" secondAttribute="top" constant="13" id="ueT-Ma-9VK"/>
+                                    </constraints>
+                                </view>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TutorTimeSlotTableViewCell" rowHeight="75" id="p3q-gd-3WP" customClass="TutorTimeSlotTableViewCell" customModule="Tuto_Learn" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="278" width="414" height="75"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="p3q-gd-3WP" id="atP-t9-l4j">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="74.666666666666671"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kxs-nl-55l">
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="75"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9:00 to 11:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ubo-ys-XbX">
+                                                            <rect key="frame" x="0.0" y="1" width="96" height="74"/>
+                                                            <color key="backgroundColor" red="0.0052303462289999998" green="0.67181247470000005" blue="0.67396217579999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="96" id="gm1-DL-2ms"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="12"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="bjD-J0-2gu">
+                                                            <rect key="frame" x="97" y="1" width="317" height="74"/>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="7jm-vb-hym">
+                                                                <size key="itemSize" width="78" height="73"/>
+                                                                <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                                <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                                <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                            </collectionViewFlowLayout>
+                                                            <cells>
+                                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TutorTimeSlotCollectionViewCell" id="eAm-oj-jeO" customClass="TutorTimeSlotCollectionViewCell" customModule="Tuto_Learn" customModuleProvider="target">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="78" height="73"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="78" height="73"/>
+                                                                        <autoresizingMask key="autoresizingMask"/>
+                                                                        <subviews>
+                                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkMark" translatesAutoresizingMaskIntoConstraints="NO" id="hxZ-NA-wzg">
+                                                                                <rect key="frame" x="31" y="30.666666666666671" width="16" height="12"/>
+                                                                            </imageView>
+                                                                        </subviews>
+                                                                    </view>
+                                                                    <constraints>
+                                                                        <constraint firstItem="hxZ-NA-wzg" firstAttribute="centerY" secondItem="eAm-oj-jeO" secondAttribute="centerY" id="ak3-r8-E3L"/>
+                                                                        <constraint firstItem="hxZ-NA-wzg" firstAttribute="centerX" secondItem="eAm-oj-jeO" secondAttribute="centerX" id="fkT-Qn-wyq"/>
+                                                                    </constraints>
+                                                                    <connections>
+                                                                        <outlet property="availabLeStatusImageView" destination="hxZ-NA-wzg" id="06R-ju-ysi"/>
+                                                                    </connections>
+                                                                </collectionViewCell>
+                                                            </cells>
+                                                            <connections>
+                                                                <outlet property="dataSource" destination="p3q-gd-3WP" id="AtY-S0-Uz3"/>
+                                                                <outlet property="delegate" destination="p3q-gd-3WP" id="24m-q5-CbS"/>
+                                                            </connections>
+                                                        </collectionView>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="bottom" secondItem="bjD-J0-2gu" secondAttribute="bottom" id="0XU-W8-A3C"/>
+                                                        <constraint firstItem="Ubo-ys-XbX" firstAttribute="top" secondItem="Kxs-nl-55l" secondAttribute="top" constant="1" id="8r0-pc-2LC"/>
+                                                        <constraint firstAttribute="bottom" secondItem="Ubo-ys-XbX" secondAttribute="bottom" id="Fa4-AP-ETr"/>
+                                                        <constraint firstAttribute="trailing" secondItem="bjD-J0-2gu" secondAttribute="trailing" id="Zol-ZJ-KdJ"/>
+                                                        <constraint firstItem="Ubo-ys-XbX" firstAttribute="leading" secondItem="Kxs-nl-55l" secondAttribute="leading" id="aXx-p1-9Z2"/>
+                                                        <constraint firstItem="bjD-J0-2gu" firstAttribute="top" secondItem="Kxs-nl-55l" secondAttribute="top" constant="1" id="uPC-dD-Pzj"/>
+                                                        <constraint firstItem="bjD-J0-2gu" firstAttribute="leading" secondItem="Ubo-ys-XbX" secondAttribute="trailing" constant="1" id="ygX-7F-dJN"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="Kxs-nl-55l" secondAttribute="bottom" id="1gW-JG-wTr"/>
+                                                <constraint firstAttribute="trailing" secondItem="Kxs-nl-55l" secondAttribute="trailing" id="BIQ-M2-tYB"/>
+                                                <constraint firstItem="Kxs-nl-55l" firstAttribute="leading" secondItem="atP-t9-l4j" secondAttribute="leading" id="GKA-gS-nPQ"/>
+                                                <constraint firstItem="Kxs-nl-55l" firstAttribute="top" secondItem="atP-t9-l4j" secondAttribute="top" id="uOR-Y4-37i"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <outlet property="timeSlotCollectionView" destination="bjD-J0-2gu" id="KHs-d3-T89"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="eS5-S4-drv" id="4om-La-LKn"/>
+                                    <outlet property="delegate" destination="eS5-S4-drv" id="8ZK-TX-gVX"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="sdp-K8-Oqw" firstAttribute="top" secondItem="LXZ-66-TsE" secondAttribute="top" id="14o-Ye-gcQ"/>
+                            <constraint firstAttribute="trailing" secondItem="sdp-K8-Oqw" secondAttribute="trailing" id="BqD-LC-qkW"/>
+                            <constraint firstItem="sdp-K8-Oqw" firstAttribute="leading" secondItem="LXZ-66-TsE" secondAttribute="leading" id="E2Y-9j-IL2"/>
+                            <constraint firstItem="jVS-ny-cwb" firstAttribute="top" secondItem="sdp-K8-Oqw" secondAttribute="bottom" id="YpF-1s-GNw"/>
+                            <constraint firstItem="jVS-ny-cwb" firstAttribute="leading" secondItem="LXZ-66-TsE" secondAttribute="leading" id="aiF-u0-Jn1"/>
+                            <constraint firstAttribute="trailing" secondItem="jVS-ny-cwb" secondAttribute="trailing" id="jcd-rr-HZ0"/>
+                            <constraint firstItem="tjo-6Z-bYs" firstAttribute="top" secondItem="jVS-ny-cwb" secondAttribute="bottom" id="xYH-Mr-6LR"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableHeaderView" destination="4VG-ww-6g1" id="YmC-7X-pTy"/>
+                        <outlet property="teacherNameLabel" destination="OOq-1j-z4u" id="yo5-la-H9n"/>
+                        <outlet property="teacherProfileImageView" destination="WRG-dv-xdt" id="MG6-cM-ESP"/>
+                        <outlet property="timeSlotDescriptionLabel" destination="eeI-Jl-86s" id="EUg-MD-Sip"/>
+                        <outlet property="timeSlotTableView" destination="jVS-ny-cwb" id="VRc-sr-f0J"/>
+                        <outlet property="tutorHomeNavigationBar" destination="sdp-K8-Oqw" id="xdU-bx-yfh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OVG-fC-ZDE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-891.304347826087" y="2166.0326086956525"/>
+        </scene>
         <!--Tutor View Profile View Controller-->
         <scene sceneID="wZg-G5-O3j">
             <objects>
@@ -2575,6 +2754,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="checkMark" width="16" height="12"/>
         <image name="checkbox_icon" width="20" height="20"/>
         <image name="closeButton" width="14" height="14"/>
         <image name="dropdownMenuIcon" width="14" height="14"/>
