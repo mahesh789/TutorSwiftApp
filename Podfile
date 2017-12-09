@@ -12,6 +12,7 @@ target 'Tuto Learn' do
    pod 'Google/SignIn'
    pod 'SideMenu'
    pod 'AAPickerView'
+   pod 'Kingfisher'
   # Pods for Tuto Learn
 
   target 'Tuto LearnTests' do
@@ -25,6 +26,8 @@ target 'Tuto Learn' do
    pod 'Google/SignIn'
    pod 'SideMenu'
    pod 'AAPickerView'
+   pod 'Kingfisher'
+
     # Pods for testing
   end
 
@@ -39,6 +42,8 @@ target 'Tuto Learn' do
    pod 'Google/SignIn'
    pod 'SideMenu'
    pod 'AAPickerView'
+   pod 'Kingfisher'
+
     # Pods for testing
   end
 
