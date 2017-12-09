@@ -102,7 +102,8 @@ class TutorTeachersListViewController: UIViewController,UICollectionViewDelegate
             let tutorTeacherObject = teachersListArray[sender.tag] as TutorTeacherModel
             self.navigateBookNowViewController(tutorTeacherModel: tutorTeacherObject)
         }else{
-            
+            let tutorTeacherObject = teachersListArray[sender.tag] as TutorTeacherModel
+            self.navigateTimeSlotViewController(tutorTeacherModel: tutorTeacherObject)
         }
     }
     
@@ -116,6 +117,11 @@ class TutorTeachersListViewController: UIViewController,UICollectionViewDelegate
         let tutorBookTutorViewController:TutorBookTutorViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TutorBookTutorViewController") as! TutorBookTutorViewController
         tutorBookTutorViewController.tutorTeacherObject = tutorTeacherModel
         self.navigationController?.pushViewController(tutorBookTutorViewController, animated: true)
+    }
+    func navigateTimeSlotViewController(tutorTeacherModel:TutorTeacherModel) -> Void {
+        let tutorTimeSlotViewController:TutorTimeSlotViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TutorTimeSlotViewController") as! TutorTimeSlotViewController
+        tutorTimeSlotViewController.tutorTeacherObject = tutorTeacherModel
+        self.navigationController?.pushViewController(tutorTimeSlotViewController, animated: true)
     }
     
    public func collectionView(_ collectionView: UICollectionView,
