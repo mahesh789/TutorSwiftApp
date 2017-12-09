@@ -21,6 +21,9 @@ class Constants {
     static let studentLogin = "student_login_screen"
     static let studentRegister = "student_register"
     static let socialStudentRegister = "social_student_register"
+    static let updateGuardianDetails = "update_student_parents"
+    static let profileDetails = "select_student"
+
     static let token = "token"
     static let cityList = "city_list"
     static let topicList = "topic_list"
@@ -35,7 +38,7 @@ class Constants {
     static let phoneScreenWidth = screenSize.width
     static let phoneScreenHeight = screenSize.height
     
-  static let dateFormatValue = "dd-MM-yyyy"
+  static let dateFormatValue = "yyyy-MM-dd"
 
 }
 

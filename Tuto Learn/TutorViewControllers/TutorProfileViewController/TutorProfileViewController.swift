@@ -9,6 +9,9 @@
 import UIKit
 import AAPickerView
 import SideMenu
+import Alamofire
+import Kingfisher
+
 enum ProfileType:Int {
     case ProfileTypeGuardian = 1,ProfileTypeStudent
 }
@@ -32,7 +35,9 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
     let genderArray = ["Male","Female"]
     var genderValue: String!
     let imagePicker = UIImagePickerController()
-    
+    var selectedImage: UIImage?
+    var isImageChange: Bool = false
+
     override func viewDidLoad() {
 
         self.thePicker.delegate = self
@@ -42,6 +47,8 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
         self.setHeaderView()
         self.setFooterView()
         self.setupSideMenu()
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        self.getGuardianDetails()
         
         // Do any additional setup after loading the view.
     }
@@ -96,6 +103,18 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
         {
             self.titleLabel.text = "Guardian Details"
         }
+        
+        if let profileUrl = TutorSharedClass.shared.loginTutorLoginObject?.sm_profile_image
+        {
+            self.profileImageView.kf.setImage(with: URL.init(string: profileUrl) , placeholder: UIImage.init(named: "dummyPhoto"), options: nil, progressBlock: nil, completionHandler:{
+                (image, error, cacheType, imageUrl) in
+                if (image != nil)
+                {
+                    self.selectedImage = self.profileImageView.image
+                }
+            })
+        }
+        
     }
     
     func setFooterView()  {
@@ -160,6 +179,14 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
                 self.thePicker.tag = 0
                 textFieldTemp.inputView = self.thePicker
                 self.thePicker.reloadAllComponents()
+            }
+            if datadictionary?.value(forKey: "type") as? Int == ProfileDataType.ProfileDataTypeEmail.rawValue || datadictionary?.value(forKey: "type") as? Int == ProfileDataType.ProfileDataTypeMobile.rawValue
+            {
+              
+                TutorDefaultAlertController.showAlertController(alertMessage: "Please contact administrator to update the info" , showController: self)
+
+                return false
+
             }
         }
         return true
@@ -271,6 +298,7 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
    @objc func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: NSDictionary!){
         self.dismiss(animated: true, completion: { () -> Void in
             self.profileImageView.image = image
+            self.isImageChange = true
         })
         
     }
@@ -280,8 +308,11 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
             
             if let bigImage = info[UIImagePickerControllerOriginalImage] as? UIImage
             {
-                    self.profileImageView.image = bigImage
+                self.selectedImage = bigImage
+                self.profileImageView.image = self.selectedImage
+                self.isImageChange = true
 
+                
             }
         })
     }
@@ -307,7 +338,7 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
                         break;
                     }else
                     {
-                        parameterData["s_name"] = leftValue
+                        parameterData["first_name"] = leftValue
                     }
                     let rightValue =  dataContent["rightValue"] as? String
                     if (rightValue?.isEmpty)!
@@ -317,7 +348,7 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
                         break;
                     }else
                     {
-                        parameterData["s_lastname"] = rightValue
+                        parameterData["last_name"] = rightValue
                         
                     }
                 }else if dataContent["type"] as? Int == ProfileDataType.ProfileDataTypeGender.rawValue
@@ -330,7 +361,7 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
                         break;
                     }else
                     {
-                        parameterData["s_gender"] = leftValue
+                        parameterData["gender"] = leftValue
                     }
                     let rightValue =  dataContent["rightValue"] as? String
                     if (rightValue?.isEmpty)!
@@ -356,7 +387,7 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
                                 break;
                             }else
                             {
-                                parameterData["s_dob"] = rightValue
+                                parameterData["dob"] = rightValue
                                 
                             }
                             
@@ -387,7 +418,7 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
                     {
                         if leftValue?.isValidEmail() == true
                         {
-                            parameterData["s_email"] = leftValue as String?
+                          //  parameterData["s_email"] = leftValue as String?
                         }else
                         {
                             TutorDefaultAlertController.showAlertController(alertMessage: "Please enter valid email address" , showController: self)
@@ -416,7 +447,7 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
                             break;
                         }else
                         {
-                            parameterData["s_mobile"] = rightValue
+                         //   parameterData["s_mobile"] = rightValue
                         }
                         
                     }
@@ -432,7 +463,7 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
                         break;
                     }else
                     {
-                        parameterData["s_occupation"] = rightValue
+                        parameterData["occupation"] = rightValue
                         
                     }
                 }
@@ -443,7 +474,30 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
         if isValidate == true
         {
             // perform API Action
-            self.openStudentProfileController()
+            if (self.selectedImage == nil)
+            {
+                TutorDefaultAlertController.showAlertController(alertMessage: "Please select profile picture" , showController: self)
+            }else
+            {
+                parameterData["register_type"] = "1"
+                parameterData["login_id"] = TutorSharedClass.shared.loginTutorLoginObject?.sm_id
+                parameterData["page_name"] = "1"
+                
+                MBProgressHUD.showAdded(to: self.view, animated: true)
+
+                if self.isImageChange == true
+                {
+                    let imageData: NSData = UIImageJPEGRepresentation(self.selectedImage!, 0.5)! as NSData
+                    let strBase64:String = imageData.base64EncodedString(options: .lineLength64Characters)
+                    parameterData["img_base"] = strBase64
+                    parameterData["img_ext"] = "jpeg"
+                }else
+                {
+//                    parameterData["img_base"] = ""
+//                    parameterData["img_ext"] = ""
+                }
+                self.callUpdateGuardianProfileDetails(parameterData: parameterData)
+            }
         }
     }
     
@@ -456,4 +510,123 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
     @objc func menuClickAction(sender:UIButton!) {
         present(SideMenuManager.default.menuRightNavigationController!, animated: true, completion: nil)
     }
+    
+    func callUpdateGuardianProfileDetails(parameterData:Dictionary<String, String>)  {
+        
+        let urlPath = String(format: "%@%@",Constants.baseUrl,Constants.updateGuardianDetails) as String
+        //print(parameterData)
+        Alamofire.request(urlPath, method: .post, parameters:parameterData , encoding: JSONEncoding.default, headers:["Content-Type":"application/json","Authorization":String(format:"Bearer %@",TutorSharedClass.shared.token ?? "")]) .responseJSON { response in
+            if response.result.isSuccess
+            {
+                if let resultDictionary = response.result.value as? NSDictionary
+                {
+                    print(resultDictionary)
+                    
+                    if Int(truncating: resultDictionary["status"] as! NSNumber) == Constants.Status.StatusOK.rawValue
+                    {
+                        self.isImageChange = false
+                        print(resultDictionary)
+                        MBProgressHUD.hide(for: self.view, animated: true)
+                       
+                        self.showAlertController(alertMessage: resultDictionary["message"] as? String)
+
+                    }
+                    else if Int(truncating: resultDictionary["status"] as! NSNumber) == Constants.Status.TokenInvalid.rawValue
+                    {
+                        TutorGenerateToken.performGenerateTokenUrl(completionHandler: { (status, token) in
+                            if status == Constants.Status.StatusOK.rawValue {
+                                self.callUpdateGuardianProfileDetails(parameterData: parameterData)
+                            }
+                            else {
+                                print(token as Any)
+                                MBProgressHUD.hide(for: self.view, animated: true)
+                            }
+                        })
+                    }
+                    else{
+                        MBProgressHUD.hide(for: self.view, animated: true)
+                        
+                        TutorDefaultAlertController.showAlertController(alertMessage: resultDictionary["message"] as? String, showController: self)
+                    }
+                }
+            }
+            else if response.result.isFailure {
+                print(response.result.error as Any)
+            }
+            MBProgressHUD.hide(for: self.view, animated: true)
+        }
+    }
+    
+    func showAlertController(alertMessage:String?) -> Void {
+        let alert = UIAlertController(title: "", message: alertMessage, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default){ action -> Void in
+            self.openStudentProfileController();
+        })
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    
+    func getGuardianDetails() {
+        
+
+        var parameterData = [String: String]()
+        parameterData["login_id"] = TutorSharedClass.shared.loginTutorLoginObject?.sm_id
+        parameterData["register_type"] = TutorSharedClass.shared.loginTutorLoginObject?.sm_register_type
+
+        print(parameterData);
+        let urlPath = String(format: "%@%@",Constants.baseUrl,Constants.profileDetails) as String
+        Alamofire.request(urlPath, method: .post, parameters:parameterData , encoding: JSONEncoding.default, headers:["Content-Type":"application/json","Authorization":String(format:"Bearer %@",TutorSharedClass.shared.token ?? "")]) .responseJSON { response in
+            if response.result.isSuccess
+            {
+                if let resultDictionary = response.result.value as? NSDictionary
+                {
+                    print(resultDictionary)
+                    
+                    if Int(truncating: resultDictionary["status"] as! NSNumber) == Constants.Status.StatusOK.rawValue
+                    {
+                        print(resultDictionary)
+                        MBProgressHUD.hide(for: self.view, animated: true)
+                        
+                        self.showAlertController(alertMessage: resultDictionary["message"] as? String)
+                        
+                    }
+                    else if Int(truncating: resultDictionary["status"] as! NSNumber) == Constants.Status.TokenInvalid.rawValue
+                    {
+                        TutorGenerateToken.performGenerateTokenUrl(completionHandler: { (status, token) in
+                            if status == Constants.Status.StatusOK.rawValue {
+                                self.getGuardianDetails()
+                            }
+                            else {
+                                print(token as Any)
+                                MBProgressHUD.hide(for: self.view, animated: true)
+                            }
+                        })
+                    }else if Int(truncating: resultDictionary["status"] as! NSNumber) == Constants.Status.TokenNotFound.rawValue
+                    {
+                        TutorGenerateToken.performGenerateTokenUrl(completionHandler: { (status, token) in
+                            if status == Constants.Status.StatusOK.rawValue {
+                                self.getGuardianDetails()
+                            }
+                            else {
+                                print(token as Any)
+                                MBProgressHUD.hide(for: self.view, animated: true)
+                            }
+                        })
+                    }
+                    else{
+                        MBProgressHUD.hide(for: self.view, animated: true)
+                        
+                        TutorDefaultAlertController.showAlertController(alertMessage: resultDictionary["message"] as? String, showController: self)
+                    }
+                }
+            }
+            else if response.result.isFailure {
+                MBProgressHUD.hide(for: self.view, animated: true)
+                print(response.result.error as Any)
+            }
+        }
+    }
 }
+
+
+
