@@ -74,7 +74,7 @@ class TutorHomeViewController: UIViewController,UITextFieldDelegate,UITableViewD
 
     }
     
-    //MARK :: Tableview delegate
+    //MARK: Tableview delegate
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return (self.dataArray?.count)!
     }
@@ -394,6 +394,7 @@ class TutorHomeViewController: UIViewController,UITextFieldDelegate,UITableViewD
         
         if isValidate
         {
+            parameterData["prefer_gen"] = TutorSharedClass.shared.loginTutorLoginObject?.sm_gender
             MBProgressHUD.showAdded(to: self.view, animated: true)
             self.getSearchTutorList(parametersDict: parameterData as NSDictionary)
         }
