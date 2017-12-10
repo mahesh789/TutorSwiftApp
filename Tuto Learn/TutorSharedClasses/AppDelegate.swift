@@ -23,28 +23,13 @@ public class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.sharedManager().enable = true
         self.callFirstTimeLoginToken()
         if UserDefaults.standard.bool(forKey: "isUserLoggedIn") {
+            
+            TutorSharedClass.shared.isLoginRemember = true
             if let loginDictionary = UserDefaults.standard.object(forKey: "LoginDetails") {
                 TutorSharedClass.shared.loginTutorLoginObject  = TutorLoginModel.init(dictionary: loginDictionary as! NSDictionary)
             }
-            if (TutorSharedClass.shared.loginTutorLoginObject?.sm_register_type == "0") || (TutorSharedClass.shared.loginTutorLoginObject?.student?.isEmpty == false)
-            {
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let tutorHomeViewController:TutorHomeViewController = storyboard.instantiateViewController(withIdentifier: "TutorHomeViewController") as! TutorHomeViewController
-                let navigationController = UINavigationController(rootViewController: tutorHomeViewController)
-                navigationController.isNavigationBarHidden = true
-                self.window?.rootViewController = navigationController
-                self.window?.makeKeyAndVisible()
-                
-            }else{
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let tutorHomeViewController:TutorProfileViewController = storyboard.instantiateViewController(withIdentifier: "TutorProfileViewController") as! TutorProfileViewController
-                tutorHomeViewController.currentProfilType = ProfileType.ProfileTypeGuardian.rawValue
-                let navigationController = UINavigationController(rootViewController: tutorHomeViewController)
-                navigationController.isNavigationBarHidden = true
-                self.window?.rootViewController = navigationController
-                self.window?.makeKeyAndVisible()
-            }
-            
+            TutorSharedClass.shared.setRootControllerAccordingtoResponse(window: self.window!)
+            self.window?.makeKeyAndVisible()
         }else{
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let tutorLoginViewController:ViewController = storyboard.instantiateViewController(withIdentifier: "ViewController") as! ViewController

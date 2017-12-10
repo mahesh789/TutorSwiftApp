@@ -15,7 +15,7 @@ enum RegistrationDataType:Int {
 }
 
 enum RegistrationCellType:Int {
-    case RegistrationCellTypeRegistration = 1,RegistrationCellTypeGuardianProfile,RegistrationCellTypeFindTutor,RegistrationCellTypeStudentProfile
+    case RegistrationCellTypeRegistration = 1,RegistrationCellTypeGuardianProfile,RegistrationCellTypeFindTutor,RegistrationCellTypeStudentProfile,RegistrationCellTypPreference
 }
 
 class StudentRegistrationViewController: UIViewController,UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource,UITableViewDelegate,UITableViewDataSource {

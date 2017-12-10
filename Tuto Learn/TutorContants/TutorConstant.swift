@@ -22,8 +22,11 @@ class Constants {
     static let studentRegister = "student_register"
     static let socialStudentRegister = "social_student_register"
     static let updateGuardianDetails = "update_student_parents"
-    static let profileDetails = "select_student"
-
+    static let profileDetails = "all_data_with_old_login"
+    static let levelBoard = "level_board"
+    static let preferenceDetails = "fetch_preference"
+    static let updatePreference = "student_preference"
+    
     static let token = "token"
     static let cityList = "city_list"
     static let topicList = "topic_list"
@@ -38,8 +41,8 @@ class Constants {
     static let phoneScreenWidth = screenSize.width
     static let phoneScreenHeight = screenSize.height
     
-  static let dateFormatValue = "yyyy-MM-dd"
-
+    static let dateFormatValue = "yyyy-MM-dd"
+    
 }
 
 class TutorGenerateToken {

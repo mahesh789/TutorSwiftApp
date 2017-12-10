@@ -54,6 +54,9 @@ class RegistrationTableViewCell: UITableViewCell {
         }else if(cellType.rawValue == RegistrationCellType.RegistrationCellTypeStudentProfile.rawValue)
         {
             self.setLayoutForStudentProfile(registrationData: registrationData)
+        }else if(cellType.rawValue == RegistrationCellType.RegistrationCellTypPreference.rawValue)
+        {
+            self.setLayoutForPreference(registrationData: registrationData)
         }
     }
     
@@ -227,6 +230,16 @@ class RegistrationTableViewCell: UITableViewCell {
         {
             rightTextField.isHidden = false
         }
+    }
+    
+    func setLayoutForPreference(registrationData:NSDictionary) {
+        
+        rightDropImageView.isHidden = false
+        leftDropImageView.isHidden = false
+        self.bottomLabelcontraint.constant = -15
+        bottomLabel.isHidden = true
+        leftTextField.isSecureTextEntry = false
+        rightTextField.isSecureTextEntry = false
     }
     
 }

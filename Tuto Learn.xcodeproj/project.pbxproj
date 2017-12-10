@@ -12,6 +12,7 @@
 		3B258D421FC7311400ADDE0D /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B258D411FC7311400ADDE0D /* CustomTextField.swift */; };
 		3B28334C1FCC74580059D115 /* RegistrationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B28334B1FCC74580059D115 /* RegistrationTableViewCell.swift */; };
 		3B28AD181FD2733B008BC962 /* TutorProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B28AD171FD2733B008BC962 /* TutorProfileViewController.swift */; };
+		3B2AB59C1FDD20B100966AD9 /* CustomPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2AB59B1FDD20B100966AD9 /* CustomPickerView.swift */; };
 		3B31EA541FCE6FDD00F6134E /* RegistrationFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B31EA531FCE6FDD00F6134E /* RegistrationFooterView.swift */; };
 		3B31EA561FCE6FF900F6134E /* RegistrationFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B31EA551FCE6FF900F6134E /* RegistrationFooterView.xib */; };
 		3BB5AA191FD3195600658103 /* TutorLoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB5AA171FD3195600658103 /* TutorLoginModel.swift */; };
@@ -106,6 +107,7 @@
 		3B258D411FC7311400ADDE0D /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		3B28334B1FCC74580059D115 /* RegistrationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationTableViewCell.swift; sourceTree = "<group>"; };
 		3B28AD171FD2733B008BC962 /* TutorProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorProfileViewController.swift; sourceTree = "<group>"; };
+		3B2AB59B1FDD20B100966AD9 /* CustomPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPickerView.swift; sourceTree = "<group>"; };
 		3B31EA531FCE6FDD00F6134E /* RegistrationFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationFooterView.swift; sourceTree = "<group>"; };
 		3B31EA551FCE6FF900F6134E /* RegistrationFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegistrationFooterView.xib; sourceTree = "<group>"; };
 		3BB5AA171FD3195600658103 /* TutorLoginModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorLoginModel.swift; sourceTree = "<group>"; };
@@ -482,6 +484,7 @@
 			children = (
 				3DBEC5951FAF85730018CD66 /* CommonUtils.swift */,
 				3B258D411FC7311400ADDE0D /* CustomTextField.swift */,
+				3B2AB59B1FDD20B100966AD9 /* CustomPickerView.swift */,
 			);
 			path = TutorSupportClasses;
 			sourceTree = "<group>";
@@ -1097,6 +1100,7 @@
 				BA48D4D81FDBE6930023C067 /* TutorMyAccountCollectionViewCell.swift in Sources */,
 				3DBEC59A1FAF85900018CD66 /* MBProgressHUD.m in Sources */,
 				3D623F381FBB76010087AF13 /* TutorViewProfileTableViewCell.swift in Sources */,
+				3B2AB59C1FDD20B100966AD9 /* CustomPickerView.swift in Sources */,
 				3D97FAE41FDBB219000AFD80 /* TutorTimeSlotViewController.swift in Sources */,
 				3DFE851D1FD4025500D9648E /* TutorBookTutorTableViewCell.swift in Sources */,
 			);

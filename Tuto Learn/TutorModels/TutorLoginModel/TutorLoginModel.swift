@@ -28,7 +28,11 @@ public class TutorLoginModel {
     public var sm_city_id : String?
     public var sm_level : String?
     public var sm_pin : String?
+    public var sm_board : String?
     public var sm_school_name : String?
+    public var sm_preference : Int?
+    public var sm_profile : Int?
+    public var sm_profile_img_url : String?
 
 	public var student : Array<TutorStudent>?
 
@@ -73,21 +77,46 @@ public class TutorLoginModel {
 		sm_gender = dictionary["sm_gender"] as? String
 		sm_dob = dictionary["sm_dob"] as? String
 		sm_profile_image = dictionary["sm_profile_image"] as? String
+        sm_profile_img_url = dictionary["sm_profile_img_url"] as? String
 		sm_register_type = dictionary["sm_register_type"] as? String
-		spm_occupation = dictionary["spm_occupation"] as? String
+		spm_occupation = dictionary["sm_occupation"] as? String
         sm_address1 = dictionary["sm_address1"] as? String
         sm_address2 = dictionary["sm_address2"] as? String
         sm_city_id = dictionary["sm_city_id"] as? String
         sm_level = dictionary["sm_level"] as? String
+        sm_board = dictionary["sm_board"] as? String
         sm_pin = dictionary["sm_pin"] as? String
         sm_school_name = dictionary["sm_school_name"] as? String
+        sm_preference = dictionary["sm_preference"] as? Int
+        sm_profile = dictionary["sm_profile"] as? Int
+
         if (dictionary["student"] as? NSArray) != nil
         {
             if (dictionary["student"] != nil) { student = TutorStudent.modelsFromDictionaryArray(array: dictionary["student"] as! NSArray) }
         }
 	}
 
-		
+	
+    
+    public func updateModelObject(modelObject: TutorLoginModel) {
+        sm_name = modelObject.sm_name
+        sm_last = modelObject.sm_last
+        sm_email = modelObject.sm_email
+        sm_mobile = modelObject.sm_mobile
+        sm_gender = modelObject.sm_gender
+        sm_dob = modelObject.sm_dob
+        sm_profile_image = modelObject.sm_profile_image
+        spm_occupation = modelObject.spm_occupation
+        sm_address1 = modelObject.sm_address1
+        sm_address2 = modelObject.sm_address2
+        sm_city_id = modelObject.sm_city_id
+        sm_level = modelObject.sm_level
+        sm_board = modelObject.sm_board
+        sm_pin = modelObject.sm_pin
+        sm_school_name = modelObject.sm_school_name
+        sm_profile_img_url = modelObject.sm_profile_img_url
+
+    }
 /**
     Returns the dictionary representation for the current instance.
     
@@ -113,6 +142,11 @@ public class TutorLoginModel {
         dictionary.setValue(self.sm_level, forKey: "sm_level")
         dictionary.setValue(self.sm_pin, forKey: "sm_pin")
         dictionary.setValue(self.sm_school_name, forKey: "sm_school_name")
+        dictionary.setValue(self.sm_board, forKey: "sm_board")
+        dictionary.setValue(self.sm_preference, forKey: "sm_preference")
+        dictionary.setValue(self.sm_profile, forKey: "sm_profile")
+        dictionary.setValue(self.sm_profile_img_url, forKey: "sm_profile_img_url")
+
         if self.student?.isEmpty == false
         {
             let studentData = NSMutableArray()

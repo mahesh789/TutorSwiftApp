@@ -9,19 +9,30 @@
 import UIKit
 import SideMenu
 import AAPickerView
+import Alamofire
+import Kingfisher
 
 enum StudentProfileDataType:Int {
     case StudentProfileDataTypeFirstName = 1,StudentProfileDataTypeGender,StudentProfileDataTypeEmail,StudentProfileDataTypeMobile,StudentProfileDataTypeSchoolName,StudentProfileDataTypeBoardName,StudentProfileDataTypeLevel
 }
-class TutorStudentProfileViewController: UIViewController,UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource,UIPickerViewDelegate,UIPickerViewDataSource {
+class TutorStudentProfileViewController: UIViewController,UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource,UIPickerViewDelegate,UIPickerViewDataSource,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
 
     @IBOutlet weak var profileTableview: UITableView!
     var dataArray :NSMutableArray?
     @IBOutlet weak var tutorNavigationBar: TutorHomeNavigationBar!
     @IBOutlet weak var submitButton: UIButton!
-    let thePicker = UIPickerView()
+    let thePicker = CustomPickerView()
     let genderArray = ["Male","Female"]
     var genderValue: String!
+    var isEditStudentProfile: Bool = false
+    let imagePicker = UIImagePickerController()
+    var selectedImage: UIImage?
+    var selectedStudentInfo: NSDictionary?
+    var isImageChange: Bool = false
+    var selectedProfileImage = NSMutableDictionary()
+    var levelBoardData: NSDictionary?
+    var selectedLevel = NSMutableDictionary()
+    var selectedBoard = NSMutableDictionary()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +50,12 @@ class TutorStudentProfileViewController: UIViewController,UITextFieldDelegate,UI
         self.submitButton.layer.cornerRadius = 5.0;
         self.setupSideMenu()
 
+        if self.isEditStudentProfile == true
+        {
+            self.tutorNavigationBar.leftBarButton.isHidden = true
+            MBProgressHUD.showAdded(to: self.view, animated: true)
+            self.getStudentDetails()
+        }
         // Do any additional setup after loading the view.
     }
     fileprivate func setupSideMenu() {
@@ -59,25 +76,49 @@ class TutorStudentProfileViewController: UIViewController,UITextFieldDelegate,UI
    
     func getProfileData() ->NSMutableDictionary {
         
-        let profileNameDetails: NSMutableDictionary? = ["leftTitle":"First Name","rightTitle":"Last Name","leftValue":"","rightValue": "" ,"type":NSNumber.init(value: StudentProfileDataType.StudentProfileDataTypeFirstName.rawValue)]
-        
-        let profilegenderDetails: NSMutableDictionary? = ["leftTitle":"Gender","rightTitle":"Date of Birth","leftValue": "","rightValue":"","type":NSNumber.init(value: StudentProfileDataType.StudentProfileDataTypeGender.rawValue)]
-        
-        let profileEmailDetails: NSMutableDictionary? = ["rightTitle":"Email","leftTitle":"","leftValue":"","rightValue": "","type":NSNumber.init(value: StudentProfileDataType.StudentProfileDataTypeEmail.rawValue)]
-        
-        let profileMobileDetails: NSMutableDictionary? = ["leftTitle":"Mobile","rightTitle":"","leftValue": "","rightValue":"","type":NSNumber.init(value: StudentProfileDataType.StudentProfileDataTypeMobile.rawValue)]
-        
-        let profileSchoolDetail: NSMutableDictionary? = ["rightTitle":"Name of School(optional)","leftTitle":"","leftValue":"","rightValue": "","type":NSNumber.init(value: StudentProfileDataType.StudentProfileDataTypeSchoolName.rawValue)]
-        
-        let profileBoardDetails: NSMutableDictionary? = ["leftTitle":"Board","rightTitle":"Level","leftValue": "","rightValue":"","type":NSNumber.init(value: StudentProfileDataType.StudentProfileDataTypeBoardName.rawValue)]
-
         let tempDataArray = NSMutableArray()
-        tempDataArray.add(profileNameDetails ?? NSDictionary.init())
-        tempDataArray.add(profilegenderDetails ?? NSDictionary.init())
-        tempDataArray.add(profileEmailDetails ?? NSDictionary.init())
-        tempDataArray.add(profileMobileDetails ?? NSDictionary.init())
-        tempDataArray.add(profileSchoolDetail ?? NSDictionary.init())
-        tempDataArray.add(profileBoardDetails ?? NSDictionary.init())
+
+        if self.isEditStudentProfile == true
+        {
+            let profileNameDetails: NSMutableDictionary? = ["leftTitle":"First Name","rightTitle":"Last Name","leftValue":selectedStudentInfo?.value(forKey: "sm_name") ?? "","rightValue": selectedStudentInfo?.value(forKey: "sm_last") ?? "" ,"type":NSNumber.init(value: StudentProfileDataType.StudentProfileDataTypeFirstName.rawValue)]
+            
+            let profilegenderDetails: NSMutableDictionary? = ["leftTitle":"Gender","rightTitle":"Date of Birth","leftValue": selectedStudentInfo?.value(forKey: "sm_gender") ?? "","rightValue":selectedStudentInfo?.value(forKey: "sm_dob") ?? "","type":NSNumber.init(value: StudentProfileDataType.StudentProfileDataTypeGender.rawValue)]
+            
+            let profileEmailDetails: NSMutableDictionary? = ["rightTitle":"Email","leftTitle":"","leftValue":"","rightValue": selectedStudentInfo?.value(forKey: "sm_email") ?? "","type":NSNumber.init(value: StudentProfileDataType.StudentProfileDataTypeEmail.rawValue)]
+            
+            let profileMobileDetails: NSMutableDictionary? = ["leftTitle":"Mobile","rightTitle":"","leftValue": selectedStudentInfo?.value(forKey: "sm_mobile") ?? "","rightValue":"","type":NSNumber.init(value: StudentProfileDataType.StudentProfileDataTypeMobile.rawValue)]
+            
+            let profileSchoolDetail: NSMutableDictionary? = ["rightTitle":"Name of School(optional)","leftTitle":"","leftValue":"","rightValue": selectedStudentInfo?.value(forKey: "sm_school_name") ?? "","type":NSNumber.init(value: StudentProfileDataType.StudentProfileDataTypeSchoolName.rawValue)]
+            
+            let profileBoardDetails: NSMutableDictionary? = ["leftTitle":"Board","rightTitle":"Level","leftValue": selectedStudentInfo?.value(forKey: "sm_board") ?? "","rightValue":selectedStudentInfo?.value(forKey: "sm_level") ?? "","type":NSNumber.init(value: StudentProfileDataType.StudentProfileDataTypeBoardName.rawValue),"boardData":NSDictionary.init(),"levelData":NSDictionary.init()]
+            
+            tempDataArray.add(profileNameDetails ?? NSDictionary.init())
+            tempDataArray.add(profilegenderDetails ?? NSDictionary.init())
+            tempDataArray.add(profileEmailDetails ?? NSDictionary.init())
+            tempDataArray.add(profileMobileDetails ?? NSDictionary.init())
+            tempDataArray.add(profileSchoolDetail ?? NSDictionary.init())
+            tempDataArray.add(profileBoardDetails ?? NSDictionary.init())
+        }else
+        {
+            let profileNameDetails: NSMutableDictionary? = ["leftTitle":"First Name","rightTitle":"Last Name","leftValue":"","rightValue": "" ,"type":NSNumber.init(value: StudentProfileDataType.StudentProfileDataTypeFirstName.rawValue)]
+            
+            let profilegenderDetails: NSMutableDictionary? = ["leftTitle":"Gender","rightTitle":"Date of Birth","leftValue": "","rightValue":"","type":NSNumber.init(value: StudentProfileDataType.StudentProfileDataTypeGender.rawValue)]
+            
+            let profileEmailDetails: NSMutableDictionary? = ["rightTitle":"Email","leftTitle":"","leftValue":"","rightValue": "","type":NSNumber.init(value: StudentProfileDataType.StudentProfileDataTypeEmail.rawValue)]
+            
+            let profileMobileDetails: NSMutableDictionary? = ["leftTitle":"Mobile","rightTitle":"","leftValue": "","rightValue":"","type":NSNumber.init(value: StudentProfileDataType.StudentProfileDataTypeMobile.rawValue)]
+            
+            let profileSchoolDetail: NSMutableDictionary? = ["rightTitle":"Name of School(optional)","leftTitle":"","leftValue":"","rightValue": "","type":NSNumber.init(value: StudentProfileDataType.StudentProfileDataTypeSchoolName.rawValue)]
+            
+            let profileBoardDetails: NSMutableDictionary? = ["leftTitle":"Board","rightTitle":"Level","leftValue": "","rightValue":"","type":NSNumber.init(value: StudentProfileDataType.StudentProfileDataTypeBoardName.rawValue)]
+            
+            tempDataArray.add(profileNameDetails ?? NSDictionary.init())
+            tempDataArray.add(profilegenderDetails ?? NSDictionary.init())
+            tempDataArray.add(profileEmailDetails ?? NSDictionary.init())
+            tempDataArray.add(profileMobileDetails ?? NSDictionary.init())
+            tempDataArray.add(profileSchoolDetail ?? NSDictionary.init())
+            tempDataArray.add(profileBoardDetails ?? NSDictionary.init())
+        }
 
         let studentDataDictionary = NSMutableDictionary()
         studentDataDictionary.setValue(tempDataArray, forKey: "student")
@@ -116,8 +157,16 @@ class TutorStudentProfileViewController: UIViewController,UITextFieldDelegate,UI
         let headerview = UINib(nibName: "TutorStudentHeaderView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as? UIView
         if let tempHederView = headerview as? TutorStudentHeaderView
         {
+            tempHederView.uploadButton.layer.cornerRadius = 5.0;
+            tempHederView.uploadButton.layer.borderColor = UIColor.init(red: 73, green: 167, blue: 169).cgColor
+            tempHederView.uploadButton.layer.masksToBounds = true
+            tempHederView.uploadButton.layer.borderWidth = 1.0
+            tempHederView.uploadButton.tag = section
             tempHederView.closeButton.tag = section
+            tempHederView.profileImageView.layer.cornerRadius = tempHederView.profileImageView.frame.size.height/2
+            tempHederView.profileImageView.layer.masksToBounds = true
             tempHederView.closeButton.addTarget(self, action: #selector(deleteStudentClicked(sender:)), for: .touchUpInside)
+            tempHederView.uploadButton.addTarget(self, action: #selector(uploadPhotoButtonClick(sender:)), for: .touchUpInside)
             if section == 0
             {
                 tempHederView.closeButton.isHidden = true
@@ -125,10 +174,49 @@ class TutorStudentProfileViewController: UIViewController,UITextFieldDelegate,UI
             {
                 tempHederView.closeButton.isHidden = false
             }
+            if let profileImage = selectedProfileImage.value(forKey: String(section)) as? UIImage
+            {
+                tempHederView.uploadButton.setTitle("Edit Photo", for: .normal)
+              tempHederView.profileImageView.image = profileImage
+            }else if self.isEditStudentProfile == true
+            {
+                if let profileUrl = selectedStudentInfo?.value(forKey: "sm_profile_image")
+                {
+                    tempHederView.uploadButton.setTitle("Edit Photo", for: .normal)
+                    tempHederView.profileImageView.kf.setImage(with: URL.init(string: profileUrl as! String) , placeholder: UIImage.init(named: "dummyPhoto"), options: nil, progressBlock: nil, completionHandler:{
+                        (image, error, cacheType, imageUrl) in
+                        if (image != nil)
+                        {
+
+                        }
+                    })
+                }else if let profileUrl = selectedStudentInfo?.value(forKey: "sm_profile_img_url")
+                {
+                    tempHederView.uploadButton.setTitle("Edit Photo", for: .normal)
+                    tempHederView.profileImageView.kf.setImage(with: URL.init(string: profileUrl as! String) , placeholder: UIImage.init(named: "dummyPhoto"), options: nil, progressBlock: nil, completionHandler:{
+                        (image, error, cacheType, imageUrl) in
+                        if (image != nil)
+                        {
+                        }
+                    })
+                }else
+                {
+                    tempHederView.uploadButton.setTitle("Upload Photo", for: .normal)
+                }
+            }else
+            {
+                tempHederView.uploadButton.setTitle("Upload Photo", for: .normal)
+            }
+            
         }
         return headerview
     }
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+       
+        if isEditStudentProfile == true
+        {
+            return 10
+        }
         if (self.dataArray?.count)!-1 == section
         {
             return 50
@@ -141,6 +229,10 @@ class TutorStudentProfileViewController: UIViewController,UITextFieldDelegate,UI
     }
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         
+        if isEditStudentProfile == true
+        {
+            return nil
+        }
         if (self.dataArray?.count)!-1 == section 
         {
             let addButton = UIButton.init(type: .custom)
@@ -239,7 +331,7 @@ class TutorStudentProfileViewController: UIViewController,UITextFieldDelegate,UI
                                     break;
                                 }else
                                 {
-                                    parameterData["s_name"] = leftValue
+                                    parameterData["first_name"] = leftValue
                                 }
                                 let rightValue =  dataContent["rightValue"] as? String
                                 if (rightValue?.isEmpty)!
@@ -249,7 +341,7 @@ class TutorStudentProfileViewController: UIViewController,UITextFieldDelegate,UI
                                     break;
                                 }else
                                 {
-                                    parameterData["s_lastname"] = rightValue
+                                    parameterData["last_name"] = rightValue
                                     
                                 }
                             }else if dataContent["type"] as? Int == StudentProfileDataType.StudentProfileDataTypeGender.rawValue
@@ -262,7 +354,7 @@ class TutorStudentProfileViewController: UIViewController,UITextFieldDelegate,UI
                                     break;
                                 }else
                                 {
-                                    parameterData["s_gender"] = leftValue
+                                    parameterData["gender"] = leftValue
                                 }
                                 let rightValue =  dataContent["rightValue"] as? String
                                 if (rightValue?.isEmpty)!
@@ -285,7 +377,7 @@ class TutorStudentProfileViewController: UIViewController,UITextFieldDelegate,UI
                                         break;
                                     }else
                                     {
-                                        parameterData["s_dob"] = rightValue
+                                        parameterData["dob"] = rightValue
                                         
                                     }
                                     
@@ -302,7 +394,7 @@ class TutorStudentProfileViewController: UIViewController,UITextFieldDelegate,UI
                                 {
                                     if leftValue?.isValidEmail() == true
                                     {
-                                        parameterData["s_email"] = leftValue as String?
+                                        parameterData["email"] = leftValue as String?
                                     }else
                                     {
                                         TutorDefaultAlertController.showAlertController(alertMessage: "Please enter valid email address" , showController: self)
@@ -311,6 +403,12 @@ class TutorStudentProfileViewController: UIViewController,UITextFieldDelegate,UI
                                     }
                                     
                                 }
+                                
+                            }else if dataContent["type"] as? Int == StudentProfileDataType.StudentProfileDataTypeSchoolName.rawValue
+                            {
+                                let leftValue =  dataContent["rightValue"] as? NSString
+
+                                parameterData["school_name"] = leftValue as String?
                                 
                             }
                             else if dataContent["type"] as? Int == StudentProfileDataType.StudentProfileDataTypeMobile.rawValue
@@ -331,24 +429,13 @@ class TutorStudentProfileViewController: UIViewController,UITextFieldDelegate,UI
                                         break;
                                     }else
                                     {
-                                        parameterData["s_mobile"] = rightValue
+                                        parameterData["mobile"] = rightValue
                                     }
                                     
                                 }
                                 
                             }
-                            else if dataContent["type"] as? Int == StudentProfileDataType.StudentProfileDataTypeSchoolName.rawValue
-                            {
-                                let rightValue =  dataContent["rightValue"] as? String
-                                if (rightValue?.isEmpty)!
-                                {
-                                }else
-                                {
-                                    parameterData["s_occupation"] = rightValue
-                                    
-                                }
-                            }
-                           
+                         
                             else if dataContent["type"] as? Int == StudentProfileDataType.StudentProfileDataTypeBoardName.rawValue
                             {
                                 let leftValue =  dataContent["leftValue"] as? String
@@ -359,7 +446,10 @@ class TutorStudentProfileViewController: UIViewController,UITextFieldDelegate,UI
                                     break;
                                 }else
                                 {
-                                    parameterData["s_boardname"] = leftValue
+                                    if let boardData =  dataContent["boardData"] as? NSDictionary
+                                    {
+                                        parameterData["board"] = boardData.value(forKey:"bid" ) as? String
+                                    }
                                 }
                                 let rightValue =  dataContent["rightValue"] as? String
                                 if (rightValue?.isEmpty)!
@@ -369,8 +459,10 @@ class TutorStudentProfileViewController: UIViewController,UITextFieldDelegate,UI
                                     break;
                                 }else
                                 {
-                                    parameterData["s_level"] = rightValue
-                                    
+                                    if let boardData =  dataContent["levelData"] as? NSDictionary
+                                    {
+                                        parameterData["level"] = boardData.value(forKey:"level_id" ) as? String
+                                    }
                                 }
                             }
                         }
@@ -389,7 +481,33 @@ class TutorStudentProfileViewController: UIViewController,UITextFieldDelegate,UI
         if isValidate == true
         {
             // perform API Action
-            self.openGuardianPreferenceController()
+            if self.isEditStudentProfile == true
+            {
+                MBProgressHUD.showAdded(to: self.view, animated: true)
+
+                var parameterData = parameterStudent.lastObject as! Dictionary<String, String>
+                parameterData["register_type"] = "0"
+                parameterData["login_id"] = TutorSharedClass.shared.loginTutorLoginObject?.sm_id
+                if let profileImageChange = selectedProfileImage.value(forKey: String(0)) as? UIImage
+                {
+                    let imageData: NSData = UIImageJPEGRepresentation(profileImageChange, 0.5)! as NSData
+                    let strBase64:String = imageData.base64EncodedString(options: .lineLength64Characters)
+                    parameterData["img_base"] = strBase64
+                    parameterData["img_ext"] = "jpeg"
+                }else
+                {
+                    parameterData["img_base"] = ""
+                    parameterData["img_ext"] = ""
+                }
+                
+                parameterData["page_name"] = "0"
+              
+                self.callUpdateGuardianProfileDetails(parameterData: parameterData)
+                
+            }else
+            {
+                
+            }
         }
     }
     
@@ -412,10 +530,23 @@ class TutorStudentProfileViewController: UIViewController,UITextFieldDelegate,UI
             textFieldTemp.inputView = nil
             textFieldTemp.inputAccessoryView = nil;
             let dataSectiondictionary = self.dataArray?.object(at: textFieldTemp.section) as? NSMutableDictionary
+            
             if let studentArray = dataSectiondictionary!["student"] as? NSMutableArray
             {
                 let datadictionary = studentArray.object(at: textFieldTemp.tag) as? NSMutableDictionary
 
+                if (datadictionary?.value(forKey: "type") as? Int == StudentProfileDataType.StudentProfileDataTypeEmail.rawValue ) && self.isEditStudentProfile == true
+                {
+                    if textField.text?.isEmpty == false
+                    {
+                        
+                        TutorDefaultAlertController.showAlertController(alertMessage: "Please contact administrator to update the info" , showController: self)
+                        
+                        return false
+                    }
+                    
+                }
+                
                 if datadictionary?.value(forKey: "type") as? Int == StudentProfileDataType.StudentProfileDataTypeGender.rawValue && textFieldTemp.customTag == 2
                 {
                     self.configureDatePicker(textField: textFieldTemp)
@@ -423,8 +554,32 @@ class TutorStudentProfileViewController: UIViewController,UITextFieldDelegate,UI
                 else if datadictionary?.value(forKey: "type") as? Int == StudentProfileDataType.StudentProfileDataTypeGender.rawValue && textFieldTemp.customTag == 1
                 {
                     self.thePicker.tag = 0
+                    thePicker.section = textFieldTemp.section
+
                     textFieldTemp.inputView = self.thePicker
                     self.thePicker.reloadAllComponents()
+                }else if datadictionary?.value(forKey: "type") as? Int == StudentProfileDataType.StudentProfileDataTypeBoardName.rawValue && textFieldTemp.customTag == 1
+                {
+                    
+                    textFieldTemp.inputView = self.thePicker
+                    self.thePicker.tag = 101
+                    thePicker.section = textFieldTemp.section
+                    if self.levelBoardData == nil {
+                        MBProgressHUD.showAdded(to: self.view, animated: true)
+                        self.getLevelBoardData()
+                    }
+                    
+                }else if datadictionary?.value(forKey: "type") as? Int == StudentProfileDataType.StudentProfileDataTypeBoardName.rawValue && textFieldTemp.customTag == 2
+                {
+                    
+                    textFieldTemp.inputView = self.thePicker
+                    self.thePicker.tag = 102
+                    thePicker.section = textFieldTemp.section
+                    if self.levelBoardData == nil {
+                        MBProgressHUD.showAdded(to: self.view, animated: true)
+                        self.getLevelBoardData()
+                    }
+                    
                 }
             }
         }
@@ -445,11 +600,53 @@ class TutorStudentProfileViewController: UIViewController,UITextFieldDelegate,UI
                         datadictionary?["leftValue"] = genderValue
                     }else
                     {
-                        datadictionary?["leftValue"] = genderArray[0]
+                        datadictionary?["c"] = genderArray[0]
                         
                     }
                     profileTableview.reloadData()
                     
+                }else if datadictionary?.value(forKey: "type") as? Int == StudentProfileDataType.StudentProfileDataTypeBoardName.rawValue && textFieldTemp.customTag == 1
+                {
+                    print(selectedBoard)
+                    if let selectedBoardtemp = selectedBoard.value(forKey: String(textFieldTemp.section)) as? NSDictionary
+                    {
+                        datadictionary?["boardData"] = selectedBoardtemp
+                        datadictionary?["leftValue"] = selectedBoardtemp["bname"]
+
+                    }else if levelBoardData != nil
+                    {
+                        if let boardArray = self.levelBoardData?.value(forKey: "boards") as? NSArray
+                        {
+                            datadictionary?["boardData"] = boardArray[0]
+                            if let boardname = boardArray[0] as? NSDictionary
+                            {
+                                datadictionary?["leftValue"] = boardname["bname"]
+                            }
+
+                        }
+                    }
+                    profileTableview.reloadData()
+                    
+                }
+                else if datadictionary?.value(forKey: "type") as? Int == StudentProfileDataType.StudentProfileDataTypeBoardName.rawValue && textFieldTemp.customTag == 2
+                {
+                    if let selectedBoardtemp = selectedLevel.value(forKey: String(textFieldTemp.section)) as? NSDictionary
+                    {
+                        datadictionary?["levelData"] = selectedBoardtemp
+                        datadictionary?["rightValue"] = selectedBoardtemp["l_name"]
+
+                    }else if levelBoardData != nil
+                    {
+                        if let boardArray = self.levelBoardData?.value(forKey: "level") as? NSArray
+                        {
+                            datadictionary?["levelData"] = boardArray[0]
+                            if let boardname = boardArray[0] as? NSDictionary
+                            {
+                                datadictionary?["rightValue"] = boardname["l_name"]
+                            }
+                        }
+                    }
+                    profileTableview.reloadData()
                     
                 }else if textFieldTemp.customTag == 1
                 {
@@ -481,17 +678,331 @@ class TutorStudentProfileViewController: UIViewController,UITextFieldDelegate,UI
     
     // Sets the number of rows in the picker view
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        
-        return genderArray.count
+        if pickerView.tag == 101
+        {
+            if let boardArray = self.levelBoardData?.value(forKey: "boards") as? NSArray
+            {
+                return boardArray.count
+            }
+        }else if pickerView.tag == 102
+        {
+            if let levelArray = self.levelBoardData?.value(forKey: "level") as? NSArray
+            {
+                return levelArray.count
+            }
+        }else
+        {
+            return genderArray.count
+        }
+        return 0
     }
     
     // This function sets the text of the picker view to the content of the "salutations" array
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return genderArray[row]
+        
+        if pickerView.tag == 101
+        {
+            if let boardArray = self.levelBoardData?.value(forKey: "boards") as? NSArray
+            {
+                if let boardname = boardArray[row] as? NSDictionary
+                {
+                    return boardname["bname"] as? String
+                }
+            }
+        }else if pickerView.tag == 102
+        {
+            if let levelArray = self.levelBoardData?.value(forKey: "level") as? NSArray
+            {
+                if let boardname = levelArray[row] as? NSDictionary
+                {
+                    return boardname["l_name"] as? String
+                }
+                
+            }
+        }else
+        {
+            return genderArray[row]
+        }
+        return ""
     }
     
     // When user selects an option, this function will set the text of the text field to reflect the selected option.
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        genderValue = genderArray[row]
+        if pickerView.tag == 101
+        {
+            if let boardArray = self.levelBoardData?.value(forKey: "boards") as? NSArray
+            {
+                if let customPicker =  pickerView as? CustomPickerView
+                {
+                    selectedBoard.setValue(boardArray[row], forKey: String(customPicker.section))
+                }
+            }
+        }else if pickerView.tag == 102
+        {
+            if let levelArray = self.levelBoardData?.value(forKey: "level") as? NSArray
+            {
+                if let customPicker =  pickerView as? CustomPickerView
+                {
+                    selectedLevel.setValue(levelArray[row], forKey: String(customPicker.section))
+                }
+            }
+        }else
+        {
+            genderValue = genderArray[row]
+
+        }
+    }
+    
+    
+    func callUpdateGuardianProfileDetails(parameterData:Dictionary<String, String>)  {
+        
+        let urlPath = String(format: "%@%@",Constants.baseUrl,Constants.updateGuardianDetails) as String
+         print(parameterData)
+        Alamofire.request(urlPath, method: .post, parameters:parameterData , encoding: JSONEncoding.default, headers:["Content-Type":"application/json","Authorization":String(format:"Bearer %@",TutorSharedClass.shared.token ?? "")]) .responseJSON { response in
+            if response.result.isSuccess
+            {
+                if let resultDictionary = response.result.value as? NSDictionary
+                {
+                    print(resultDictionary)
+                    
+                    if Int(truncating: resultDictionary["status"] as! NSNumber) == Constants.Status.StatusOK.rawValue
+                    {
+                        print(resultDictionary)
+                        MBProgressHUD.hide(for: self.view, animated: true)
+                        
+                        self.showAlertController(alertMessage: resultDictionary["message"] as? String)
+                        
+                    }
+                    else if Int(truncating: resultDictionary["status"] as! NSNumber) == Constants.Status.TokenInvalid.rawValue
+                    {
+                        TutorGenerateToken.performGenerateTokenUrl(completionHandler: { (status, token) in
+                            if status == Constants.Status.StatusOK.rawValue {
+                                self.callUpdateGuardianProfileDetails(parameterData: parameterData)
+                            }
+                            else {
+                                print(token as Any)
+                                MBProgressHUD.hide(for: self.view, animated: true)
+                            }
+                        })
+                    }
+                    else{
+                        MBProgressHUD.hide(for: self.view, animated: true)
+                        
+                        TutorDefaultAlertController.showAlertController(alertMessage: resultDictionary["message"] as? String, showController: self)
+                    }
+                }
+            }
+            else if response.result.isFailure {
+                print(response.result.error as Any)
+            }
+            MBProgressHUD.hide(for: self.view, animated: true)
+        }
+    }
+    
+    func showAlertController(alertMessage:String?) -> Void {
+        let alert = UIAlertController(title: "", message: alertMessage, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default){ action -> Void in
+            self.openGuardianPreferenceController();
+        })
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    
+    func getStudentDetails() {
+        
+        var parameterData = [String: String]()
+        parameterData["user_id"] = TutorSharedClass.shared.loginTutorLoginObject?.sm_id
+        parameterData["register_type"] = TutorSharedClass.shared.loginTutorLoginObject?.sm_register_type
+        
+        // print(parameterData);
+        let urlPath = String(format: "%@%@",Constants.baseUrl,Constants.profileDetails) as String
+        Alamofire.request(urlPath, method: .post, parameters:parameterData , encoding: JSONEncoding.default, headers:["Content-Type":"application/json","Authorization":String(format:"Bearer %@",TutorSharedClass.shared.token ?? "")]) .responseJSON { response in
+            if response.result.isSuccess
+            {
+                if let resultDictionary = response.result.value as? NSDictionary
+                {
+                    print(resultDictionary)
+                    
+                    if Int(truncating: resultDictionary["status"] as! NSNumber) == Constants.Status.StatusOK.rawValue
+                    {
+                        print(resultDictionary)
+                        MBProgressHUD.hide(for: self.view, animated: true)
+                        if let resultParseLoginDictionary = resultDictionary.object(forKey: "data") as? NSDictionary
+                        {
+                            let loginModelArray = TutorLoginModel.modelsFromDictionaryArray(array: [resultParseLoginDictionary])
+                            if (loginModelArray.first != nil)
+                            {
+                                TutorSharedClass.shared.loginTutorLoginObject?.updateModelObject(modelObject: loginModelArray.first!)
+                                self.selectedStudentInfo = TutorSharedClass.shared.loginTutorLoginObject?.dictionaryRepresentation()
+                                if TutorSharedClass.shared.isLoginRemember
+                                {
+                                    UserDefaults.standard.set(true, forKey: "isUserLoggedIn")
+                                    let loginDictionary = TutorSharedClass.shared.loginTutorLoginObject?.dictionaryRepresentation()
+                                    UserDefaults.standard.set(loginDictionary, forKey: "LoginDetails")
+                                }
+                                self.dataArray?.removeAllObjects()
+                                self.setProfileData()
+                            }
+                        }
+                        
+                    }
+                    else if Int(truncating: resultDictionary["status"] as! NSNumber) == Constants.Status.TokenInvalid.rawValue
+                    {
+                        TutorGenerateToken.performGenerateTokenUrl(completionHandler: { (status, token) in
+                            if status == Constants.Status.StatusOK.rawValue {
+                                self.getStudentDetails()
+                            }
+                            else {
+                                print(token as Any)
+                                MBProgressHUD.hide(for: self.view, animated: true)
+                            }
+                        })
+                    }else if Int(truncating: resultDictionary["status"] as! NSNumber) == Constants.Status.TokenNotFound.rawValue
+                    {
+                        TutorGenerateToken.performGenerateTokenUrl(completionHandler: { (status, token) in
+                            if status == Constants.Status.StatusOK.rawValue {
+                                self.getStudentDetails()
+                            }
+                            else {
+                                print(token as Any)
+                                MBProgressHUD.hide(for: self.view, animated: true)
+                            }
+                        })
+                    }
+                    else{
+                        MBProgressHUD.hide(for: self.view, animated: true)
+                        
+                        TutorDefaultAlertController.showAlertController(alertMessage: resultDictionary["message"] as? String, showController: self)
+                    }
+                }
+            }
+            else if response.result.isFailure {
+                MBProgressHUD.hide(for: self.view, animated: true)
+                print(response.result.error as Any)
+            }
+        }
+    }
+    
+   
+    //MARK:: Upload Action Photo
+   @objc func uploadPhotoButtonClick(sender:UIButton)
+    {
+        let alertController = UIAlertController(title: "Choose Option", message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
+        
+        let somethingAction = UIAlertAction(title: "Photo Library", style: .default, handler: {(alert: UIAlertAction!) in
+            self.openPhotoLibrary(tag: sender.tag)
+            
+        })
+        
+        let somethingActionCamera = UIAlertAction(title: "Camera", style: .default, handler: {(alert: UIAlertAction!) in
+            self.openCameraLibrary(tag: sender.tag)
+            
+        })
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: {(alert: UIAlertAction!) in print("cancel")})
+        
+        alertController.addAction(somethingAction)
+        alertController.addAction(somethingActionCamera)
+        alertController.addAction(cancelAction)
+        self.present(alertController, animated: true, completion:{})
+        
+        
+    }
+    
+    func openPhotoLibrary(tag:Int)  {
+        self.imagePicker.delegate = self
+        self.imagePicker.allowsEditing = false
+        self.imagePicker.sourceType = .photoLibrary
+        self.imagePicker.view.tag = tag
+        present(self.imagePicker, animated: true, completion: nil)
+    }
+    func openCameraLibrary(tag:Int)  {
+        
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera) {
+            self.imagePicker.delegate = self
+            self.imagePicker.allowsEditing = false
+            self.imagePicker.sourceType = .camera
+            present(self.imagePicker, animated: true, completion: nil)
+            self.imagePicker.view.tag = tag
+        }
+    }
+    
+    @objc func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: NSDictionary!){
+        self.dismiss(animated: true, completion: { () -> Void in
+        })
+        
+    }
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        print("called")
+        self.dismiss(animated: true, completion: { () -> Void in
+            
+            if let bigImage = info[UIImagePickerControllerOriginalImage] as? UIImage
+            {
+                self.selectedImage = bigImage                
+                self.isImageChange = true
+                self.selectedProfileImage.setValue(self.selectedImage, forKey: String(picker.view.tag))
+                self.profileTableview.reloadData()
+
+            }
+        })
+    }
+    
+    
+    func getLevelBoardData() {
+        
+        // print(parameterData);
+        let urlPath = String(format: "%@%@",Constants.baseUrl,Constants.levelBoard) as String
+        Alamofire.request(urlPath, method: .post, parameters:nil , encoding: JSONEncoding.default, headers:["Content-Type":"application/json","Authorization":String(format:"Bearer %@",TutorSharedClass.shared.token ?? "")]) .responseJSON { response in
+            if response.result.isSuccess
+            {
+                if let resultDictionary = response.result.value as? NSDictionary
+                {
+                    print(resultDictionary)
+                    
+                    if Int(truncating: resultDictionary["status"] as! NSNumber) == Constants.Status.StatusOK.rawValue
+                    {
+                        print(resultDictionary)
+                        MBProgressHUD.hide(for: self.view, animated: true)
+                        if let resultParseLoginDictionary = resultDictionary.object(forKey: "data") as? NSDictionary
+                        {
+                            self.levelBoardData = resultParseLoginDictionary
+                            self.thePicker.reloadAllComponents()
+                        }
+                        
+                    }
+                    else if Int(truncating: resultDictionary["status"] as! NSNumber) == Constants.Status.TokenInvalid.rawValue
+                    {
+                        TutorGenerateToken.performGenerateTokenUrl(completionHandler: { (status, token) in
+                            if status == Constants.Status.StatusOK.rawValue {
+                                self.getLevelBoardData()
+                            }
+                            else {
+                                print(token as Any)
+                                MBProgressHUD.hide(for: self.view, animated: true)
+                            }
+                        })
+                    }else if Int(truncating: resultDictionary["status"] as! NSNumber) == Constants.Status.TokenNotFound.rawValue
+                    {
+                        TutorGenerateToken.performGenerateTokenUrl(completionHandler: { (status, token) in
+                            if status == Constants.Status.StatusOK.rawValue {
+                                self.getLevelBoardData()
+                            }
+                            else {
+                                print(token as Any)
+                                MBProgressHUD.hide(for: self.view, animated: true)
+                            }
+                        })
+                    }
+                    else{
+                        MBProgressHUD.hide(for: self.view, animated: true)
+                        TutorDefaultAlertController.showAlertController(alertMessage: resultDictionary["message"] as? String, showController: self)
+                    }
+                }
+            }
+            else if response.result.isFailure {
+                MBProgressHUD.hide(for: self.view, animated: true)
+                print(response.result.error as Any)
+            }
+        }
     }
 }

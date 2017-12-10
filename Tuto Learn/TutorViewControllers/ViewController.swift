@@ -40,6 +40,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
 //        self.passwordTextField.text = "12345"//"12345"
         self.contentView.isOpaque = true
         self.rememberButton.isSelected = true
+        TutorSharedClass.shared.isLoginRemember = true
         self.createAccountButton.layer.cornerRadius = 5
         self.createAccountButton.layer.borderColor = UIColor.white.cgColor
         self.createAccountButton.layer.borderWidth = 1
@@ -55,6 +56,8 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
     @IBAction func rememberCheckMarkButton(sender:UIButton)
     {
         sender.isSelected = !sender.isSelected
+        TutorSharedClass.shared.isLoginRemember = sender.isSelected
+
         print(sender)
     }
     @IBAction func signInButtonAction(_ sender: Any) {
@@ -132,13 +135,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
                                         let loginDictionary = TutorSharedClass.shared.loginTutorLoginObject?.dictionaryRepresentation()
                                         UserDefaults.standard.set(loginDictionary, forKey: "LoginDetails")
                                     }
-                                    if (TutorSharedClass.shared.loginTutorLoginObject?.sm_register_type == "0") || (TutorSharedClass.shared.loginTutorLoginObject?.student?.isEmpty == false)
-                                    {
-                                        self.setrootViewControllerAfterLogin()
-                                    }else
-                                    {
-                                        self.setProfilerootViewController()
-                                    }
+                                   TutorSharedClass.shared.setRootControllerAccordingtoResponse(window: UIApplication.shared.keyWindow!)
                                 }
                             }
                         }else{
@@ -152,27 +149,6 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
                 }
                 MBProgressHUD.hide(for: self.view, animated: true)
         }
-    }
-    func setrootViewControllerAfterLogin() -> Void {
-        let tutorHomeViewController:TutorHomeViewController = self.storyboard?.instantiateViewController(withIdentifier: "TutorHomeViewController") as! TutorHomeViewController
-        let navigationController = UINavigationController(rootViewController: tutorHomeViewController)
-        navigationController.isNavigationBarHidden = true
-        UIApplication.shared.keyWindow?.rootViewController = navigationController
-    }
-   
-    func setProfilerootViewController() -> Void {
-        let tutorHomeViewController:TutorProfileViewController = self.storyboard?.instantiateViewController(withIdentifier: "TutorProfileViewController") as! TutorProfileViewController
-        tutorHomeViewController.currentProfilType = ProfileType.ProfileTypeGuardian.rawValue
-        let navigationController = UINavigationController(rootViewController: tutorHomeViewController)
-        navigationController.isNavigationBarHidden = true
-        UIApplication.shared.keyWindow?.rootViewController = navigationController
-    }
-    
-    func setPreferencesrootViewController() -> Void {
-        let tutorHomeViewController:TutorPreferencesViewController = self.storyboard?.instantiateViewController(withIdentifier: "TutorPreferencesViewController") as! TutorPreferencesViewController
-        let navigationController = UINavigationController(rootViewController: tutorHomeViewController)
-        navigationController.isNavigationBarHidden = true
-        UIApplication.shared.keyWindow?.rootViewController = navigationController
     }
     
     @IBAction func signUpButtonAction(_ sender: Any)
@@ -217,6 +193,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
                             print(resultDictionary)
                             if let resultParseLoginDictionary = resultDictionary.object(forKey: "data") as? NSDictionary
                             {
+                                
                                 if let isAlreadyRegister = resultParseLoginDictionary["isalreadyregisterstatus"] as? NSNumber
                                 {
                                     if isAlreadyRegister.intValue == 205
@@ -260,14 +237,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
                 UserDefaults.standard.set(loginDictionary, forKey: "LoginDetails")
             }
             
-            if (TutorSharedClass.shared.loginTutorLoginObject?.sm_register_type == "0") || (TutorSharedClass.shared.loginTutorLoginObject?.student?.isEmpty == false)
-            {
-                self.setrootViewControllerAfterLogin()
-            }else
-            {
-                self.setProfilerootViewController()
-            }
-            
+            TutorSharedClass.shared.setRootControllerAccordingtoResponse(window: UIApplication.shared.keyWindow!)
         }
     }
     // MARK: -Facebook Login

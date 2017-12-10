@@ -63,6 +63,7 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
         // Set up a cool background image for demo purposes
         SideMenuManager.default.menuAnimationBackgroundColor = UIColor.clear
     }
+    
     func setGuardianData()  {
         let profileNameDetails: NSMutableDictionary? = ["leftTitle":"First Name","rightTitle":"Last Name","leftValue":TutorSharedClass.shared.loginTutorLoginObject?.sm_name ?? "","rightValue":TutorSharedClass.shared.loginTutorLoginObject?.sm_last ?? "" ,"type":NSNumber.init(value: ProfileDataType.ProfileDataTypeFirstName.rawValue)]
         
@@ -75,6 +76,12 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
         
         let profileOccupationDetail: NSMutableDictionary? = ["rightTitle":"Occupation","leftTitle":"","leftValue":"","rightValue":TutorSharedClass.shared.loginTutorLoginObject?.spm_occupation ?? "","type":NSNumber.init(value: ProfileDataType.ProfileDataTypeOccupation.rawValue)]
         
+        if (dataArray != nil)
+        {
+            dataArray?.removeAllObjects()
+            dataArray = nil
+        }
+        
         dataArray = NSMutableArray()
         dataArray?.add(profileNameDetails ?? NSDictionary.init())
         dataArray?.add(profilegenderDetails ?? NSDictionary.init())
@@ -83,13 +90,8 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
         dataArray?.add(profileOccupationDetail ?? NSDictionary.init())
         self.profileTableview.estimatedRowHeight = 60.0
         self.profileTableview.rowHeight = UITableViewAutomaticDimension
+        self.profileTableview.reloadData()
         
-        self.tutorNavigationBar.rightBarButton.isHidden = false
-        self.tutorNavigationBar.navigationTitleLabel.text = "Your Profile"
-        self.tutorNavigationBar.leftBarButton.isHidden = true
-        self.tutorNavigationBar.rightBarButton.addTarget(self, action: #selector(menuClickAction), for:.touchUpInside)
-
-
     }
     
     func setHeaderView()  {
@@ -106,6 +108,8 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
         
         if let profileUrl = TutorSharedClass.shared.loginTutorLoginObject?.sm_profile_image
         {
+            self.uploadButton.setTitle("Edit Photo", for: .normal)
+
             self.profileImageView.kf.setImage(with: URL.init(string: profileUrl) , placeholder: UIImage.init(named: "dummyPhoto"), options: nil, progressBlock: nil, completionHandler:{
                 (image, error, cacheType, imageUrl) in
                 if (image != nil)
@@ -113,8 +117,26 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
                     self.selectedImage = self.profileImageView.image
                 }
             })
+        }else if let profileUrl = TutorSharedClass.shared.loginTutorLoginObject?.sm_profile_img_url
+        {
+            self.uploadButton.setTitle("Edit Photo", for: .normal)
+
+            self.profileImageView.kf.setImage(with: URL.init(string: profileUrl) , placeholder: UIImage.init(named: "dummyPhoto"), options: nil, progressBlock: nil, completionHandler:{
+                (image, error, cacheType, imageUrl) in
+                if (image != nil)
+                {
+                    self.selectedImage = self.profileImageView.image
+                }
+            })
+        }else
+        {
+            self.uploadButton.setTitle("Upload Photo", for: .normal)
         }
         
+        self.tutorNavigationBar.rightBarButton.isHidden = false
+        self.tutorNavigationBar.navigationTitleLabel.text = "Your Profile"
+        self.tutorNavigationBar.leftBarButton.isHidden = true
+        self.tutorNavigationBar.rightBarButton.addTarget(self, action: #selector(menuClickAction), for:.touchUpInside)
     }
     
     func setFooterView()  {
@@ -238,8 +260,8 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
     
     // Sets the number of rows in the picker view
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-    
-        return genderArray.count
+      
+            return genderArray.count
     }
     
     // This function sets the text of the picker view to the content of the "salutations" array
@@ -311,7 +333,7 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
                 self.selectedImage = bigImage
                 self.profileImageView.image = self.selectedImage
                 self.isImageChange = true
-
+                self.uploadButton.setTitle("Edit Photo", for: .normal)
                 
             }
         })
@@ -493,8 +515,8 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
                     parameterData["img_ext"] = "jpeg"
                 }else
                 {
-//                    parameterData["img_base"] = ""
-//                    parameterData["img_ext"] = ""
+                    parameterData["img_base"] = ""
+                    parameterData["img_ext"] = ""
                 }
                 self.callUpdateGuardianProfileDetails(parameterData: parameterData)
             }
@@ -514,7 +536,7 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
     func callUpdateGuardianProfileDetails(parameterData:Dictionary<String, String>)  {
         
         let urlPath = String(format: "%@%@",Constants.baseUrl,Constants.updateGuardianDetails) as String
-        //print(parameterData)
+       // print(parameterData)
         Alamofire.request(urlPath, method: .post, parameters:parameterData , encoding: JSONEncoding.default, headers:["Content-Type":"application/json","Authorization":String(format:"Bearer %@",TutorSharedClass.shared.token ?? "")]) .responseJSON { response in
             if response.result.isSuccess
             {
@@ -567,13 +589,12 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
     
     
     func getGuardianDetails() {
-        
 
         var parameterData = [String: String]()
-        parameterData["login_id"] = TutorSharedClass.shared.loginTutorLoginObject?.sm_id
+        parameterData["user_id"] = TutorSharedClass.shared.loginTutorLoginObject?.sm_id
         parameterData["register_type"] = TutorSharedClass.shared.loginTutorLoginObject?.sm_register_type
 
-        print(parameterData);
+       // print(parameterData);
         let urlPath = String(format: "%@%@",Constants.baseUrl,Constants.profileDetails) as String
         Alamofire.request(urlPath, method: .post, parameters:parameterData , encoding: JSONEncoding.default, headers:["Content-Type":"application/json","Authorization":String(format:"Bearer %@",TutorSharedClass.shared.token ?? "")]) .responseJSON { response in
             if response.result.isSuccess
@@ -586,9 +607,24 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
                     {
                         print(resultDictionary)
                         MBProgressHUD.hide(for: self.view, animated: true)
-                        
-                        self.showAlertController(alertMessage: resultDictionary["message"] as? String)
-                        
+                        if let resultParseLoginDictionary = resultDictionary.object(forKey: "data") as? NSDictionary
+                        {
+                            let loginModelArray = TutorLoginModel.modelsFromDictionaryArray(array: [resultParseLoginDictionary])
+                            if (loginModelArray.first != nil)
+                            {
+                                TutorSharedClass.shared.loginTutorLoginObject?.updateModelObject(modelObject: loginModelArray.first!)
+
+                                if TutorSharedClass.shared.isLoginRemember
+                                {
+                                    UserDefaults.standard.set(true, forKey: "isUserLoggedIn")
+                                    let loginDictionary = TutorSharedClass.shared.loginTutorLoginObject?.dictionaryRepresentation()
+                                    UserDefaults.standard.set(loginDictionary, forKey: "LoginDetails")
+                                }
+                                
+                                self.setGuardianData()
+                            }
+                        }
+ 
                     }
                     else if Int(truncating: resultDictionary["status"] as! NSNumber) == Constants.Status.TokenInvalid.rawValue
                     {
@@ -626,6 +662,8 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
             }
         }
     }
+    
+
 }
 
 
