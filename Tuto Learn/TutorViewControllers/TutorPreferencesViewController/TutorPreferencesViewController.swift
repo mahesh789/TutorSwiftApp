@@ -6,7 +6,7 @@ import UIKit
 import SideMenu
 
 enum PreferencesDataType:Int {
-    case PreferencesDataTypeContact = 1, PreferencesDataTypeTimeOfContact
+    case PreferencesDataTypeContact = 1, PreferencesDataTypeTimeOfContact, PreferencesDataTutorType
 }
 
 class TutorPreferencesViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource, UINavigationControllerDelegate
@@ -55,7 +55,7 @@ class TutorPreferencesViewController: UIViewController, UITextFieldDelegate, UIT
     {
         let contactDetails: NSMutableDictionary? = ["leftTitle":"Time of Contact","rightTitle":"Mode of Contact","leftValue":"","rightValue":"","type":NSNumber.init(value: PreferencesDataType.PreferencesDataTypeTimeOfContact.rawValue)]
         
-        let tutorDetails: NSMutableDictionary? = ["leftTitle":"Tution Type","rightTitle":"Preferred Tutor Gender","leftValue":"","rightValue":"","type":NSNumber.init(value: PreferencesDataType.PreferencesDataTypeTimeOfContact.rawValue)]
+        let tutorDetails: NSMutableDictionary? = ["leftTitle":"Tution Type","rightTitle":"Preferred Tutor Gender","leftValue":"","rightValue":"","type":NSNumber.init(value: PreferencesDataType.PreferencesDataTutorType.rawValue)]
         
         dataArray = NSMutableArray()
         dataArray?.add(contactDetails ?? NSDictionary.init())

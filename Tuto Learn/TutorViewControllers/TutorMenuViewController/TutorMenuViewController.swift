@@ -56,17 +56,19 @@ class TutorMenuViewController: UIViewController,UITableViewDelegate,UITableViewD
            self.disMissMenuView()
             break
         case MenuActionType.MenuActionTypeMyAccount.rawValue:
-            
+            let myAccountControllerObj = self.storyboard?.instantiateViewController(withIdentifier: "TutorMyAccountViewController") as? TutorMyAccountViewController
+                self.navigationController?.pushViewController(myAccountControllerObj!, animated: true)
             break
         case MenuActionType.MenuActionTypeHistory.rawValue:
 
             break
         case MenuActionType.MenuActionTypeHelp.rawValue:
-           
+            
             break
         case MenuActionType.MenuActionTypeContactUs.rawValue:
             
             break
+
         default: print("Other...")
         }
     }
