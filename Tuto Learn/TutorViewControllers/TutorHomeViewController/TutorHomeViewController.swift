@@ -470,13 +470,13 @@ class TutorHomeViewController: UIViewController,UITextFieldDelegate,UITableViewD
                     }
                 }
             }
-            else{
-                print(info as Any)
-                if let resultDict = info as? Dictionary<String,Any>
-                {
-                    TutorDefaultAlertController.showAlertController(alertMessage: resultDict["message"] as? String, showController: self)
-                }
-            }
+//            else{
+//                print(info as Any)
+//                if let resultDict = info as? Dictionary<String,Any>
+//                {
+//                    TutorDefaultAlertController.showAlertController(alertMessage: resultDict["message"] as? String, showController: self)
+//                }
+//            }
         }
     }
 //
