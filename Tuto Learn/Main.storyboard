@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -1020,6 +1021,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="timeSlotCollectionView" destination="bjD-J0-2gu" id="KHs-d3-T89"/>
+                                            <outlet property="timeSlotLabel" destination="Ubo-ys-XbX" id="Ndr-Mh-q67"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

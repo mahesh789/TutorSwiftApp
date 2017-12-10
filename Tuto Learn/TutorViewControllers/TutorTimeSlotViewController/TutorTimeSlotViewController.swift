@@ -59,9 +59,10 @@ class TutorTimeSlotViewController: UIViewController,UITableViewDelegate,UITableV
             {
                 if let resultDictionary = info as? Dictionary<String,Any>
                 {
-                    if let pickerArray = resultDictionary["data"] as? Array<Any>
+                    if let timeSlotArray = resultDictionary["data"] as? Array<Any>
                     {
-                       print(pickerArray as Any)
+                       print(timeSlotArray as Any)
+                        self.timeSlotParsing(slotArray: timeSlotArray as NSArray)
                     }
                 }
             }
@@ -91,30 +92,56 @@ class TutorTimeSlotViewController: UIViewController,UITableViewDelegate,UITableV
                 {
                    let startTime = splitArray[0]
                    let endTime = splitArray[1]
-                   
+                    let headerDictionary = NSMutableDictionary()
+                    let rowsArray = NSMutableArray()
+                    headerDictionary.setObject(timeString, forKey: "time" as NSCopying)
                    for i in 0 ..< dateArray.count
                    {
+                  
                     
-                    let searchPredicate = NSPredicate(format: "(sd_date == %@) && (sd_start_time == %@) && (sd_end_time == %@)",dateArray[i],"","")
-                   // let filteredArray = accountArray.filtered(using: searchPredicate)
+                    let endtimeInt = Int(endTime)
+                    let predicate1 = NSPredicate(format: "sd_date == %@",dateArray[i])
+                    let predicate2 = NSPredicate(format: "sd_start_time == %@",startTime)
+                    let predicate3 = NSPredicate(format: "sd_end_time == %d",endtimeInt!)
+                    let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [predicate1,predicate2,predicate3])
+                    let filteredArray = slotArray.filtered(using: predicateCompound)
+                    if filteredArray.count > 0
+                    {
+                        rowsArray.add(filteredArray.last ?? "")
+                    }else{
+                        let emptySlotDictionary = ["available":"1","sd_date":"","sd_start_time":"","sd_end_time":""]
+                        rowsArray.add(emptySlotDictionary)
+                    }
                     
                    }
-                    
+                    headerDictionary.setObject(rowsArray, forKey: "slotArray" as NSCopying)
+                    self.timeSlotTableArray.add(headerDictionary)
                 }
                 
             }
             
         }
+        print(self.timeSlotTableArray)
+        self.timeSlotTableView.reloadData()
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return self.timeSlotTableArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TutorTimeSlotTableViewCell", for: indexPath) as! TutorTimeSlotTableViewCell
-       
+        let timeSlotDictionary = self.timeSlotTableArray[indexPath.row] as? NSDictionary
+        cell.timeSlotLabel.text = timeSlotDictionary?["time"] as? String
+        let slotArray = timeSlotDictionary?["slotArray"] as? NSArray
+        if slotArray?.count ?? 0 > 0 {
+            cell.timeSlotReloadArray(slotArray:slotArray!)
+        }else{
+            cell.timeSlotReloadArray(slotArray:[])
+        }
+        
         return cell
     }
     
