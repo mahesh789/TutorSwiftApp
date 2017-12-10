@@ -255,6 +255,23 @@ class TutorHomeViewController: UIViewController,UITextFieldDelegate,UITableViewD
         textField.dateFormatter.dateFormat = Constants.dateFormatValue
         textField.dateDidChange = { date in
             print("selectedDate ", date )
+//            let myCalendar = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)!
+//            let myComponents = myCalendar.components(.weekday, from: date)
+//            let weekDay = myComponents.weekday
+//            switch weekDay {
+//            case 1?:
+//                TutorDefaultAlertController.showAlertController(alertMessage: "Please select only weekdays", showController: self)
+//                 textField.text = ""
+//               break
+//            case 7?:
+//                 TutorDefaultAlertController.showAlertController(alertMessage: "Please select only weekdays", showController: self)
+//                 textField.text = ""
+//
+//                break
+//            default:
+//                textField.text = textField.dateFormatter.string(from: date)
+//                 break
+//            }
             textField.text = textField.dateFormatter.string(from: date)
         }
     }
@@ -394,7 +411,7 @@ class TutorHomeViewController: UIViewController,UITextFieldDelegate,UITableViewD
         
         if isValidate
         {
-            parameterData["prefer_gen"] = TutorSharedClass.shared.loginTutorLoginObject?.sm_gender
+            parameterData["prefer_gen"] = "female"//TutorSharedClass.shared.loginTutorLoginObject?.sm_gender
             MBProgressHUD.showAdded(to: self.view, animated: true)
             self.getSearchTutorList(parametersDict: parameterData as NSDictionary)
         }
