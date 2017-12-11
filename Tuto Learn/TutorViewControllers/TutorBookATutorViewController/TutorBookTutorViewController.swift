@@ -29,17 +29,17 @@ class TutorBookTutorViewController: UIViewController,UITableViewDelegate,UITable
         var groupSize:String = ""
         var totalCost:Int = 0
         
-        if (TutorSharedClass.shared.findTutorDictionary?.object(forKey: "sel_tution_type") as? String) == "One-on-One" {
+        if (TutorSharedClass.shared.findTutorDictionary.object(forKey: "sel_tution_type") as? String) == "One-on-One" {
             groupSize = "1"
             totalCost = (tutorTeacherObject.teacherSoloChargesInt ?? 0)
         }else
         {
            // sel_group_size
-            groupSize = ((TutorSharedClass.shared.findTutorDictionary?.object(forKey: "sel_group_size") ?? "") as? String)!
+            groupSize = ((TutorSharedClass.shared.findTutorDictionary.object(forKey: "sel_group_size") ?? "") as? String)!
             totalCost = (tutorTeacherObject.teacherGroupChargesInt ?? 0)
         }
         
-        bookTutorArray = [["leftTitleLabel":"Date","leftValueLabel":"\(TutorSharedClass.shared.findTutorDictionary?.object(forKey: "sel_date") ?? "")","middleTitleLabel":"Time","middleValueLabel":"\(TutorSharedClass.shared.findTutorDictionary?.object(forKey: "sel_start_time") ?? "") to \(TutorSharedClass.shared.findTutorDictionary?.object(forKey: "sel_end_time") ?? "") ","rightTitleLabel":"","rightValueLabel":""],["leftTitleLabel":"No. of Sessions","leftValueLabel":"\(TutorSharedClass.shared.findTutorDictionary?.object(forKey: "no_session") ?? "")","middleTitleLabel":"Session Type","middleValueLabel":"\(TutorSharedClass.shared.findTutorDictionary?.object(forKey: "sel_tution_type") ?? "")","rightTitleLabel":"Group Size","rightValueLabel":"\(groupSize)"],["leftTitleLabel":"Subject","leftValueLabel":"\(tutorTeacherObject.teacherSubjectString ?? "")","middleTitleLabel":"Topic","middleValueLabel":"\(TutorSharedClass.shared.findTutorDictionary?.object(forKey: "sel_topic") ?? "")","rightTitleLabel":"","rightValueLabel":""],["leftTitleLabel":"Total Cost","leftValueLabel":"$\(totalCost)","middleTitleLabel":"","middleValueLabel":"","rightTitleLabel":"","rightValueLabel":""]]
+        bookTutorArray = [["leftTitleLabel":"Date","leftValueLabel":"\(TutorSharedClass.shared.findTutorDictionary.object(forKey: "sel_date") ?? "")","middleTitleLabel":"Time","middleValueLabel":"\(TutorSharedClass.shared.findTutorDictionary.object(forKey: "sel_start_time") ?? "") to \(TutorSharedClass.shared.findTutorDictionary.object(forKey: "sel_end_time") ?? "") ","rightTitleLabel":"","rightValueLabel":""],["leftTitleLabel":"No. of Sessions","leftValueLabel":"\(TutorSharedClass.shared.findTutorDictionary.object(forKey: "no_session") ?? "")","middleTitleLabel":"Session Type","middleValueLabel":"\(TutorSharedClass.shared.findTutorDictionary.object(forKey: "sel_tution_type") ?? "")","rightTitleLabel":"Group Size","rightValueLabel":"\(groupSize)"],["leftTitleLabel":"Subject","leftValueLabel":"\(tutorTeacherObject.teacherSubjectString ?? "")","middleTitleLabel":"Topic","middleValueLabel":"\(TutorSharedClass.shared.findTutorDictionary.object(forKey: "sel_topic") ?? "")","rightTitleLabel":"","rightValueLabel":""],["leftTitleLabel":"Total Cost","leftValueLabel":"$\(totalCost)","middleTitleLabel":"","middleValueLabel":"","rightTitleLabel":"","rightValueLabel":""]]
         
     }
     

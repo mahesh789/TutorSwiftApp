@@ -25,7 +25,7 @@ public class TutorSharedClass:NSObject {
     var token:String?
     var studentId:String?
     var loopCount:Int = 0
-    var findTutorDictionary:NSDictionary?
+    var findTutorDictionary = NSMutableDictionary()
     var isLoginRemember:Bool = false
 
 
@@ -112,6 +112,28 @@ public class TutorSharedClass:NSObject {
             UserDefaults.standard.set(loginDictionary, forKey: "LoginDetails")
         }
         
+    }
+    
+  public func setTimeFormat(startTime:String, endTime:String) -> String {
+        
+        var tempStartTime = startTime
+        var tempEndTime = endTime
+        if (Int(startTime)! > 12)
+        {
+            tempStartTime = tempStartTime + " PM"
+            
+        }else{
+            tempStartTime = tempStartTime + " AM"
+        }
+        
+        if (Int(endTime)! > 12)
+        {
+            tempEndTime = tempEndTime + " PM"
+            
+        }else{
+            tempEndTime = tempEndTime + " AM"
+        }
+        return "\(tempStartTime) " + "-\(tempEndTime)"
     }
 }
 
