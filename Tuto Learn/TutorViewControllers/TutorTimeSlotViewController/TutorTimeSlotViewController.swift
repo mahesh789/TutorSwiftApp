@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TutorTimeSlotViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
+class TutorTimeSlotViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,TimeSlotDelegate {
     @IBOutlet weak var tutorHomeNavigationBar:TutorHomeNavigationBar!
     @IBOutlet weak var timeSlotTableView:UITableView!
     @IBOutlet weak var teacherNameLabel:UILabel!
@@ -94,15 +94,12 @@ class TutorTimeSlotViewController: UIViewController,UITableViewDelegate,UITableV
                    let endTime = splitArray[1]
                     let headerDictionary = NSMutableDictionary()
                     let rowsArray = NSMutableArray()
-                    headerDictionary.setObject(timeString, forKey: "time" as NSCopying)
+                    headerDictionary.setObject(TutorSharedClass.shared.setTimeFormat(startTime: startTime, endTime: endTime), forKey: "time" as NSCopying)
                    for i in 0 ..< dateArray.count
                    {
-                  
-                    
-                    let endtimeInt = Int(endTime)
                     let predicate1 = NSPredicate(format: "sd_date == %@",dateArray[i])
                     let predicate2 = NSPredicate(format: "sd_start_time == %@",startTime)
-                    let predicate3 = NSPredicate(format: "sd_end_time == %d",endtimeInt!)
+                    let predicate3 = NSPredicate(format: "sd_end_time == %@",endTime)
                     let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [predicate1,predicate2,predicate3])
                     let filteredArray = slotArray.filtered(using: predicateCompound)
                     if filteredArray.count > 0
@@ -126,6 +123,8 @@ class TutorTimeSlotViewController: UIViewController,UITableViewDelegate,UITableV
         
     }
     
+   
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.timeSlotTableArray.count
     }
@@ -141,7 +140,7 @@ class TutorTimeSlotViewController: UIViewController,UITableViewDelegate,UITableV
         }else{
             cell.timeSlotReloadArray(slotArray:[])
         }
-        
+        cell.delegate = self
         return cell
     }
     
@@ -158,6 +157,24 @@ class TutorTimeSlotViewController: UIViewController,UITableViewDelegate,UITableV
     {
         return self.tutorTimeSlotHeaderView
     }
+     func selectedSlotBookDetails(slotDictionary:Dictionary<String,Any>)
+     {
+        let availableStatus = slotDictionary["available"] as? Int
+        if availableStatus == 0
+        {
+            TutorSharedClass.shared.findTutorDictionary["sd_start_time"] = String(format:"%@:00",((slotDictionary["sd_start_time"] as? String) ?? ""))
+            TutorSharedClass.shared.findTutorDictionary["sd_end_time"] = String(format:"%@:00",((slotDictionary["sd_end_time"] as? String) ?? ""))
+            TutorSharedClass.shared.findTutorDictionary["sel_date"] = String(format:"%@:00",((slotDictionary["sd_date"] as? String) ?? ""))
+            self.navigateBookNowViewController(tutorTeacherModel: tutorTeacherObject)
+        }
+     }
+    
+    func navigateBookNowViewController(tutorTeacherModel:TutorTeacherModel) -> Void {
+        let tutorBookTutorViewController:TutorBookTutorViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TutorBookTutorViewController") as! TutorBookTutorViewController
+             tutorBookTutorViewController.tutorTeacherObject = tutorTeacherModel
+            self.navigationController?.pushViewController(tutorBookTutorViewController, animated: true)
+    }
+
     
     @objc func backBarButtonAction() -> Void {
         self.navigationController?.popViewController(animated: true)

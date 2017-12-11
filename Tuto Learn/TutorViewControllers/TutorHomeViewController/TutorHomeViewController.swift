@@ -480,33 +480,10 @@ class TutorHomeViewController: UIViewController,UITextFieldDelegate,UITableViewD
         }
     }
 //
-//    // MARK:Topic List Api Implementation
-//    func getTopicList() -> Void {
-//        let urlPath = String(format: "%@%@",Constants.baseUrl,Constants.topicList) as String
-//        TutorNetworkManager.performRequestWithUrl(baseUrl: urlPath, parametersDictionary: ["course_id":(self.selectedSubjectDictionary?["cs_cid"] ?? "")]) { (status, info) in
-//            MBProgressHUD.hide(for: self.view, animated: true)
-//            if status == Constants.Status.StatusOK.rawValue
-//            {
-//                if let resultDictionary = info as? Dictionary<String,Any>
-//                {
-//                    if let pickerArray = resultDictionary["data"] as? Array<Any>
-//                    {
-//                        self.openpickerViewController(pickerArray: pickerArray, selectedPickerType: .TopicListType)
-//                    }
-//                }
-//            }else{
-//                print(info as Any)
-//                if let resultDict = info as? Dictionary<String,Any>
-//                {
-//                    TutorDefaultAlertController.showAlertController(alertMessage: resultDict["message"] as? String, showController: self)
-//                }
-//            }
-//        }
-//    }
-//
+
     // MARK:Search List Api Implementation
     func getSearchTutorList(parametersDict:NSDictionary?) -> Void {
-        TutorSharedClass.shared.findTutorDictionary = parametersDict
+        TutorSharedClass.shared.findTutorDictionary = (parametersDict?.mutableCopy() as? NSMutableDictionary)!
         let urlPath = String(format: "%@%@",Constants.baseUrl,Constants.searchTutor) as String
         TutorNetworkManager.performRequestWithUrl(baseUrl: urlPath, parametersDictionary:parametersDict as? Dictionary<String, Any>) { (status, info) in
             if status == Constants.Status.StatusOK.rawValue

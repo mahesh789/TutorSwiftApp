@@ -8,9 +8,15 @@
 
 import UIKit
 
+protocol TimeSlotDelegate: class {
+    func selectedSlotBookDetails(slotDictionary:Dictionary<String,Any>)
+}
+
 class TutorTimeSlotTableViewCell: UITableViewCell,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     @IBOutlet weak var timeSlotLabel:UILabel!
     @IBOutlet weak var timeSlotCollectionView:UICollectionView!
+    var delegate:TimeSlotDelegate?
+    
     var timeSlotArray:NSArray!
     
     override func awakeFromNib() {
@@ -49,6 +55,14 @@ class TutorTimeSlotTableViewCell: UITableViewCell,UICollectionViewDelegate,UICol
         return cell
     }
     
+     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
+     {
+        if let slotDictionary = timeSlotArray[indexPath.row] as? Dictionary<String,Any> {
+           self.delegate?.selectedSlotBookDetails(slotDictionary: slotDictionary)
+        }
+    }
+
+    
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -66,7 +80,8 @@ class TutorTimeSlotTableViewCell: UITableViewCell,UICollectionViewDelegate,UICol
                         minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0.5
     }
-
+    
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
