@@ -382,7 +382,7 @@ class TutorPreferencesViewController: UIViewController, UITextFieldDelegate, UIT
                         }
                         
                     }
-                    else if Int(truncating: resultDictionary["status"] as! NSNumber) == Constants.Status.TokenInvalid.rawValue
+                    else if Int(truncating: resultDictionary["status"] as! NSNumber) == Constants.Status.TokenNotFound.rawValue
                     {
                         TutorGenerateToken.performGenerateTokenUrl(completionHandler: { (status, token) in
                             if status == Constants.Status.StatusOK.rawValue {
@@ -436,7 +436,7 @@ class TutorPreferencesViewController: UIViewController, UITextFieldDelegate, UIT
                         MBProgressHUD.hide(for: self.view, animated: true)
                         self.showAlertController(alertMessage: resultDictionary["message"] as? String)
                     }
-                    else if Int(truncating: resultDictionary["status"] as! NSNumber) == Constants.Status.TokenInvalid.rawValue
+                    else if Int(truncating: resultDictionary["status"] as! NSNumber) == Constants.Status.TokenNotFound.rawValue
                     {
                         TutorGenerateToken.performGenerateTokenUrl(completionHandler: { (status, token) in
                             if status == Constants.Status.StatusOK.rawValue {

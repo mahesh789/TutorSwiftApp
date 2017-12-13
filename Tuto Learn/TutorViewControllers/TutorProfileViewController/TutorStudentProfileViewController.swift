@@ -773,7 +773,7 @@ class TutorStudentProfileViewController: UIViewController,UITextFieldDelegate,UI
                         self.showAlertController(alertMessage: resultDictionary["message"] as? String)
                         
                     }
-                    else if Int(truncating: resultDictionary["status"] as! NSNumber) == Constants.Status.TokenInvalid.rawValue
+                    else if Int(truncating: resultDictionary["status"] as! NSNumber) == Constants.Status.TokenNotFound.rawValue
                     {
                         TutorGenerateToken.performGenerateTokenUrl(completionHandler: { (status, token) in
                             if status == Constants.Status.StatusOK.rawValue {
@@ -846,7 +846,7 @@ class TutorStudentProfileViewController: UIViewController,UITextFieldDelegate,UI
                         }
                         
                     }
-                    else if Int(truncating: resultDictionary["status"] as! NSNumber) == Constants.Status.TokenInvalid.rawValue
+                    else if Int(truncating: resultDictionary["status"] as! NSNumber) == Constants.Status.TokenNotFound.rawValue
                     {
                         TutorGenerateToken.performGenerateTokenUrl(completionHandler: { (status, token) in
                             if status == Constants.Status.StatusOK.rawValue {
@@ -970,7 +970,7 @@ class TutorStudentProfileViewController: UIViewController,UITextFieldDelegate,UI
                         }
                         
                     }
-                    else if Int(truncating: resultDictionary["status"] as! NSNumber) == Constants.Status.TokenInvalid.rawValue
+                    else if Int(truncating: resultDictionary["status"] as! NSNumber) == Constants.Status.TokenNotFound.rawValue
                     {
                         TutorGenerateToken.performGenerateTokenUrl(completionHandler: { (status, token) in
                             if status == Constants.Status.StatusOK.rawValue {

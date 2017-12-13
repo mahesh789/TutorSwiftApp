@@ -553,7 +553,7 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
                         self.showAlertController(alertMessage: resultDictionary["message"] as? String)
 
                     }
-                    else if Int(truncating: resultDictionary["status"] as! NSNumber) == Constants.Status.TokenInvalid.rawValue
+                    else if Int(truncating: resultDictionary["status"] as! NSNumber) == Constants.Status.TokenNotFound.rawValue
                     {
                         TutorGenerateToken.performGenerateTokenUrl(completionHandler: { (status, token) in
                             if status == Constants.Status.StatusOK.rawValue {
@@ -626,7 +626,7 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
                         }
  
                     }
-                    else if Int(truncating: resultDictionary["status"] as! NSNumber) == Constants.Status.TokenInvalid.rawValue
+                    else if Int(truncating: resultDictionary["status"] as! NSNumber) == Constants.Status.TokenNotFound.rawValue
                     {
                         TutorGenerateToken.performGenerateTokenUrl(completionHandler: { (status, token) in
                             if status == Constants.Status.StatusOK.rawValue {
