@@ -35,9 +35,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
         self.passwordTextField.placeholder = "Password"
         self.signInButton.setTitle("Sign In", for:UIControlState.normal)
         fbLoginButton.addTarget(self, action: #selector(self.facebookLoginButtonClicked), for: .touchUpInside)
-        //temporary
-//        self.userNameTextField.text = "ankita@test.com"//"guardian@gmail.com"//
-//        self.passwordTextField.text = "12345"//"12345"
+       
         self.contentView.isOpaque = true
         self.rememberButton.isSelected = true
         TutorSharedClass.shared.isLoginRemember = true
@@ -58,7 +56,6 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
         sender.isSelected = !sender.isSelected
         TutorSharedClass.shared.isLoginRemember = sender.isSelected
 
-        print(sender)
     }
     @IBAction func signInButtonAction(_ sender: Any) {
         
