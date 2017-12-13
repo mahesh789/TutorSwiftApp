@@ -22,8 +22,8 @@ public class TutorTeacherModel {
 	public var teacherQualificationString : String?
 	public var teacherProfileString : String?
 	public var teacherSubjectString : String?
-	public var teacherGroupChargesInt : Int?
-	public var teacherSoloChargesInt : Int?
+	public var teacherGroupChargesInt : String?
+	public var teacherSoloChargesInt : String?
 	public var teacherAvailableInt : Int?
     public var teacherRatingString : String?
 
@@ -68,8 +68,8 @@ public class TutorTeacherModel {
 		teacherQualificationString = dictionary["tm_qualification"] as? String
 		teacherProfileString = dictionary["tm_profile"] as? String
 		teacherSubjectString = dictionary["tm_subject"] as? String
-		teacherGroupChargesInt = dictionary["tm_group_charges"] as? Int
-		teacherSoloChargesInt = dictionary["tm_solo_charges"] as? Int
+		teacherGroupChargesInt = dictionary["tm_group_charges"] as? String
+		teacherSoloChargesInt = dictionary["tm_solo_charges"] as? String
 		teacherAvailableInt = dictionary["available"] as? Int
         teacherRatingString = dictionary["rate"] as? String
 	}
