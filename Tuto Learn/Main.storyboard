@@ -179,7 +179,7 @@
                                                     <constraint firstAttribute="width" constant="30" id="acU-aU-lPt"/>
                                                 </constraints>
                                                 <connections>
-                                                    <action selector="rememberCheckMarkButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="U93-ox-he8"/>
+                                                    <action selector="rememberCheckMarkButtonWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wd2-qL-xxw"/>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Remember me" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="smS-m5-SMq">
@@ -304,7 +304,7 @@
                         <outlet property="googlePlusLoginButton" destination="OT8-5o-dqt" id="ctv-HM-31z"/>
                         <outlet property="linkedInLoginButton" destination="fVa-dE-Chs" id="gqa-7g-iTM"/>
                         <outlet property="passwordTextField" destination="AUi-mI-8wM" id="hRJ-If-kbr"/>
-                        <outlet property="rememberButton" destination="FrI-OW-Le5" id="IPg-ay-EQZ"/>
+                        <outlet property="rememberButton" destination="FrI-OW-Le5" id="hkt-Vv-lUt"/>
                         <outlet property="signInButton" destination="m5v-4i-L1O" id="3ce-8o-fPP"/>
                         <outlet property="userNameTextField" destination="p5K-7r-AwR" id="GIB-es-CbO"/>
                     </connections>
