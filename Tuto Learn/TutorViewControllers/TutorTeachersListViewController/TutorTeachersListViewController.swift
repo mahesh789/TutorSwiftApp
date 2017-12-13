@@ -87,6 +87,11 @@ class TutorTeachersListViewController: UIViewController,UICollectionViewDelegate
             teacherCollectionCell.bookNowButton.tag = indexPath.row
         }
         teacherCollectionCell.bookNowButton.layer.cornerRadius = 2
+        let profileImageUrl = String(format:"%@%@",Constants.imageBaseUrl,(tutorTeacherObject.teacherProfileString ?? ""))
+         teacherCollectionCell.profileImageView.kf.setImage(with: URL.init(string:profileImageUrl) , placeholder: UIImage.init(named: "dummyPhoto"), options: nil, progressBlock: nil, completionHandler:{
+            (image, error, cacheType, imageUrl) in
+            
+        })
         
     }
     

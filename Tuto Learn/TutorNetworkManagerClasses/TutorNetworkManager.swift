@@ -24,7 +24,7 @@ class TutorNetworkManager: NSObject {
                         if Int(truncating: resultDictionary["status"] as! NSNumber) == Constants.Status.StatusOK.rawValue
                         {
                              completionHandler(Constants.Status.StatusOK.rawValue,resultDictionary)
-                        }else if Int(truncating: resultDictionary["status"] as! NSNumber) == Constants.Status.TokenInvalid.rawValue
+                        }else if Int(truncating: resultDictionary["status"] as! NSNumber) == Constants.Status.TokenNotFound.rawValue
                         {
                             TutorSharedClass.shared.loopCount += 1
                             if TutorSharedClass.shared.loopCount > 1

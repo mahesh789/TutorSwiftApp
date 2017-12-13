@@ -25,7 +25,7 @@ class TutorBookTutorViewController: UIViewController,UITableViewDelegate,UITable
         self.getArrayOfBookTutor()
     }
     func getArrayOfBookTutor() -> Void {
-        self.teacherNameLabel.text = (tutorTeacherObject.teacherNameString ?? "") + (tutorTeacherObject.teacherLastNameString ?? "")
+       self.teacherNameLabel.text = tutorTeacherObject.teacherNameString ?? "" + " \(tutorTeacherObject.teacherLastNameString ?? "")"
         var groupSize:String = ""
         var totalCost:Int = 0
         
@@ -53,6 +53,11 @@ class TutorBookTutorViewController: UIViewController,UITableViewDelegate,UITable
         teacherProfileImageView.layer.cornerRadius = self.teacherProfileImageView.frame.size.height/2
         teacherProfileImageView.clipsToBounds = true
         makePaymentButton.layer.cornerRadius = 2
+        let profileImageUrl = String(format:"%@%@",Constants.imageBaseUrl,(tutorTeacherObject.teacherProfileString ?? ""))
+        teacherProfileImageView.kf.setImage(with: URL.init(string:profileImageUrl) , placeholder: UIImage.init(named: "dummyPhoto"), options: nil, progressBlock: nil, completionHandler:{
+            (image, error, cacheType, imageUrl) in
+            
+        })
     }
     @objc func backBarButtonAction() -> Void {
         self.navigationController?.popViewController(animated: true)

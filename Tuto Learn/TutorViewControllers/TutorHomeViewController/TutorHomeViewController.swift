@@ -43,7 +43,7 @@ class TutorHomeViewController: UIViewController,UITextFieldDelegate,UITableViewD
         self.setFindTutorFieldsArray()
         self.thePicker.delegate = self;
         self.thePicker.dataSource = self;
-
+    
     }
    
     func setLayoutAndSetTexts() -> Void {
@@ -121,7 +121,7 @@ class TutorHomeViewController: UIViewController,UITextFieldDelegate,UITableViewD
             }
            else if (datadictionary?.value(forKey: "type") as? Int == FindTutorDataType.FindTutorDataTypeSelectDate.rawValue && textFieldTemp.customTag == 2)
             {
-                self.pickerListArray = ["9:00 AM - 1:00 PM","10:00 AM - 2.00 PM","11:00 AM - 3:00 PM","12:00 PM - 4:00 PM","1:00 PM - 5:00 PM","2:00 PM - 6:00 PM","3:00 PM - 7:00 PM","4:00 PM - 8:00 PM","5:00 PM - 9:00 PM"]
+                self.pickerListArray = ["9:00 AM - 10:00 PM","10:00 AM - 11.00 AM","11:00 AM - 12:00 AM","12:00 AM - 13:00 PM","13:00 PM - 14:00 PM","14:00 PM - 15:00 PM","15:00 PM - 16:00 PM","16:00 PM - 17:00 PM","17:00 PM - 18:00 PM","18:00 PM - 19:00 PM","19:00 PM - 20:00 PM","20:00 PM - 21:00 PM"]
                 self.selectedPickerDataType = .TimeSlotType
                  textFieldTemp.inputView = self.thePicker
                 self.thePicker.selectRow(0, inComponent: 0, animated: true)
@@ -252,7 +252,7 @@ class TutorHomeViewController: UIViewController,UITextFieldDelegate,UITableViewD
         textField.pickerType = .DatePicker
         textField.datePicker?.datePickerMode = .date
         textField.datePicker?.minimumDate = Date()
-        textField.dateFormatter.dateFormat = Constants.dateFormatValue
+        textField.dateFormatter.dateFormat = Constants.findTutordateFormatValue
         textField.dateDidChange = { date in
             print("selectedDate ", date )
 //            let myCalendar = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)!

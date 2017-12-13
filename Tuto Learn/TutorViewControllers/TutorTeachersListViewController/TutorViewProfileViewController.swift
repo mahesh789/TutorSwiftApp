@@ -30,9 +30,14 @@ class TutorViewProfileViewController: UIViewController,UITableViewDelegate,UITab
     }
     func getArrayOfViewProfile() -> Void {
         viewProfileArray = [["title":"Rate per Session","TitleValue":"One-on-One $ \(tutorTeacherObject.teacherSoloChargesInt ?? 0) \nGroup $ \(tutorTeacherObject.teacherGroupChargesInt ?? 0)"],["title":"Educational Qualifications","TitleValue":"\(tutorTeacherObject.teacherQualificationString ?? "")"],["title":"Subjectes Taught","TitleValue":"\(tutorTeacherObject.teacherSubjectString ?? "")"],["title":"Bio","TitleValue":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse quam nibh, ullamcorper eget velit ut, convallis luctus nibh. Integer vel nunc tempor, suscipit tellus vel, suscipit velit."]]
-        self.teacherNameLabel.text = String(format:"%@%@",(tutorTeacherObject.teacherNameString ?? ""), (tutorTeacherObject.teacherLastNameString ?? ""))
+        self.teacherNameLabel.text = String(format:"%@ %@",(tutorTeacherObject.teacherNameString ?? ""), (tutorTeacherObject.teacherLastNameString ?? ""))
         self.teacherRatingValueLabel.text = tutorTeacherObject.teacherRatingString
         self.teacherExpValueLabel.text = tutorTeacherObject.teacherExperienceString
+        let profileImageUrl = String(format:"%@%@",Constants.imageBaseUrl,(tutorTeacherObject.teacherProfileString ?? ""))
+        teacherProfileImageView.kf.setImage(with: URL.init(string:profileImageUrl) , placeholder: UIImage.init(named: "dummyPhoto"), options: nil, progressBlock: nil, completionHandler:{
+            (image, error, cacheType, imageUrl) in
+            
+        })
     }
     
     func setLayoutAndSetTexts() -> Void {

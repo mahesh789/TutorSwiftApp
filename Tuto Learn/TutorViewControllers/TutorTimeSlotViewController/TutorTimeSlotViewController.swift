@@ -30,12 +30,15 @@ class TutorTimeSlotViewController: UIViewController,UITableViewDelegate,UITableV
          self.tutorTimeSlotHeaderView?.headerSecondLabel.backgroundColor  = self.tutorTimeSlotHeaderView?.headerEmptyLabel.backgroundColor
          self.tutorTimeSlotHeaderView?.headerThirdLabel.backgroundColor  = self.tutorTimeSlotHeaderView?.headerEmptyLabel.backgroundColor
         self.tableHeaderView.backgroundColor = UIColor (red: 23.0/255.0, green: 147.0/255.0, blue: 153/255.0, alpha: 1.0)
-        let when = DispatchTime.now() + 10 // change 2 to desired number of seconds
-        DispatchQueue.main.asyncAfter(deadline: when) {
-            // Your code with delay
+        let dateArray = self.getDateArray()
+        if dateArray.count > 0 {
+             self.tutorTimeSlotHeaderView?.headerFirstLabel.text = self.tableHeaderDateFormat(dateString: dateArray[0])
+              self.tutorTimeSlotHeaderView?.headerSecondLabel.text = self.tableHeaderDateFormat(dateString: dateArray[1])
+             self.tutorTimeSlotHeaderView?.headerThirdLabel.text = self.tableHeaderDateFormat(dateString: dateArray[2])
+        }
+        self.teacherNameLabel.text = tutorTeacherObject.teacherNameString ?? "" + " \(tutorTeacherObject.teacherLastNameString ?? "")"
             MBProgressHUD.showAdded(to: self.view, animated: true)
             self.getTutorTimeTableSlot()
-        }
        
     }
     
@@ -48,12 +51,18 @@ class TutorTimeSlotViewController: UIViewController,UITableViewDelegate,UITableV
         timeSlotTableView.tableFooterView = UIView.init()
         teacherProfileImageView.layer.cornerRadius = self.teacherProfileImageView.frame.size.height/2
         teacherProfileImageView.clipsToBounds = true
+        let profileImageUrl = String(format:"%@%@",Constants.imageBaseUrl,(tutorTeacherObject.teacherProfileString ?? ""))
+        teacherProfileImageView.kf.setImage(with: URL.init(string:profileImageUrl) , placeholder: UIImage.init(named: "dummyPhoto"), options: nil, progressBlock: nil, completionHandler:{
+            (image, error, cacheType, imageUrl) in
+            
+        })
     }
     
     // MARK:Select Student List Api Implementation
     func getTutorTimeTableSlot() -> Void {
+    
         let urlPath = String(format: "%@%@",Constants.baseUrl,Constants.timeSlotTable) as String
-        TutorNetworkManager.performRequestWithUrl(baseUrl: urlPath, parametersDictionary: ["tutor_id":"705BF","tuition_date":"14-11-2017","start_time":"11","end_time":"12" as Any]) { (status, info) in
+        TutorNetworkManager.performRequestWithUrl(baseUrl: urlPath, parametersDictionary: ["tutor_id":tutorTeacherObject.teacherIdString ?? "","tuition_date":(TutorSharedClass.shared.findTutorDictionary.object(forKey: "sel_date") as? String) ?? "","start_time":(TutorSharedClass.shared.findTutorDictionary.object(forKey: "sel_start_time") as? String) ?? "","end_time":(TutorSharedClass.shared.findTutorDictionary.object(forKey: "sel_end_time") as? String) ?? "" as Any]) { (status, info) in
             MBProgressHUD.hide(for: self.view, animated: true)
             if status == Constants.Status.StatusOK.rawValue
             {
@@ -77,10 +86,53 @@ class TutorTimeSlotViewController: UIViewController,UITableViewDelegate,UITableV
         }
     }
     
+    func getDateArray() -> Array<String> {
+        //TutorSharedClass.shared.findTutorDictionary
+        var dateArray:Array<String> = []
+        let date = self.convertStringToDate(dateString: (TutorSharedClass.shared.findTutorDictionary.object(forKey: "sel_date") as? String)!)
+        dateArray.append((TutorSharedClass.shared.findTutorDictionary.object(forKey: "sel_date") as? String)!)
+       for i in 1 ..< 3
+       {
+        let indexDate = (Calendar.current as NSCalendar).date(byAdding: .day, value: i, to:date, options: [])!
+        dateArray.append(self.convertDateToString(date: indexDate))
+      }
+        return dateArray
+    }
+    
+    func convertStringToDate(dateString:String) -> Date {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd-MM-yyyy"
+        dateFormatter.timeZone = TimeZone(abbreviation: "GMT+0:00") //Current time zone
+        let date = dateFormatter.date(from: dateString) //according to date format your date string
+        return date!
+    }
+    
+    func convertDateToString(date:Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd-MM-yyyy"
+        let newDate = dateFormatter.string(from: date)
+        return newDate
+    }
+    
+    func tableHeaderDateFormat(dateString:String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd-MM-yyyy"
+        dateFormatter.timeZone = TimeZone(abbreviation: "GMT+0:00") //Current time zone
+        let newdate = dateFormatter.date(from: dateString)
+         dateFormatter.dateFormat = "dd"
+        let dd = dateFormatter.string(from: newdate!)
+         dateFormatter.dateFormat = "MMM"
+        let month = dateFormatter.string(from: newdate!)
+        dateFormatter.dateFormat = "yyyy"
+        let year = dateFormatter.string(from: newdate!)
+        dateFormatter.dateFormat = "EEEE"
+        let weekDay = dateFormatter.string(from: newdate!)
+        return "\(dd) " + "\(month)," + year + "\n\(weekDay)"
+    }
+    
     func timeSlotParsing(slotArray:NSArray) -> Void {
         
-        var dateArray = ["14-11-2017","15-11-2017","16-11-2017"]
-        
+        let dateArray = self.getDateArray()
         var timeArray = ["9-10","10-11","11-12","12-13","13-14","14-15","15-16","16-17","17-18","18-19","19-20","20-21"]
         
         if slotArray.count > 0 {
@@ -155,6 +207,7 @@ class TutorTimeSlotViewController: UIViewController,UITableViewDelegate,UITableV
     
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView?
     {
+        
         return self.tutorTimeSlotHeaderView
     }
      func selectedSlotBookDetails(slotDictionary:Dictionary<String,Any>)
@@ -162,9 +215,9 @@ class TutorTimeSlotViewController: UIViewController,UITableViewDelegate,UITableV
         let availableStatus = slotDictionary["available"] as? Int
         if availableStatus == 0
         {
-            TutorSharedClass.shared.findTutorDictionary["sd_start_time"] = String(format:"%@:00",((slotDictionary["sd_start_time"] as? String) ?? ""))
-            TutorSharedClass.shared.findTutorDictionary["sd_end_time"] = String(format:"%@:00",((slotDictionary["sd_end_time"] as? String) ?? ""))
-            TutorSharedClass.shared.findTutorDictionary["sel_date"] = String(format:"%@:00",((slotDictionary["sd_date"] as? String) ?? ""))
+            TutorSharedClass.shared.findTutorDictionary["sel_start_time"] = String(format:"%@:00",((slotDictionary["sd_start_time"] as? String) ?? ""))
+            TutorSharedClass.shared.findTutorDictionary["sel_end_time"] = String(format:"%@:00",((slotDictionary["sd_end_time"] as? String) ?? ""))
+            TutorSharedClass.shared.findTutorDictionary["sel_date"] = String(format:"%@",((slotDictionary["sd_date"] as? String) ?? ""))
             self.navigateBookNowViewController(tutorTeacherModel: tutorTeacherObject)
         }
      }
