@@ -27,16 +27,16 @@ class TutorBookTutorViewController: UIViewController,UITableViewDelegate,UITable
     func getArrayOfBookTutor() -> Void {
        self.teacherNameLabel.text = tutorTeacherObject.teacherNameString ?? "" + " \(tutorTeacherObject.teacherLastNameString ?? "")"
         var groupSize:String = ""
-        var totalCost:Int = 0
+        var totalCost:String = "0"
         
         if (TutorSharedClass.shared.findTutorDictionary.object(forKey: "sel_tution_type") as? String) == "One-on-One" {
             groupSize = "1"
-            totalCost = (tutorTeacherObject.teacherSoloChargesInt ?? 0)
+            totalCost = (tutorTeacherObject.teacherSoloChargesInt ?? "0")
         }else
         {
            // sel_group_size
             groupSize = ((TutorSharedClass.shared.findTutorDictionary.object(forKey: "sel_group_size") ?? "") as? String)!
-            totalCost = (tutorTeacherObject.teacherGroupChargesInt ?? 0)
+            totalCost = (tutorTeacherObject.teacherGroupChargesInt ?? "0")
         }
         
         bookTutorArray = [["leftTitleLabel":"Date","leftValueLabel":"\(TutorSharedClass.shared.findTutorDictionary.object(forKey: "sel_date") ?? "")","middleTitleLabel":"Time","middleValueLabel":"\(TutorSharedClass.shared.findTutorDictionary.object(forKey: "sel_start_time") ?? "") to \(TutorSharedClass.shared.findTutorDictionary.object(forKey: "sel_end_time") ?? "") ","rightTitleLabel":"","rightValueLabel":""],["leftTitleLabel":"No. of Sessions","leftValueLabel":"\(TutorSharedClass.shared.findTutorDictionary.object(forKey: "no_session") ?? "")","middleTitleLabel":"Session Type","middleValueLabel":"\(TutorSharedClass.shared.findTutorDictionary.object(forKey: "sel_tution_type") ?? "")","rightTitleLabel":"Group Size","rightValueLabel":"\(groupSize)"],["leftTitleLabel":"Subject","leftValueLabel":"\(tutorTeacherObject.teacherSubjectString ?? "")","middleTitleLabel":"Topic","middleValueLabel":"\(TutorSharedClass.shared.findTutorDictionary.object(forKey: "sel_topic") ?? "")","rightTitleLabel":"","rightValueLabel":""],["leftTitleLabel":"Total Cost","leftValueLabel":"$\(totalCost)","middleTitleLabel":"","middleValueLabel":"","rightTitleLabel":"","rightValueLabel":""]]
@@ -53,7 +53,7 @@ class TutorBookTutorViewController: UIViewController,UITableViewDelegate,UITable
         teacherProfileImageView.layer.cornerRadius = self.teacherProfileImageView.frame.size.height/2
         teacherProfileImageView.clipsToBounds = true
         makePaymentButton.layer.cornerRadius = 2
-        let profileImageUrl = String(format:"%@%@",Constants.imageBaseUrl,(tutorTeacherObject.teacherProfileString ?? ""))
+        let profileImageUrl = String(format:"%@",(tutorTeacherObject.teacherProfileString ?? ""))
         teacherProfileImageView.kf.setImage(with: URL.init(string:profileImageUrl) , placeholder: UIImage.init(named: "dummyPhoto"), options: nil, progressBlock: nil, completionHandler:{
             (image, error, cacheType, imageUrl) in
             

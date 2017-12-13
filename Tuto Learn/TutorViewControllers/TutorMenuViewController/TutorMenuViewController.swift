@@ -60,6 +60,8 @@ class TutorMenuViewController: UIViewController,UITableViewDelegate,UITableViewD
                 self.navigationController?.pushViewController(myAccountControllerObj!, animated: true)
             break
         case MenuActionType.MenuActionTypeHistory.rawValue:
+            let tutorHistoryViewController = self.storyboard?.instantiateViewController(withIdentifier: "TutorHistoryViewController") as! TutorHistoryViewController
+            self.navigationController?.pushViewController(tutorHistoryViewController, animated: true)
 
             break
         case MenuActionType.MenuActionTypeHelp.rawValue:

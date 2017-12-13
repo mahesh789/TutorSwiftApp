@@ -68,8 +68,8 @@ class TutorTeachersListViewController: UIViewController,UICollectionViewDelegate
         teacherCollectionCell.teacherNameLabel.text = tutorTeacherObject.teacherNameString
         teacherCollectionCell.experianceValueLabel.text = tutorTeacherObject.teacherExperienceString
         teacherCollectionCell.ratingValueLabel.text = tutorTeacherObject.teacherRatingString
-         teacherCollectionCell.oneOnOneValueLabel.text = String(format:"$ %d",tutorTeacherObject.teacherSoloChargesInt ?? 0)
-         teacherCollectionCell.groupValueLabel.text = String(format:"$ %d",tutorTeacherObject.teacherGroupChargesInt ?? 0)
+         teacherCollectionCell.oneOnOneValueLabel.text = String(format:"$ %@",tutorTeacherObject.teacherSoloChargesInt ?? "0")
+         teacherCollectionCell.groupValueLabel.text = String(format:"$ %@",tutorTeacherObject.teacherGroupChargesInt ?? "0")
          teacherCollectionCell.viewProfieButton.addTarget(self, action: #selector(viewProfileButtonAction), for:.touchUpInside)
          teacherCollectionCell.bookNowButton.addTarget(self, action: #selector(bookNowButtonAction), for:.touchUpInside)
         teacherCollectionCell.viewProfieButton.tag = indexPath.row
@@ -87,7 +87,7 @@ class TutorTeachersListViewController: UIViewController,UICollectionViewDelegate
             teacherCollectionCell.bookNowButton.tag = indexPath.row
         }
         teacherCollectionCell.bookNowButton.layer.cornerRadius = 2
-        let profileImageUrl = String(format:"%@%@",Constants.imageBaseUrl,(tutorTeacherObject.teacherProfileString ?? ""))
+        let profileImageUrl = String(format:"%@",(tutorTeacherObject.teacherProfileString ?? ""))
          teacherCollectionCell.profileImageView.kf.setImage(with: URL.init(string:profileImageUrl) , placeholder: UIImage.init(named: "dummyPhoto"), options: nil, progressBlock: nil, completionHandler:{
             (image, error, cacheType, imageUrl) in
             
