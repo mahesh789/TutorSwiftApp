@@ -12,7 +12,6 @@ import Alamofire
 class Constants {
     enum Status:Int {
         case StatusOK = 200
-        case TokenInvalid = 404
         case TokenNotFound = 202
         case serverInvalid = 1
     }
@@ -37,11 +36,13 @@ class Constants {
     static let forgot_Password = "student_forgot_password"
     static let set_Forgot_Password = "set_forgot_password"
     static let timeSlotTable = "view_time_table"
+    static let imageBaseUrl = "https://mytestserver.tech/api/upload/student/"
     static let screenSize = UIScreen.main.bounds
     static let phoneScreenWidth = screenSize.width
     static let phoneScreenHeight = screenSize.height
     
     static let dateFormatValue = "yyyy-MM-dd"
+    static let findTutordateFormatValue = "dd-MM-yyyy"
     
 }
 
