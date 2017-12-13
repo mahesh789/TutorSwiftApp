@@ -33,6 +33,7 @@ class TutorStudentProfileViewController: UIViewController,UITextFieldDelegate,UI
     var levelBoardData: NSDictionary?
     var selectedLevel = NSMutableDictionary()
     var selectedBoard = NSMutableDictionary()
+    var requestParameterData = NSMutableArray()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -310,6 +311,7 @@ class TutorStudentProfileViewController: UIViewController,UITextFieldDelegate,UI
         var isValidate:Bool
         isValidate = true
         let parameterStudent = NSMutableArray()
+        var index :Int = 0
         
         for dataDictionary in self.dataArray! {
             if let dataSectionContent = dataDictionary as? NSMutableDictionary
@@ -317,6 +319,9 @@ class TutorStudentProfileViewController: UIViewController,UITextFieldDelegate,UI
                 if let studentArray = dataSectionContent["student"] as? NSMutableArray
                 {
                     var parameterData = [String: String]()
+                    
+                    parameterData["tempID"] = String(index)
+                    index = index + 1
                     
                     for dataDictionary in studentArray {
                         if let dataContent = dataDictionary as? NSMutableDictionary
@@ -331,7 +336,13 @@ class TutorStudentProfileViewController: UIViewController,UITextFieldDelegate,UI
                                     break;
                                 }else
                                 {
-                                    parameterData["first_name"] = leftValue
+                                    if self.isEditStudentProfile == true
+                                    {
+                                        parameterData["first_name"] = leftValue
+                                    }else
+                                    {
+                                        parameterData["s_name"] = leftValue
+                                    }
                                 }
                                 let rightValue =  dataContent["rightValue"] as? String
                                 if (rightValue?.isEmpty)!
@@ -341,7 +352,13 @@ class TutorStudentProfileViewController: UIViewController,UITextFieldDelegate,UI
                                     break;
                                 }else
                                 {
-                                    parameterData["last_name"] = rightValue
+                                    if self.isEditStudentProfile == true
+                                    {
+                                        parameterData["last_name"] = rightValue
+                                    }else
+                                    {
+                                        parameterData["s_lastname"] = leftValue
+                                    }
                                     
                                 }
                             }else if dataContent["type"] as? Int == StudentProfileDataType.StudentProfileDataTypeGender.rawValue
@@ -354,7 +371,13 @@ class TutorStudentProfileViewController: UIViewController,UITextFieldDelegate,UI
                                     break;
                                 }else
                                 {
-                                    parameterData["gender"] = leftValue
+                                    if self.isEditStudentProfile == true
+                                    {
+                                        parameterData["gender"] = leftValue
+                                    }else
+                                    {
+                                        parameterData["s_gender"] = leftValue
+                                    }
                                 }
                                 let rightValue =  dataContent["rightValue"] as? String
                                 if (rightValue?.isEmpty)!
@@ -377,8 +400,13 @@ class TutorStudentProfileViewController: UIViewController,UITextFieldDelegate,UI
                                         break;
                                     }else
                                     {
-                                        parameterData["dob"] = rightValue
-                                        
+                                        if self.isEditStudentProfile == true
+                                        {
+                                            parameterData["dob"] = rightValue
+                                        }else
+                                        {
+                                            parameterData["s_dob"] = leftValue
+                                        }
                                     }
                                     
                                 }
@@ -394,7 +422,13 @@ class TutorStudentProfileViewController: UIViewController,UITextFieldDelegate,UI
                                 {
                                     if leftValue?.isValidEmail() == true
                                     {
-                                        parameterData["email"] = leftValue as String?
+                                        if self.isEditStudentProfile == true
+                                        {
+                                            parameterData["email"] = leftValue as String?
+                                        }else
+                                        {
+                                            parameterData["s_email"] = leftValue as String?
+                                        }
                                     }else
                                     {
                                         TutorDefaultAlertController.showAlertController(alertMessage: "Please enter valid email address" , showController: self)
@@ -408,7 +442,13 @@ class TutorStudentProfileViewController: UIViewController,UITextFieldDelegate,UI
                             {
                                 let leftValue =  dataContent["rightValue"] as? NSString
 
-                                parameterData["school_name"] = leftValue as String?
+                                if self.isEditStudentProfile == true
+                                {
+                                    parameterData["school_name"] = leftValue as String?
+                                }else
+                                {
+                                    parameterData["name_of_school"] = leftValue as String?
+                                }
                                 
                             }
                             else if dataContent["type"] as? Int == StudentProfileDataType.StudentProfileDataTypeMobile.rawValue
@@ -429,7 +469,13 @@ class TutorStudentProfileViewController: UIViewController,UITextFieldDelegate,UI
                                         break;
                                     }else
                                     {
-                                        parameterData["mobile"] = rightValue
+                                        if self.isEditStudentProfile == true
+                                        {
+                                            parameterData["mobile"] = rightValue
+                                        }else
+                                        {
+                                            parameterData["s_mobile"] = rightValue
+                                        }
                                     }
                                     
                                 }
@@ -506,11 +552,68 @@ class TutorStudentProfileViewController: UIViewController,UITextFieldDelegate,UI
                 
             }else
             {
-                
+                if selectedProfileImage.allKeys.count != parameterStudent.count
+                {
+                    TutorDefaultAlertController.showAlertController(alertMessage: "Please select profile image" , showController: self)
+
+                }else
+                {
+                    if parameterStudent.count>0
+                    {
+                        if self.requestParameterData.count<=0
+                        {
+                            requestParameterData.addObjects(from: parameterStudent as! [Any])
+                        }else
+                        {
+                            let mutableArray = NSMutableArray()
+                            for datacontent in requestParameterData
+                            {
+                                if let tempdataContetnt = datacontent as? Dictionary<String, String>
+                                {
+                                    let tempId = tempdataContetnt["tempID"]
+                                    if tempId?.isEmpty == false
+                                    {
+                                        let predicate = NSPredicate(format: "tempID == %@",tempId!)
+                                        let filterArray = parameterStudent.filtered(using: predicate)
+                                        if filterArray.isEmpty == false
+                                        {
+                                            mutableArray.add(filterArray.last ?? "")
+                                        }
+                                    }
+                                }
+                            }
+                            requestParameterData = mutableArray
+                        }
+                        MBProgressHUD.showAdded(to: self.view, animated: true)
+                        let parameterData = requestParameterData.firstObject as! Dictionary<String, String>
+                        let index = parameterStudent.index(of: parameterData)
+                        self.setAndCallAddStudentData(parameterData: parameterData, andParameterData: parameterStudent,index: index)
+                    }
+                }
             }
         }
     }
     
+    func setAndCallAddStudentData(parameterData:Dictionary<String, String>,andParameterData:NSMutableArray,index:Int)
+    {
+        var parameterData = parameterData
+        parameterData["register_type"] = "0"
+        parameterData["login_id"] = TutorSharedClass.shared.loginTutorLoginObject?.sm_id
+        if let profileImageChange = selectedProfileImage.value(forKey: String(index)) as? UIImage
+        {
+            let imageData: NSData = UIImageJPEGRepresentation(profileImageChange, 0.5)! as NSData
+            let strBase64:String = imageData.base64EncodedString(options: .lineLength64Characters)
+            parameterData["img_base"] = strBase64
+            parameterData["img_ext"] = "jpeg"
+        }else
+        {
+            parameterData["img_base"] = ""
+            parameterData["img_ext"] = ""
+        }
+        parameterData["s_oauth"] = "Mobile"
+        parameterData.removeValue(forKey: "tempID")
+        self.callAddStudentUnderGuardian(parameterData: parameterData,allParameterData: andParameterData,index: index)
+    }
     func openGuardianPreferenceController()  {
         
         let tutorHomeViewController:TutorPreferencesViewController = self.storyboard?.instantiateViewController(withIdentifier: "TutorPreferencesViewController") as! TutorPreferencesViewController
@@ -600,7 +703,7 @@ class TutorStudentProfileViewController: UIViewController,UITextFieldDelegate,UI
                         datadictionary?["leftValue"] = genderValue
                     }else
                     {
-                        datadictionary?["c"] = genderArray[0]
+                        datadictionary?["leftValue"] = genderArray[0]
                         
                     }
                     profileTableview.reloadData()
@@ -1003,6 +1106,76 @@ class TutorStudentProfileViewController: UIViewController,UITextFieldDelegate,UI
                 MBProgressHUD.hide(for: self.view, animated: true)
                 print(response.result.error as Any)
             }
+        }
+    }
+    
+    func callAddStudentUnderGuardian(parameterData:Dictionary<String, String>, allParameterData:NSMutableArray,index:Int)  {
+        
+        let urlPath = String(format: "%@%@",Constants.baseUrl,Constants.addStudent) as String
+        // print(parameterData)
+        Alamofire.request(urlPath, method: .post, parameters:parameterData , encoding: JSONEncoding.default, headers:["Content-Type":"application/json","Authorization":String(format:"Bearer %@",TutorSharedClass.shared.token ?? "")]) .responseJSON { response in
+            if response.result.isSuccess
+            {
+                if let resultDictionary = response.result.value as? NSDictionary
+                {
+                    print(resultDictionary)
+                    
+                    if Int(truncating: resultDictionary["status"] as! NSNumber) == Constants.Status.StatusOK.rawValue
+                    {
+                        print(resultDictionary)
+
+                        if self.isEditStudentProfile == true
+                        {
+                            self.isImageChange = false
+                            MBProgressHUD.hide(for: self.view, animated: true)
+                            self.showAlertController(alertMessage: resultDictionary["message"] as? String)
+                        }else
+                        {
+                            if (allParameterData.count - 1 ) > index
+                            {
+                                if(self.requestParameterData.count>0)
+                                {
+                                    self.requestParameterData.removeObject(at: 0)
+                                }
+                                let newIndex = index + 1
+                                let parameterData = allParameterData.object(at: newIndex)
+                                self.setAndCallAddStudentData(parameterData: parameterData as! Dictionary<String, String>, andParameterData: allParameterData,index: newIndex)
+                            }else
+                            {
+                                if(self.requestParameterData.count>0)
+                                {
+                                    self.requestParameterData.removeObject(at: 0)
+                                }
+                                MBProgressHUD.hide(for: self.view, animated: true)
+                                
+                                self.showAlertController(alertMessage: resultDictionary["message"] as? String)
+                            }
+                        }
+                        
+                    }
+                    else if Int(truncating: resultDictionary["status"] as! NSNumber) == Constants.Status.TokenInvalid.rawValue
+                    {
+                        TutorGenerateToken.performGenerateTokenUrl(completionHandler: { (status, token) in
+                            if status == Constants.Status.StatusOK.rawValue {
+                                self.callAddStudentUnderGuardian(parameterData: parameterData,allParameterData: allParameterData,index: index)
+                            }
+                            else {
+                                print(token as Any)
+                                MBProgressHUD.hide(for: self.view, animated: true)
+                            }
+                        })
+                    }
+                    else{
+                        MBProgressHUD.hide(for: self.view, animated: true)
+                        
+                        TutorDefaultAlertController.showAlertController(alertMessage: resultDictionary["message"] as? String, showController: self)
+                    }
+                }
+            }
+            else if response.result.isFailure {
+                print(response.result.error as Any)
+            }
+            MBProgressHUD.hide(for: self.view, animated: true)
         }
     }
 }
