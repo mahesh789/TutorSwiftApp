@@ -33,6 +33,7 @@
 		3D2538011FD3282D0078760C /* TutorForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2538001FD3282D0078760C /* TutorForgotPasswordViewController.swift */; };
 		3D2812BE1FD3FC2C00F926B1 /* TutorBookTutorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2812BD1FD3FC2C00F926B1 /* TutorBookTutorViewController.swift */; };
 		3D333C1C1FDBE3F000EEF3A1 /* TutorTimeSlotCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D333C1B1FDBE3F000EEF3A1 /* TutorTimeSlotCollectionViewCell.swift */; };
+		3D40DEEE1FE0D0A60015921E /* TutorHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D40DEED1FE0D0A60015921E /* TutorHistoryViewController.swift */; };
 		3D4515CF1FB70F9100591577 /* TutorTeachersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4515CE1FB70F9100591577 /* TutorTeachersListViewController.swift */; };
 		3D623F341FBB5AE60087AF13 /* TutorTeacherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D623F331FBB5AE60087AF13 /* TutorTeacherModel.swift */; };
 		3D623F381FBB76010087AF13 /* TutorViewProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D623F371FBB76010087AF13 /* TutorViewProfileTableViewCell.swift */; };
@@ -134,6 +135,7 @@
 		3D2538001FD3282D0078760C /* TutorForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		3D2812BD1FD3FC2C00F926B1 /* TutorBookTutorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorBookTutorViewController.swift; sourceTree = "<group>"; };
 		3D333C1B1FDBE3F000EEF3A1 /* TutorTimeSlotCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorTimeSlotCollectionViewCell.swift; sourceTree = "<group>"; };
+		3D40DEED1FE0D0A60015921E /* TutorHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorHistoryViewController.swift; sourceTree = "<group>"; };
 		3D4515CE1FB70F9100591577 /* TutorTeachersListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorTeachersListViewController.swift; sourceTree = "<group>"; };
 		3D623F331FBB5AE60087AF13 /* TutorTeacherModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorTeacherModel.swift; sourceTree = "<group>"; };
 		3D623F371FBB76010087AF13 /* TutorViewProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorViewProfileTableViewCell.swift; sourceTree = "<group>"; };
@@ -285,6 +287,7 @@
 		3D1BD8631FB0E69D00DDB3BB /* TutorViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				3D40DEEC1FE0D0860015921E /* TutorHistoryViewController */,
 				3D97FAE21FDBB1F9000AFD80 /* TutorTimeSlotViewController */,
 				3D2812BC1FD3FBFF00F926B1 /* TutorBookATutorViewController */,
 				3D2537FF1FD328140078760C /* TutorForgotPasswordController */,
@@ -384,6 +387,14 @@
 				3D2812BD1FD3FC2C00F926B1 /* TutorBookTutorViewController.swift */,
 			);
 			path = TutorBookATutorViewController;
+			sourceTree = "<group>";
+		};
+		3D40DEEC1FE0D0860015921E /* TutorHistoryViewController */ = {
+			isa = PBXGroup;
+			children = (
+				3D40DEED1FE0D0A60015921E /* TutorHistoryViewController.swift */,
+			);
+			path = TutorHistoryViewController;
 			sourceTree = "<group>";
 		};
 		3D4515CD1FB70F6F00591577 /* TutorTeachersListViewController */ = {
@@ -1093,6 +1104,7 @@
 				3DD68B801FB7E20C008B2C0C /* TutorTeachersListCollectionViewCell.swift in Sources */,
 				3B28334C1FCC74580059D115 /* RegistrationTableViewCell.swift in Sources */,
 				3D623F341FBB5AE60087AF13 /* TutorTeacherModel.swift in Sources */,
+				3D40DEEE1FE0D0A60015921E /* TutorHistoryViewController.swift in Sources */,
 				3B28AD181FD2733B008BC962 /* TutorProfileViewController.swift in Sources */,
 				3BB5AA191FD3195600658103 /* TutorLoginModel.swift in Sources */,
 				3BB5AA1E1FD3E0DB00658103 /* TutorStudentHeaderView.swift in Sources */,
