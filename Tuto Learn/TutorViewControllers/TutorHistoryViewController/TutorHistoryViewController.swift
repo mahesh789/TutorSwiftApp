@@ -17,13 +17,14 @@ class TutorHistoryViewController: UIViewController,UICollectionViewDelegate,UICo
     @IBOutlet weak var tutorHistoryCollectionView:UICollectionView!
     var selectedIndex = 0
     var pastHistoryArray:[TutorPastHistoryModel] = []
+    var upComingHistoryArray:[TutorPastHistoryModel] = []
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         self.setLayoutAndSetTexts()
-        self.pastHistoryDataMapping()
+        //self.pastHistoryDataMapping()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -44,7 +45,8 @@ class TutorHistoryViewController: UIViewController,UICollectionViewDelegate,UICo
                     if let pastHistoryListArray = resultDictionary["data"] as? Array<Any>
                     {
                         print(pastHistoryListArray)
-                        
+                        self.pastHistoryArray = TutorPastHistoryModel.modelsFromDictionaryArray(array: pastHistoryListArray as NSArray)
+                        self.tutorHistoryCollectionView.reloadData()
                     }
                 }
             }else{
@@ -60,17 +62,18 @@ class TutorHistoryViewController: UIViewController,UICollectionViewDelegate,UICo
     // MARK:UPCOMING_History Api Implementation
     func getUpcomingHistoryList() -> Void {
         MBProgressHUD.showAdded(to: self.view, animated: true)
-        let urlPath = String(format: "%@%@",Constants.baseUrl,Constants.past_History) as String
-        TutorNetworkManager.performRequestWithUrl(baseUrl: urlPath, parametersDictionary:["user_id":"0595D56345","register_type":"0"]) { (status, info) in
+        let urlPath = String(format: "%@%@",Constants.baseUrl,Constants.upcoming_history) as String
+        TutorNetworkManager.performRequestWithUrl(baseUrl: urlPath, parametersDictionary:["user_id":(TutorSharedClass.shared.loginTutorLoginObject?.sm_id ?? ""),"register_type":TutorSharedClass.shared.loginTutorLoginObject?.sm_register_type ?? ""]) { (status, info) in
             if status == Constants.Status.StatusOK.rawValue
             {
                 MBProgressHUD.hide(for: self.view, animated: true)
                 if let resultDictionary = info as? Dictionary<String,Any>
                 {
-                    if let pastHistoryListArray = resultDictionary["data"] as? Array<Any>
+                    if let upComingHistoryListArray = resultDictionary["data"] as? Array<Any>
                     {
-                        print(pastHistoryListArray)
-                        
+                        print(upComingHistoryListArray)
+                        self.upComingHistoryArray = TutorPastHistoryModel.modelsFromDictionaryArray(array: upComingHistoryListArray as NSArray)
+                        self.tutorHistoryCollectionView.reloadData()
                     }
                 }
             }else{
@@ -86,17 +89,19 @@ class TutorHistoryViewController: UIViewController,UICollectionViewDelegate,UICo
     func pastHistoryDataMapping() -> Void {
         
         let mainArray = NSMutableArray()
-        
+
         let objectDictionary = NSMutableDictionary()
         objectDictionary.setValue("0595D56345", forKey: "sm_id")
         objectDictionary.setValue("SONU", forKey: "f_name")
         objectDictionary.setValue("GHARAT", forKey: "l_name")
         let childArray = [["sd_date":"06-12-2017","sd_start_time":11,"sd_end_time":12,"sd_subject":"","sd_topic":"","sd_tution_type":"solo","sd_grp_size":"2","tuto_name":"Angha  Gharat","rate":"3","sd_amt":"30"],["sd_date":"06-12-2017","sd_start_time":11,"sd_end_time":12,"sd_subject":"","sd_topic":"","sd_tution_type":"solo","sd_grp_size":"2","tuto_name":"Angha  Gharat","rate":"3","sd_amt":"30"]]
         objectDictionary.setValue(childArray, forKey: "session")
-        
+
         mainArray.add(objectDictionary)
         pastHistoryArray = TutorPastHistoryModel.modelsFromDictionaryArray(array: mainArray)
+        upComingHistoryArray = TutorPastHistoryModel.modelsFromDictionaryArray(array: mainArray)
         self.tutorHistoryCollectionView.reloadData()
+
     }
     
     func setLayoutAndSetTexts() -> Void {
@@ -120,11 +125,20 @@ class TutorHistoryViewController: UIViewController,UICollectionViewDelegate,UICo
     pastButton.backgroundColor = UIColor (red: 23.0/255.0, green: 147.0/255.0, blue: 153/255.0, alpha: 1.0)
     upComingButton.backgroundColor = UIColor (red: 27.0/255.0, green: 171.0/255.0, blue: 171/255.0, alpha: 1.0)
     self.tutorHistoryCollectionView.scrollToItem(at: NSIndexPath.init(row: 0, section: 0) as IndexPath, at: .centeredHorizontally, animated: true)
+    
+    if self.pastHistoryArray.count == 0
+    {
+        self.getPastHistoryList()
     }
+}
   @IBAction func upComingButtonAction(sender:UIButton) {
     upComingButton.backgroundColor = UIColor (red: 23.0/255.0, green: 147.0/255.0, blue: 153/255.0, alpha: 1.0)
     pastButton.backgroundColor = UIColor (red: 27.0/255.0, green: 171.0/255.0, blue: 171/255.0, alpha: 1.0)
      self.tutorHistoryCollectionView.scrollToItem(at: NSIndexPath.init(row: 1, section: 0) as IndexPath, at: .centeredHorizontally, animated: true)
+    if self.upComingHistoryArray.count == 0
+    {
+         self.getUpcomingHistoryList()
+    }
 }
     
     //MARK: UICollectionView Delgate and DataSource Methods
@@ -134,7 +148,12 @@ class TutorHistoryViewController: UIViewController,UICollectionViewDelegate,UICo
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TutorHistoryCollectionViewCell", for: indexPath) as! TutorHistoryCollectionViewCell
-        cell.setDataForHistoryTableViewCellArray(historyDataArray:pastHistoryArray as [TutorPastHistoryModel])
+        if indexPath.row == HistoryType.HistoryTypePast.rawValue {
+             cell.setDataForHistoryTableViewCellArray(historyDataArray:pastHistoryArray as [TutorPastHistoryModel], index: indexPath.row)
+        }else{
+             cell.setDataForHistoryTableViewCellArray(historyDataArray:self.upComingHistoryArray as [TutorPastHistoryModel], index: indexPath.row)
+        }
+       
         return cell
     }
     
