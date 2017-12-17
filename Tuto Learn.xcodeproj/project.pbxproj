@@ -23,6 +23,8 @@
 		3D0A6B701FB68388001CC7A9 /* TutorMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0A6B6F1FB68388001CC7A9 /* TutorMenuViewController.swift */; };
 		3D0A6B7F1FB692D0001CC7A9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D0A6B7E1FB692CF001CC7A9 /* Main.storyboard */; };
 		3D0A6B831FB694A5001CC7A9 /* TutorMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0A6B821FB694A5001CC7A9 /* TutorMenuTableViewCell.swift */; };
+		3D12390D1FE2E751006FE884 /* TutorHistoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D12390C1FE2E751006FE884 /* TutorHistoryCollectionViewCell.swift */; };
+		3D12390F1FE2EAA7006FE884 /* TutorHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D12390E1FE2EAA7006FE884 /* TutorHistoryTableViewCell.swift */; };
 		3D1BD8651FB0E69D00DDB3BB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1BD8641FB0E69D00DDB3BB /* ViewController.swift */; };
 		3D1BD8671FB0E74300DDB3BB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1BD8661FB0E74200DDB3BB /* AppDelegate.swift */; };
 		3D1F70D31FBA03D200AF03DE /* TutorNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F70D21FBA03D200AF03DE /* TutorNetworkManager.swift */; };
@@ -33,6 +35,8 @@
 		3D2538011FD3282D0078760C /* TutorForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2538001FD3282D0078760C /* TutorForgotPasswordViewController.swift */; };
 		3D2812BE1FD3FC2C00F926B1 /* TutorBookTutorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2812BD1FD3FC2C00F926B1 /* TutorBookTutorViewController.swift */; };
 		3D333C1C1FDBE3F000EEF3A1 /* TutorTimeSlotCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D333C1B1FDBE3F000EEF3A1 /* TutorTimeSlotCollectionViewCell.swift */; };
+		3D33F56D1FE62B36003873F2 /* TutorPastHistoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D33F56B1FE62B36003873F2 /* TutorPastHistoryModel.swift */; };
+		3D33F56E1FE62B36003873F2 /* TutorPastHistorySession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D33F56C1FE62B36003873F2 /* TutorPastHistorySession.swift */; };
 		3D40DEEE1FE0D0A60015921E /* TutorHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D40DEED1FE0D0A60015921E /* TutorHistoryViewController.swift */; };
 		3D4515CF1FB70F9100591577 /* TutorTeachersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4515CE1FB70F9100591577 /* TutorTeachersListViewController.swift */; };
 		3D623F341FBB5AE60087AF13 /* TutorTeacherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D623F331FBB5AE60087AF13 /* TutorTeacherModel.swift */; };
@@ -119,6 +123,8 @@
 		3D0A6B6F1FB68388001CC7A9 /* TutorMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorMenuViewController.swift; sourceTree = "<group>"; };
 		3D0A6B7E1FB692CF001CC7A9 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		3D0A6B821FB694A5001CC7A9 /* TutorMenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorMenuTableViewCell.swift; sourceTree = "<group>"; };
+		3D12390C1FE2E751006FE884 /* TutorHistoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorHistoryCollectionViewCell.swift; sourceTree = "<group>"; };
+		3D12390E1FE2EAA7006FE884 /* TutorHistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorHistoryTableViewCell.swift; sourceTree = "<group>"; };
 		3D1BD8641FB0E69D00DDB3BB /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		3D1BD8661FB0E74200DDB3BB /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3D1F70D21FBA03D200AF03DE /* TutorNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorNetworkManager.swift; sourceTree = "<group>"; };
@@ -135,6 +141,8 @@
 		3D2538001FD3282D0078760C /* TutorForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		3D2812BD1FD3FC2C00F926B1 /* TutorBookTutorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorBookTutorViewController.swift; sourceTree = "<group>"; };
 		3D333C1B1FDBE3F000EEF3A1 /* TutorTimeSlotCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorTimeSlotCollectionViewCell.swift; sourceTree = "<group>"; };
+		3D33F56B1FE62B36003873F2 /* TutorPastHistoryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorPastHistoryModel.swift; sourceTree = "<group>"; };
+		3D33F56C1FE62B36003873F2 /* TutorPastHistorySession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorPastHistorySession.swift; sourceTree = "<group>"; };
 		3D40DEED1FE0D0A60015921E /* TutorHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorHistoryViewController.swift; sourceTree = "<group>"; };
 		3D4515CE1FB70F9100591577 /* TutorTeachersListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorTeachersListViewController.swift; sourceTree = "<group>"; };
 		3D623F331FBB5AE60087AF13 /* TutorTeacherModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorTeacherModel.swift; sourceTree = "<group>"; };
@@ -284,6 +292,23 @@
 			path = TutorCell;
 			sourceTree = "<group>";
 		};
+		3D12390A1FE2E719006FE884 /* TutorHistoryViews */ = {
+			isa = PBXGroup;
+			children = (
+				3D12390B1FE2E719006FE884 /* TutorCell */,
+			);
+			path = TutorHistoryViews;
+			sourceTree = "<group>";
+		};
+		3D12390B1FE2E719006FE884 /* TutorCell */ = {
+			isa = PBXGroup;
+			children = (
+				3D12390C1FE2E751006FE884 /* TutorHistoryCollectionViewCell.swift */,
+				3D12390E1FE2EAA7006FE884 /* TutorHistoryTableViewCell.swift */,
+			);
+			path = TutorCell;
+			sourceTree = "<group>";
+		};
 		3D1BD8631FB0E69D00DDB3BB /* TutorViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -389,6 +414,15 @@
 			path = TutorBookATutorViewController;
 			sourceTree = "<group>";
 		};
+		3D33F56A1FE62B28003873F2 /* TutorHistoryModel */ = {
+			isa = PBXGroup;
+			children = (
+				3D33F56B1FE62B36003873F2 /* TutorPastHistoryModel.swift */,
+				3D33F56C1FE62B36003873F2 /* TutorPastHistorySession.swift */,
+			);
+			path = TutorHistoryModel;
+			sourceTree = "<group>";
+		};
 		3D40DEEC1FE0D0860015921E /* TutorHistoryViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -467,6 +501,7 @@
 		3DBEC58D1FAF85290018CD66 /* TutorModels */ = {
 			isa = PBXGroup;
 			children = (
+				3D33F56A1FE62B28003873F2 /* TutorHistoryModel */,
 				3D623F321FBB5AE60087AF13 /* TutorTeacherModel */,
 				3DBEC58E1FAF85290018CD66 /* TutorLoginModel */,
 			);
@@ -512,6 +547,7 @@
 		3DC357941FB013960084F898 /* TutorViews */ = {
 			isa = PBXGroup;
 			children = (
+				3D12390A1FE2E719006FE884 /* TutorHistoryViews */,
 				3D0A6B801FB6947B001CC7A9 /* TutoMenuView */,
 				3DF628F11FDBCF28002B977F /* TutorTimeSlotViews */,
 				3DFE851B1FD4023100D9648E /* TutorBookTutorViews */,
@@ -732,7 +768,7 @@
 						CreatedOnToolsVersion = 9.0.1;
 						DevelopmentTeam = 9SSCTGR44S;
 						LastSwiftMigration = 0900;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 					3D2278561FA39DF600D3B6E0 = {
 						CreatedOnToolsVersion = 9.0.1;
@@ -1091,6 +1127,7 @@
 				07266CE41FBE03CE004A4FDE /* StudentRegistrationViewController.swift in Sources */,
 				3DF628F81FDBE024002B977F /* TutorTimeSlotTableViewCell.swift in Sources */,
 				3BB5AA1C1FD3DA5100658103 /* TutorStudentProfileViewController.swift in Sources */,
+				3D12390F1FE2EAA7006FE884 /* TutorHistoryTableViewCell.swift in Sources */,
 				3BB5AA1A1FD3195600658103 /* TutorStudent.swift in Sources */,
 				BA48D4D61FDBE6680023C067 /* TutorMyAccountTableViewCell.swift in Sources */,
 				3B31EA541FCE6FDD00F6134E /* RegistrationFooterView.swift in Sources */,
@@ -1106,9 +1143,12 @@
 				3D623F341FBB5AE60087AF13 /* TutorTeacherModel.swift in Sources */,
 				3D40DEEE1FE0D0A60015921E /* TutorHistoryViewController.swift in Sources */,
 				3B28AD181FD2733B008BC962 /* TutorProfileViewController.swift in Sources */,
+				3D12390D1FE2E751006FE884 /* TutorHistoryCollectionViewCell.swift in Sources */,
 				3BB5AA191FD3195600658103 /* TutorLoginModel.swift in Sources */,
+				3D33F56E1FE62B36003873F2 /* TutorPastHistorySession.swift in Sources */,
 				3BB5AA1E1FD3E0DB00658103 /* TutorStudentHeaderView.swift in Sources */,
 				3D2538011FD3282D0078760C /* TutorForgotPasswordViewController.swift in Sources */,
+				3D33F56D1FE62B36003873F2 /* TutorPastHistoryModel.swift in Sources */,
 				BA48D4D81FDBE6930023C067 /* TutorMyAccountCollectionViewCell.swift in Sources */,
 				3DBEC59A1FAF85900018CD66 /* MBProgressHUD.m in Sources */,
 				3D623F381FBB76010087AF13 /* TutorViewProfileTableViewCell.swift in Sources */,
@@ -1190,7 +1230,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Haresh Shah (9SSCTGR44S)";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -1214,6 +1254,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "d779e60b-ddc4-43fd-9df8-cebbe81004c3";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1249,7 +1290,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Haresh Shah (9SSCTGR44S)";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -1266,6 +1307,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "d779e60b-ddc4-43fd-9df8-cebbe81004c3";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
@@ -1280,9 +1322,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Haresh Shah (655VUK6287)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Haresh Shah (9SSCTGR44S)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Haresh Shah (9SSCTGR44S)";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 9SSCTGR44S;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1297,8 +1339,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tuto.tutolearn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "f88eb114-d560-46bf-b2a8-edbeb9f08144";
+				PROVISIONING_PROFILE_SPECIFIER = TutorNewIOSDistribution;
 				SWIFT_OBJC_BRIDGING_HEADER = "Tuto Learn/Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
@@ -1314,9 +1356,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Haresh Shah (655VUK6287)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Haresh Shah (9SSCTGR44S)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Haresh Shah (9SSCTGR44S)";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 9SSCTGR44S;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1329,8 +1371,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tuto.tutolearn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "f88eb114-d560-46bf-b2a8-edbeb9f08144";
+				PROVISIONING_PROFILE_SPECIFIER = TutorNewIOSDistribution;
 				SWIFT_OBJC_BRIDGING_HEADER = "Tuto Learn/Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
