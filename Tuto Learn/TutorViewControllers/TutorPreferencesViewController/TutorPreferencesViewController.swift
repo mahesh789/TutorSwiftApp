@@ -21,10 +21,10 @@ class TutorPreferencesViewController: UIViewController, UITextFieldDelegate, UIT
     
     var dataArray :NSMutableArray?
     
-    let thePicker = UIPickerView()
+    var thePicker = UIPickerView()
     var preferenceData :NSDictionary?
     
-    var preferenceTimeOfContact = ["9:00 AM to 12:00 PM","12:00 PM to 3:00 PM","3:00 PM to 6:00 PM","6:00 PM to 9:00 PM"]
+    var preferenceTimeOfContact = ["Anytime","9:00 AM to 12:00 PM","12:00 PM to 3:00 PM","3:00 PM to 6:00 PM","6:00 PM to 9:00 PM"]
     var preferenceModeOfContact = ["Email","Phone","Both Email and Phone","Do not Disturb"]
     var preferenceTutionType = ["One-on-One","Group"]
     var preferenceTutorGender = ["Male","Female","Any"]
@@ -135,25 +135,44 @@ class TutorPreferencesViewController: UIViewController, UITextFieldDelegate, UIT
             let datadictionary = self.dataArray?.object(at: textField.tag) as? NSMutableDictionary
             if datadictionary?.value(forKey: "type") as? Int == PreferencesDataType.PreferencesDataTypeTimeOfContact.rawValue && textFieldTemp.customTag == 1
             {
+                self.thePicker = UIPickerView()
+                self.thePicker.delegate = self
+                self.thePicker.dataSource = self
                 self.thePicker.tag = 101
                 textFieldTemp.inputView = self.thePicker
                 self.thePicker.reloadAllComponents()
+                timeOfContactValue = preferenceTimeOfContact[0]
             }
             else if datadictionary?.value(forKey: "type") as? Int == PreferencesDataType.PreferencesDataTypeTimeOfContact.rawValue && textFieldTemp.customTag == 2
             {
+                self.thePicker = UIPickerView()
+                self.thePicker.delegate = self
+                self.thePicker.dataSource = self
                 self.thePicker.tag = 102
                 textFieldTemp.inputView = self.thePicker
                 self.thePicker.reloadAllComponents()
+                modeOfContactValue = preferenceModeOfContact[0]
+
             }else if datadictionary?.value(forKey: "type") as? Int == PreferencesDataType.PreferencesDataTypeContact.rawValue && textFieldTemp.customTag == 1
             {
+                self.thePicker = UIPickerView()
+                self.thePicker.delegate = self
+                self.thePicker.dataSource = self
                 self.thePicker.tag = 103
                 textFieldTemp.inputView = self.thePicker
                 self.thePicker.reloadAllComponents()
+                tutionTypeValue = preferenceTutionType[0]
+
             }else if datadictionary?.value(forKey: "type") as? Int == PreferencesDataType.PreferencesDataTypeContact.rawValue && textFieldTemp.customTag == 2
             {
+                self.thePicker = UIPickerView()
+                self.thePicker.delegate = self
+                self.thePicker.dataSource = self
                 self.thePicker.tag = 104
                 textFieldTemp.inputView = self.thePicker
                 self.thePicker.reloadAllComponents()
+                genderValue = preferenceTutorGender[0]
+
             }
         }
         return true

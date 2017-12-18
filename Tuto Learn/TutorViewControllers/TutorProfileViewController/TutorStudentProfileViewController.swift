@@ -21,7 +21,7 @@ class TutorStudentProfileViewController: UIViewController,UITextFieldDelegate,UI
     var dataArray :NSMutableArray?
     @IBOutlet weak var tutorNavigationBar: TutorHomeNavigationBar!
     @IBOutlet weak var submitButton: UIButton!
-    let thePicker = CustomPickerView()
+    var thePicker = CustomPickerView()
     let genderArray = ["Male","Female"]
     var genderValue: String!
     var isEditStudentProfile: Bool = false
@@ -37,8 +37,6 @@ class TutorStudentProfileViewController: UIViewController,UITextFieldDelegate,UI
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        thePicker.delegate = self;
-        thePicker.dataSource = self
         self.dataArray = NSMutableArray()
         self.profileTableview.estimatedRowHeight = 60.0
         self.profileTableview.rowHeight = UITableViewAutomaticDimension
@@ -656,31 +654,51 @@ class TutorStudentProfileViewController: UIViewController,UITextFieldDelegate,UI
                 }
                 else if datadictionary?.value(forKey: "type") as? Int == StudentProfileDataType.StudentProfileDataTypeGender.rawValue && textFieldTemp.customTag == 1
                 {
+                    self.thePicker = CustomPickerView()
+                    self.thePicker.delegate = self
+                    self.thePicker.dataSource = self
                     self.thePicker.tag = 0
                     thePicker.section = textFieldTemp.section
-
+                    genderValue = genderArray[0]
                     textFieldTemp.inputView = self.thePicker
                     self.thePicker.reloadAllComponents()
                 }else if datadictionary?.value(forKey: "type") as? Int == StudentProfileDataType.StudentProfileDataTypeBoardName.rawValue && textFieldTemp.customTag == 1
                 {
-                    
+                    self.thePicker = CustomPickerView()
+                    self.thePicker.delegate = self
+                    self.thePicker.dataSource = self
                     textFieldTemp.inputView = self.thePicker
                     self.thePicker.tag = 101
                     thePicker.section = textFieldTemp.section
                     if self.levelBoardData == nil {
                         MBProgressHUD.showAdded(to: self.view, animated: true)
                         self.getLevelBoardData()
+                    }else
+                    {
+                        if let boardArray = self.levelBoardData?.value(forKey: "boards") as? NSArray
+                        {
+                            selectedBoard.setValue(boardArray[0], forKey: String(textFieldTemp.section))
+                        }
+                        
                     }
                     
                 }else if datadictionary?.value(forKey: "type") as? Int == StudentProfileDataType.StudentProfileDataTypeBoardName.rawValue && textFieldTemp.customTag == 2
                 {
-                    
+                    self.thePicker = CustomPickerView()
+                    self.thePicker.delegate = self
+                    self.thePicker.dataSource = self
                     textFieldTemp.inputView = self.thePicker
                     self.thePicker.tag = 102
                     thePicker.section = textFieldTemp.section
                     if self.levelBoardData == nil {
                         MBProgressHUD.showAdded(to: self.view, animated: true)
                         self.getLevelBoardData()
+                    }else
+                    {
+                        if let boardArray = self.levelBoardData?.value(forKey: "level") as? NSArray
+                        {
+                            selectedLevel.setValue(boardArray[0], forKey: String(textFieldTemp.section))
+                        }
                     }
                     
                 }
@@ -765,6 +783,7 @@ class TutorStudentProfileViewController: UIViewController,UITextFieldDelegate,UI
     func configureDatePicker(textField:AAPickerView) -> Void {
         textField.pickerType = .DatePicker
         textField.datePicker?.datePickerMode = .date
+        textField.datePicker?.maximumDate = Date.init()
         textField.dateFormatter.dateFormat = Constants.dateFormatValue
         textField.dateDidChange = { date in
             print("selectedDate ", date )

@@ -71,6 +71,10 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
             TutorDefaultAlertController.showAlertController(alertMessage:"Please Enter Password" , showController: self)
             return
         }
+        guard (self.passwordTextField.text! as NSString).isValidPassword() else {
+            TutorDefaultAlertController.showAlertController(alertMessage:"Please Enter Valid password" , showController: self)
+            return
+        }
        // self.setrootViewControllerAfterLogin()
         MBProgressHUD.showAdded(to: self.view, animated: true)
        self.callLoginApiCallWithToken()

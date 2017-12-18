@@ -68,7 +68,8 @@ class TutorMyAccountViewController: UIViewController, UICollectionViewDelegate, 
     // MARK :: Tableview delegate
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = (Bundle.main.loadNibNamed("TutorMyAccountHeaderView", owner: self, options: nil)![0] as? TutorMyAccountHeaderView)
-        headerView?.frame.size = CGSize(width: tableView.frame.size.width, height: CGFloat(221))
+        headerView?.frame.size = CGSize(width: tableView.frame.size.width, height: CGFloat(250))
+        headerView?.updateheaderView()
 //        let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "TutorMyAccountHeaderView") as! TutorMyAccountHeaderView
         return headerView
     }

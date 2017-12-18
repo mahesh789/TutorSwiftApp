@@ -22,7 +22,13 @@ extension NSString {
         
         return predicate.evaluate(with: self)
     }
-    
+    func isValidNCRIFIR() -> Bool {
+        let regex : NSString = "^[STFG][0-9]{7}[A-Z]$"
+        
+        let predicate = NSPredicate(format: "SELF MATCHES %@", regex)
+        
+        return predicate.evaluate(with: self)
+    }
 }
 extension Date {
     var age: Int {

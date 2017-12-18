@@ -31,7 +31,7 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var uploadButton: UIButton!
     @IBOutlet weak var submitButton: UIButton!
-    let thePicker = UIPickerView()
+    var thePicker : UIPickerView!
     let genderArray = ["Male","Female"]
     var genderValue: String!
     let imagePicker = UIImagePickerController()
@@ -40,8 +40,6 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
 
     override func viewDidLoad() {
 
-        self.thePicker.delegate = self
-        self.thePicker.dataSource = self
         super.viewDidLoad()
         self.setGuardianData()
         self.setHeaderView()
@@ -198,9 +196,13 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
             }
             else if datadictionary?.value(forKey: "type") as? Int == ProfileDataType.ProfileDataTypeGender.rawValue && textFieldTemp.customTag == 1
             {
+                thePicker = UIPickerView()
+                thePicker.delegate = self
+                thePicker.dataSource = self
                 self.thePicker.tag = 0
                 textFieldTemp.inputView = self.thePicker
                 self.thePicker.reloadAllComponents()
+                genderValue = genderArray[0]
             }
             if datadictionary?.value(forKey: "type") as? Int == ProfileDataType.ProfileDataTypeEmail.rawValue || datadictionary?.value(forKey: "type") as? Int == ProfileDataType.ProfileDataTypeMobile.rawValue
             {
@@ -244,6 +246,7 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
     func configureDatePicker(textField:AAPickerView) -> Void {
         textField.pickerType = .DatePicker
         textField.datePicker?.datePickerMode = .date
+        textField.datePicker?.maximumDate = Date.init()
         textField.dateFormatter.dateFormat = Constants.dateFormatValue
         textField.dateDidChange = { date in
             print("selectedDate ", date )

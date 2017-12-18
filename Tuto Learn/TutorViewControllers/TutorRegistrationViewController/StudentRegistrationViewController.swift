@@ -52,7 +52,7 @@ class StudentRegistrationViewController: UIViewController,UITextFieldDelegate,UI
     
     
     let gender = ["Male","Female"]
-    let thePicker = UIPickerView()
+    var thePicker : UIPickerView!
     var cityArray = Array<Any>()
     var regiterTypeString : String?
     var genderTypeString : String?
@@ -64,8 +64,6 @@ class StudentRegistrationViewController: UIViewController,UITextFieldDelegate,UI
         // Do any additional setup after loading the view.
         super.viewDidLoad()
         self.setLayoutAndSetTexts()
-        thePicker.delegate = self ;
-        thePicker.dataSource = self ;
     }
     
     override func didReceiveMemoryWarning() {
@@ -207,6 +205,7 @@ class StudentRegistrationViewController: UIViewController,UITextFieldDelegate,UI
     func configureDatePicker(textField:AAPickerView) -> Void {
         textField.pickerType = .DatePicker
         textField.datePicker?.datePickerMode = .date
+        textField.datePicker?.maximumDate = Date.init()
         textField.dateFormatter.dateFormat = Constants.dateFormatValue
         textField.dateDidChange = { date in
             print("selectedDate ", date )
@@ -236,16 +235,26 @@ class StudentRegistrationViewController: UIViewController,UITextFieldDelegate,UI
             }
             else if datadictionary?.value(forKey: "type") as? Int == RegistrationDataType.RegistrationDataTypeDistrict.rawValue && textFieldTemp.customTag == 1
             {
+                thePicker = UIPickerView()
+                thePicker.delegate = self;
+                thePicker.dataSource = self;
                 textFieldTemp.inputView = self.thePicker
                 self.thePicker.tag = 1
                 if self.cityArray.isEmpty == true {
                     MBProgressHUD.showAdded(to: self.view, animated: true)
                     self.cityListApiCall(districTextField: textFieldTemp)
+                }else
+                {
+                    districtValue = self.cityArray[0] as! NSDictionary
                 }
             }
             else if datadictionary?.value(forKey: "type") as? Int == RegistrationDataType.RegistrationDataTypeGender.rawValue && textFieldTemp.customTag == 1
             {
+                thePicker = UIPickerView()
+                thePicker.delegate = self;
+                thePicker.dataSource = self;
                 self.thePicker.tag = 0
+                genderValue = gender[0]
                 textFieldTemp.inputView = self.thePicker
             }
         }
@@ -474,15 +483,23 @@ class StudentRegistrationViewController: UIViewController,UITextFieldDelegate,UI
                         
                     }
                     
-                    let leftValue =  dataContent["rightValue"] as? String
-                    if (leftValue?.isEmpty)!
+                    let leftValue =  dataContent["rightValue"] as? NSString
+                    if leftValue?.length == 0
                     {
                         TutorDefaultAlertController.showAlertController(alertMessage: "Please enter NRIC/FIN" , showController: self)
                         isValidate = false
                         break;
                     }else
                     {
-                        parameterData["s_nric"] = leftValue
+                        if leftValue?.isValidNCRIFIR() == true
+                        {
+                            parameterData["s_nric"] = leftValue! as String
+                        }else
+                        {
+                            TutorDefaultAlertController.showAlertController(alertMessage: "Please enter valid NRIC/FIN" , showController: self)
+                            isValidate = false
+                            break;
+                        }
                         
                     }
                     
@@ -569,6 +586,11 @@ class StudentRegistrationViewController: UIViewController,UITextFieldDelegate,UI
                     if (leftValue?.isEmpty)!
                     {
                         TutorDefaultAlertController.showAlertController(alertMessage: "Please enter pincode" , showController: self)
+                        isValidate = false
+                        break;
+                    }else if leftValue?.count != 6
+                    {
+                        TutorDefaultAlertController.showAlertController(alertMessage: "Please enter pincode in 6 digit" , showController: self)
                         isValidate = false
                         break;
                     }else
