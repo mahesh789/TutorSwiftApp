@@ -37,6 +37,8 @@
 		3D333C1C1FDBE3F000EEF3A1 /* TutorTimeSlotCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D333C1B1FDBE3F000EEF3A1 /* TutorTimeSlotCollectionViewCell.swift */; };
 		3D33F56D1FE62B36003873F2 /* TutorPastHistoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D33F56B1FE62B36003873F2 /* TutorPastHistoryModel.swift */; };
 		3D33F56E1FE62B36003873F2 /* TutorPastHistorySession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D33F56C1FE62B36003873F2 /* TutorPastHistorySession.swift */; };
+		3D33F5701FE6DC84003873F2 /* TutorPastHistoryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D33F56F1FE6DC84003873F2 /* TutorPastHistoryHeaderView.swift */; };
+		3D33F5721FE6DC93003873F2 /* TutorPastHistoryHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D33F5711FE6DC93003873F2 /* TutorPastHistoryHeaderView.xib */; };
 		3D40DEEE1FE0D0A60015921E /* TutorHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D40DEED1FE0D0A60015921E /* TutorHistoryViewController.swift */; };
 		3D4515CF1FB70F9100591577 /* TutorTeachersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4515CE1FB70F9100591577 /* TutorTeachersListViewController.swift */; };
 		3D623F341FBB5AE60087AF13 /* TutorTeacherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D623F331FBB5AE60087AF13 /* TutorTeacherModel.swift */; };
@@ -143,6 +145,8 @@
 		3D333C1B1FDBE3F000EEF3A1 /* TutorTimeSlotCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorTimeSlotCollectionViewCell.swift; sourceTree = "<group>"; };
 		3D33F56B1FE62B36003873F2 /* TutorPastHistoryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorPastHistoryModel.swift; sourceTree = "<group>"; };
 		3D33F56C1FE62B36003873F2 /* TutorPastHistorySession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorPastHistorySession.swift; sourceTree = "<group>"; };
+		3D33F56F1FE6DC84003873F2 /* TutorPastHistoryHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorPastHistoryHeaderView.swift; sourceTree = "<group>"; };
+		3D33F5711FE6DC93003873F2 /* TutorPastHistoryHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TutorPastHistoryHeaderView.xib; sourceTree = "<group>"; };
 		3D40DEED1FE0D0A60015921E /* TutorHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorHistoryViewController.swift; sourceTree = "<group>"; };
 		3D4515CE1FB70F9100591577 /* TutorTeachersListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorTeachersListViewController.swift; sourceTree = "<group>"; };
 		3D623F331FBB5AE60087AF13 /* TutorTeacherModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorTeacherModel.swift; sourceTree = "<group>"; };
@@ -296,6 +300,8 @@
 			isa = PBXGroup;
 			children = (
 				3D12390B1FE2E719006FE884 /* TutorCell */,
+				3D33F56F1FE6DC84003873F2 /* TutorPastHistoryHeaderView.swift */,
+				3D33F5711FE6DC93003873F2 /* TutorPastHistoryHeaderView.xib */,
 			);
 			path = TutorHistoryViews;
 			sourceTree = "<group>";
@@ -821,6 +827,7 @@
 				3DF48C0A1FBA222700EB5A57 /* Roboto-Regular.ttf in Resources */,
 				3D0A6B7F1FB692D0001CC7A9 /* Main.storyboard in Resources */,
 				3DF48C081FBA222700EB5A57 /* RobotoCondensed-Bold.ttf in Resources */,
+				3D33F5721FE6DC93003873F2 /* TutorPastHistoryHeaderView.xib in Resources */,
 				BA48D4DC1FDBF5660023C067 /* TutorMyAccountHeaderView.xib in Resources */,
 				3DF48C171FBA222700EB5A57 /* Roboto-Thin.ttf in Resources */,
 				3DF48C0C1FBA222700EB5A57 /* RobotoCondensed-Italic.ttf in Resources */,
@@ -1132,6 +1139,7 @@
 				BA48D4D61FDBE6680023C067 /* TutorMyAccountTableViewCell.swift in Sources */,
 				3B31EA541FCE6FDD00F6134E /* RegistrationFooterView.swift in Sources */,
 				3D9AE04E1FB36E160061859F /* TutorHomeViewController.swift in Sources */,
+				3D33F5701FE6DC84003873F2 /* TutorPastHistoryHeaderView.swift in Sources */,
 				3DBEC5961FAF85730018CD66 /* CommonUtils.swift in Sources */,
 				3B258D421FC7311400ADDE0D /* CustomTextField.swift in Sources */,
 				3D1BD8651FB0E69D00DDB3BB /* ViewController.swift in Sources */,
