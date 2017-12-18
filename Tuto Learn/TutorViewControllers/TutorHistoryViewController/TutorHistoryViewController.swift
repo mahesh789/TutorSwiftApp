@@ -113,6 +113,7 @@ class TutorHistoryViewController: UIViewController,UICollectionViewDelegate,UICo
         upComingButton.backgroundColor = UIColor (red: 27.0/255.0, green: 171.0/255.0, blue: 171/255.0, alpha: 1.0)
         pastButton.tag = 0
         upComingButton.tag = 1
+        tutorHistoryCollectionView?.backgroundColor = UIColor (red: 23.0/255.0, green: 147.0/255.0, blue: 153/255.0, alpha: 1.0)
 
     }
     
@@ -170,10 +171,19 @@ class TutorHistoryViewController: UIViewController,UICollectionViewDelegate,UICo
         {
             pastButton.backgroundColor = UIColor (red: 23.0/255.0, green: 147.0/255.0, blue: 153/255.0, alpha: 1.0)
             upComingButton.backgroundColor = UIColor (red: 27.0/255.0, green: 171.0/255.0, blue: 171/255.0, alpha: 1.0)
+            if self.pastHistoryArray.count == 0
+            {
+                self.getPastHistoryList()
+            }
+            
         }else if upComingButton.tag == indexPath?.row
         {
             upComingButton.backgroundColor = UIColor (red: 23.0/255.0, green: 147.0/255.0, blue: 153/255.0, alpha: 1.0)
             pastButton.backgroundColor = UIColor (red: 27.0/255.0, green: 171.0/255.0, blue: 171/255.0, alpha: 1.0)
+            if self.upComingHistoryArray.count == 0
+            {
+                self.getUpcomingHistoryList()
+            }
         }
         
     }

@@ -532,7 +532,7 @@ class TutorStudentProfileViewController: UIViewController,UITextFieldDelegate,UI
                 MBProgressHUD.showAdded(to: self.view, animated: true)
 
                 var parameterData = parameterStudent.lastObject as! Dictionary<String, String>
-                parameterData["register_type"] = "0"
+                parameterData["register_type"] = TutorSharedClass.shared.loginTutorLoginObject?.sm_register_type
                 parameterData["login_id"] = TutorSharedClass.shared.loginTutorLoginObject?.sm_id
                 if let profileImageChange = selectedProfileImage.value(forKey: String(0)) as? UIImage
                 {
@@ -597,7 +597,7 @@ class TutorStudentProfileViewController: UIViewController,UITextFieldDelegate,UI
     func setAndCallAddStudentData(parameterData:Dictionary<String, String>,andParameterData:NSMutableArray,index:Int)
     {
         var parameterData = parameterData
-        parameterData["register_type"] = "0"
+        parameterData["register_type"] = TutorSharedClass.shared.loginTutorLoginObject?.sm_register_type
         parameterData["login_id"] = TutorSharedClass.shared.loginTutorLoginObject?.sm_id
         if let profileImageChange = selectedProfileImage.value(forKey: String(index)) as? UIImage
         {

@@ -501,7 +501,7 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
                 TutorDefaultAlertController.showAlertController(alertMessage: "Please select profile picture" , showController: self)
             }else
             {
-                parameterData["register_type"] = "1"
+                parameterData["register_type"] = TutorSharedClass.shared.loginTutorLoginObject?.sm_register_type
                 parameterData["login_id"] = TutorSharedClass.shared.loginTutorLoginObject?.sm_id
                 parameterData["page_name"] = "1"
                 
