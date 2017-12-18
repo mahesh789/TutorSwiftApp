@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Medium.ttf">
+            <string>Roboto-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="TutorPastHistoryHeaderView" customModule="Tuto_Learn" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dummyPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="fcy-pE-NTO">
+                    <rect key="frame" x="20" y="5" width="70" height="70"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="70" id="fqy-OF-s7d"/>
+                        <constraint firstAttribute="height" constant="70" id="xqr-3T-5Ji"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jigna shah" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y7b-Qz-6iT">
+                    <rect key="frame" x="98" y="25" width="261" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="gIg-tK-nZm"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="19"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="0.0052303462289999998" green="0.67181247470000005" blue="0.67396217579999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="fcy-pE-NTO" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="B0v-6F-YI2"/>
+                <constraint firstAttribute="trailing" secondItem="Y7b-Qz-6iT" secondAttribute="trailing" constant="16" id="Sry-h4-reZ"/>
+                <constraint firstItem="fcy-pE-NTO" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="aFa-8K-AqC"/>
+                <constraint firstItem="Y7b-Qz-6iT" firstAttribute="leading" secondItem="fcy-pE-NTO" secondAttribute="trailing" constant="8" id="f9k-3B-uXj"/>
+                <constraint firstItem="Y7b-Qz-6iT" firstAttribute="centerY" secondItem="fcy-pE-NTO" secondAttribute="centerY" id="veg-wY-0W9"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="studentName" destination="Y7b-Qz-6iT" id="Yk9-Of-PXa"/>
+                <outlet property="studentProfileImage" destination="fcy-pE-NTO" id="Lmr-B8-I6j"/>
+            </connections>
+            <point key="canvasLocation" x="34.5" y="-68"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="dummyPhoto" width="120" height="120"/>
+    </resources>
+</document>
