@@ -51,7 +51,7 @@ class TutorTimeSlotViewController: UIViewController,UITableViewDelegate,UITableV
         timeSlotTableView.tableFooterView = UIView.init()
         teacherProfileImageView.layer.cornerRadius = self.teacherProfileImageView.frame.size.height/2
         teacherProfileImageView.clipsToBounds = true
-        let profileImageUrl = String(format:"%@",(tutorTeacherObject.teacherProfileString ?? ""))
+        let profileImageUrl = String(format:"%@",(tutorTeacherObject.teacherPhotoString ?? ""))
         teacherProfileImageView.kf.setImage(with: URL.init(string:profileImageUrl) , placeholder: UIImage.init(named: "dummyPhoto"), options: nil, progressBlock: nil, completionHandler:{
             (image, error, cacheType, imageUrl) in
             

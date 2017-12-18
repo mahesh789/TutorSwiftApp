@@ -76,7 +76,7 @@ class TutorHistoryCollectionViewCell: UICollectionViewCell,UITableViewDelegate,U
          let tutorPastHistoryObject = historyArray[section]
         tutorPastHistoryHeaderView?.studentName.text = (tutorPastHistoryObject.f_name ?? "") + " \(tutorPastHistoryObject.l_name ?? "")"
         tutorPastHistoryHeaderView?.backgroundColor = UIColor (red: 23.0/255.0, green: 147.0/255.0, blue: 153/255.0, alpha: 1.0)
-        let profileImageUrl = ""
+        let profileImageUrl = tutorPastHistoryObject.stud_img ?? ""
         tutorPastHistoryHeaderView?.studentProfileImage.kf.setImage(with: URL.init(string:profileImageUrl) , placeholder: UIImage.init(named: "dummyPhoto"), options: nil, progressBlock: nil, completionHandler:{
             (image, error, cacheType, imageUrl) in
             

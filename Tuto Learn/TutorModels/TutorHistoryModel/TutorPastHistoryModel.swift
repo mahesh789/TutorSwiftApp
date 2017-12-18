@@ -16,8 +16,8 @@ public class TutorPastHistoryModel {
 	public var sm_id : String?
 	public var f_name : String?
 	public var l_name : String?
+    public var stud_img : String?
 	public var session : Array<TutorPastHistorySession>?
-
 /**
     Returns an array of models based on given dictionary.
     
@@ -53,6 +53,7 @@ public class TutorPastHistoryModel {
 		sm_id = dictionary["sm_id"] as? String
 		f_name = dictionary["f_name"] as? String
 		l_name = dictionary["l_name"] as? String
+        stud_img = dictionary["stud_img"] as? String
         if (dictionary["session"] != nil) { session = TutorPastHistorySession.modelsFromDictionaryArray(array: dictionary["session"] as! NSArray) }
 	}
 
@@ -69,6 +70,7 @@ public class TutorPastHistoryModel {
 		dictionary.setValue(self.sm_id, forKey: "sm_id")
 		dictionary.setValue(self.f_name, forKey: "f_name")
 		dictionary.setValue(self.l_name, forKey: "l_name")
+        dictionary.setValue(self.stud_img, forKey: "stud_img")
 
 		return dictionary
 	}

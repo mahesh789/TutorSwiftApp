@@ -17,6 +17,7 @@ class TutorPastHistoryHeaderView: UIView {
         super.awakeFromNib()
         // Initialization code
         self.studentProfileImage.layer.cornerRadius = self.studentProfileImage.frame.size.height/2
+        self.studentProfileImage.clipsToBounds = true
     }
     
     // Only override draw() if you perform custom drawing.

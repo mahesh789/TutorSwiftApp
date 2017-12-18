@@ -278,6 +278,7 @@ class TutorHomeViewController: UIViewController,UITextFieldDelegate,UITableViewD
     
     // MARK:Login Api Implementation
     @objc func menuClickAction(sender:UIButton!) {
+        self.view.endEditing(true)
          present(SideMenuManager.default.menuRightNavigationController!, animated: true, completion: nil)
     }
     
