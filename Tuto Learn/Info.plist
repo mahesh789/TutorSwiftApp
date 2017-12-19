@@ -47,18 +47,18 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>li5113845</string>
+				<string>li5452576</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>2</string>
+	<string>3</string>
 	<key>FacebookAppID</key>
 	<string>305341286536308</string>
 	<key>FacebookDisplayName</key>
 	<string>Tuto Learn</string>
 	<key>LIAppId</key>
-	<string>5113845</string>
+	<string>5452576</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>linkedin</string>
