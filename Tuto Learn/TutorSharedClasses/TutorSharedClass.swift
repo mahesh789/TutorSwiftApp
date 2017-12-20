@@ -49,6 +49,7 @@ public class TutorSharedClass:NSObject {
     public func setRootControllerAccordingtoResponse(window:UIWindow)  {
         if (TutorSharedClass.shared.loginTutorLoginObject?.sm_profile == 1) && (TutorSharedClass.shared.loginTutorLoginObject?.sm_preference == 1)
         {
+            //if (TutorSharedClass.shared.loginTutorLoginObject?.sm_register_type
             self.setrootViewControllerAfterLogin(window: window)
         }
         else if (TutorSharedClass.shared.loginTutorLoginObject?.sm_profile == 1) && (TutorSharedClass.shared.loginTutorLoginObject?.sm_preference == 2)

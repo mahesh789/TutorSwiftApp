@@ -19,7 +19,7 @@ class TutorMyAccountHeaderView: UITableViewHeaderFooterView {
     }
     */
 
-    func updateheaderView()  {
+    func updateheaderView(headerData:NSMutableDictionary)  {
         self.profileImageView.layer.masksToBounds = true
         self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.height/2
     }

@@ -3,8 +3,8 @@
 //  Tuto Learn
 
 import UIKit
-
-class TutorMyAccountViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource {
+import Alamofire
+class TutorMyAccountViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     @IBOutlet weak var tutorNavigationBar:TutorHomeNavigationBar!
     @IBOutlet weak var guardianButton:UIButton!
@@ -13,6 +13,9 @@ class TutorMyAccountViewController: UIViewController, UICollectionViewDelegate, 
     @IBOutlet weak var tutorMyAccountCollectionView:UICollectionView!
     
     var dataArray :NSMutableArray?
+    var guardianDetailsArray = NSMutableArray()
+    var studentDetailsArray :NSMutableArray?
+    var preferenceDetailArray :NSMutableArray?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +23,10 @@ class TutorMyAccountViewController: UIViewController, UICollectionViewDelegate, 
         // Do any additional setup after loading the view.
         self.setPreferencesData()
         self.setHeaderView()
+        if self.guardianDetailsArray.count<=0
+        {
+            self.getGuardianDetails()
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,13 +36,14 @@ class TutorMyAccountViewController: UIViewController, UICollectionViewDelegate, 
     
     func setPreferencesData()
     {
-//        let contactDetails: NSMutableDictionary? = ["leftTitle":"Time of Contact","rightTitle":"Mode of Contact","leftValue":"","rightValue":"","type":NSNumber.init(value: PreferencesDataType.PreferencesDataTypeTimeOfContact.rawValue)]
-//
-//        let tutorDetails: NSMutableDictionary? = ["leftTitle":"Tution Type","rightTitle":"Preferred Tutor Gender","leftValue":"","rightValue":"","type":NSNumber.init(value: PreferencesDataType.PreferencesDataTutorType.rawValue)]
-        
+        let guardianDetails: NSMutableDictionary? = ["type":"1"]
+        //
+        let studentDetails: NSMutableDictionary? = ["type":"2"]
+        let preferenceDetails: NSMutableDictionary? = ["type":"3"]
         dataArray = NSMutableArray()
-//        dataArray?.add(contactDetails ?? NSDictionary.init())
-//        dataArray?.add(tutorDetails ?? NSDictionary.init())
+        dataArray?.add(guardianDetails ?? NSDictionary.init())
+        dataArray?.add(studentDetails ?? NSDictionary.init())
+        dataArray?.add(preferenceDetails ?? NSDictionary.init())
         
         self.tutorNavigationBar.leftBarButton.addTarget(self, action: #selector(backButtonAction), for:.touchUpInside)
         self.tutorNavigationBar.leftBarButton.isHidden = false
@@ -53,7 +61,7 @@ class TutorMyAccountViewController: UIViewController, UICollectionViewDelegate, 
     
     // MARK :: CollectionView delegate
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        return (dataArray?.count)!
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
@@ -62,34 +70,118 @@ class TutorMyAccountViewController: UIViewController, UICollectionViewDelegate, 
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let collectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "TutorMyAccountCollectionViewCell", for: indexPath) as? TutorMyAccountCollectionViewCell
+        let cellData = self.dataArray?.object(at: indexPath.row) as? NSMutableDictionary
+        if cellData?.value(forKey: "type") as? String == "1"
+        {
+            collectionViewCell?.updateViewLayout(cellData: cellData!, tableViewArray: self.guardianDetailsArray)
+            
+        }else if cellData?.value(forKey: "type") as? String == "2"
+        {
+            
+        }else if cellData?.value(forKey: "type") as? String == "3"
+        {
+            
+        }
         return collectionViewCell!
     }
     
-    // MARK :: Tableview delegate
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = (Bundle.main.loadNibNamed("TutorMyAccountHeaderView", owner: self, options: nil)![0] as? TutorMyAccountHeaderView)
-        headerView?.frame.size = CGSize(width: tableView.frame.size.width, height: CGFloat(250))
-        headerView?.updateheaderView()
-//        let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "TutorMyAccountHeaderView") as! TutorMyAccountHeaderView
-        return headerView
+    
+    
+    func setGuardianData(gaudianDetails:NSDictionary)  {
+        if TutorSharedClass.shared.loginTutorLoginObject?.sm_register_type == "0"
+        {
+            let guardianGenderDetails: NSMutableDictionary? = ["title":"Gender","value":gaudianDetails.value(forKey: "pm_gender") ?? ""]
+            let guardianDOBDetails: NSMutableDictionary? = ["title":"Date of Birth","value":gaudianDetails.value(forKey: "pm_dob") ?? ""]
+            let guardianEmailDetails: NSMutableDictionary? = ["title":"EmailID","value":gaudianDetails.value(forKey: "pm_email") ?? ""]
+            let guardianMobileDetails: NSMutableDictionary? = ["title":"Mobile","value":gaudianDetails.value(forKey: "pm_phone") ?? ""]
+            let guardianOccupationDetails: NSMutableDictionary? = ["title":"Occupation","value":gaudianDetails.value(forKey: "pm_occupation") ?? ""]
+            self.guardianDetailsArray.add(guardianGenderDetails ?? NSMutableDictionary.init())
+            self.guardianDetailsArray.add(guardianDOBDetails ?? NSMutableDictionary.init())
+            self.guardianDetailsArray.add(guardianEmailDetails ?? NSMutableDictionary.init())
+            self.guardianDetailsArray.add(guardianMobileDetails ?? NSMutableDictionary.init())
+            self.guardianDetailsArray.add(guardianOccupationDetails ?? NSMutableDictionary.init())
+        }else
+        {
+            let guardianGenderDetails: NSMutableDictionary? = ["title":"Gender","value":gaudianDetails.value(forKey: "sm_gender") ?? ""]
+            let guardianDOBDetails: NSMutableDictionary? = ["title":"Date of Birth","value":gaudianDetails.value(forKey: "sm_dob") ?? ""]
+            let guardianEmailDetails: NSMutableDictionary? = ["title":"EmailID","value":gaudianDetails.value(forKey: "sm_email") ?? ""]
+            let guardianMobileDetails: NSMutableDictionary? = ["title":"Mobile","value":gaudianDetails.value(forKey: "sm_mobile") ?? ""]
+            let guardianOccupationDetails: NSMutableDictionary? = ["title":"Occupation","value":gaudianDetails.value(forKey: "sm_occupation") ?? ""]
+            self.guardianDetailsArray.add(guardianGenderDetails ?? NSMutableDictionary.init())
+            self.guardianDetailsArray.add(guardianDOBDetails ?? NSMutableDictionary.init())
+            self.guardianDetailsArray.add(guardianEmailDetails ?? NSMutableDictionary.init())
+            self.guardianDetailsArray.add(guardianMobileDetails ?? NSMutableDictionary.init())
+            self.guardianDetailsArray.add(guardianOccupationDetails ?? NSMutableDictionary.init())
+        }
+        tutorMyAccountCollectionView.reloadData()
     }
     
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 221
-    }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1;
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 40
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TutorMyAccountTableViewCell", for: indexPath) as? TutorMyAccountTableViewCell
-        cell?.cellTitleLable.text = "Gender"
-        cell?.cellTitleValueLable.text = "Male"
-        return cell!
+    func getGuardianDetails() {
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        var parameterData = [String: String]()
+        parameterData["user_id"] = TutorSharedClass.shared.loginTutorLoginObject?.sm_id
+        parameterData["register_type"] = TutorSharedClass.shared.loginTutorLoginObject?.sm_register_type
+        // print(parameterData);
+        var urlPath: String?
+        if TutorSharedClass.shared.loginTutorLoginObject?.sm_register_type == "0"
+        {
+            urlPath = String(format: "%@%@",Constants.baseUrl,Constants.getGaurdianDetailForStudent) as String
+        }else
+        {
+            urlPath = String(format: "%@%@",Constants.baseUrl,Constants.profileDetails) as String
+        }
+        Alamofire.request(urlPath!, method: .post, parameters:parameterData , encoding: JSONEncoding.default, headers:["Content-Type":"application/json","Authorization":String(format:"Bearer %@",TutorSharedClass.shared.token ?? "")]) .responseJSON { response in
+            if response.result.isSuccess
+            {
+                if let resultDictionary = response.result.value as? NSDictionary
+                {
+                    print(resultDictionary)
+                    
+                    if Int(truncating: resultDictionary["status"] as! NSNumber) == Constants.Status.StatusOK.rawValue
+                    {
+                        print(resultDictionary)
+                        MBProgressHUD.hide(for: self.view, animated: true)
+                        if let resultParseLoginDictionary = resultDictionary.object(forKey: "data") as? NSDictionary
+                        {
+                            self.setGuardianData(gaudianDetails: resultParseLoginDictionary)
+                        }
+                        
+                    }
+                    else if Int(truncating: resultDictionary["status"] as! NSNumber) == Constants.Status.TokenNotFound.rawValue
+                    {
+                        TutorGenerateToken.performGenerateTokenUrl(completionHandler: { (status, token) in
+                            if status == Constants.Status.StatusOK.rawValue {
+                                self.getGuardianDetails()
+                            }
+                            else {
+                                print(token as Any)
+                                MBProgressHUD.hide(for: self.view, animated: true)
+                            }
+                        })
+                    }else if Int(truncating: resultDictionary["status"] as! NSNumber) == Constants.Status.TokenNotFound.rawValue
+                    {
+                        TutorGenerateToken.performGenerateTokenUrl(completionHandler: { (status, token) in
+                            if status == Constants.Status.StatusOK.rawValue {
+                                self.getGuardianDetails()
+                            }
+                            else {
+                                print(token as Any)
+                                MBProgressHUD.hide(for: self.view, animated: true)
+                            }
+                        })
+                    }
+                    else{
+                        MBProgressHUD.hide(for: self.view, animated: true)
+                        
+                        TutorDefaultAlertController.showAlertController(alertMessage: resultDictionary["message"] as? String, showController: self)
+                    }
+                }
+            }
+            else if response.result.isFailure {
+                MBProgressHUD.hide(for: self.view, animated: true)
+                print(response.result.error as Any)
+            }
+        }
     }
 }

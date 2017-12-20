@@ -26,6 +26,9 @@ class Constants {
     static let preferenceDetails = "fetch_preference"
     static let updatePreference = "student_preference"
     static let addStudent = "add_student"
+    static let getGaurdianDetailForStudent = "fetch_guardian"
+
+    
 
     static let token = "token"
     static let cityList = "city_list"

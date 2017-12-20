@@ -496,6 +496,8 @@ class TutorPreferencesViewController: UIViewController, UITextFieldDelegate, UIT
         let alert = UIAlertController(title: "", message: alertMessage, preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default){ action -> Void in
             TutorSharedClass.shared.loginTutorLoginObject?.sm_preference = 1
+            TutorSharedClass.shared.loginTutorLoginObject?.sm_profile = 1
+
             TutorSharedClass.shared.updateLocalValue()
             TutorSharedClass.shared.setrootViewControllerAfterLogin(window: UIApplication.shared.keyWindow!)
         })
