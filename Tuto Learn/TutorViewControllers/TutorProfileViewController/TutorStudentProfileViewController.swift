@@ -403,7 +403,7 @@ class TutorStudentProfileViewController: UIViewController,UITextFieldDelegate,UI
                                             parameterData["dob"] = rightValue
                                         }else
                                         {
-                                            parameterData["s_dob"] = leftValue
+                                            parameterData["s_dob"] = rightValue
                                         }
                                     }
                                     
@@ -609,6 +609,7 @@ class TutorStudentProfileViewController: UIViewController,UITextFieldDelegate,UI
             parameterData["img_ext"] = ""
         }
         parameterData["s_oauth"] = "Mobile"
+        parameterData["page_name"] = "0"
         parameterData.removeValue(forKey: "tempID")
         self.callAddStudentUnderGuardian(parameterData: parameterData,allParameterData: andParameterData,index: index)
     }
@@ -1131,7 +1132,7 @@ class TutorStudentProfileViewController: UIViewController,UITextFieldDelegate,UI
     func callAddStudentUnderGuardian(parameterData:Dictionary<String, String>, allParameterData:NSMutableArray,index:Int)  {
         
         let urlPath = String(format: "%@%@",Constants.baseUrl,Constants.addStudent) as String
-        // print(parameterData)
+         print(parameterData)
         Alamofire.request(urlPath, method: .post, parameters:parameterData , encoding: JSONEncoding.default, headers:["Content-Type":"application/json","Authorization":String(format:"Bearer %@",TutorSharedClass.shared.token ?? "")]) .responseJSON { response in
             if response.result.isSuccess
             {
