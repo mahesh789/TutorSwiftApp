@@ -35,7 +35,8 @@ class TutorPreferencesViewController: UIViewController, UITextFieldDelegate, UIT
     var tutionTypeValue: String!
     var isfromLoginAPI: Bool = false
 
-    
+    var isfromMyAccount: Bool = false
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -43,10 +44,10 @@ class TutorPreferencesViewController: UIViewController, UITextFieldDelegate, UIT
         
         self.thePicker.delegate = self
         self.thePicker.dataSource = self
-        self.setPreferencesData()
         self.setHeaderView()
         self.setFooterView()
         self.setupSideMenu()
+        self.setPreferencesData()
         MBProgressHUD.showAdded(to: self.view, animated: true)
         self.getpreferenceData()
     }
@@ -67,9 +68,9 @@ class TutorPreferencesViewController: UIViewController, UITextFieldDelegate, UIT
     }
     func setPreferencesData()
     {
-        let contactDetails: NSMutableDictionary? = ["leftTitle":"Time of Contact","rightTitle":"Mode of Contact","leftValue":"","rightValue":"","type":NSNumber.init(value: PreferencesDataType.PreferencesDataTypeTimeOfContact.rawValue)]
+        let contactDetails: NSMutableDictionary? = ["leftTitle":"Time of Contact","rightTitle":"Mode of Contact","leftValue":self.preferenceData?.value(forKey: "sp_contact_time") as? String ?? "","rightValue":self.preferenceData?.value(forKey: "sp_contact_mode") as? String ?? "","type":NSNumber.init(value: PreferencesDataType.PreferencesDataTypeTimeOfContact.rawValue)]
         
-        let tutorDetails: NSMutableDictionary? = ["leftTitle":"Tution Type","rightTitle":"Preferred Tutor Gender","leftValue":"","rightValue":"","type":NSNumber.init(value: PreferencesDataType.PreferencesDataTypeContact.rawValue)]
+        let tutorDetails: NSMutableDictionary? = ["leftTitle":"Tution Type","rightTitle":"Preferred Tutor Gender","leftValue":self.preferenceData?.value(forKey: "sp_tution_type") as? String ?? "","rightValue":self.preferenceData?.value(forKey: "sp_prefer_gender") as? String ?? "","type":NSNumber.init(value: PreferencesDataType.PreferencesDataTypeContact.rawValue)]
 
         
         dataArray = NSMutableArray()
@@ -90,7 +91,13 @@ class TutorPreferencesViewController: UIViewController, UITextFieldDelegate, UIT
         self.tutorNavigationBar.navigationTitleLabel.text = "Your Profile"
         self.tutorNavigationBar.leftBarButton.addTarget(self, action: #selector(backButtonAction), for:.touchUpInside)
         self.tutorNavigationBar.rightBarButton.addTarget(self, action: #selector(menuClickAction), for:.touchUpInside)
+        self.preferencesTableview.reloadData()
 
+        if isfromMyAccount == true
+        {
+            self.tutorNavigationBar.leftBarButton.isHidden = false
+            self.tutorNavigationBar.rightBarButton.isHidden = true
+        }
 
     }
     
@@ -398,6 +405,8 @@ class TutorPreferencesViewController: UIViewController, UITextFieldDelegate, UIT
                         if let resultParseLoginDictionary = resultDictionary.object(forKey: "data") as? NSDictionary
                         {
                             self.preferenceData = resultParseLoginDictionary
+                            self.setPreferencesData()
+
                         }
                         
                     }

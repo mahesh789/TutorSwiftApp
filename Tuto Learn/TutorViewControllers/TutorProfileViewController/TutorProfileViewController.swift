@@ -37,7 +37,8 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
     let imagePicker = UIImagePickerController()
     var selectedImage: UIImage?
     var isImageChange: Bool = false
-
+    var isFromMyAccount:Bool = false
+    
     override func viewDidLoad() {
 
         super.viewDidLoad()
@@ -131,9 +132,19 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
             self.uploadButton.setTitle("Upload Photo", for: .normal)
         }
         
-        self.tutorNavigationBar.rightBarButton.isHidden = false
+        if self.isFromMyAccount == true
+        {
+            self.tutorNavigationBar.leftBarButton.isHidden = false
+            self.tutorNavigationBar.rightBarButton.isHidden = true
+            self.tutorNavigationBar.leftBarButton.addTarget(self, action: #selector(backButtonClicked), for:.touchUpInside)
+
+        }else
+        {
+            self.tutorNavigationBar.leftBarButton.isHidden = true
+            self.tutorNavigationBar.rightBarButton.isHidden = false
+
+        }
         self.tutorNavigationBar.navigationTitleLabel.text = "Your Profile"
-        self.tutorNavigationBar.leftBarButton.isHidden = true
         self.tutorNavigationBar.rightBarButton.addTarget(self, action: #selector(menuClickAction), for:.touchUpInside)
     }
     
@@ -585,7 +596,13 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
     func showAlertController(alertMessage:String?) -> Void {
         let alert = UIAlertController(title: "", message: alertMessage, preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default){ action -> Void in
-            self.openStudentProfileController();
+            if self.isFromMyAccount == true
+            {
+                self.navigationController?.popToRootViewController(animated: true)
+            }else
+            {
+                self.openStudentProfileController();
+            }
         })
         self.present(alert, animated: true, completion: nil)
     }
@@ -666,6 +683,9 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
         }
     }
     
+    @objc func backButtonClicked(sender:UIButton) {
+        self.navigationController?.popViewController(animated: true)
+    }
 
 }
 

@@ -68,7 +68,7 @@
                             <state key="normal" image="closeButton"/>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" red="0.0" green="0.57309991120000003" blue="0.60387867689999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" red="0.24313725490196078" green="0.56470588235294117" blue="0.59215686274509804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstItem="5F6-Sc-URf" firstAttribute="centerX" secondItem="21Q-yp-F5P" secondAttribute="centerX" id="2MS-2V-z2b"/>
                         <constraint firstAttribute="trailing" secondItem="cBd-Rl-IZ0" secondAttribute="trailing" id="3Ra-2c-sbW"/>
