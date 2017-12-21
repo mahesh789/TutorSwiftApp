@@ -47,22 +47,48 @@ public class TutorSharedClass:NSObject {
     
     
     public func setRootControllerAccordingtoResponse(window:UIWindow)  {
-        if (TutorSharedClass.shared.loginTutorLoginObject?.sm_profile == 1) && (TutorSharedClass.shared.loginTutorLoginObject?.sm_preference == 1)
-        {
-            //if (TutorSharedClass.shared.loginTutorLoginObject?.sm_register_type
-            self.setrootViewControllerAfterLogin(window: window)
+        
+        if TutorSharedClass.shared.loginTutorLoginObject?.sm_register_type == "0" {
+            
+            if TutorSharedClass.shared.loginTutorLoginObject?.sm_guardian == 2
+            {
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let tutorHomeViewController:TutorProfileViewController = storyboard.instantiateViewController(withIdentifier: "TutorProfileViewController") as! TutorProfileViewController
+                tutorHomeViewController.currentProfilType = ProfileType.ProfileTypeGuardian.rawValue
+                let navigationController = UINavigationController(rootViewController: tutorHomeViewController)
+                navigationController.isNavigationBarHidden = true
+                window.rootViewController = navigationController
+            }else if TutorSharedClass.shared.loginTutorLoginObject?.sm_profile == 2
+            {
+                self.setProfilerootViewController(window: window)
+                
+            }else if TutorSharedClass.shared.loginTutorLoginObject?.sm_preference == 2
+            {
+                self.setPreferencesrootViewController(window: window)
+            }else{
+               self.setrootViewControllerAfterLogin(window: window)
+            }
+            
+        }else{
+            
+            if (TutorSharedClass.shared.loginTutorLoginObject?.sm_profile == 1) && (TutorSharedClass.shared.loginTutorLoginObject?.sm_preference == 1)
+            {
+                self.setrootViewControllerAfterLogin(window: window)
+            }
+            else if (TutorSharedClass.shared.loginTutorLoginObject?.sm_profile == 1) && (TutorSharedClass.shared.loginTutorLoginObject?.sm_preference == 2)
+            {
+                self.setPreferencesrootViewController(window: window)
+            }
+            else if (TutorSharedClass.shared.loginTutorLoginObject?.sm_profile == 2) && (TutorSharedClass.shared.loginTutorLoginObject?.sm_preference == 1)
+            {
+                self.setProfilerootViewController(window: window)
+            }else
+            {
+                self.setProfilerootViewController(window: window)
+            }
         }
-        else if (TutorSharedClass.shared.loginTutorLoginObject?.sm_profile == 1) && (TutorSharedClass.shared.loginTutorLoginObject?.sm_preference == 2)
-        {
-            self.setPreferencesrootViewController(window: window)
-        }
-        else if (TutorSharedClass.shared.loginTutorLoginObject?.sm_profile == 2) && (TutorSharedClass.shared.loginTutorLoginObject?.sm_preference == 1)
-        {
-            self.setProfilerootViewController(window: window)
-        }else
-        {
-            self.setProfilerootViewController(window: window)
-        }
+        
+       
     }
     
     func setrootViewControllerAfterLogin(window:UIWindow) -> Void {
