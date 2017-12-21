@@ -23,10 +23,10 @@ class TutorMyAccountCollectionViewCell: UICollectionViewCell,UITableViewDelegate
         let headerView = (Bundle.main.loadNibNamed("TutorMyAccountHeaderView", owner: self, options: nil)![0] as? TutorMyAccountHeaderView)
         if cellDetailsData?.value(forKey: "type") as? String == "3"
         {
-            headerView?.frame.size = CGSize(width: tableView.frame.size.width, height: CGFloat(40))
+            headerView?.frame.size = CGSize(width: UIScreen.main.bounds.size.width, height: CGFloat(40))
         }else
         {
-            headerView?.frame.size = CGSize(width: tableView.frame.size.width, height: CGFloat(250))
+            headerView?.frame.size = CGSize(width: UIScreen.main.bounds.size.width, height: CGFloat(250))
 
         }
         if cellDetailsData?.value(forKey: "type") as? String == "1" || cellDetailsData?.value(forKey: "type") as? String == "3"

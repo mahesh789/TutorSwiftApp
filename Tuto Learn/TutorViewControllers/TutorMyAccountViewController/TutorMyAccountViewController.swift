@@ -4,7 +4,7 @@
 
 import UIKit
 import Alamofire
-class TutorMyAccountViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource,TutorMyAccountCollectionViewCellDelegate {
+class TutorMyAccountViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource,TutorMyAccountCollectionViewCellDelegate,UICollectionViewDelegateFlowLayout {
     
     @IBOutlet weak var tutorNavigationBar:TutorHomeNavigationBar!
     @IBOutlet weak var guardianButton:UIButton!
@@ -28,7 +28,7 @@ class TutorMyAccountViewController: UIViewController, UICollectionViewDelegate, 
         }
         self.tutorNavigationBar.leftBarButton.addTarget(self, action: #selector(backButtonAction), for:.touchUpInside)
         self.tutorNavigationBar.leftBarButton.isHidden = false
-        self.tutorNavigationBar.rightBarButton.isHidden = false
+        self.tutorNavigationBar.rightBarButton.isHidden = true
         self.tutorNavigationBar.navigationTitleLabel.text = "My Account"
         guardianButton.isSelected = true
         studentButton.isSelected = false
@@ -70,7 +70,8 @@ class TutorMyAccountViewController: UIViewController, UICollectionViewDelegate, 
         return (dataArray.count)
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        print(collectionView.layer.frame.height)
         return CGSize(width: collectionView.layer.frame.width, height: collectionView.layer.frame.height);
     }
     
