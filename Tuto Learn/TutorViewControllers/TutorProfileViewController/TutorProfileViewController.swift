@@ -601,7 +601,17 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
                 self.navigationController?.popToRootViewController(animated: true)
             }else
             {
-                self.openStudentProfileController();
+                if TutorSharedClass.shared.loginTutorLoginObject?.sm_register_type == "0"
+                {
+                    TutorSharedClass.shared.loginTutorLoginObject?.sm_guardian = 1
+                    TutorSharedClass.shared.loginTutorLoginObject?.updateModelObject(modelObject: TutorSharedClass.shared.loginTutorLoginObject!)
+                    TutorSharedClass.shared.updateLocalValue()
+                    TutorSharedClass.shared.setrootViewControllerAfterLogin(window: UIApplication.shared.keyWindow!)
+                    
+                }else
+                {
+                    self.openStudentProfileController();
+                }
             }
         })
         self.present(alert, animated: true, completion: nil)
