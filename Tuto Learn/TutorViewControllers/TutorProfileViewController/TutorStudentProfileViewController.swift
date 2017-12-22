@@ -34,6 +34,7 @@ class TutorStudentProfileViewController: UIViewController,UITextFieldDelegate,UI
     var selectedLevel = NSMutableDictionary()
     var selectedBoard = NSMutableDictionary()
     var requestParameterData = NSMutableArray()
+    var isFromMyAccount: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,8 +53,18 @@ class TutorStudentProfileViewController: UIViewController,UITextFieldDelegate,UI
         if self.isEditStudentProfile == true
         {
             self.tutorNavigationBar.leftBarButton.isHidden = true
-            MBProgressHUD.showAdded(to: self.view, animated: true)
-            self.getStudentDetails()
+            if self.isFromMyAccount == false
+            {
+                MBProgressHUD.showAdded(to: self.view, animated: true)
+                self.getStudentDetails()
+            }
+        }
+        
+        if self.isFromMyAccount == true
+        {
+            self.tutorNavigationBar.leftBarButton.isHidden = false
+            self.tutorNavigationBar.rightBarButton.isHidden = true
+
         }
         // Do any additional setup after loading the view.
     }
@@ -387,10 +398,22 @@ class TutorStudentProfileViewController: UIViewController,UITextFieldDelegate,UI
                                 {
                                     let dateFormatterValue = DateFormatter()
                                     dateFormatterValue.dateFormat = Constants.dateFormatValue
-                                    let date = dateFormatterValue.date(from: rightValue!)!
-                                    let calendar = Calendar.current
-                                    let components = calendar.dateComponents([.year, .month, .day, .hour], from: date)
-                                    let myDOB = Calendar.current.date(from: components)!
+                                    var myDOB = Date()
+                                    if  let date = dateFormatterValue.date(from: rightValue!)
+                                    {
+                                        let calendar = Calendar.current
+                                        let components = calendar.dateComponents([.year, .month, .day, .hour], from: date)
+                                        myDOB = Calendar.current.date(from: components)!
+                                        
+                                    }else
+                                    {
+                                        dateFormatterValue.dateFormat = "dd/MM/yyyy"
+                                        let date = dateFormatterValue.date(from: rightValue!)!
+                                        let calendar = Calendar.current
+                                        let components = calendar.dateComponents([.year, .month, .day, .hour], from: date)
+                                        myDOB = Calendar.current.date(from: components)!
+                                    }
+                                   
                                     if myDOB.age < 3
                                     {
                                         TutorDefaultAlertController.showAlertController(alertMessage: "Minimum 3 years required to register as student" , showController: self)
@@ -531,7 +554,7 @@ class TutorStudentProfileViewController: UIViewController,UITextFieldDelegate,UI
 
                 var parameterData = parameterStudent.lastObject as! Dictionary<String, String>
                 parameterData["register_type"] = TutorSharedClass.shared.loginTutorLoginObject?.sm_register_type
-                parameterData["login_id"] = TutorSharedClass.shared.loginTutorLoginObject?.sm_id
+                parameterData["login_id"] = selectedStudentInfo?.value(forKey: "sm_id") as? String ?? ""//TutorSharedClass.shared.loginTutorLoginObject?.sm_id
                 if let profileImageChange = selectedProfileImage.value(forKey: String(0)) as? UIImage
                 {
                     let imageData: NSData = UIImageJPEGRepresentation(profileImageChange, 0.5)! as NSData
@@ -545,7 +568,8 @@ class TutorStudentProfileViewController: UIViewController,UITextFieldDelegate,UI
                 }
                 
                 parameterData["page_name"] = "0"
-              
+                parameterData.removeValue(forKey: "tempID")
+
                 self.callUpdateGuardianProfileDetails(parameterData: parameterData)
                 
             }else
@@ -925,7 +949,13 @@ class TutorStudentProfileViewController: UIViewController,UITextFieldDelegate,UI
     func showAlertController(alertMessage:String?) -> Void {
         let alert = UIAlertController(title: "", message: alertMessage, preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default){ action -> Void in
-            self.openGuardianPreferenceController();
+            if self.isFromMyAccount == true
+            {
+                self.navigationController?.popToRootViewController(animated: true)
+            }else
+            {
+                self.openGuardianPreferenceController();
+            }
         })
         self.present(alert, animated: true, completion: nil)
     }

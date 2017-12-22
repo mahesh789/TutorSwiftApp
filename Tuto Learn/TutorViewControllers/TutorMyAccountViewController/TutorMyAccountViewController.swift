@@ -244,10 +244,7 @@ class TutorMyAccountViewController: UIViewController, UICollectionViewDelegate, 
             
             if let studentDataTemp = studentData as? NSDictionary
             {
-                let mutableData = NSMutableDictionary()
-                mutableData.setValue(studentDataTemp["sm_name"], forKey: "sm_name")
-                mutableData.setValue(studentDataTemp["sm_last"], forKey: "sm_last")
-                mutableData.setValue(studentDataTemp["sm_profile_image"], forKey: "sm_profile_image")
+                let mutableData = NSMutableDictionary.init(dictionary: studentDataTemp)
                 
                 let studentDataArray = NSMutableArray()
                 let studentgender = NSMutableDictionary.init(objects: [studentDataTemp["sm_gender"] ?? "","Gender"], forKeys: ["value" as NSCopying,"title" as NSCopying])
@@ -291,7 +288,9 @@ class TutorMyAccountViewController: UIViewController, UICollectionViewDelegate, 
                     if Int(truncating: resultDictionary["status"] as! NSNumber) == Constants.Status.StatusOK.rawValue
                     {
                         print(resultDictionary)
-                        MBProgressHUD.hide(for: self.view, animated: true)
+                        DispatchQueue.main.async {
+                            MBProgressHUD.hide(for: self.view, animated: true)
+                        }
                         if let resultParseLoginDictionary = resultDictionary.object(forKey: "data") as? NSDictionary
                         {
                             self.setPreferenceData(preferenceDetails: resultParseLoginDictionary)
@@ -305,7 +304,10 @@ class TutorMyAccountViewController: UIViewController, UICollectionViewDelegate, 
                             }
                             else {
                                 print(token as Any)
-                                MBProgressHUD.hide(for: self.view, animated: true)
+                                DispatchQueue.main.async {
+                                    MBProgressHUD.hide(for: self.view, animated: true)
+                                }
+                                
                             }
                         })
                     }else if Int(truncating: resultDictionary["status"] as! NSNumber) == Constants.Status.TokenNotFound.rawValue
@@ -316,13 +318,17 @@ class TutorMyAccountViewController: UIViewController, UICollectionViewDelegate, 
                             }
                             else {
                                 print(token as Any)
-                                MBProgressHUD.hide(for: self.view, animated: true)
+                                DispatchQueue.main.async {
+                                    MBProgressHUD.hide(for: self.view, animated: true)
+                                }
+                                
                             }
                         })
                     }
                     else{
-                        MBProgressHUD.hide(for: self.view, animated: true)
-                        
+                        DispatchQueue.main.async {
+                            MBProgressHUD.hide(for: self.view, animated: true)
+                        }
                         //  TutorDefaultAlertController.showAlertController(alertMessage: resultDictionary["message"] as? String, showController: self)
                     }
                 }
@@ -395,9 +401,10 @@ class TutorMyAccountViewController: UIViewController, UICollectionViewDelegate, 
     }
     func editButtonClickedDelegate(type:String,index:Int)
     {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+
         if type == "1"
         {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
 
             let tutorHomeViewController:TutorProfileViewController = storyboard.instantiateViewController(withIdentifier: "TutorProfileViewController") as! TutorProfileViewController
             tutorHomeViewController.currentProfilType = ProfileType.ProfileTypeGuardian.rawValue
@@ -407,10 +414,19 @@ class TutorMyAccountViewController: UIViewController, UICollectionViewDelegate, 
             self.navigationController?.pushViewController(tutorHomeViewController, animated: true)
         }else if type == "2"
         {
+            if let mutableData = self.studentDetailsArray?.object(at: index) as? NSMutableDictionary
+            {
+                let tutorHomeViewController:TutorStudentProfileViewController = storyboard.instantiateViewController(withIdentifier: "TutorStudentProfileViewController") as! TutorStudentProfileViewController
+                tutorHomeViewController.isEditStudentProfile = true
+                tutorHomeViewController.isFromMyAccount = true
+                tutorHomeViewController.selectedStudentInfo = mutableData
+                let navigationController = UINavigationController(rootViewController: tutorHomeViewController)
+                navigationController.isNavigationBarHidden = true
+                self.navigationController?.pushViewController(tutorHomeViewController, animated: true)
+            }
             
         }else if type == "3"
         {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
             
             let tutorHomeViewController:TutorPreferencesViewController = storyboard.instantiateViewController(withIdentifier: "TutorPreferencesViewController") as! TutorPreferencesViewController
             tutorHomeViewController.isfromMyAccount = true
