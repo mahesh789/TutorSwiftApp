@@ -94,7 +94,7 @@ class TutorHistoryViewController: UIViewController,UICollectionViewDelegate,UICo
         objectDictionary.setValue("0595D56345", forKey: "sm_id")
         objectDictionary.setValue("SONU", forKey: "f_name")
         objectDictionary.setValue("GHARAT", forKey: "l_name")
-        let childArray = [["sd_date":"06-12-2017","sd_start_time":11,"sd_end_time":12,"sd_subject":"","sd_topic":"","sd_tution_type":"solo","sd_grp_size":"2","tuto_name":"Angha  Gharat","rate":"3","sd_amt":"30"],["sd_date":"06-12-2017","sd_start_time":11,"sd_end_time":12,"sd_subject":"","sd_topic":"","sd_tution_type":"solo","sd_grp_size":"2","tuto_name":"Angha  Gharat","rate":"3","sd_amt":"30"]]
+        let childArray = [["sd_date":"06-12-2017","sd_start_time":11,"sd_end_time":12,"sd_subject":"","sd_topic":"","sd_tution_type":"solo","sd_grp_size":"2","tuto_name":"Angha  Gharat","rate":3,"sd_amt":"30"],["sd_date":"06-12-2017","sd_start_time":11,"sd_end_time":12,"sd_subject":"","sd_topic":"","sd_tution_type":"solo","sd_grp_size":"2","tuto_name":"Angha  Gharat","rate":1,"sd_amt":"30"]]
         objectDictionary.setValue(childArray, forKey: "session")
 
         mainArray.add(objectDictionary)

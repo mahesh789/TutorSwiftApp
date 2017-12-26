@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Cosmos
 
 class TutorHistoryTableViewCell: UITableViewCell {
     @IBOutlet weak var subjectValueLabel:UILabel!
@@ -16,7 +17,7 @@ class TutorHistoryTableViewCell: UITableViewCell {
     @IBOutlet weak var timeValueLabel:UILabel!
     @IBOutlet weak var paymentValueLabel:UILabel!
     @IBOutlet weak var tutorValueLabel:UILabel!
-    
+    @IBOutlet weak var cosmosViewFull: CosmosView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

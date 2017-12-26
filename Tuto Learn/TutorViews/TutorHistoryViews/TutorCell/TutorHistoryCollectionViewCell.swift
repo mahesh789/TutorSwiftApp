@@ -65,6 +65,9 @@ class TutorHistoryCollectionViewCell: UICollectionViewCell,UITableViewDelegate,U
         cell.timeValueLabel.text = String(format:"%d to %d",(tutorPastHistorySession?.sd_start_time ?? 0),(tutorPastHistorySession?.sd_end_time ?? 0))
         if self.selectedIndex == HistoryType.HistoryTypePast.rawValue {
             cell.paymentValueLabel.text = String(format:"$%@",(tutorPastHistorySession?.sd_amt ?? "0"))
+            let value = Double(tutorPastHistorySession?.rate ?? 0)
+            cell.cosmosViewFull.rating = value
+            cell.cosmosViewFull.isUserInteractionEnabled = false
         }
         cell.tutorValueLabel.text = tutorPastHistorySession?.tuto_name
         return cell
@@ -93,7 +96,7 @@ class TutorHistoryCollectionViewCell: UICollectionViewCell,UITableViewDelegate,U
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
         if self.selectedIndex == HistoryType.HistoryTypePast.rawValue {
-             return 260
+             return 300
         }else{
              return 220
         }
