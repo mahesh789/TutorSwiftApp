@@ -17,6 +17,8 @@ class TutorBookTutorViewController: UIViewController,UITableViewDelegate,UITable
     @IBOutlet weak var makePaymentButton:UIButton!
      var bookTutorArray:NSArray = []
      var tutorTeacherObject : TutorTeacherModel!
+    var selectedTimeSlotDict : NSDictionary!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -39,7 +41,7 @@ class TutorBookTutorViewController: UIViewController,UITableViewDelegate,UITable
             totalCost = (tutorTeacherObject.teacherGroupChargesInt ?? "0")
         }
         
-        bookTutorArray = [["leftTitleLabel":"Date","leftValueLabel":"\(TutorSharedClass.shared.findTutorDictionary.object(forKey: "sel_date") ?? "")","middleTitleLabel":"Time","middleValueLabel":"\(TutorSharedClass.shared.findTutorDictionary.object(forKey: "sel_start_time") ?? "") to \(TutorSharedClass.shared.findTutorDictionary.object(forKey: "sel_end_time") ?? "") ","rightTitleLabel":"","rightValueLabel":""],["leftTitleLabel":"No. of Sessions","leftValueLabel":"\(TutorSharedClass.shared.findTutorDictionary.object(forKey: "no_session") ?? "")","middleTitleLabel":"Session Type","middleValueLabel":"\(TutorSharedClass.shared.findTutorDictionary.object(forKey: "sel_tution_type") ?? "")","rightTitleLabel":"Group Size","rightValueLabel":"\(groupSize)"],["leftTitleLabel":"Subject","leftValueLabel":"\(tutorTeacherObject.teacherSubjectString ?? "")","middleTitleLabel":"Topic","middleValueLabel":"\(TutorSharedClass.shared.findTutorDictionary.object(forKey: "sel_topic") ?? "")","rightTitleLabel":"","rightValueLabel":""],["leftTitleLabel":"Total Cost","leftValueLabel":"$\(totalCost)","middleTitleLabel":"","middleValueLabel":"","rightTitleLabel":"","rightValueLabel":""]]
+        bookTutorArray = [["leftTitleLabel":"Date","leftValueLabel":"\(selectedTimeSlotDict.object(forKey: "sel_date") ?? "")","middleTitleLabel":"Time","middleValueLabel":"\(selectedTimeSlotDict.object(forKey: "sel_start_time") ?? "") to \(selectedTimeSlotDict.object(forKey: "sel_end_time") ?? "") ","rightTitleLabel":"","rightValueLabel":""],["leftTitleLabel":"No. of Sessions","leftValueLabel":"\(TutorSharedClass.shared.findTutorDictionary.object(forKey: "no_session") ?? "")","middleTitleLabel":"Session Type","middleValueLabel":"\(TutorSharedClass.shared.findTutorDictionary.object(forKey: "sel_tution_type") ?? "")","rightTitleLabel":"Group Size","rightValueLabel":"\(groupSize)"],["leftTitleLabel":"Subject","leftValueLabel":"\(tutorTeacherObject.teacherSubjectString ?? "")","middleTitleLabel":"Topic","middleValueLabel":"\(TutorSharedClass.shared.findTutorDictionary.object(forKey: "sel_topic") ?? "")","rightTitleLabel":"","rightValueLabel":""],["leftTitleLabel":"Total Cost","leftValueLabel":"$\(totalCost)","middleTitleLabel":"","middleValueLabel":"","rightTitleLabel":"","rightValueLabel":""]]
         
     }
     
