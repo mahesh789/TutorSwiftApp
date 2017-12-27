@@ -100,7 +100,8 @@ class TutorStudentProfileViewController: UIViewController,UITextFieldDelegate,UI
             
             let profileSchoolDetail: NSMutableDictionary? = ["rightTitle":"Name of School(optional)","leftTitle":"","leftValue":"","rightValue": selectedStudentInfo?.value(forKey: "sm_school_name") ?? "","type":NSNumber.init(value: StudentProfileDataType.StudentProfileDataTypeSchoolName.rawValue)]
             
-            let profileBoardDetails: NSMutableDictionary? = ["leftTitle":"Board","rightTitle":"Level","leftValue": selectedStudentInfo?.value(forKey: "sm_board") ?? "","rightValue":selectedStudentInfo?.value(forKey: "sm_level") ?? "","type":NSNumber.init(value: StudentProfileDataType.StudentProfileDataTypeBoardName.rawValue),"boardData":NSDictionary.init(),"levelData":NSDictionary.init()]
+            let profileBoardDetails: NSMutableDictionary? = ["leftTitle":"Board","rightTitle":"Level","leftValue": selectedStudentInfo?.value(forKey: "sm_board_name") ?? "","rightValue":selectedStudentInfo?.value(forKey: "sm_level_name") ?? "","type":NSNumber.init(value: StudentProfileDataType.StudentProfileDataTypeBoardName.rawValue),"boardData":NSDictionary.init(objects: [selectedStudentInfo?.value(forKey: "sm_board") ?? ""], forKeys: ["bid" as NSCopying]),"levelData":NSDictionary.init(objects: [selectedStudentInfo?.value(forKey: "sm_level") ?? ""], forKeys: ["level_id" as NSCopying])]
+            
             
             tempDataArray.add(profileNameDetails ?? NSDictionary.init())
             tempDataArray.add(profilegenderDetails ?? NSDictionary.init())

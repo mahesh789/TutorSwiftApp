@@ -34,6 +34,8 @@ public class TutorLoginModel {
     public var sm_profile : Int?
     public var sm_guardian : Int?
     public var sm_profile_img_url : String?
+    public var sm_board_name : String?
+    public var sm_level_name : String?
 
 	public var student : Array<TutorStudent>?
 
@@ -91,6 +93,8 @@ public class TutorLoginModel {
         sm_preference = dictionary["sm_preference"] as? Int
         sm_profile = dictionary["sm_profile"] as? Int
         sm_guardian = dictionary["sm_guardian"] as? Int
+        sm_level_name = dictionary["sm_level_name"] as? String
+        sm_board_name = dictionary["sm_board_name"] as? String
 
         if (dictionary["student"] as? NSArray) != nil
         {
@@ -118,6 +122,8 @@ public class TutorLoginModel {
         sm_school_name = modelObject.sm_school_name
         sm_profile_img_url = modelObject.sm_profile_img_url
         sm_profile_img_url = modelObject.sm_profile_img_url
+        sm_board_name = modelObject.sm_board_name
+        sm_level_name = modelObject.sm_level_name
 
     }
 /**
@@ -150,6 +156,8 @@ public class TutorLoginModel {
         dictionary.setValue(self.sm_profile, forKey: "sm_profile")
         dictionary.setValue(self.sm_profile_img_url, forKey: "sm_profile_img_url")
         dictionary.setValue(self.sm_guardian, forKey: "sm_guardian")
+        dictionary.setValue(self.sm_board_name, forKey: "sm_board_name")
+        dictionary.setValue(self.sm_level_name, forKey: "sm_level_name")
 
         if self.student?.isEmpty == false
         {
