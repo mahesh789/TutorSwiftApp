@@ -1166,7 +1166,7 @@ class TutorStudentProfileViewController: UIViewController,UITextFieldDelegate,UI
     func callAddStudentUnderGuardian(parameterData:Dictionary<String, String>, allParameterData:NSMutableArray,index:Int)  {
         
         let urlPath = String(format: "%@%@",Constants.baseUrl,Constants.addStudent) as String
-         print(parameterData)
+        // print(parameterData)
         Alamofire.request(urlPath, method: .post, parameters:parameterData , encoding: JSONEncoding.default, headers:["Content-Type":"application/json","Authorization":String(format:"Bearer %@",TutorSharedClass.shared.token ?? "")]) .responseJSON { response in
             if response.result.isSuccess
             {
