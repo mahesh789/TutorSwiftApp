@@ -155,7 +155,7 @@ class TutorMyAccountViewController: UIViewController, UICollectionViewDelegate, 
         var parameterData = [String: String]()
         parameterData["user_id"] = TutorSharedClass.shared.loginTutorLoginObject?.sm_id
         parameterData["register_type"] = TutorSharedClass.shared.loginTutorLoginObject?.sm_register_type
-        // print(parameterData);
+         print(parameterData);
         var urlPath: String?
         if TutorSharedClass.shared.loginTutorLoginObject?.sm_register_type == "0"
         {
@@ -368,35 +368,38 @@ class TutorMyAccountViewController: UIViewController, UICollectionViewDelegate, 
     }
 
     func setHeaderViewButton(tag:Int)  {
-        if tag == 1
+        if self.dataArray.count>0
         {
-            guardianButton.isSelected = true
-            studentButton.isSelected = false
-            preferencesButton.isSelected = false
-            guardianButton.backgroundColor = UIColor.init(red: 62, green: 144, blue: 151)
-            studentButton.backgroundColor = UIColor.init(red: 73, green: 167, blue: 169)
-            preferencesButton.backgroundColor = UIColor.init(red: 73, green: 167, blue: 169)
-            
-            self.tutorMyAccountCollectionView.scrollToItem(at: IndexPath.init(item: 0, section: 0), at: .left, animated: true)
-        }else if tag == 2
-        {
-            guardianButton.isSelected = false
-            studentButton.isSelected = true
-            preferencesButton.isSelected = false
-            self.tutorMyAccountCollectionView.scrollToItem(at: IndexPath.init(item: 1, section: 0), at: .left, animated: true)
-            studentButton.backgroundColor = UIColor.init(red: 62, green: 144, blue: 151)
-            guardianButton.backgroundColor = UIColor.init(red: 73, green: 167, blue: 169)
-            preferencesButton.backgroundColor = UIColor.init(red: 73, green: 167, blue: 169)
-        }
-        else if tag == 3
-        {
-            guardianButton.isSelected = false
-            studentButton.isSelected = false
-            preferencesButton.isSelected = true
-            self.tutorMyAccountCollectionView.scrollToItem(at: IndexPath.init(item: 2, section: 0), at: .left, animated: true)
-            preferencesButton.backgroundColor = UIColor.init(red: 62, green: 144, blue: 151)
-            studentButton.backgroundColor = UIColor.init(red: 73, green: 167, blue: 169)
-            guardianButton.backgroundColor = UIColor.init(red: 73, green: 167, blue: 169)
+            if tag == 1
+            {
+                guardianButton.isSelected = true
+                studentButton.isSelected = false
+                preferencesButton.isSelected = false
+                guardianButton.backgroundColor = UIColor.init(red: 62, green: 144, blue: 151)
+                studentButton.backgroundColor = UIColor.init(red: 73, green: 167, blue: 169)
+                preferencesButton.backgroundColor = UIColor.init(red: 73, green: 167, blue: 169)
+                
+                self.tutorMyAccountCollectionView.scrollToItem(at: IndexPath.init(item: 0, section: 0), at: .left, animated: true)
+            }else if tag == 2
+            {
+                guardianButton.isSelected = false
+                studentButton.isSelected = true
+                preferencesButton.isSelected = false
+                self.tutorMyAccountCollectionView.scrollToItem(at: IndexPath.init(item: 1, section: 0), at: .left, animated: true)
+                studentButton.backgroundColor = UIColor.init(red: 62, green: 144, blue: 151)
+                guardianButton.backgroundColor = UIColor.init(red: 73, green: 167, blue: 169)
+                preferencesButton.backgroundColor = UIColor.init(red: 73, green: 167, blue: 169)
+            }
+            else if tag == 3
+            {
+                guardianButton.isSelected = false
+                studentButton.isSelected = false
+                preferencesButton.isSelected = true
+                self.tutorMyAccountCollectionView.scrollToItem(at: IndexPath.init(item: 2, section: 0), at: .left, animated: true)
+                preferencesButton.backgroundColor = UIColor.init(red: 62, green: 144, blue: 151)
+                studentButton.backgroundColor = UIColor.init(red: 73, green: 167, blue: 169)
+                guardianButton.backgroundColor = UIColor.init(red: 73, green: 167, blue: 169)
+            }
         }
     }
     func editButtonClickedDelegate(type:String,index:Int)

@@ -46,8 +46,7 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
         self.setHeaderView()
         self.setFooterView()
         self.setupSideMenu()
-        MBProgressHUD.showAdded(to: self.view, animated: true)
-        self.getGuardianDetails()
+       
         
         // Do any additional setup after loading the view.
     }
@@ -64,29 +63,60 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
     }
     
     func setGuardianData()  {
-        let profileNameDetails: NSMutableDictionary? = ["leftTitle":"First Name","rightTitle":"Last Name","leftValue":TutorSharedClass.shared.loginTutorLoginObject?.sm_name ?? "","rightValue":TutorSharedClass.shared.loginTutorLoginObject?.sm_last ?? "" ,"type":NSNumber.init(value: ProfileDataType.ProfileDataTypeFirstName.rawValue)]
-        
-        let profilegenderDetails: NSMutableDictionary? = ["leftTitle":"Gender","rightTitle":"Date of Birth","leftValue":TutorSharedClass.shared.loginTutorLoginObject?.sm_gender ?? "","rightValue":TutorSharedClass.shared.loginTutorLoginObject?.sm_dob ?? "","type":NSNumber.init(value: ProfileDataType.ProfileDataTypeGender.rawValue)]
-        
-        let profileEmailDetails: NSMutableDictionary? = ["rightTitle":"Email","leftTitle":"","leftValue":"","rightValue":TutorSharedClass.shared.loginTutorLoginObject?.sm_email ?? "","type":NSNumber.init(value: ProfileDataType.ProfileDataTypeEmail.rawValue)]
-        
-        let profileMobileDetails: NSMutableDictionary? = ["leftTitle":"Mobile","rightTitle":"","leftValue":TutorSharedClass.shared.loginTutorLoginObject?.sm_mobile ?? "","rightValue":"","type":NSNumber.init(value: ProfileDataType.ProfileDataTypeMobile.rawValue)]
-        
-        
-        let profileOccupationDetail: NSMutableDictionary? = ["rightTitle":"Occupation","leftTitle":"","leftValue":"","rightValue":TutorSharedClass.shared.loginTutorLoginObject?.spm_occupation ?? "","type":NSNumber.init(value: ProfileDataType.ProfileDataTypeOccupation.rawValue)]
-        
-        if (dataArray != nil)
+        if TutorSharedClass.shared.loginTutorLoginObject?.sm_register_type == "0" && TutorSharedClass.shared.loginTutorLoginObject?.sm_guardian == 2
         {
-            dataArray?.removeAllObjects()
-            dataArray = nil
+            let profileNameDetails: NSMutableDictionary? = ["leftTitle":"First Name","rightTitle":"Last Name","leftValue":"","rightValue":"" ,"type":NSNumber.init(value: ProfileDataType.ProfileDataTypeFirstName.rawValue)]
+            
+            let profilegenderDetails: NSMutableDictionary? = ["leftTitle":"Gender","rightTitle":"Date of Birth","leftValue":"","rightValue":"","type":NSNumber.init(value: ProfileDataType.ProfileDataTypeGender.rawValue)]
+            
+            let profileEmailDetails: NSMutableDictionary? = ["rightTitle":"Email","leftTitle":"","leftValue":"","rightValue":"","type":NSNumber.init(value: ProfileDataType.ProfileDataTypeEmail.rawValue)]
+            
+            let profileMobileDetails: NSMutableDictionary? = ["leftTitle":"Mobile","rightTitle":"","leftValue":"","rightValue":"","type":NSNumber.init(value: ProfileDataType.ProfileDataTypeMobile.rawValue)]
+            
+            
+            let profileOccupationDetail: NSMutableDictionary? = ["rightTitle":"Occupation","leftTitle":"","leftValue":"","rightValue":"","type":NSNumber.init(value: ProfileDataType.ProfileDataTypeOccupation.rawValue)]
+            
+            if (dataArray != nil)
+            {
+                dataArray?.removeAllObjects()
+                dataArray = nil
+            }
+            
+            dataArray = NSMutableArray()
+            dataArray?.add(profileNameDetails ?? NSDictionary.init())
+            dataArray?.add(profilegenderDetails ?? NSDictionary.init())
+            dataArray?.add(profileEmailDetails ?? NSDictionary.init())
+            dataArray?.add(profileMobileDetails ?? NSDictionary.init())
+            dataArray?.add(profileOccupationDetail ?? NSDictionary.init())
+        }else
+        {
+            let profileNameDetails: NSMutableDictionary? = ["leftTitle":"First Name","rightTitle":"Last Name","leftValue":TutorSharedClass.shared.loginTutorLoginObject?.sm_name ?? "","rightValue":TutorSharedClass.shared.loginTutorLoginObject?.sm_last ?? "" ,"type":NSNumber.init(value: ProfileDataType.ProfileDataTypeFirstName.rawValue)]
+            
+            let profilegenderDetails: NSMutableDictionary? = ["leftTitle":"Gender","rightTitle":"Date of Birth","leftValue":TutorSharedClass.shared.loginTutorLoginObject?.sm_gender ?? "","rightValue":TutorSharedClass.shared.loginTutorLoginObject?.sm_dob ?? "","type":NSNumber.init(value: ProfileDataType.ProfileDataTypeGender.rawValue)]
+            
+            let profileEmailDetails: NSMutableDictionary? = ["rightTitle":"Email","leftTitle":"","leftValue":"","rightValue":TutorSharedClass.shared.loginTutorLoginObject?.sm_email ?? "","type":NSNumber.init(value: ProfileDataType.ProfileDataTypeEmail.rawValue)]
+            
+            let profileMobileDetails: NSMutableDictionary? = ["leftTitle":"Mobile","rightTitle":"","leftValue":TutorSharedClass.shared.loginTutorLoginObject?.sm_mobile ?? "","rightValue":"","type":NSNumber.init(value: ProfileDataType.ProfileDataTypeMobile.rawValue)]
+            
+            
+            let profileOccupationDetail: NSMutableDictionary? = ["rightTitle":"Occupation","leftTitle":"","leftValue":"","rightValue":TutorSharedClass.shared.loginTutorLoginObject?.spm_occupation ?? "","type":NSNumber.init(value: ProfileDataType.ProfileDataTypeOccupation.rawValue)]
+            
+            if (dataArray != nil)
+            {
+                dataArray?.removeAllObjects()
+                dataArray = nil
+            }
+            
+            dataArray = NSMutableArray()
+            dataArray?.add(profileNameDetails ?? NSDictionary.init())
+            dataArray?.add(profilegenderDetails ?? NSDictionary.init())
+            dataArray?.add(profileEmailDetails ?? NSDictionary.init())
+            dataArray?.add(profileMobileDetails ?? NSDictionary.init())
+            dataArray?.add(profileOccupationDetail ?? NSDictionary.init())
+            
+            MBProgressHUD.showAdded(to: self.view, animated: true)
+            self.getGuardianDetails()
         }
-        
-        dataArray = NSMutableArray()
-        dataArray?.add(profileNameDetails ?? NSDictionary.init())
-        dataArray?.add(profilegenderDetails ?? NSDictionary.init())
-        dataArray?.add(profileEmailDetails ?? NSDictionary.init())
-        dataArray?.add(profileMobileDetails ?? NSDictionary.init())
-        dataArray?.add(profileOccupationDetail ?? NSDictionary.init())
         self.profileTableview.estimatedRowHeight = 60.0
         self.profileTableview.rowHeight = UITableViewAutomaticDimension
         self.profileTableview.reloadData()
@@ -215,7 +245,7 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
                 self.thePicker.reloadAllComponents()
                 genderValue = genderArray[0]
             }
-            if datadictionary?.value(forKey: "type") as? Int == ProfileDataType.ProfileDataTypeEmail.rawValue || datadictionary?.value(forKey: "type") as? Int == ProfileDataType.ProfileDataTypeMobile.rawValue
+            if (datadictionary?.value(forKey: "type") as? Int == ProfileDataType.ProfileDataTypeEmail.rawValue || datadictionary?.value(forKey: "type") as? Int == ProfileDataType.ProfileDataTypeMobile.rawValue) &&   (TutorSharedClass.shared.loginTutorLoginObject?.sm_register_type != "0" && TutorSharedClass.shared.loginTutorLoginObject?.sm_guardian != 2)
             {
               
                 TutorDefaultAlertController.showAlertController(alertMessage: "Please contact administrator to update the info" , showController: self)
@@ -258,7 +288,7 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
         textField.pickerType = .DatePicker
         textField.datePicker?.datePickerMode = .date
         textField.datePicker?.maximumDate = Date.init()
-        textField.dateFormatter.dateFormat = Constants.dateFormatValue
+        textField.dateFormatter.dateFormat = Constants.findTutordateFormatValue
         textField.dateDidChange = { date in
             print("selectedDate ", date )
             textField.text = textField.dateFormatter.string(from: date)
@@ -374,7 +404,14 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
                         break;
                     }else
                     {
-                        parameterData["first_name"] = leftValue
+                        if TutorSharedClass.shared.loginTutorLoginObject?.sm_register_type == "0" && TutorSharedClass.shared.loginTutorLoginObject?.sm_guardian == 2
+                        {
+                            parameterData["s_name"] = leftValue
+
+                        }else
+                        {
+                            parameterData["first_name"] = leftValue
+                        }
                     }
                     let rightValue =  dataContent["rightValue"] as? String
                     if (rightValue?.isEmpty)!
@@ -384,7 +421,14 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
                         break;
                     }else
                     {
-                        parameterData["last_name"] = rightValue
+                        if TutorSharedClass.shared.loginTutorLoginObject?.sm_register_type == "0" && TutorSharedClass.shared.loginTutorLoginObject?.sm_guardian == 2
+                        {
+                            parameterData["s_lastname"] = leftValue
+                            
+                        }else
+                        {
+                            parameterData["last_name"] = rightValue
+                        }
                         
                     }
                 }else if dataContent["type"] as? Int == ProfileDataType.ProfileDataTypeGender.rawValue
@@ -397,7 +441,14 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
                         break;
                     }else
                     {
-                        parameterData["gender"] = leftValue
+                        if TutorSharedClass.shared.loginTutorLoginObject?.sm_register_type == "0" && TutorSharedClass.shared.loginTutorLoginObject?.sm_guardian == 2
+                        {
+                            parameterData["s_gender"] = leftValue
+
+                        }else
+                        {
+                            parameterData["gender"] = leftValue
+                        }
                     }
                     let rightValue =  dataContent["rightValue"] as? String
                     if (rightValue?.isEmpty)!
@@ -409,10 +460,24 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
                     {
                         let dateFormatterValue = DateFormatter()
                         dateFormatterValue.dateFormat = Constants.dateFormatValue
-                        let date = dateFormatterValue.date(from: rightValue!)!
-                        let calendar = Calendar.current
-                        let components = calendar.dateComponents([.year, .month, .day, .hour], from: date)
-                        let myDOB = Calendar.current.date(from: components)!
+                        
+                        var myDOB = Date()
+                        if  let date = dateFormatterValue.date(from: rightValue!)
+                        {
+                            let calendar = Calendar.current
+                            let components = calendar.dateComponents([.year, .month, .day, .hour], from: date)
+                            myDOB = Calendar.current.date(from: components)!
+                            
+                        }else
+                        {
+                            dateFormatterValue.dateFormat = Constants.findTutordateFormatValue
+                            if  let date = dateFormatterValue.date(from: rightValue!)
+                            {
+                                let calendar = Calendar.current
+                                let components = calendar.dateComponents([.year, .month, .day, .hour], from: date)
+                                myDOB = Calendar.current.date(from: components)!
+                            }
+                        }
                         
                         if self.currentProfilType == ProfileType.ProfileTypeGuardian.rawValue
                         {
@@ -423,7 +488,14 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
                                 break;
                             }else
                             {
-                                parameterData["dob"] = rightValue
+                                if TutorSharedClass.shared.loginTutorLoginObject?.sm_register_type == "0" && TutorSharedClass.shared.loginTutorLoginObject?.sm_guardian == 2
+                                {
+                                    parameterData["s_dob"] = rightValue
+
+                                }else
+                                {
+                                    parameterData["dob"] = rightValue
+                                }
                                 
                             }
                             
@@ -454,6 +526,13 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
                     {
                         if leftValue?.isValidEmail() == true
                         {
+                            if TutorSharedClass.shared.loginTutorLoginObject?.sm_register_type == "0" && TutorSharedClass.shared.loginTutorLoginObject?.sm_guardian == 2
+                            {
+                                parameterData["s_email"] = leftValue as String?
+
+                            }else
+                            {
+                            }
                           //  parameterData["s_email"] = leftValue as String?
                         }else
                         {
@@ -483,6 +562,14 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
                             break;
                         }else
                         {
+                            if TutorSharedClass.shared.loginTutorLoginObject?.sm_register_type == "0" && TutorSharedClass.shared.loginTutorLoginObject?.sm_guardian == 2
+                            {
+                                parameterData["s_mobile"] = rightValue
+
+                            }else
+                            {
+                            }
+                            
                          //   parameterData["s_mobile"] = rightValue
                         }
                         
@@ -499,6 +586,7 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
                         break;
                     }else
                     {
+                        
                         parameterData["occupation"] = rightValue
                         
                     }
@@ -518,7 +606,14 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
                 parameterData["register_type"] = TutorSharedClass.shared.loginTutorLoginObject?.sm_register_type
                 parameterData["login_id"] = TutorSharedClass.shared.loginTutorLoginObject?.sm_id
                 parameterData["page_name"] = "1"
-                
+                if TutorSharedClass.shared.loginTutorLoginObject?.sm_register_type == "0" && TutorSharedClass.shared.loginTutorLoginObject?.sm_guardian == 2
+                {
+                    parameterData["s_oauth"] = "Mobile"
+
+                }
+
+                print(parameterData)
+
                 MBProgressHUD.showAdded(to: self.view, animated: true)
 
                 if self.isImageChange == true
@@ -549,7 +644,16 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
     
     func callUpdateGuardianProfileDetails(parameterData:Dictionary<String, String>)  {
         
-        let urlPath = String(format: "%@%@",Constants.baseUrl,Constants.updateGuardianDetails) as String
+        var urlPath:String
+        if TutorSharedClass.shared.loginTutorLoginObject?.sm_register_type == "0" && TutorSharedClass.shared.loginTutorLoginObject?.sm_guardian == 2
+        {
+            urlPath = String(format: "%@%@",Constants.baseUrl,Constants.addStudent) as String
+
+        }else
+        {
+            urlPath = String(format: "%@%@",Constants.baseUrl,Constants.updateGuardianDetails) as String
+
+        }
        // print(parameterData)
         Alamofire.request(urlPath, method: .post, parameters:parameterData , encoding: JSONEncoding.default, headers:["Content-Type":"application/json","Authorization":String(format:"Bearer %@",TutorSharedClass.shared.token ?? "")]) .responseJSON { response in
             if response.result.isSuccess
@@ -606,7 +710,7 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
                     TutorSharedClass.shared.loginTutorLoginObject?.sm_guardian = 1
                     TutorSharedClass.shared.loginTutorLoginObject?.updateModelObject(modelObject: TutorSharedClass.shared.loginTutorLoginObject!)
                     TutorSharedClass.shared.updateLocalValue()
-                    TutorSharedClass.shared.setrootViewControllerAfterLogin(window: UIApplication.shared.keyWindow!)
+                    TutorSharedClass.shared.setProfilerootViewController(window: UIApplication.shared.keyWindow!)
                     
                 }else
                 {
