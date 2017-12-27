@@ -408,10 +408,12 @@ class TutorStudentProfileViewController: UIViewController,UITextFieldDelegate,UI
                                     }else
                                     {
                                         dateFormatterValue.dateFormat = "dd/MM/yyyy"
-                                        let date = dateFormatterValue.date(from: rightValue!)!
-                                        let calendar = Calendar.current
-                                        let components = calendar.dateComponents([.year, .month, .day, .hour], from: date)
-                                        myDOB = Calendar.current.date(from: components)!
+                                        if  let date = dateFormatterValue.date(from: rightValue!)
+                                        {
+                                            let calendar = Calendar.current
+                                            let components = calendar.dateComponents([.year, .month, .day, .hour], from: date)
+                                            myDOB = Calendar.current.date(from: components)!
+                                        }
                                     }
                                    
                                     if myDOB.age < 3
@@ -554,7 +556,8 @@ class TutorStudentProfileViewController: UIViewController,UITextFieldDelegate,UI
 
                 var parameterData = parameterStudent.lastObject as! Dictionary<String, String>
                 parameterData["register_type"] = TutorSharedClass.shared.loginTutorLoginObject?.sm_register_type
-                parameterData["login_id"] = selectedStudentInfo?.value(forKey: "sm_id") as? String ?? ""//TutorSharedClass.shared.loginTutorLoginObject?.sm_id
+                parameterData["login_id"] = TutorSharedClass.shared.loginTutorLoginObject?.sm_id
+                parameterData["stud_id"] = selectedStudentInfo?.value(forKey: "sm_id") as? String ?? ""//TutorSharedClass.shared.loginTutorLoginObject?.sm_id
                 if let profileImageChange = selectedProfileImage.value(forKey: String(0)) as? UIImage
                 {
                     let imageData: NSData = UIImageJPEGRepresentation(profileImageChange, 0.5)! as NSData
