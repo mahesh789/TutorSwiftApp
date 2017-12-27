@@ -610,3 +610,22 @@ class TutorHomeViewController: UIViewController,UITextFieldDelegate,UITableViewD
     */
 
 }
+extension TutorHomeViewController: UISideMenuNavigationControllerDelegate {
+    
+    func sideMenuWillAppear(menu: UISideMenuNavigationController, animated: Bool) {
+    }
+    
+    func sideMenuDidAppear(menu: UISideMenuNavigationController, animated: Bool) {
+    }
+    
+    func sideMenuWillDisappear(menu: UISideMenuNavigationController, animated: Bool) {
+        
+    }
+    func sideMenuDidDisappear(menu: UISideMenuNavigationController, animated: Bool) {
+        if TutorSharedClass.shared.islogOutYes {
+            TutorSharedClass.shared.islogOutYes = false
+            TutorSharedClass.removeLoginCredentialsAndSetRootViewControllerLogin(window: UIApplication.shared.keyWindow!)
+        }
+    }
+    
+}

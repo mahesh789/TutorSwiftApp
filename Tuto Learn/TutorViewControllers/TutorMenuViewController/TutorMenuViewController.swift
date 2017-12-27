@@ -9,13 +9,13 @@
 import UIKit
 
 enum MenuActionType:Int {
-    case MenuActionTypeFindTutor = 1,MenuActionTypeMyAccount,MenuActionTypeHistory,MenuActionTypeHelp,MenuActionTypeContactUs
+    case MenuActionTypeFindTutor = 1,MenuActionTypeMyAccount,MenuActionTypeHistory,MenuActionTypeHelp,MenuActionTypeContactUs,MenuActionTypeLogout
 }
 
 class TutorMenuViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
 
     @IBOutlet weak var menuTableView:UITableView!
-    let menuArray = [["menuTitle":"Find A Tutor","actionType":MenuActionType.MenuActionTypeFindTutor.rawValue],["menuTitle":"My Account","actionType":MenuActionType.MenuActionTypeMyAccount.rawValue],["menuTitle":"History","actionType":MenuActionType.MenuActionTypeHistory.rawValue],["menuTitle":"Help","actionType":MenuActionType.MenuActionTypeHelp.rawValue],["menuTitle":"Contact Us","actionType":MenuActionType.MenuActionTypeContactUs.rawValue]]
+    let menuArray = [["menuTitle":"Find A Tutor","actionType":MenuActionType.MenuActionTypeFindTutor.rawValue],["menuTitle":"My Account","actionType":MenuActionType.MenuActionTypeMyAccount.rawValue],["menuTitle":"History","actionType":MenuActionType.MenuActionTypeHistory.rawValue],["menuTitle":"Help","actionType":MenuActionType.MenuActionTypeHelp.rawValue],["menuTitle":"Contact Us","actionType":MenuActionType.MenuActionTypeContactUs.rawValue],["menuTitle":"Logout","actionType":MenuActionType.MenuActionTypeLogout.rawValue]]
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -70,6 +70,10 @@ class TutorMenuViewController: UIViewController,UITableViewDelegate,UITableViewD
         case MenuActionType.MenuActionTypeContactUs.rawValue:
             
             break
+        case MenuActionType.MenuActionTypeLogout.rawValue:
+            TutorSharedClass.shared.islogOutYes = true
+            self.disMissMenuView()
+            break
 
         default: print("Other...")
         }
@@ -88,7 +92,7 @@ class TutorMenuViewController: UIViewController,UITableViewDelegate,UITableViewD
         })
         CATransaction.commit()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

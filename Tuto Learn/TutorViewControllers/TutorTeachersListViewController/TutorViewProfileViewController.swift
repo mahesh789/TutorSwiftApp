@@ -29,7 +29,7 @@ class TutorViewProfileViewController: UIViewController,UITableViewDelegate,UITab
         self.profileTableView.reloadData()
     }
     func getArrayOfViewProfile() -> Void {
-        viewProfileArray = [["title":"Rate per Session","TitleValue":"One-on-One $ \(tutorTeacherObject.teacherSoloChargesInt ?? "0") \nGroup $ \(tutorTeacherObject.teacherGroupChargesInt ?? "0")"],["title":"Educational Qualifications","TitleValue":"\(tutorTeacherObject.teacherQualificationString ?? "")"],["title":"Subjectes Taught","TitleValue":"\(tutorTeacherObject.teacherSubjectString ?? "")"],["title":"Bio","TitleValue":tutorTeacherObject.teacherProfileString]]
+        viewProfileArray = [["title":"Rate per Session","TitleValue":"One-on-One $ \(tutorTeacherObject.teacherSoloChargesInt ?? "0") \nGroup $ \(tutorTeacherObject.teacherGroupChargesInt ?? "0")"],["title":"Educational Qualifications","TitleValue":"\(tutorTeacherObject.teacherQualificationString ?? "")"],["title":"Subjects Taught","TitleValue":"\(tutorTeacherObject.teacherSubjectString ?? "")"],["title":"Bio","TitleValue":tutorTeacherObject.teacherProfileString]]
         self.teacherNameLabel.text = String(format:"%@ %@",(tutorTeacherObject.teacherNameString ?? ""), (tutorTeacherObject.teacherLastNameString ?? ""))
         self.teacherRatingValueLabel.text = tutorTeacherObject.teacherRatingString
         self.teacherExpValueLabel.text = tutorTeacherObject.teacherExperienceString
@@ -76,8 +76,10 @@ class TutorViewProfileViewController: UIViewController,UITableViewDelegate,UITab
     }
     
     func navigateBookTutorViewController(tutorTeacherModel:TutorTeacherModel) -> Void {
+        let selectedTimeSlotDict = ["sel_start_time":String(format:"%@",((TutorSharedClass.shared.findTutorDictionary["sel_start_time"] as? String) ?? "")),"sel_end_time":String(format:"%@",((TutorSharedClass.shared.findTutorDictionary["sel_end_time"] as? String) ?? "")),"sel_date":String(format:"%@",((TutorSharedClass.shared.findTutorDictionary["sel_date"] as? String) ?? ""))]
         let tutorBookTutorViewController:TutorBookTutorViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TutorBookTutorViewController") as! TutorBookTutorViewController
         tutorBookTutorViewController.tutorTeacherObject = tutorTeacherModel
+        tutorBookTutorViewController.selectedTimeSlotDict = selectedTimeSlotDict as NSDictionary
         self.navigationController?.pushViewController(tutorBookTutorViewController, animated: true)
     }
 

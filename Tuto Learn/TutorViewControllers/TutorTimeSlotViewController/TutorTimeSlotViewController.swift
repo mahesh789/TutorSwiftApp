@@ -215,16 +215,15 @@ class TutorTimeSlotViewController: UIViewController,UITableViewDelegate,UITableV
         let availableStatus = slotDictionary["available"] as? Int
         if availableStatus == 0
         {
-            TutorSharedClass.shared.findTutorDictionary["sel_start_time"] = String(format:"%@:00",((slotDictionary["sd_start_time"] as? String) ?? ""))
-            TutorSharedClass.shared.findTutorDictionary["sel_end_time"] = String(format:"%@:00",((slotDictionary["sd_end_time"] as? String) ?? ""))
-            TutorSharedClass.shared.findTutorDictionary["sel_date"] = String(format:"%@",((slotDictionary["sd_date"] as? String) ?? ""))
-            self.navigateBookNowViewController(tutorTeacherModel: tutorTeacherObject)
+            let selectedTimeSlotDict = ["sel_start_time":String(format:"%@:00",((slotDictionary["sd_start_time"] as? String) ?? "")),"sel_end_time":String(format:"%@:00",((slotDictionary["sd_end_time"] as? String) ?? "")),"sel_date":String(format:"%@",((slotDictionary["sd_date"] as? String) ?? ""))]
+            self.navigateBookNowViewController(tutorTeacherModel: tutorTeacherObject,selectedDict:selectedTimeSlotDict as NSDictionary)
         }
      }
     
-    func navigateBookNowViewController(tutorTeacherModel:TutorTeacherModel) -> Void {
+    func navigateBookNowViewController(tutorTeacherModel:TutorTeacherModel,selectedDict:NSDictionary) -> Void {
         let tutorBookTutorViewController:TutorBookTutorViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TutorBookTutorViewController") as! TutorBookTutorViewController
              tutorBookTutorViewController.tutorTeacherObject = tutorTeacherModel
+        tutorBookTutorViewController.selectedTimeSlotDict = selectedDict
             self.navigationController?.pushViewController(tutorBookTutorViewController, animated: true)
     }
 

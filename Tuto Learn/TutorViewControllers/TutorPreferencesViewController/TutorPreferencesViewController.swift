@@ -379,6 +379,7 @@ class TutorPreferencesViewController: UIViewController, UITextFieldDelegate, UIT
     }
     
     @objc func menuClickAction(sender:UIButton!) {
+        self.view.endEditing(true)
         present(SideMenuManager.default.menuRightNavigationController!, animated: true, completion: nil)
     }
     
@@ -512,4 +513,24 @@ class TutorPreferencesViewController: UIViewController, UITextFieldDelegate, UIT
         })
         self.present(alert, animated: true, completion: nil)
     }
+}
+
+extension TutorPreferencesViewController: UISideMenuNavigationControllerDelegate {
+    
+    func sideMenuWillAppear(menu: UISideMenuNavigationController, animated: Bool) {
+    }
+    
+    func sideMenuDidAppear(menu: UISideMenuNavigationController, animated: Bool) {
+    }
+    
+    func sideMenuWillDisappear(menu: UISideMenuNavigationController, animated: Bool) {
+        
+    }
+    func sideMenuDidDisappear(menu: UISideMenuNavigationController, animated: Bool) {
+        if TutorSharedClass.shared.islogOutYes {
+            TutorSharedClass.shared.islogOutYes = false
+            TutorSharedClass.removeLoginCredentialsAndSetRootViewControllerLogin(window: UIApplication.shared.keyWindow!)
+        }
+    }
+    
 }

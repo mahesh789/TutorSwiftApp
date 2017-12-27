@@ -639,6 +639,10 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
     }
     
     @objc func menuClickAction(sender:UIButton!) {
+        // self.view.endEditing(true)
+        if (SideMenuManager.default.menuRightNavigationController == nil) {
+            SideMenuManager.default.menuRightNavigationController = storyboard!.instantiateViewController(withIdentifier: "RightMenuNavigationController") as? UISideMenuNavigationController
+        }
         present(SideMenuManager.default.menuRightNavigationController!, animated: true, completion: nil)
     }
     
@@ -801,6 +805,26 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
         self.navigationController?.popViewController(animated: true)
     }
 
+}
+
+extension TutorProfileViewController: UISideMenuNavigationControllerDelegate {
+    
+    func sideMenuWillAppear(menu: UISideMenuNavigationController, animated: Bool) {
+    }
+    
+    func sideMenuDidAppear(menu: UISideMenuNavigationController, animated: Bool) {
+    }
+    
+    func sideMenuWillDisappear(menu: UISideMenuNavigationController, animated: Bool) {
+       
+    }
+    func sideMenuDidDisappear(menu: UISideMenuNavigationController, animated: Bool) {
+        if TutorSharedClass.shared.islogOutYes {
+            TutorSharedClass.shared.islogOutYes = false
+            TutorSharedClass.removeLoginCredentialsAndSetRootViewControllerLogin(window: UIApplication.shared.keyWindow!)
+        }
+    }
+    
 }
 
 
