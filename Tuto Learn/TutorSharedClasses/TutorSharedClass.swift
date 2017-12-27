@@ -27,22 +27,21 @@ public class TutorSharedClass:NSObject {
     var loopCount:Int = 0
     var findTutorDictionary = NSMutableDictionary()
     var isLoginRemember:Bool = false
+    var islogOutYes:Bool = false
+    
 
-
-   public class func navigateLoginViewController() -> Void {
+   public class func navigateLoginViewController(window:UIWindow) -> Void {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let tutorLoginViewController:ViewController = storyboard.instantiateViewController(withIdentifier: "ViewController") as! ViewController
         let navigationController = UINavigationController(rootViewController: tutorLoginViewController)
         navigationController.isNavigationBarHidden = true
-        UIApplication.shared.keyWindow?.rootViewController = navigationController
-
+        window.rootViewController = navigationController
     }
   
-  public class func removeLoginCredentialsAndSetRootViewControllerLogin() -> Void {
+  public class func removeLoginCredentialsAndSetRootViewControllerLogin(window:UIWindow) -> Void {
         UserDefaults.standard.set(false, forKey: "isUserLoggedIn")
-        UserDefaults.standard.set(nil, forKey: "userName")
-        UserDefaults.standard.set(nil, forKey: "passWord")
-        TutorSharedClass.navigateLoginViewController()
+        UserDefaults.standard.set(nil, forKey: "LoginDetails")
+        TutorSharedClass.navigateLoginViewController(window: window)
     }
     
     
@@ -58,6 +57,7 @@ public class TutorSharedClass:NSObject {
                 let navigationController = UINavigationController(rootViewController: tutorHomeViewController)
                 navigationController.isNavigationBarHidden = true
                 window.rootViewController = navigationController
+                window.makeKeyAndVisible()
             }else if TutorSharedClass.shared.loginTutorLoginObject?.sm_profile == 2
             {
                 self.setProfilerootViewController(window: window)
