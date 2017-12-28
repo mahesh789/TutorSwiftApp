@@ -445,11 +445,11 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
                     {
                         if TutorSharedClass.shared.loginTutorLoginObject?.sm_register_type == "0" && TutorSharedClass.shared.loginTutorLoginObject?.sm_guardian == 2
                         {
-                            parameterData["s_lastname"] = leftValue
+                            parameterData["s_lastname"] = rightValue
                             
                         }else
                         {
-                            parameterData["last_name"] = leftValue
+                            parameterData["last_name"] = rightValue
                         }
                         
                     }
