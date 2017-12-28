@@ -42,6 +42,8 @@ class RegistrationTableViewCell: UITableViewCell {
         rightTextField.customTag = 2
         rightDropImageView.isHidden = true
         leftDropImageView.isHidden = true
+        rightTextField.isEnabled = true
+        leftTextField.isEnabled = true
         if(cellType.rawValue == RegistrationCellType.RegistrationCellTypeRegistration.rawValue)
         {
             self.setLayoutForRegistration(registrationData: registrationData)
