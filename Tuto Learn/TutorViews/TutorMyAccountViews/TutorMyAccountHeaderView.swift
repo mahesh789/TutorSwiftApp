@@ -49,7 +49,8 @@ class TutorMyAccountHeaderView: UITableViewHeaderFooterView {
         
         if headerData.value(forKey: "type") as? String == "2"
         {
-            self.guardinNameLabel.text = filterData["sm_name"] as? String ?? "" + " \(filterData["sm_last"] as! String)"
+            self.guardinNameLabel.text = "\(filterData["sm_name"] as? String ?? "") \(filterData["sm_last"] as? String ?? "")"
+            
             self.guardianValueLable.text = "STUDENT"
             if let profileUrl = filterData.value(forKey: "sm_profile_image") as? String
             {

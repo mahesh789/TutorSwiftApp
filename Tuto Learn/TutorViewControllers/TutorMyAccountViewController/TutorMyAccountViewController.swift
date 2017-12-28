@@ -127,7 +127,7 @@ class TutorMyAccountViewController: UIViewController, UICollectionViewDelegate, 
             self.guardianDetailsArray.add(guardianMobileDetails ?? NSMutableDictionary.init())
             self.guardianDetailsArray.add(guardianOccupationDetails ?? NSMutableDictionary.init())
             
-            let userName = gaudianDetails["pm_first_name"] as? String ?? "" + " \(gaudianDetails["pm_last_name"] as! String)"
+            let userName = "\(gaudianDetails["pm_first_name"] as? String ?? "") \(gaudianDetails["pm_last_name"] as? String ?? "")"
 
             self.setViewData(profileImageValue: gaudianDetails .value(forKey: "sm_profile_image") as? String ?? "" ,userName:  userName)
 
@@ -144,7 +144,8 @@ class TutorMyAccountViewController: UIViewController, UICollectionViewDelegate, 
             self.guardianDetailsArray.add(guardianMobileDetails ?? NSMutableDictionary.init())
             self.guardianDetailsArray.add(guardianOccupationDetails ?? NSMutableDictionary.init())
            
-            let userName = gaudianDetails["sm_name"] as? String ?? "" + " \(gaudianDetails["sm_last"] as! String)"
+            
+            let userName = "\(gaudianDetails["sm_name"] as? String ?? "") \(gaudianDetails["sm_last"] as? String ?? "")"
 
             self.setViewData(profileImageValue: gaudianDetails .value(forKey: "sm_profile_image") as? String ?? "",userName: userName)
 
@@ -157,15 +158,18 @@ class TutorMyAccountViewController: UIViewController, UICollectionViewDelegate, 
     func getGuardianDetails() {
         MBProgressHUD.showAdded(to: self.view, animated: true)
         var parameterData = [String: String]()
-        parameterData["userid"] = TutorSharedClass.shared.loginTutorLoginObject?.sm_id
-        parameterData["register_type"] = TutorSharedClass.shared.loginTutorLoginObject?.sm_register_type
+       
          print(parameterData);
         var urlPath: String?
         if TutorSharedClass.shared.loginTutorLoginObject?.sm_register_type == "0"
         {
+            parameterData["userid"] = TutorSharedClass.shared.loginTutorLoginObject?.sm_id
+            parameterData["register_type"] = TutorSharedClass.shared.loginTutorLoginObject?.sm_register_type
             urlPath = String(format: "%@%@",Constants.baseUrl,Constants.getGaurdianDetailForStudent) as String
         }else
         {
+            parameterData["user_id"] = TutorSharedClass.shared.loginTutorLoginObject?.sm_id
+            parameterData["register_type"] = TutorSharedClass.shared.loginTutorLoginObject?.sm_register_type
             urlPath = String(format: "%@%@",Constants.baseUrl,Constants.profileDetails) as String
         }
         Alamofire.request(urlPath!, method: .post, parameters:parameterData , encoding: JSONEncoding.default, headers:["Content-Type":"application/json","Authorization":String(format:"Bearer %@",TutorSharedClass.shared.token ?? "")]) .responseJSON { response in

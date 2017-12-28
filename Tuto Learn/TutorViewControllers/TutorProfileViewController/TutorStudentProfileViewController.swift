@@ -367,7 +367,7 @@ class TutorStudentProfileViewController: UIViewController,UITextFieldDelegate,UI
                                         parameterData["last_name"] = rightValue
                                     }else
                                     {
-                                        parameterData["s_lastname"] = leftValue
+                                        parameterData["s_lastname"] = rightValue
                                     }
                                     
                                 }
