@@ -921,7 +921,7 @@
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profileImage" translatesAutoresizingMaskIntoConstraints="NO" id="WRG-dv-xdt">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dummyPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="WRG-dv-xdt">
                                             <rect key="frame" x="133" y="85" width="148" height="148"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="148.00000000000003" id="1PE-sr-0C4"/>
@@ -1091,7 +1091,7 @@
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profileImage" translatesAutoresizingMaskIntoConstraints="NO" id="6YG-Z9-oQe">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dummyPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="6YG-Z9-oQe">
                                             <rect key="frame" x="133.33333333333334" y="55" width="148.00000000000003" height="148"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="148" id="O2x-Xl-gUq"/>
@@ -1118,10 +1118,10 @@
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4.3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e7I-bp-yKM">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e7I-bp-yKM">
                                             <rect key="frame" x="140.33333333333334" y="250" width="46" height="21"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="46" id="Da8-3e-PX2"/>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="46" id="Da8-3e-PX2"/>
                                                 <constraint firstAttribute="height" constant="21" id="sLc-Pa-XQM"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="16"/>
@@ -1138,11 +1138,11 @@
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="18 years" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="amL-2n-9ox">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="amL-2n-9ox">
                                             <rect key="frame" x="228.33333333333337" y="251" width="95" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="Q6c-wE-aqC"/>
-                                                <constraint firstAttribute="width" constant="95" id="Rcb-xx-Y1r"/>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="95" id="Rcb-xx-Y1r"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="16"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1887,7 +1887,7 @@
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profileImage" translatesAutoresizingMaskIntoConstraints="NO" id="NQk-Ks-esV">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dummyPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="NQk-Ks-esV">
                                             <rect key="frame" x="133" y="59" width="148" height="148"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="148" id="40b-s4-vp2"/>

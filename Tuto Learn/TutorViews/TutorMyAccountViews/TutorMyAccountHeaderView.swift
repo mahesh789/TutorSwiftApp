@@ -59,8 +59,14 @@ class TutorMyAccountHeaderView: UITableViewHeaderFooterView {
                     if (image != nil)
                     {
                         
+                    }else
+                    {
+                        
                     }
                 })
+            }else
+            {
+                profileImageView.image = UIImage.init(named: "dummyPhoto")
             }
         }else if headerData.value(forKey: "type") as? String == "1"
         {
@@ -75,6 +81,9 @@ class TutorMyAccountHeaderView: UITableViewHeaderFooterView {
                         
                     }
                 })
+            }else
+            {
+              profileImageView.image = UIImage.init(named: "dummyPhoto")
             }
         }
 
