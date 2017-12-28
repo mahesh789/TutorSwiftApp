@@ -16,6 +16,9 @@ class TutorMyAccountCollectionViewCell: UICollectionViewCell,UITableViewDelegate
         cellDetailsData = cellData
         tableViewDetailsArray = tableViewArray
         tutorMyAccountTableView.reloadData()
+        self.updateConstraintsIfNeeded()
+        tutorMyAccountTableView.updateConstraintsIfNeeded()
+
     }
     
     // MARK :: Tableview delegate
@@ -55,6 +58,9 @@ class TutorMyAccountCollectionViewCell: UICollectionViewCell,UITableViewDelegate
         if cellDetailsData?.value(forKey: "type") as? String == "3"
         {
             return 40
+        }else if tableViewDetailsArray?.count == 0
+        {
+            return 1
         }
 
         return 255

@@ -38,15 +38,16 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
     var selectedImage: UIImage?
     var isImageChange: Bool = false
     var isFromMyAccount:Bool = false
-    
+    var gaurdianDetails = NSDictionary()
+
     override func viewDidLoad() {
 
         super.viewDidLoad()
         self.setGuardianData()
-        self.setHeaderView()
         self.setFooterView()
         self.setupSideMenu()
-       
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        self.getGuardianDetails()
         
         // Do any additional setup after loading the view.
     }
@@ -63,18 +64,18 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
     }
     
     func setGuardianData()  {
-        if TutorSharedClass.shared.loginTutorLoginObject?.sm_register_type == "0" && TutorSharedClass.shared.loginTutorLoginObject?.sm_guardian == 2
+        if TutorSharedClass.shared.loginTutorLoginObject?.sm_register_type == "0"
         {
-            let profileNameDetails: NSMutableDictionary? = ["leftTitle":"First Name","rightTitle":"Last Name","leftValue":"","rightValue":"" ,"type":NSNumber.init(value: ProfileDataType.ProfileDataTypeFirstName.rawValue)]
+            let profileNameDetails: NSMutableDictionary? = ["leftTitle":"First Name","rightTitle":"Last Name","leftValue":gaurdianDetails.value(forKey: "pm_first_name") ?? "","rightValue":gaurdianDetails.value(forKey: "pm_last_name") ?? "" ,"type":NSNumber.init(value: ProfileDataType.ProfileDataTypeFirstName.rawValue)]
             
-            let profilegenderDetails: NSMutableDictionary? = ["leftTitle":"Gender","rightTitle":"Date of Birth","leftValue":"","rightValue":"","type":NSNumber.init(value: ProfileDataType.ProfileDataTypeGender.rawValue)]
+            let profilegenderDetails: NSMutableDictionary? = ["leftTitle":"Gender","rightTitle":"Date of Birth","leftValue":gaurdianDetails.value(forKey: "pm_gender") ?? "","rightValue":gaurdianDetails.value(forKey: "pm_dob") ?? "","type":NSNumber.init(value: ProfileDataType.ProfileDataTypeGender.rawValue)]
             
-            let profileEmailDetails: NSMutableDictionary? = ["rightTitle":"Email","leftTitle":"","leftValue":"","rightValue":"","type":NSNumber.init(value: ProfileDataType.ProfileDataTypeEmail.rawValue)]
+            let profileEmailDetails: NSMutableDictionary? = ["rightTitle":"Email","leftTitle":"","leftValue":"","rightValue":gaurdianDetails.value(forKey: "pm_email") ?? "","type":NSNumber.init(value: ProfileDataType.ProfileDataTypeEmail.rawValue)]
             
-            let profileMobileDetails: NSMutableDictionary? = ["leftTitle":"Mobile","rightTitle":"","leftValue":"","rightValue":"","type":NSNumber.init(value: ProfileDataType.ProfileDataTypeMobile.rawValue)]
+            let profileMobileDetails: NSMutableDictionary? = ["leftTitle":"Mobile","rightTitle":"","leftValue":gaurdianDetails.value(forKey: "pm_phone") ?? "","rightValue":"","type":NSNumber.init(value: ProfileDataType.ProfileDataTypeMobile.rawValue)]
             
             
-            let profileOccupationDetail: NSMutableDictionary? = ["rightTitle":"Occupation","leftTitle":"","leftValue":"","rightValue":"","type":NSNumber.init(value: ProfileDataType.ProfileDataTypeOccupation.rawValue)]
+            let profileOccupationDetail: NSMutableDictionary? = ["rightTitle":"Occupation","leftTitle":"","leftValue":"","rightValue":gaurdianDetails.value(forKey: "pm_occupation") ?? "","type":NSNumber.init(value: ProfileDataType.ProfileDataTypeOccupation.rawValue)]
             
             if (dataArray != nil)
             {
@@ -88,6 +89,8 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
             dataArray?.add(profileEmailDetails ?? NSDictionary.init())
             dataArray?.add(profileMobileDetails ?? NSDictionary.init())
             dataArray?.add(profileOccupationDetail ?? NSDictionary.init())
+        
+
         }else
         {
             let profileNameDetails: NSMutableDictionary? = ["leftTitle":"First Name","rightTitle":"Last Name","leftValue":TutorSharedClass.shared.loginTutorLoginObject?.sm_name ?? "","rightValue":TutorSharedClass.shared.loginTutorLoginObject?.sm_last ?? "" ,"type":NSNumber.init(value: ProfileDataType.ProfileDataTypeFirstName.rawValue)]
@@ -113,14 +116,13 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
             dataArray?.add(profileEmailDetails ?? NSDictionary.init())
             dataArray?.add(profileMobileDetails ?? NSDictionary.init())
             dataArray?.add(profileOccupationDetail ?? NSDictionary.init())
-            
-            MBProgressHUD.showAdded(to: self.view, animated: true)
-            self.getGuardianDetails()
+          
         }
         self.profileTableview.estimatedRowHeight = 60.0
         self.profileTableview.rowHeight = UITableViewAutomaticDimension
         self.profileTableview.reloadData()
-        
+        self.setHeaderView()
+
     }
     
     func setHeaderView()  {
@@ -135,33 +137,53 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
             self.titleLabel.text = "Guardian Details"
         }
         
-        if let profileUrl = TutorSharedClass.shared.loginTutorLoginObject?.sm_profile_image
+        if TutorSharedClass.shared.loginTutorLoginObject?.sm_register_type == "0"
         {
-            self.uploadButton.setTitle("Edit Photo", for: .normal)
+            if let profileUrl = gaurdianDetails.value(forKey: "pm_img") as? String
+            {
+                self.uploadButton.setTitle("Edit Photo", for: .normal)
+                
+                self.profileImageView.kf.setImage(with: URL.init(string: profileUrl) , placeholder: UIImage.init(named: "dummyPhoto"), options: nil, progressBlock: nil, completionHandler:{
+                    (image, error, cacheType, imageUrl) in
+                    if (image != nil)
+                    {
+                        self.selectedImage = self.profileImageView.image
+                    }
+                })
+            }else
+            {
+                self.uploadButton.setTitle("Upload Photo", for: .normal)
 
-            self.profileImageView.kf.setImage(with: URL.init(string: profileUrl) , placeholder: UIImage.init(named: "dummyPhoto"), options: nil, progressBlock: nil, completionHandler:{
-                (image, error, cacheType, imageUrl) in
-                if (image != nil)
-                {
-                    self.selectedImage = self.profileImageView.image
-                }
-            })
-        }else if let profileUrl = TutorSharedClass.shared.loginTutorLoginObject?.sm_profile_img_url
-        {
-            self.uploadButton.setTitle("Edit Photo", for: .normal)
-
-            self.profileImageView.kf.setImage(with: URL.init(string: profileUrl) , placeholder: UIImage.init(named: "dummyPhoto"), options: nil, progressBlock: nil, completionHandler:{
-                (image, error, cacheType, imageUrl) in
-                if (image != nil)
-                {
-                    self.selectedImage = self.profileImageView.image
-                }
-            })
+            }
         }else
         {
-            self.uploadButton.setTitle("Upload Photo", for: .normal)
+            if let profileUrl = TutorSharedClass.shared.loginTutorLoginObject?.sm_profile_image
+            {
+                self.uploadButton.setTitle("Edit Photo", for: .normal)
+                
+                self.profileImageView.kf.setImage(with: URL.init(string: profileUrl) , placeholder: UIImage.init(named: "dummyPhoto"), options: nil, progressBlock: nil, completionHandler:{
+                    (image, error, cacheType, imageUrl) in
+                    if (image != nil)
+                    {
+                        self.selectedImage = self.profileImageView.image
+                    }
+                })
+            }else if let profileUrl = TutorSharedClass.shared.loginTutorLoginObject?.sm_profile_img_url
+            {
+                self.uploadButton.setTitle("Edit Photo", for: .normal)
+                
+                self.profileImageView.kf.setImage(with: URL.init(string: profileUrl) , placeholder: UIImage.init(named: "dummyPhoto"), options: nil, progressBlock: nil, completionHandler:{
+                    (image, error, cacheType, imageUrl) in
+                    if (image != nil)
+                    {
+                        self.selectedImage = self.profileImageView.image
+                    }
+                })
+            }else
+            {
+                self.uploadButton.setTitle("Upload Photo", for: .normal)
+            }
         }
-        
         if self.isFromMyAccount == true
         {
             self.tutorNavigationBar.leftBarButton.isHidden = false
@@ -476,6 +498,15 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
                                 let calendar = Calendar.current
                                 let components = calendar.dateComponents([.year, .month, .day, .hour], from: date)
                                 myDOB = Calendar.current.date(from: components)!
+                            }else
+                            {
+                                dateFormatterValue.dateFormat = "dd/MM/yyyy"
+                                if  let date = dateFormatterValue.date(from: rightValue!)
+                                {
+                                    let calendar = Calendar.current
+                                    let components = calendar.dateComponents([.year, .month, .day, .hour], from: date)
+                                    myDOB = Calendar.current.date(from: components)!
+                                }
                             }
                         }
                         
@@ -729,11 +760,19 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
     func getGuardianDetails() {
 
         var parameterData = [String: String]()
-        parameterData["user_id"] = TutorSharedClass.shared.loginTutorLoginObject?.sm_id
-        parameterData["register_type"] = TutorSharedClass.shared.loginTutorLoginObject?.sm_register_type
-
+        let urlPath:String
+        if TutorSharedClass.shared.loginTutorLoginObject?.sm_register_type == "0"
+        {
+            parameterData["userid"] = TutorSharedClass.shared.loginTutorLoginObject?.sm_id
+            parameterData["register_type"] = TutorSharedClass.shared.loginTutorLoginObject?.sm_register_type
+            urlPath = String(format: "%@%@",Constants.baseUrl,Constants.getGaurdianDetailForStudent) as String
+        }else
+        {
+            parameterData["user_id"] = TutorSharedClass.shared.loginTutorLoginObject?.sm_id
+            parameterData["register_type"] = TutorSharedClass.shared.loginTutorLoginObject?.sm_register_type
+            urlPath = String(format: "%@%@",Constants.baseUrl,Constants.profileDetails) as String
+        }
        // print(parameterData);
-        let urlPath = String(format: "%@%@",Constants.baseUrl,Constants.profileDetails) as String
         Alamofire.request(urlPath, method: .post, parameters:parameterData , encoding: JSONEncoding.default, headers:["Content-Type":"application/json","Authorization":String(format:"Bearer %@",TutorSharedClass.shared.token ?? "")]) .responseJSON { response in
             if response.result.isSuccess
             {
@@ -747,19 +786,27 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
                         MBProgressHUD.hide(for: self.view, animated: true)
                         if let resultParseLoginDictionary = resultDictionary.object(forKey: "data") as? NSDictionary
                         {
-                            let loginModelArray = TutorLoginModel.modelsFromDictionaryArray(array: [resultParseLoginDictionary])
-                            if (loginModelArray.first != nil)
+                            if TutorSharedClass.shared.loginTutorLoginObject?.sm_register_type == "0"
                             {
-                                TutorSharedClass.shared.loginTutorLoginObject?.updateModelObject(modelObject: loginModelArray.first!)
-
-                                if TutorSharedClass.shared.isLoginRemember
-                                {
-                                    UserDefaults.standard.set(true, forKey: "isUserLoggedIn")
-                                    let loginDictionary = TutorSharedClass.shared.loginTutorLoginObject?.dictionaryRepresentation()
-                                    UserDefaults.standard.set(loginDictionary, forKey: "LoginDetails")
-                                }
-                                
+                                self.gaurdianDetails = resultParseLoginDictionary
                                 self.setGuardianData()
+
+                            }else
+                            {
+                                let loginModelArray = TutorLoginModel.modelsFromDictionaryArray(array: [resultParseLoginDictionary])
+                                if (loginModelArray.first != nil)
+                                {
+                                    TutorSharedClass.shared.loginTutorLoginObject?.updateModelObject(modelObject: loginModelArray.first!)
+                                    
+                                    if TutorSharedClass.shared.isLoginRemember
+                                    {
+                                        UserDefaults.standard.set(true, forKey: "isUserLoggedIn")
+                                        let loginDictionary = TutorSharedClass.shared.loginTutorLoginObject?.dictionaryRepresentation()
+                                        UserDefaults.standard.set(loginDictionary, forKey: "LoginDetails")
+                                    }
+                                    
+                                    self.setGuardianData()
+                                }
                             }
                         }
  
@@ -790,7 +837,7 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
                     else{
                         MBProgressHUD.hide(for: self.view, animated: true)
                         
-                        TutorDefaultAlertController.showAlertController(alertMessage: resultDictionary["message"] as? String, showController: self)
+                      //  TutorDefaultAlertController.showAlertController(alertMessage: resultDictionary["message"] as? String, showController: self)
                     }
                 }
             }

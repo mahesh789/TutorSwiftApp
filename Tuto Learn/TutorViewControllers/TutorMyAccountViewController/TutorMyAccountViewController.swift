@@ -11,7 +11,9 @@ class TutorMyAccountViewController: UIViewController, UICollectionViewDelegate, 
     @IBOutlet weak var studentButton:UIButton!
     @IBOutlet weak var preferencesButton:UIButton!
     @IBOutlet weak var tutorMyAccountCollectionView:UICollectionView!
-    
+    @IBOutlet weak var footerView:UIView!
+    @IBOutlet weak var footerViewHeight:NSLayoutConstraint!
+
     var dataArray = NSMutableArray()
     var guardianDetailsArray = NSMutableArray()
     var studentDetailsArray :NSMutableArray?
@@ -36,6 +38,8 @@ class TutorMyAccountViewController: UIViewController, UICollectionViewDelegate, 
         guardianButton.backgroundColor = UIColor.init(red: 62, green: 144, blue: 151)
         studentButton.backgroundColor = UIColor.init(red: 73, green: 167, blue: 169)
         preferencesButton.backgroundColor = UIColor.init(red: 73, green: 167, blue: 169)
+        self.footerViewHeight.constant = 0
+        self.footerView.isHidden = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -153,7 +157,7 @@ class TutorMyAccountViewController: UIViewController, UICollectionViewDelegate, 
     func getGuardianDetails() {
         MBProgressHUD.showAdded(to: self.view, animated: true)
         var parameterData = [String: String]()
-        parameterData["user_id"] = TutorSharedClass.shared.loginTutorLoginObject?.sm_id
+        parameterData["userid"] = TutorSharedClass.shared.loginTutorLoginObject?.sm_id
         parameterData["register_type"] = TutorSharedClass.shared.loginTutorLoginObject?.sm_register_type
          print(parameterData);
         var urlPath: String?
@@ -378,27 +382,38 @@ class TutorMyAccountViewController: UIViewController, UICollectionViewDelegate, 
                 guardianButton.backgroundColor = UIColor.init(red: 62, green: 144, blue: 151)
                 studentButton.backgroundColor = UIColor.init(red: 73, green: 167, blue: 169)
                 preferencesButton.backgroundColor = UIColor.init(red: 73, green: 167, blue: 169)
-                
+                self.footerViewHeight.constant = 0
+                self.footerView.isHidden = true
+                self.view.updateConstraints()
                 self.tutorMyAccountCollectionView.scrollToItem(at: IndexPath.init(item: 0, section: 0), at: .left, animated: true)
+
             }else if tag == 2
             {
                 guardianButton.isSelected = false
                 studentButton.isSelected = true
                 preferencesButton.isSelected = false
-                self.tutorMyAccountCollectionView.scrollToItem(at: IndexPath.init(item: 1, section: 0), at: .left, animated: true)
                 studentButton.backgroundColor = UIColor.init(red: 62, green: 144, blue: 151)
                 guardianButton.backgroundColor = UIColor.init(red: 73, green: 167, blue: 169)
                 preferencesButton.backgroundColor = UIColor.init(red: 73, green: 167, blue: 169)
+                self.footerViewHeight.constant = 50
+                self.footerView.isHidden = false
+                self.view.updateConstraints()
+                self.tutorMyAccountCollectionView.scrollToItem(at: IndexPath.init(item: 1, section: 0), at: .left, animated: true)
+
             }
             else if tag == 3
             {
                 guardianButton.isSelected = false
                 studentButton.isSelected = false
                 preferencesButton.isSelected = true
-                self.tutorMyAccountCollectionView.scrollToItem(at: IndexPath.init(item: 2, section: 0), at: .left, animated: true)
                 preferencesButton.backgroundColor = UIColor.init(red: 62, green: 144, blue: 151)
                 studentButton.backgroundColor = UIColor.init(red: 73, green: 167, blue: 169)
                 guardianButton.backgroundColor = UIColor.init(red: 73, green: 167, blue: 169)
+                self.footerViewHeight.constant = 0
+                self.footerView.isHidden = true
+                self.view.updateConstraints()
+                self.tutorMyAccountCollectionView.scrollToItem(at: IndexPath.init(item: 2, section: 0), at: .left, animated: true)
+
             }
         }
     }
@@ -457,4 +472,11 @@ class TutorMyAccountViewController: UIViewController, UICollectionViewDelegate, 
         
     }
 
+    @IBAction func addStudentButtonClicked(sender:UIButton)
+    {
+        let tutorHomeViewController:TutorStudentProfileViewController = self.storyboard?.instantiateViewController(withIdentifier: "TutorStudentProfileViewController") as! TutorStudentProfileViewController
+        tutorHomeViewController.isFromMyAccount = true
+        self.navigationController?.pushViewController(tutorHomeViewController, animated: true)
+    }
+    
 }
