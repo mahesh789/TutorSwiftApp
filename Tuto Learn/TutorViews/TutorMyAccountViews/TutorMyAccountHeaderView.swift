@@ -51,9 +51,9 @@ class TutorMyAccountHeaderView: UITableViewHeaderFooterView {
         {
             self.guardinNameLabel.text = filterData["sm_name"] as? String ?? "" + " \(filterData["sm_last"] as! String)"
             self.guardianValueLable.text = "STUDENT"
-            if let profileUrl = filterData.value(forKey: "sm_profile_image")
+            if let profileUrl = filterData.value(forKey: "sm_profile_image") as? String
             {
-                profileImageView.kf.setImage(with: URL.init(string: profileUrl as! String) , placeholder: UIImage.init(named: "dummyPhoto"), options: nil, progressBlock: nil, completionHandler:{
+                profileImageView.kf.setImage(with: URL.init(string: profileUrl) , placeholder: UIImage.init(named: "dummyPhoto"), options: nil, progressBlock: nil, completionHandler:{
                     (image, error, cacheType, imageUrl) in
                     if (image != nil)
                     {
@@ -65,9 +65,9 @@ class TutorMyAccountHeaderView: UITableViewHeaderFooterView {
         {
             self.guardianValueLable.text = "GUARDIAN"
             self.guardinNameLabel.text = headerData.value(forKey: "userName") as? String ?? ""
-            if let profileUrl = headerData.value(forKey: "profileImage")
+            if let profileUrl = headerData.value(forKey: "profileImage") as? String
             {
-                profileImageView.kf.setImage(with: URL.init(string: profileUrl as! String) , placeholder: UIImage.init(named: "dummyPhoto"), options: nil, progressBlock: nil, completionHandler:{
+                profileImageView.kf.setImage(with: URL.init(string: profileUrl) , placeholder: UIImage.init(named: "dummyPhoto"), options: nil, progressBlock: nil, completionHandler:{
                     (image, error, cacheType, imageUrl) in
                     if (image != nil)
                     {

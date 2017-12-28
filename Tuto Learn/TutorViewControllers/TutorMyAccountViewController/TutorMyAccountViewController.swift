@@ -386,7 +386,7 @@ class TutorMyAccountViewController: UIViewController, UICollectionViewDelegate, 
                 self.footerView.isHidden = true
                 self.view.updateConstraints()
                 self.tutorMyAccountCollectionView.scrollToItem(at: IndexPath.init(item: 0, section: 0), at: .left, animated: true)
-
+self.tutorMyAccountCollectionView.reloadData()
             }else if tag == 2
             {
                 guardianButton.isSelected = false
@@ -399,7 +399,7 @@ class TutorMyAccountViewController: UIViewController, UICollectionViewDelegate, 
                 self.footerView.isHidden = false
                 self.view.updateConstraints()
                 self.tutorMyAccountCollectionView.scrollToItem(at: IndexPath.init(item: 1, section: 0), at: .left, animated: true)
-
+self.tutorMyAccountCollectionView.reloadData()
             }
             else if tag == 3
             {
@@ -413,7 +413,7 @@ class TutorMyAccountViewController: UIViewController, UICollectionViewDelegate, 
                 self.footerView.isHidden = true
                 self.view.updateConstraints()
                 self.tutorMyAccountCollectionView.scrollToItem(at: IndexPath.init(item: 2, section: 0), at: .left, animated: true)
-
+self.tutorMyAccountCollectionView.reloadData()
             }
         }
     }

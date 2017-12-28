@@ -3412,7 +3412,7 @@
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="unO-mt-zMn">
-                                <rect key="frame" x="0.0" y="126" width="414" height="610"/>
+                                <rect key="frame" x="0.0" y="126" width="414" height="560"/>
                                 <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="Hjv-1P-ews">
                                     <size key="itemSize" width="414" height="610"/>
@@ -3422,7 +3422,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TutorMyAccountCollectionViewCell" id="srV-9M-Mac" customClass="TutorMyAccountCollectionViewCell" customModule="Tuto_Learn" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="610"/>
+                                        <rect key="frame" x="0.0" y="-25" width="414" height="610"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="610"/>
@@ -3496,6 +3496,26 @@
                                     <outlet property="delegate" destination="O2j-3x-Eqk" id="pzc-wz-Ns9"/>
                                 </connections>
                             </collectionView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Nh-Gf-O8d">
+                                <rect key="frame" x="0.0" y="686" width="414" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bJ3-cK-dr3">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.20784313730000001" green="0.72549019609999998" blue="0.73333333329999995" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="Add another student">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="addStudentButtonClickedWithSender:" destination="O2j-3x-Eqk" eventType="touchUpInside" id="ytc-fc-DCF"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="xtH-Vc-HRr"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -3503,16 +3523,21 @@
                             <constraint firstItem="siv-KQ-bkh" firstAttribute="leading" secondItem="6Wx-hM-7E4" secondAttribute="leading" id="G6w-jR-hTa"/>
                             <constraint firstItem="cNe-d2-d8o" firstAttribute="top" secondItem="siv-KQ-bkh" secondAttribute="bottom" id="GVi-ww-yMb"/>
                             <constraint firstItem="unO-mt-zMn" firstAttribute="leading" secondItem="6Wx-hM-7E4" secondAttribute="leading" id="LKo-AJ-uJP"/>
-                            <constraint firstItem="sve-QR-z8c" firstAttribute="top" secondItem="unO-mt-zMn" secondAttribute="bottom" id="OPp-qb-PuP"/>
                             <constraint firstItem="unO-mt-zMn" firstAttribute="top" secondItem="cNe-d2-d8o" secondAttribute="bottom" id="TgQ-Gp-U8O"/>
                             <constraint firstItem="siv-KQ-bkh" firstAttribute="top" secondItem="6Wx-hM-7E4" secondAttribute="top" id="WEx-JY-ul5"/>
+                            <constraint firstItem="1Nh-Gf-O8d" firstAttribute="leading" secondItem="6Wx-hM-7E4" secondAttribute="leading" id="ZCC-cM-6v4"/>
                             <constraint firstAttribute="trailing" secondItem="siv-KQ-bkh" secondAttribute="trailing" id="c44-Uw-NoB"/>
+                            <constraint firstAttribute="trailing" secondItem="1Nh-Gf-O8d" secondAttribute="trailing" id="goa-px-oDK"/>
                             <constraint firstAttribute="trailing" secondItem="cNe-d2-d8o" secondAttribute="trailing" id="q3J-Lu-L9v"/>
                             <constraint firstItem="cNe-d2-d8o" firstAttribute="leading" secondItem="6Wx-hM-7E4" secondAttribute="leading" id="qpx-dY-zc6"/>
+                            <constraint firstItem="1Nh-Gf-O8d" firstAttribute="top" secondItem="unO-mt-zMn" secondAttribute="bottom" id="rii-P3-JFl"/>
                             <constraint firstAttribute="trailing" secondItem="unO-mt-zMn" secondAttribute="trailing" id="wLW-QN-vPx"/>
+                            <constraint firstItem="sve-QR-z8c" firstAttribute="top" secondItem="1Nh-Gf-O8d" secondAttribute="bottom" id="wWg-Be-Gpw"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="footerView" destination="1Nh-Gf-O8d" id="stj-TJ-she"/>
+                        <outlet property="footerViewHeight" destination="xtH-Vc-HRr" id="ljM-Ka-GA1"/>
                         <outlet property="guardianButton" destination="sOk-ge-X3a" id="ecQ-7H-jz4"/>
                         <outlet property="preferencesButton" destination="BCB-F4-RwF" id="eXb-VC-6UL"/>
                         <outlet property="studentButton" destination="InO-zg-BxZ" id="Gb5-Kg-JyU"/>
