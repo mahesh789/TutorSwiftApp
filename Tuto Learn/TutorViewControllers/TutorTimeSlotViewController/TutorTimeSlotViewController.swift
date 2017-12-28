@@ -49,6 +49,7 @@ class TutorTimeSlotViewController: UIViewController,UITableViewDelegate,UITableV
         timeSlotTableView.estimatedRowHeight = 85.0
         timeSlotTableView.rowHeight = UITableViewAutomaticDimension
         timeSlotTableView.tableFooterView = UIView.init()
+         teacherProfileImageView.layer.masksToBounds = false
         teacherProfileImageView.layer.cornerRadius = self.teacherProfileImageView.frame.size.height/2
         teacherProfileImageView.clipsToBounds = true
         let profileImageUrl = String(format:"%@",(tutorTeacherObject.teacherPhotoString ?? ""))

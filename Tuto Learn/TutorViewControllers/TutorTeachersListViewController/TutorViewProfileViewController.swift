@@ -47,6 +47,7 @@ class TutorViewProfileViewController: UIViewController,UITableViewDelegate,UITab
         profileTableView.estimatedRowHeight = 85.0
         profileTableView.rowHeight = UITableViewAutomaticDimension
         profileTableView.tableFooterView = UIView.init()
+         teacherProfileImageView.layer.masksToBounds = false
         teacherProfileImageView.layer.cornerRadius = self.teacherProfileImageView.frame.size.height/2
         teacherProfileImageView.clipsToBounds = true
         self.bookNowButton.layer.cornerRadius = 2.0

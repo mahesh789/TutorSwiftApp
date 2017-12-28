@@ -22,4 +22,8 @@ class TutorStudentHeaderView: UIView {
     }
     */
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.profileImageView.layer.masksToBounds = false
+    }
 }

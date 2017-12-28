@@ -52,6 +52,7 @@ class TutorBookTutorViewController: UIViewController,UITableViewDelegate,UITable
         bookTutorTableView.estimatedRowHeight = 85.0
         bookTutorTableView.rowHeight = UITableViewAutomaticDimension
         bookTutorTableView.tableFooterView = UIView.init()
+         teacherProfileImageView.layer.masksToBounds = false
         teacherProfileImageView.layer.cornerRadius = self.teacherProfileImageView.frame.size.height/2
         teacherProfileImageView.clipsToBounds = true
         makePaymentButton.layer.cornerRadius = 2

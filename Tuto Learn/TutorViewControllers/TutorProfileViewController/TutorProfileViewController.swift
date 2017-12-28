@@ -148,6 +148,7 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
                     (image, error, cacheType, imageUrl) in
                     if (image != nil)
                     {
+                        self.profileImageView.contentMode = .scaleAspectFit
                         self.selectedImage = self.profileImageView.image
                     }
                 })
@@ -166,6 +167,7 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
                     (image, error, cacheType, imageUrl) in
                     if (image != nil)
                     {
+                        self.profileImageView.contentMode = .scaleAspectFit
                         self.selectedImage = self.profileImageView.image
                     }
                 })
@@ -177,6 +179,7 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
                     (image, error, cacheType, imageUrl) in
                     if (image != nil)
                     {
+                        self.profileImageView.contentMode = .scaleAspectFit
                         self.selectedImage = self.profileImageView.image
                     }
                 })
@@ -386,7 +389,7 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
     
    @objc func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: NSDictionary!){
         self.dismiss(animated: true, completion: { () -> Void in
-            self.profileImageView.image = image
+            self.profileImageView.image = TutorSharedClass.shared.scaleUIImageToSize(image: image, size: CGSize(width:500,height:500))
             self.isImageChange = true
         })
         
@@ -397,7 +400,7 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
             
             if let bigImage = info[UIImagePickerControllerOriginalImage] as? UIImage
             {
-                self.selectedImage = bigImage
+                self.selectedImage = TutorSharedClass.shared.scaleUIImageToSize(image: bigImage, size: CGSize(width:500,height:500))
                 self.profileImageView.image = self.selectedImage
                 self.isImageChange = true
                 self.uploadButton.setTitle("Edit Photo", for: .normal)

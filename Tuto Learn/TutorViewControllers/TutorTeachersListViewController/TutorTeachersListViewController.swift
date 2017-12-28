@@ -54,6 +54,7 @@ class TutorTeachersListViewController: UIViewController,UICollectionViewDelegate
     }
     
     func setLayoutForTeachersCollectionCell(teacherCollectionCell:TutorTeachersListCollectionViewCell,atIndex indexPath:IndexPath) -> Void {
+         teacherCollectionCell.profileImageView.layer.masksToBounds = false
         teacherCollectionCell.profileImageView.layer.cornerRadius = teacherCollectionCell.profileImageView.frame.size.height/2
         teacherCollectionCell.profileImageView.clipsToBounds = true
         teacherCollectionCell.layer.cornerRadius = 5.0

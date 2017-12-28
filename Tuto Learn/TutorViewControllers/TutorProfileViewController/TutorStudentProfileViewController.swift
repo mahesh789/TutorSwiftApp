@@ -176,7 +176,8 @@ class TutorStudentProfileViewController: UIViewController,UITextFieldDelegate,UI
             tempHederView.closeButton.tag = section
             tempHederView.profileImageView.layer.masksToBounds = false
             tempHederView.profileImageView.layer.cornerRadius = tempHederView.profileImageView.frame.size.height/2
-            tempHederView.profileImageView.layer.masksToBounds = true
+            tempHederView.profileImageView.clipsToBounds = true
+            tempHederView.profileImageView.contentMode = .scaleAspectFit
             tempHederView.closeButton.addTarget(self, action: #selector(deleteStudentClicked(sender:)), for: .touchUpInside)
             tempHederView.uploadButton.addTarget(self, action: #selector(uploadPhotoButtonClick(sender:)), for: .touchUpInside)
             if section == 0
@@ -1097,7 +1098,7 @@ class TutorStudentProfileViewController: UIViewController,UITextFieldDelegate,UI
             
             if let bigImage = info[UIImagePickerControllerOriginalImage] as? UIImage
             {
-                self.selectedImage = bigImage                
+                self.selectedImage = TutorSharedClass.shared.scaleUIImageToSize(image: bigImage, size: CGSize(width:500,height:500))
                 self.isImageChange = true
                 self.selectedProfileImage.setValue(self.selectedImage, forKey: String(picker.view.tag))
                 self.profileTableview.reloadData()
@@ -1106,6 +1107,7 @@ class TutorStudentProfileViewController: UIViewController,UITextFieldDelegate,UI
         })
     }
     
+   
     
     func getLevelBoardData() {
         
