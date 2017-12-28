@@ -191,20 +191,20 @@ class TutorStudentProfileViewController: UIViewController,UITextFieldDelegate,UI
               tempHederView.profileImageView.image = profileImage
             }else if self.isEditStudentProfile == true
             {
-                if let profileUrl = selectedStudentInfo?.value(forKey: "sm_profile_image")
+                if let profileUrl = selectedStudentInfo?.value(forKey: "sm_profile_image") as? String
                 {
                     tempHederView.uploadButton.setTitle("Edit Photo", for: .normal)
-                    tempHederView.profileImageView.kf.setImage(with: URL.init(string: profileUrl as! String) , placeholder: UIImage.init(named: "dummyPhoto"), options: nil, progressBlock: nil, completionHandler:{
+                    tempHederView.profileImageView.kf.setImage(with: URL.init(string: profileUrl) , placeholder: UIImage.init(named: "dummyPhoto"), options: nil, progressBlock: nil, completionHandler:{
                         (image, error, cacheType, imageUrl) in
                         if (image != nil)
                         {
 
                         }
                     })
-                }else if let profileUrl = selectedStudentInfo?.value(forKey: "sm_profile_img_url")
+                }else if let profileUrl = selectedStudentInfo?.value(forKey: "sm_profile_img_url") as? String
                 {
                     tempHederView.uploadButton.setTitle("Edit Photo", for: .normal)
-                    tempHederView.profileImageView.kf.setImage(with: URL.init(string: profileUrl as! String) , placeholder: UIImage.init(named: "dummyPhoto"), options: nil, progressBlock: nil, completionHandler:{
+                    tempHederView.profileImageView.kf.setImage(with: URL.init(string: profileUrl) , placeholder: UIImage.init(named: "dummyPhoto"), options: nil, progressBlock: nil, completionHandler:{
                         (image, error, cacheType, imageUrl) in
                         if (image != nil)
                         {
