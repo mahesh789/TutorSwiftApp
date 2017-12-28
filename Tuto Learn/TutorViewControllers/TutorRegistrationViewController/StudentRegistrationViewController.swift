@@ -134,11 +134,19 @@ class StudentRegistrationViewController: UIViewController,UITextFieldDelegate,UI
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "registrationCell", for: indexPath) as? RegistrationTableViewCell
-        cell?.updateLayout(registrationData: self.dataArray?.object(at: indexPath.row) as! NSDictionary, cellType: RegistrationCellType.RegistrationCellTypeRegistration)
+        let registrationData = self.dataArray?.object(at: indexPath.row) as! NSDictionary
+        cell?.updateLayout(registrationData: registrationData, cellType: RegistrationCellType.RegistrationCellTypeRegistration)
         cell?.leftTextField.delegate = self
         cell?.rightTextField.delegate = self
         cell?.leftTextField.tag = indexPath.row
         cell?.rightTextField.tag = indexPath.row
+        
+        if  registrationData.value(forKey: "type") as? Int == RegistrationDataType.RegistrationDataTypeEmail.rawValue && socialLoginData != nil
+        {
+            cell?.rightTextField.isEnabled = false
+            cell?.leftTextField.isEnabled = false
+
+        }
         return cell!
     }
     
