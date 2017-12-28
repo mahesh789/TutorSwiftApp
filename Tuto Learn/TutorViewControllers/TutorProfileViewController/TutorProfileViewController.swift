@@ -126,6 +126,7 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
     }
     
     func setHeaderView()  {
+        self.profileImageView.layer.masksToBounds = false
         self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.height/2
         self.profileImageView.layer.masksToBounds = true
         self.uploadButton.layer.cornerRadius = 5.0;

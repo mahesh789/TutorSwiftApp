@@ -174,6 +174,7 @@ class TutorStudentProfileViewController: UIViewController,UITextFieldDelegate,UI
             tempHederView.uploadButton.layer.borderWidth = 1.0
             tempHederView.uploadButton.tag = section
             tempHederView.closeButton.tag = section
+            tempHederView.profileImageView.layer.masksToBounds = false
             tempHederView.profileImageView.layer.cornerRadius = tempHederView.profileImageView.frame.size.height/2
             tempHederView.profileImageView.layer.masksToBounds = true
             tempHederView.closeButton.addTarget(self, action: #selector(deleteStudentClicked(sender:)), for: .touchUpInside)

@@ -30,8 +30,10 @@ class TutorMyAccountHeaderView: UITableViewHeaderFooterView {
         profileView.backgroundColor = UIColor.init(red: 62, green: 144, blue: 151)
         titleView.backgroundColor = UIColor.init(red: 244, green: 244, blue: 244)
 
-        self.profileImageView.layer.masksToBounds = true
+        self.profileImageView.layer.masksToBounds = false
         self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.height/2
+        self.profileImageView.layer.masksToBounds = true
+
         if headerData.value(forKey: "type") as? String == "3"
         {
             profileView.isHidden = true
