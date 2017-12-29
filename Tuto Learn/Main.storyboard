@@ -3496,12 +3496,11 @@
                                     <outlet property="delegate" destination="O2j-3x-Eqk" id="pzc-wz-Ns9"/>
                                 </connections>
                             </collectionView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Nh-Gf-O8d">
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Nh-Gf-O8d">
                                 <rect key="frame" x="0.0" y="686" width="414" height="50"/>
                                 <subviews>
-                                    <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bJ3-cK-dr3">
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bJ3-cK-dr3">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.20784313730000001" green="0.72549019609999998" blue="0.73333333329999995" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal" title="Add another student">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -3513,6 +3512,10 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="bJ3-cK-dr3" secondAttribute="trailing" id="I0R-cm-hJI"/>
+                                    <constraint firstItem="bJ3-cK-dr3" firstAttribute="leading" secondItem="1Nh-Gf-O8d" secondAttribute="leading" id="UFF-XL-tnU"/>
+                                    <constraint firstItem="bJ3-cK-dr3" firstAttribute="top" secondItem="1Nh-Gf-O8d" secondAttribute="top" id="W02-1u-dhz"/>
+                                    <constraint firstAttribute="bottom" secondItem="bJ3-cK-dr3" secondAttribute="bottom" id="vUb-Wq-oEL"/>
                                     <constraint firstAttribute="height" constant="50" id="xtH-Vc-HRr"/>
                                 </constraints>
                             </view>
