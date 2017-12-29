@@ -416,7 +416,9 @@ class TutorHomeViewController: UIViewController,UITextFieldDelegate,UITableViewD
         
         if isValidate
         {
-            parameterData["prefer_gen"] = "female"//TutorSharedClass.shared.loginTutorLoginObject?.sm_gender
+            parameterData["prefer_gen"] = "female"
+            parameterData["level"] = self.selectStudentDictionary["sm_level"] as? String
+             parameterData["board"] = self.selectStudentDictionary["sm_board"] as? String
             MBProgressHUD.showAdded(to: self.view, animated: true)
             self.getSearchTutorList(parametersDict: parameterData as NSDictionary)
         }
