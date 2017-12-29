@@ -129,7 +129,7 @@ class TutorMyAccountViewController: UIViewController, UICollectionViewDelegate, 
             
             let userName = "\(gaudianDetails["pm_first_name"] as? String ?? "") \(gaudianDetails["pm_last_name"] as? String ?? "")"
 
-            self.setViewData(profileImageValue: gaudianDetails .value(forKey: "sm_profile_image") as? String ?? "" ,userName:  userName)
+            self.setViewData(profileImageValue: gaudianDetails .value(forKey: "pm_img") as? String ?? "" ,userName:  userName)
 
         }else
         {
