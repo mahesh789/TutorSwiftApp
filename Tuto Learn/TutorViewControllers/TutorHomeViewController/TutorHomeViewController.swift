@@ -125,6 +125,7 @@ class TutorHomeViewController: UIViewController,UITextFieldDelegate,UITableViewD
                 self.selectedPickerDataType = .TimeSlotType
                  textFieldTemp.inputView = self.thePicker
                 self.thePicker.selectRow(0, inComponent: 0, animated: true)
+                 self.thePicker.reloadAllComponents()
             }
            else if (datadictionary?.value(forKey: "type") as? Int == FindTutorDataType.FindTutorDataTypeTutionType.rawValue && textFieldTemp.customTag == 1)
             {
@@ -132,6 +133,7 @@ class TutorHomeViewController: UIViewController,UITextFieldDelegate,UITableViewD
                 self.selectedPickerDataType = .TutionType
                 textFieldTemp.inputView = self.thePicker
                 self.thePicker.selectRow(0, inComponent: 0, animated: true)
+                 self.thePicker.reloadAllComponents()
             }
           else if (datadictionary?.value(forKey: "type") as? Int == FindTutorDataType.FindTutorDataTypeTutionType.rawValue && textFieldTemp.customTag == 2)
             {
@@ -139,6 +141,7 @@ class TutorHomeViewController: UIViewController,UITextFieldDelegate,UITableViewD
                     self.selectedPickerDataType = .GroupSizeType
                     textFieldTemp.inputView = self.thePicker
                 self.thePicker.selectRow(0, inComponent: 0, animated: true)
+                 self.thePicker.reloadAllComponents()
             }
           else if (datadictionary?.value(forKey: "type") as? Int == FindTutorDataType.FindTutorDataTypeNoOfSessions.rawValue && textFieldTemp.customTag == 1)
             {
@@ -146,6 +149,7 @@ class TutorHomeViewController: UIViewController,UITextFieldDelegate,UITableViewD
                 self.selectedPickerDataType = .NoofSessionType
                 textFieldTemp.inputView = self.thePicker
               self.thePicker.selectRow(0, inComponent: 0, animated: true)
+                 self.thePicker.reloadAllComponents()
             }
             
         }
