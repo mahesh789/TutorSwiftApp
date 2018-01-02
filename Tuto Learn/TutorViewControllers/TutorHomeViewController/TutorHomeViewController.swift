@@ -326,7 +326,7 @@ class TutorHomeViewController: UIViewController,UITextFieldDelegate,UITableViewD
                         break;
                     }else
                     {
-                        parameterData["sel_sub"] = rightValue
+                        parameterData["sel_sub"] = self.selectSubjectDictionary["cs_cid"] as? String
                         
                     }
                 }else  if dataContent["type"] as? Int == FindTutorDataType.FindTutorDataTypeEnterTopic.rawValue
