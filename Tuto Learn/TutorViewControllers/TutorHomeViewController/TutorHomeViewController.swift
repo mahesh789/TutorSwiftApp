@@ -10,6 +10,7 @@ import UIKit
 import SideMenu
 import Alamofire
 import AAPickerView
+import IQKeyboardManagerSwift
 
 enum FindTutorDataType:Int {
     case FindTutorDataTypeSelectStudent = 1,FindTutorDataTypeEnterTopic,FindTutorDataTypeSelectDate,FindTutorDataTypeTutionType,FindTutorDataTypeNoOfSessions
@@ -36,16 +37,17 @@ class TutorHomeViewController: UIViewController,UITextFieldDelegate,UITableViewD
     public var selectedPickerDataType:PickerDataType?
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
         self.setLayoutAndSetTexts()
         self.setupSideMenu()
         self.setFindTutorFieldsArray()
         self.thePicker.delegate = self;
         self.thePicker.dataSource = self;
-    
+        IQKeyboardManager.sharedManager().previousNextDisplayMode = .alwaysHide
     }
-   
+    override func viewWillDisappear(_ animated: Bool) {
+        IQKeyboardManager.sharedManager().previousNextDisplayMode = .Default
+    }
     func setLayoutAndSetTexts() -> Void {
         self.tutorHomeNavigationBar.rightBarButton.addTarget(self, action: #selector(menuClickAction), for:.touchUpInside)
         self.tutorHomeNavigationBar.leftBarButton.isHidden = true
@@ -382,7 +384,13 @@ class TutorHomeViewController: UIViewController,UITextFieldDelegate,UITableViewD
                         break;
                     }else
                     {
-                        parameterData["sel_tution_type"] = leftValue
+                        if leftValue == "One-on-One"
+                        {
+                            parameterData["sel_tution_type"] = "single"
+                        }else{
+                            parameterData["sel_tution_type"] = "group"
+                        }
+                        
                     }
                     let rightValue =  dataContent["rightValue"] as? String
                     if leftValue != "One-on-One"
@@ -394,7 +402,7 @@ class TutorHomeViewController: UIViewController,UITextFieldDelegate,UITableViewD
                             break;
                         }else
                         {
-                            parameterData["sel_group_size"] = rightValue
+                            parameterData["group_size"] = rightValue
                         }
                     }
                    
@@ -416,9 +424,10 @@ class TutorHomeViewController: UIViewController,UITextFieldDelegate,UITableViewD
         
         if isValidate
         {
-            parameterData["prefer_gen"] = "female"
             parameterData["level"] = self.selectStudentDictionary["sm_level"] as? String
-             parameterData["board"] = self.selectStudentDictionary["sm_board"] as? String
+            parameterData["board"] = self.selectStudentDictionary["sm_board"] as? String
+            parameterData["login_id"] = TutorSharedClass.shared.loginTutorLoginObject?.sm_id
+            print(parameterData)
             MBProgressHUD.showAdded(to: self.view, animated: true)
             self.getSearchTutorList(parametersDict: parameterData as NSDictionary)
         }
@@ -569,22 +578,36 @@ class TutorHomeViewController: UIViewController,UITextFieldDelegate,UITableViewD
     
     // This function sets the text of the picker view to the content of the "salutations" array
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-       
+        
         if selectedPickerDataType == .SubjectListType
         {
-            let subjectListDictionary = pickerListArray[row] as! NSDictionary
-            return subjectListDictionary["cs_course_name"] as? String
+            if pickerListArray.count > 0
+            {
+                let subjectListDictionary = pickerListArray[row] as! NSDictionary
+                return subjectListDictionary["cs_course_name"] as? String
+            }
+            
         }else if selectedPickerDataType == .TopicListType
         {
-            let topicListDictionary = pickerListArray[row] as! NSDictionary
-            return topicListDictionary["sub_subject_name"] as? String
+            if pickerListArray.count > 0
+            {
+                let topicListDictionary = pickerListArray[row] as! NSDictionary
+                return topicListDictionary["sub_subject_name"] as? String
+            }
+            
         }else if selectedPickerDataType == .TimeSlotType || selectedPickerDataType == .TutionType || selectedPickerDataType == .GroupSizeType || selectedPickerDataType == .NoofSessionType
         {
-            return pickerListArray[row] as? String
+            if pickerListArray.count > 0
+            {
+                return pickerListArray[row] as? String
+            }
         }else if selectedPickerDataType == .SelectStudentType
         {
-            let topicListDictionary = pickerListArray[row] as! NSDictionary
-            return topicListDictionary["sm_name"] as? String
+            if pickerListArray.count > 0
+            {
+                let topicListDictionary = pickerListArray[row] as! NSDictionary
+                return topicListDictionary["sm_name"] as? String
+            }
         }
         
         return ""

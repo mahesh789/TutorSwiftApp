@@ -14,8 +14,8 @@ import Foundation
 
 public class TutorPastHistorySession {
 	public var sd_date : String?
-	public var sd_start_time : Int?
-	public var sd_end_time : Int?
+	public var sd_start_time : String?
+	public var sd_end_time : String?
 	public var sd_subject : String?
 	public var sd_topic : String?
 	public var sd_tution_type : String?
@@ -58,8 +58,8 @@ public class TutorPastHistorySession {
 	required public init?(dictionary: NSDictionary) {
 
 		sd_date = dictionary["sd_date"] as? String
-		sd_start_time = dictionary["sd_start_time"] as? Int
-		sd_end_time = dictionary["sd_end_time"] as? Int
+		sd_start_time = dictionary["sd_start_time"] as? String
+		sd_end_time = dictionary["sd_end_time"] as? String
 		sd_subject = dictionary["sd_subject"] as? String
 		sd_topic = dictionary["sd_topic"] as? String
 		sd_tution_type = dictionary["sd_tution_type"] as? String

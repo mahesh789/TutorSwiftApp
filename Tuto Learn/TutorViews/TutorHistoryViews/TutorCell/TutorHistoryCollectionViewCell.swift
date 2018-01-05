@@ -62,7 +62,7 @@ class TutorHistoryCollectionViewCell: UICollectionViewCell,UITableViewDelegate,U
         cell.topicValueLabel.text = tutorPastHistorySession?.sd_topic
         cell.sessionValueLabel.text = String(format:"%d",(tutorPastHistorySession?.sd_count ?? 0))
         cell.dateValueLabel.text = tutorPastHistorySession?.sd_date
-        cell.timeValueLabel.text = String(format:"%d to %d",(tutorPastHistorySession?.sd_start_time ?? 0),(tutorPastHistorySession?.sd_end_time ?? 0))
+        cell.timeValueLabel.text = String(format:"%@ to %@",(tutorPastHistorySession?.sd_start_time ?? "0"),(tutorPastHistorySession?.sd_end_time ?? "0"))
         if self.selectedIndex == HistoryType.HistoryTypePast.rawValue {
             cell.paymentValueLabel.text = String(format:"$%@",(tutorPastHistorySession?.sd_amt ?? "0"))
             let value = Double(tutorPastHistorySession?.rate ?? 0)
