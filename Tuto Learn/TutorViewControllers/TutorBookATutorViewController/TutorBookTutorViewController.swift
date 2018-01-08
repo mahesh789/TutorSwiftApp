@@ -37,7 +37,7 @@ class TutorBookTutorViewController: UIViewController,UITableViewDelegate,UITable
         }else
         {
            // sel_group_size
-            groupSize = ((TutorSharedClass.shared.findTutorDictionary.object(forKey: "sel_group_size") ?? "") as? String)!
+            groupSize = ((TutorSharedClass.shared.findTutorDictionary.object(forKey: "group_size") ?? "") as? String)!
             totalCost = (tutorTeacherObject.teacherGroupChargesInt ?? "0")
         }
         
