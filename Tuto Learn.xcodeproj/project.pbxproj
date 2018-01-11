@@ -43,6 +43,7 @@
 		3D4515CF1FB70F9100591577 /* TutorTeachersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4515CE1FB70F9100591577 /* TutorTeachersListViewController.swift */; };
 		3D623F341FBB5AE60087AF13 /* TutorTeacherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D623F331FBB5AE60087AF13 /* TutorTeacherModel.swift */; };
 		3D623F381FBB76010087AF13 /* TutorViewProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D623F371FBB76010087AF13 /* TutorViewProfileTableViewCell.swift */; };
+		3D7112B3200384ED00DE6822 /* TutorMyWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7112B2200384ED00DE6822 /* TutorMyWalletViewController.swift */; };
 		3D8B98561FA59C300083FC8F /* linkedin-sdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D8B98551FA59C300083FC8F /* linkedin-sdk.framework */; };
 		3D92C7751FAAFDD4001B7A91 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D92C7741FAAFDD4001B7A91 /* GoogleService-Info.plist */; };
 		3D97FAE41FDBB219000AFD80 /* TutorTimeSlotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D97FAE31FDBB219000AFD80 /* TutorTimeSlotViewController.swift */; };
@@ -151,6 +152,7 @@
 		3D4515CE1FB70F9100591577 /* TutorTeachersListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorTeachersListViewController.swift; sourceTree = "<group>"; };
 		3D623F331FBB5AE60087AF13 /* TutorTeacherModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorTeacherModel.swift; sourceTree = "<group>"; };
 		3D623F371FBB76010087AF13 /* TutorViewProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorViewProfileTableViewCell.swift; sourceTree = "<group>"; };
+		3D7112B2200384ED00DE6822 /* TutorMyWalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorMyWalletViewController.swift; sourceTree = "<group>"; };
 		3D8B98551FA59C300083FC8F /* linkedin-sdk.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = "linkedin-sdk.framework"; sourceTree = "<group>"; };
 		3D92C76D1FAAE4CD001B7A91 /* Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		3D92C7741FAAFDD4001B7A91 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -318,6 +320,7 @@
 		3D1BD8631FB0E69D00DDB3BB /* TutorViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				3D7112B1200384CC00DE6822 /* TutorMyWalletViewController */,
 				3D40DEEC1FE0D0860015921E /* TutorHistoryViewController */,
 				3D97FAE21FDBB1F9000AFD80 /* TutorTimeSlotViewController */,
 				3D2812BC1FD3FBFF00F926B1 /* TutorBookATutorViewController */,
@@ -468,6 +471,14 @@
 				3D623F371FBB76010087AF13 /* TutorViewProfileTableViewCell.swift */,
 			);
 			path = TutorCell;
+			sourceTree = "<group>";
+		};
+		3D7112B1200384CC00DE6822 /* TutorMyWalletViewController */ = {
+			isa = PBXGroup;
+			children = (
+				3D7112B2200384ED00DE6822 /* TutorMyWalletViewController.swift */,
+			);
+			path = TutorMyWalletViewController;
 			sourceTree = "<group>";
 		};
 		3D97FAE21FDBB1F9000AFD80 /* TutorTimeSlotViewController */ = {
@@ -1141,6 +1152,7 @@
 				3DF628F81FDBE024002B977F /* TutorTimeSlotTableViewCell.swift in Sources */,
 				3BB5AA1C1FD3DA5100658103 /* TutorStudentProfileViewController.swift in Sources */,
 				3D12390F1FE2EAA7006FE884 /* TutorHistoryTableViewCell.swift in Sources */,
+				3D7112B3200384ED00DE6822 /* TutorMyWalletViewController.swift in Sources */,
 				3BB5AA1A1FD3195600658103 /* TutorStudent.swift in Sources */,
 				BA48D4D61FDBE6680023C067 /* TutorMyAccountTableViewCell.swift in Sources */,
 				3B31EA541FCE6FDD00F6134E /* RegistrationFooterView.swift in Sources */,
