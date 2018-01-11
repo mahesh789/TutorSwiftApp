@@ -3552,6 +3552,68 @@
             </objects>
             <point key="canvasLocation" x="2008.6956521739132" y="775.27173913043487"/>
         </scene>
+        <!--Tutor My Wallet View Controller-->
+        <scene sceneID="5OG-Wd-qMf">
+            <objects>
+                <viewController storyboardIdentifier="TutorMyWalletViewController" id="3c7-oP-qgn" customClass="TutorMyWalletViewController" customModule="Tuto_Learn" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="4AW-lZ-8T2"/>
+                        <viewControllerLayoutGuide type="bottom" id="QnA-vY-grd"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="d2G-ZF-zgZ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sSM-Du-Ifi" customClass="TutorHomeNavigationBar" customModule="Tuto_Learn" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="76"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="76" id="P7v-II-5ND"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wallet Balance" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VLe-cs-rUo">
+                                <rect key="frame" x="137" y="133" width="141" height="42"/>
+                                <color key="backgroundColor" red="0.91418808699999998" green="0.46282762290000001" blue="0.19737818839999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="42" id="JWD-z2-dfX"/>
+                                    <constraint firstAttribute="width" constant="141" id="Z0S-Xf-0kT"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="18"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bnu-kD-fHt">
+                                <rect key="frame" x="140" y="201" width="135" height="34"/>
+                                <color key="backgroundColor" red="0.91418808699999998" green="0.46282762290000001" blue="0.19737818839999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="135" id="HMZ-Ih-Ypk"/>
+                                    <constraint firstAttribute="height" constant="34" id="Xk2-e3-7ap"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="15"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0052303462289999998" green="0.67181247470000005" blue="0.67396217579999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Bnu-kD-fHt" firstAttribute="centerX" secondItem="VLe-cs-rUo" secondAttribute="centerX" id="82g-XP-tgc"/>
+                            <constraint firstAttribute="trailing" secondItem="sSM-Du-Ifi" secondAttribute="trailing" id="YkM-dO-nay"/>
+                            <constraint firstItem="sSM-Du-Ifi" firstAttribute="leading" secondItem="d2G-ZF-zgZ" secondAttribute="leading" id="Zue-Si-GFm"/>
+                            <constraint firstItem="Bnu-kD-fHt" firstAttribute="top" secondItem="VLe-cs-rUo" secondAttribute="bottom" constant="26" id="bYu-iu-uzF"/>
+                            <constraint firstItem="VLe-cs-rUo" firstAttribute="top" secondItem="4AW-lZ-8T2" secondAttribute="bottom" constant="113" id="djg-hC-tq4"/>
+                            <constraint firstItem="sSM-Du-Ifi" firstAttribute="top" secondItem="d2G-ZF-zgZ" secondAttribute="top" id="eec-mP-d7t"/>
+                            <constraint firstItem="VLe-cs-rUo" firstAttribute="centerX" secondItem="d2G-ZF-zgZ" secondAttribute="centerX" id="wHY-sV-w2W"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tutorMyWalletNavigationBar" destination="sSM-Du-Ifi" id="RjF-Z7-Q1E"/>
+                        <outlet property="tutorWalletBalanceLabel" destination="Bnu-kD-fHt" id="ob3-V6-zg1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="c55-mE-stN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="682.60869565217399" y="2229.6195652173915"/>
+        </scene>
     </scenes>
     <resources>
         <image name="checkMark" width="16" height="12"/>

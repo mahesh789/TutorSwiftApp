@@ -42,6 +42,9 @@ class Constants {
     static let timeSlotTable = "view_time_table"
     static let past_History = "past_history"
     static let upcoming_history = "upcoming_history"
+    static let check_Wallet_Balance = "check_wallet_balance"
+    static let make_payment = "make_payment"
+    static let book_tutor = "book_tutor"
     static let screenSize = UIScreen.main.bounds
     static let phoneScreenWidth = screenSize.width
     static let phoneScreenHeight = screenSize.height

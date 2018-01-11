@@ -28,20 +28,14 @@ class TutorBookTutorViewController: UIViewController,UITableViewDelegate,UITable
     }
     func getArrayOfBookTutor() -> Void {
        self.teacherNameLabel.text = tutorTeacherObject.teacherNameString ?? "" + " \(tutorTeacherObject.teacherLastNameString ?? "")"
-        var groupSize:String = ""
-        var totalCost:String = "0"
+        var groupSize:String?
+        var totalCost:String? = "0"
         
-        if (TutorSharedClass.shared.findTutorDictionary.object(forKey: "sel_tution_type") as? String) == "One-on-One" {
-            groupSize = "1"
-            totalCost = (tutorTeacherObject.teacherSoloChargesInt ?? "0")
-        }else
-        {
            // sel_group_size
-            groupSize = ((TutorSharedClass.shared.findTutorDictionary.object(forKey: "group_size") ?? "") as? String)!
-            totalCost = (tutorTeacherObject.teacherGroupChargesInt ?? "0")
-        }
+            groupSize = (selectedTimeSlotDict.object(forKey: "tuition_size") ?? "") as? String
+           totalCost  = (selectedTimeSlotDict.object(forKey: "total_amt") ?? "") as? String
         
-        bookTutorArray = [["leftTitleLabel":"Date","leftValueLabel":"\(selectedTimeSlotDict.object(forKey: "sel_date") ?? "")","middleTitleLabel":"Time","middleValueLabel":"\(selectedTimeSlotDict.object(forKey: "sel_start_time") ?? "") to \(selectedTimeSlotDict.object(forKey: "sel_end_time") ?? "") ","rightTitleLabel":"","rightValueLabel":""],["leftTitleLabel":"No. of Sessions","leftValueLabel":"\(TutorSharedClass.shared.findTutorDictionary.object(forKey: "no_session") ?? "")","middleTitleLabel":"Session Type","middleValueLabel":"\(TutorSharedClass.shared.findTutorDictionary.object(forKey: "sel_tution_type") ?? "")","rightTitleLabel":"Group Size","rightValueLabel":"\(groupSize)"],["leftTitleLabel":"Subject","leftValueLabel":"\(tutorTeacherObject.teacherSubjectString ?? "")","middleTitleLabel":"Topic","middleValueLabel":"\(TutorSharedClass.shared.findTutorDictionary.object(forKey: "sel_topic") ?? "")","rightTitleLabel":"","rightValueLabel":""],["leftTitleLabel":"Total Cost","leftValueLabel":"$\(totalCost)","middleTitleLabel":"","middleValueLabel":"","rightTitleLabel":"","rightValueLabel":""]]
+        bookTutorArray = [["leftTitleLabel":"Date","leftValueLabel":"\(selectedTimeSlotDict.object(forKey: "date") ?? "")","middleTitleLabel":"Time","middleValueLabel":"\(selectedTimeSlotDict.object(forKey: "start_time") ?? "") to \(selectedTimeSlotDict.object(forKey: "end_time") ?? "") ","rightTitleLabel":"","rightValueLabel":""],["leftTitleLabel":"No. of Sessions","leftValueLabel":"\(selectedTimeSlotDict.object(forKey: "session_no") ?? "")","middleTitleLabel":"Session Type","middleValueLabel":"\(selectedTimeSlotDict.object(forKey: "tuition_type") ?? "")","rightTitleLabel":"Group Size","rightValueLabel":"\(groupSize ?? "")"],["leftTitleLabel":"Subject","leftValueLabel":"\(tutorTeacherObject.teacherSubjectString ?? "")","middleTitleLabel":"Topic","middleValueLabel":"\(selectedTimeSlotDict.object(forKey: "topic") ?? "")","rightTitleLabel":"","rightValueLabel":""],["leftTitleLabel":"Total Cost","leftValueLabel":"$\(totalCost ?? "")","middleTitleLabel":"","middleValueLabel":"","rightTitleLabel":"","rightValueLabel":""]]
         
     }
     
@@ -89,9 +83,44 @@ class TutorBookTutorViewController: UIViewController,UITableViewDelegate,UITable
     }
     @IBAction func makePaymentAction(sender:Any)
     {
-        
+        self.tutorMakePaymentApiCalling()
     }
 
+    // MARK:MakePayment Api Implementation
+    func tutorMakePaymentApiCalling() -> Void {
+        let totalAmount = ((selectedTimeSlotDict.object(forKey: "total_amt") ?? "0") as? String)!
+        
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        let urlPath = String(format: "%@%@",Constants.baseUrl,Constants.make_payment) as String
+        TutorNetworkManager.performRequestWithUrl(baseUrl: urlPath, parametersDictionary:["user_id":TutorSharedClass.shared.loginTutorLoginObject?.sm_id ?? "","register_type":TutorSharedClass.shared.loginTutorLoginObject?.sm_register_type ?? "","total_amt":totalAmount,"slot_id":(selectedTimeSlotDict.object(forKey: "slot_id") ?? "")]) { (status, info) in
+            if status == Constants.Status.StatusOK.rawValue
+            {
+                MBProgressHUD.hide(for: self.view, animated: true)
+                if let resultDictionary = info as? Dictionary<String,Any>
+                {
+                    print(resultDictionary)
+                   self.showAlertController(alertMessage: resultDictionary["message"] as? String)
+                }
+            }else{
+                MBProgressHUD.hide(for: self.view, animated: true)
+                print(info as Any)
+                if let resultDict = info as? Dictionary<String,Any>
+                {
+                    TutorDefaultAlertController.showAlertController(alertMessage: resultDict["message"] as? String, showController: self)
+                }
+            }
+        }
+    }
+    
+    func showAlertController(alertMessage:String?) -> Void {
+        let alert = UIAlertController(title: "", message: alertMessage, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default){ action -> Void in
+                self.navigationController?.popToRootViewController(animated: true)
+        })
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

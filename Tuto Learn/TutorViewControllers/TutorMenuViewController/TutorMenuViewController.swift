@@ -9,13 +9,13 @@
 import UIKit
 
 enum MenuActionType:Int {
-    case MenuActionTypeFindTutor = 1,MenuActionTypeMyAccount,MenuActionTypeHistory,MenuActionTypeHelp,MenuActionTypeContactUs,MenuActionTypeLogout
+    case MenuActionTypeFindTutor = 1,MenuActionTypeMyAccount,MenuActionTypeHistory,MenuActionTypeHelp,MenuActionTypeContactUs,MenuActionTypeLogout,MenuActionTypeMyWallet
 }
 
 class TutorMenuViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
 
     @IBOutlet weak var menuTableView:UITableView!
-    let menuArray = [["menuTitle":"Find A Tutor","actionType":MenuActionType.MenuActionTypeFindTutor.rawValue],["menuTitle":"My Account","actionType":MenuActionType.MenuActionTypeMyAccount.rawValue],["menuTitle":"History","actionType":MenuActionType.MenuActionTypeHistory.rawValue],["menuTitle":"Help","actionType":MenuActionType.MenuActionTypeHelp.rawValue],["menuTitle":"Contact Us","actionType":MenuActionType.MenuActionTypeContactUs.rawValue],["menuTitle":"Logout","actionType":MenuActionType.MenuActionTypeLogout.rawValue]]
+    let menuArray = [["menuTitle":"Find A Tutor","actionType":MenuActionType.MenuActionTypeFindTutor.rawValue],["menuTitle":"My Wallet","actionType":MenuActionType.MenuActionTypeMyWallet.rawValue],["menuTitle":"My Account","actionType":MenuActionType.MenuActionTypeMyAccount.rawValue],["menuTitle":"History","actionType":MenuActionType.MenuActionTypeHistory.rawValue],["menuTitle":"Help","actionType":MenuActionType.MenuActionTypeHelp.rawValue],["menuTitle":"Contact Us","actionType":MenuActionType.MenuActionTypeContactUs.rawValue],["menuTitle":"Logout","actionType":MenuActionType.MenuActionTypeLogout.rawValue]]
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -53,16 +53,16 @@ class TutorMenuViewController: UIViewController,UITableViewDelegate,UITableViewD
         switch actionType
         {
         case MenuActionType.MenuActionTypeFindTutor.rawValue:
-           self.disMissMenuView()
+            self.disMissMenuView()
             break
         case MenuActionType.MenuActionTypeMyAccount.rawValue:
             let myAccountControllerObj = self.storyboard?.instantiateViewController(withIdentifier: "TutorMyAccountViewController") as? TutorMyAccountViewController
-                self.navigationController?.pushViewController(myAccountControllerObj!, animated: true)
+            self.navigationController?.pushViewController(myAccountControllerObj!, animated: true)
             break
         case MenuActionType.MenuActionTypeHistory.rawValue:
             let tutorHistoryViewController = self.storyboard?.instantiateViewController(withIdentifier: "TutorHistoryViewController") as! TutorHistoryViewController
             self.navigationController?.pushViewController(tutorHistoryViewController, animated: true)
-
+            
             break
         case MenuActionType.MenuActionTypeHelp.rawValue:
             
@@ -70,11 +70,15 @@ class TutorMenuViewController: UIViewController,UITableViewDelegate,UITableViewD
         case MenuActionType.MenuActionTypeContactUs.rawValue:
             
             break
+        case MenuActionType.MenuActionTypeMyWallet.rawValue:
+            let tutorMyWalletViewController = self.storyboard?.instantiateViewController(withIdentifier: "TutorMyWalletViewController") as! TutorMyWalletViewController
+            self.navigationController?.pushViewController(tutorMyWalletViewController, animated: true)
+            break
         case MenuActionType.MenuActionTypeLogout.rawValue:
             TutorSharedClass.shared.islogOutYes = true
             self.disMissMenuView()
             break
-
+            
         default: print("Other...")
         }
     }

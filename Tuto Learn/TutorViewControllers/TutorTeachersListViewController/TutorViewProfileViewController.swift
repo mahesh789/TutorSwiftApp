@@ -73,14 +73,59 @@ class TutorViewProfileViewController: UIViewController,UITableViewDelegate,UITab
     
     @IBAction func bookNowButtonAction(sender:Any)
     {
-        self.navigateBookTutorViewController(tutorTeacherModel: tutorTeacherObject)
+        self.bookTutorApiCalling(tutorTeacherModel: tutorTeacherObject)
     }
     
-    func navigateBookTutorViewController(tutorTeacherModel:TutorTeacherModel) -> Void {
-        let selectedTimeSlotDict = ["sel_start_time":String(format:"%@",((TutorSharedClass.shared.findTutorDictionary["sel_start_time"] as? String) ?? "")),"sel_end_time":String(format:"%@",((TutorSharedClass.shared.findTutorDictionary["sel_end_time"] as? String) ?? "")),"sel_date":String(format:"%@",((TutorSharedClass.shared.findTutorDictionary["sel_date"] as? String) ?? ""))]
+    func bookTutorApiCalling(tutorTeacherModel:TutorTeacherModel) -> Void {
+        var parameterData = [String: String]()
+        parameterData["tutor_id"] = tutorTeacherModel.teacherIdString
+        parameterData["student_id"] = TutorSharedClass.shared.findTutorDictionary["student_id"] as? String
+        parameterData["sel_topic"] = TutorSharedClass.shared.findTutorDictionary["sel_topic"] as? String
+        parameterData["sel_date"] = TutorSharedClass.shared.findTutorDictionary["sel_date"] as? String
+        parameterData["sel_start_time"] = TutorSharedClass.shared.findTutorDictionary["sel_start_time"] as? String
+        parameterData["sel_end_time"] = TutorSharedClass.shared.findTutorDictionary["sel_end_time"] as? String
+        parameterData["sel_tution_type"] = TutorSharedClass.shared.findTutorDictionary["sel_tution_type"] as? String
+        let tutionType = TutorSharedClass.shared.findTutorDictionary["sel_tution_type"] as? String
+        if tutionType != "One-on-One" {
+            parameterData["group_size"] = TutorSharedClass.shared.findTutorDictionary["group_size"] as? String
+            parameterData["amt"] = tutorTeacherModel.teacherGroupChargesInt
+        }else{
+            parameterData["amt"] = tutorTeacherModel.teacherSoloChargesInt
+        }
+        parameterData["no_session"] = TutorSharedClass.shared.findTutorDictionary["no_session"] as? String
+        parameterData["sel_sub"] = TutorSharedClass.shared.findTutorDictionary["sel_sub"] as? String
+        
+        
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        let urlPath = String(format: "%@%@",Constants.baseUrl,Constants.book_tutor) as String
+        TutorNetworkManager.performRequestWithUrl(baseUrl: urlPath, parametersDictionary:parameterData) { (status, info) in
+            if status == Constants.Status.StatusOK.rawValue
+            {
+                MBProgressHUD.hide(for: self.view, animated: true)
+                if let resultDictionary = info as? Dictionary<String,Any>
+                {
+                    print(resultDictionary)
+                    if let bookTutorDictionary = resultDictionary["data"] as? Dictionary<String,Any>
+                    {
+                        self.navigateBookNowViewController(tutorTeacherModel: tutorTeacherModel, bookTutorDictionary: bookTutorDictionary)
+                    }
+                    
+                }
+            }else{
+                MBProgressHUD.hide(for: self.view, animated: true)
+                print(info as Any)
+                if let resultDict = info as? Dictionary<String,Any>
+                {
+                    TutorDefaultAlertController.showAlertController(alertMessage: resultDict["message"] as? String, showController: self)
+                }
+            }
+        }
+    }
+    
+    func navigateBookNowViewController(tutorTeacherModel:TutorTeacherModel,bookTutorDictionary:Dictionary<String,Any>) -> Void {
         let tutorBookTutorViewController:TutorBookTutorViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TutorBookTutorViewController") as! TutorBookTutorViewController
         tutorBookTutorViewController.tutorTeacherObject = tutorTeacherModel
-        tutorBookTutorViewController.selectedTimeSlotDict = selectedTimeSlotDict as NSDictionary
+        tutorBookTutorViewController.selectedTimeSlotDict = bookTutorDictionary as NSDictionary
         self.navigationController?.pushViewController(tutorBookTutorViewController, animated: true)
     }
 
