@@ -213,7 +213,17 @@ class StudentRegistrationViewController: UIViewController,UITextFieldDelegate,UI
     func configureDatePicker(textField:AAPickerView) -> Void {
         textField.pickerType = .DatePicker
         textField.datePicker?.datePickerMode = .date
-        textField.datePicker?.maximumDate = Date.init()
+        if gaurdianButton.isSelected == true
+        {
+            let date = Calendar.current.date(byAdding: .year, value: -18, to: Date())
+            textField.datePicker?.maximumDate = date
+
+        }else
+        {
+            let date = Calendar.current.date(byAdding: .year, value: -4, to: Date())
+            textField.datePicker?.maximumDate = date
+
+        }
         textField.dateFormatter.dateFormat = Constants.dateFormatValue
         textField.dateDidChange = { date in
             print("selectedDate ", date )
@@ -268,6 +278,21 @@ class StudentRegistrationViewController: UIViewController,UITextFieldDelegate,UI
         }
         return true
     }
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
+    {
+        let datadictionary = self.dataArray?.object(at: textField.tag) as? NSMutableDictionary
+        if datadictionary?.value(forKey: "type") as? Int == RegistrationDataType.RegistrationDataTypePincode.rawValue
+        {
+            let length = (textField.text?.count)! - range.length + string.count
+            if length > 6
+            {
+                return false
+            }
+        }
+        
+        return true
+    }
+
     func textFieldDidEndEditing(_ textField: UITextField) {
         if let textFieldTemp =  textField as? CustomTextField
         {

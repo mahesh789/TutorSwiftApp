@@ -95,6 +95,8 @@ class TutorViewProfileViewController: UIViewController,UITableViewDelegate,UITab
         parameterData["no_session"] = TutorSharedClass.shared.findTutorDictionary["no_session"] as? String
         parameterData["sel_sub"] = TutorSharedClass.shared.findTutorDictionary["sel_sub"] as? String
         
+        parameterData["login_id"] = TutorSharedClass.shared.loginTutorLoginObject?.sm_id ?? ""
+        parameterData["register_type"] = TutorSharedClass.shared.loginTutorLoginObject?.sm_register_type ?? ""
         
         MBProgressHUD.showAdded(to: self.view, animated: true)
         let urlPath = String(format: "%@%@",Constants.baseUrl,Constants.book_tutor) as String
