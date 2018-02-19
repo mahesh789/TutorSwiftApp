@@ -45,12 +45,13 @@ class Constants {
     static let check_Wallet_Balance = "check_wallet_balance"
     static let make_payment = "make_payment"
     static let book_tutor = "book_tutor"
+    static let store_device = "store_device"
     static let screenSize = UIScreen.main.bounds
     static let phoneScreenWidth = screenSize.width
     static let phoneScreenHeight = screenSize.height
     
     static let dateFormatValue = "yyyy-MM-dd"
-    static let findTutordateFormatValue = "dd-MM-yyyy"
+    static let findTutordateFormatValue = "dd/MM/yyyy"
     
 }
 
