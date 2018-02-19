@@ -115,7 +115,15 @@ class TutorBookTutorViewController: UIViewController,UITableViewDelegate,UITable
     func showAlertController(alertMessage:String?) -> Void {
         let alert = UIAlertController(title: "", message: alertMessage, preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default){ action -> Void in
-                self.navigationController?.popToRootViewController(animated: true)
+            for controller in self.navigationController!.viewControllers as Array {
+                if controller.isKind(of: TutorHomeViewController.self) {
+                    let tutorHomeViewController = controller as? TutorHomeViewController
+                   tutorHomeViewController?.clearAllDataAfterPayment()
+                    self.navigationController!.popToViewController(tutorHomeViewController!, animated: true)
+                    break
+                }
+            }
+                //self.navigationController?.popToRootViewController(animated: true)
         })
         self.present(alert, animated: true, completion: nil)
     }
