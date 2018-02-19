@@ -11,6 +11,7 @@ import FBSDKLoginKit
 import Google
 import GoogleSignIn
 import IQKeyboardManagerSwift
+import OneSignal
 
 @UIApplicationMain
 public class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,6 +20,7 @@ public class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        self.oneSignalConfigration(launchOptions: launchOptions)
         // Override point for customization after application launch.
         IQKeyboardManager.sharedManager().enable = true
         self.callFirstTimeLoginToken()
@@ -58,6 +60,25 @@ public class AppDelegate: UIResponder, UIApplicationDelegate {
         return FBSDKApplicationDelegate.sharedInstance().application(application, open: url, sourceApplication: sourceApplication, annotation: annotation)
     }
     
+    //MARK : OneSignal Integration
+    func oneSignalConfigration(launchOptions: [UIApplicationLaunchOptionsKey: Any]?)  {
+       
+        let onesignalInitSettings = [kOSSettingsKeyAutoPrompt: false]
+        // Replace 'YOUR_APP_ID' with your OneSignal App ID.
+        OneSignal.initWithLaunchOptions(launchOptions,
+                                        appId: "ea28c2b3-a4b4-4869-abe9-48273d49b39b",
+                                        handleNotificationAction: nil,
+                                        settings: onesignalInitSettings)
+        
+        OneSignal.inFocusDisplayType = OSNotificationDisplayType.notification;
+        
+        // Recommend moving the below line to prompt for push after informing the user about
+        //   how your app will use them.
+        OneSignal.promptForPushNotifications(userResponse: { accepted in
+            print("User accepted notifications: \(accepted)")
+        })
+        
+    }
     
 
     public func applicationWillResignActive(_ application: UIApplication) {
