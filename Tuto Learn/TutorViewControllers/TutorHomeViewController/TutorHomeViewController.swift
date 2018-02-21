@@ -11,6 +11,7 @@ import SideMenu
 import Alamofire
 import AAPickerView
 import IQKeyboardManagerSwift
+import OneSignal
 
 enum FindTutorDataType:Int {
     case FindTutorDataTypeSelectStudent = 1,FindTutorDataTypeEnterTopic,FindTutorDataTypeSelectDate,FindTutorDataTypeTutionType,FindTutorDataTypeNoOfSessions
@@ -44,10 +45,36 @@ class TutorHomeViewController: UIViewController,UITextFieldDelegate,UITableViewD
         self.thePicker.delegate = self;
         self.thePicker.dataSource = self;
         IQKeyboardManager.sharedManager().previousNextDisplayMode = .alwaysHide
+        self.sendOneSignalUserIdToTutor()
+      
     }
     override func viewWillDisappear(_ animated: Bool) {
         IQKeyboardManager.sharedManager().previousNextDisplayMode = .Default
     }
+    
+    func clearAllDataAfterPayment() -> Void {
+        self.setFindTutorFieldsArray()
+        self.findTutorTableView.reloadData()
+    }
+    
+    // MARK:OneSignal Api Implementation
+    func sendOneSignalUserIdToTutor() -> Void {
+        let status: OSPermissionSubscriptionState = OneSignal.getPermissionSubscriptionState()
+        let userID = status.subscriptionStatus.userId
+        let parametersDict = ["user_id":TutorSharedClass.shared.loginTutorLoginObject?.sm_id ?? "","register_type":TutorSharedClass.shared.loginTutorLoginObject?.sm_register_type ?? "","device_id":userID ?? "","device_type":"2"] as Dictionary<String,Any>
+        
+        let urlPath = String(format: "%@%@",Constants.baseUrl,Constants.store_device) as String
+        TutorNetworkManager.performRequestWithUrl(baseUrl: urlPath, parametersDictionary:parametersDict as Dictionary<String,Any>) { (status, info) in
+            if status == Constants.Status.StatusOK.rawValue
+            {
+                MBProgressHUD.hide(for: self.view, animated: true)
+               
+            }else{
+                MBProgressHUD.hide(for: self.view, animated: true)
+            }
+        }
+    }
+    
     func setLayoutAndSetTexts() -> Void {
         self.tutorHomeNavigationBar.rightBarButton.addTarget(self, action: #selector(menuClickAction), for:.touchUpInside)
         self.tutorHomeNavigationBar.leftBarButton.isHidden = true
@@ -263,7 +290,7 @@ class TutorHomeViewController: UIViewController,UITextFieldDelegate,UITableViewD
             print("selectedDate ", date )
 //            let myCalendar = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)!
 //            let myComponents = myCalendar.components(.weekday, from: date)
-//            let weekDay = myComponents.weekday
+//            let weekDay = myComponents.weekday  
 //            switch weekDay {
 //            case 1?:
 //                TutorDefaultAlertController.showAlertController(alertMessage: "Please select only weekdays", showController: self)

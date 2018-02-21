@@ -400,7 +400,7 @@ class TutorStudentProfileViewController: UIViewController,UITextFieldDelegate,UI
                                 }else
                                 {
                                     let dateFormatterValue = DateFormatter()
-                                    dateFormatterValue.dateFormat = Constants.dateFormatValue
+                                    dateFormatterValue.dateFormat = Constants.findTutordateFormatValue
                                     var myDOB = Date()
                                     if  let date = dateFormatterValue.date(from: rightValue!)
                                     {
@@ -812,11 +812,32 @@ class TutorStudentProfileViewController: UIViewController,UITextFieldDelegate,UI
         }
     }
     
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
+    {
+        if let textFieldTemp =  textField as? CustomTextField
+        {
+            let dataSectiondictionary = self.dataArray?.object(at: textFieldTemp.section) as? NSMutableDictionary
+            if let studentArray = dataSectiondictionary!["student"] as? NSMutableArray
+            {
+                let datadictionary = studentArray.object(at: textFieldTemp.tag) as? NSMutableDictionary
+                if datadictionary?.value(forKey: "type") as? Int == RegistrationDataType.RegistrationDataTypeMobile.rawValue
+                {
+                    let length = (textField.text?.count)! - range.length + string.count
+                    if length > 10
+                    {
+                        return false
+                    }
+                }
+            }
+        }
+        return true
+    }
+    
     func configureDatePicker(textField:AAPickerView) -> Void {
         textField.pickerType = .DatePicker
         textField.datePicker?.datePickerMode = .date
         textField.datePicker?.maximumDate = Date.init()
-        textField.dateFormatter.dateFormat = Constants.dateFormatValue
+        textField.dateFormatter.dateFormat = Constants.findTutordateFormatValue
         textField.dateDidChange = { date in
             print("selectedDate ", date )
             textField.text = textField.dateFormatter.string(from: date)

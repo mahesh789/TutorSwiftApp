@@ -64,12 +64,6 @@ class TutorMenuViewController: UIViewController,UITableViewDelegate,UITableViewD
             self.navigationController?.pushViewController(tutorHistoryViewController, animated: true)
             
             break
-        case MenuActionType.MenuActionTypeHelp.rawValue:
-            
-            break
-        case MenuActionType.MenuActionTypeContactUs.rawValue:
-            
-            break
         case MenuActionType.MenuActionTypeMyWallet.rawValue:
             let tutorMyWalletViewController = self.storyboard?.instantiateViewController(withIdentifier: "TutorMyWalletViewController") as! TutorMyWalletViewController
             self.navigationController?.pushViewController(tutorMyWalletViewController, animated: true)
@@ -77,6 +71,16 @@ class TutorMenuViewController: UIViewController,UITableViewDelegate,UITableViewD
         case MenuActionType.MenuActionTypeLogout.rawValue:
             TutorSharedClass.shared.islogOutYes = true
             self.disMissMenuView()
+            break
+        case MenuActionType.MenuActionTypeHelp.rawValue:
+            let tutorHelpViewController = self.storyboard?.instantiateViewController(withIdentifier: "TutorHelpViewController") as! TutorHelpViewController
+            tutorHelpViewController.tutorScreenType = TutorScreenType.TutorScreenTypeHelp
+            self.navigationController?.pushViewController(tutorHelpViewController, animated: true)
+             break
+        case MenuActionType.MenuActionTypeContactUs.rawValue:
+            let tutorHelpViewController = self.storyboard?.instantiateViewController(withIdentifier: "TutorHelpViewController") as! TutorHelpViewController
+            tutorHelpViewController.tutorScreenType = TutorScreenType.TutorScreenTypeContactus
+            self.navigationController?.pushViewController(tutorHelpViewController, animated: true)
             break
             
         default: print("Other...")

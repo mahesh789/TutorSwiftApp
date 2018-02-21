@@ -202,8 +202,6 @@ class StudentRegistrationViewController: UIViewController,UITextFieldDelegate,UI
     func showAlertController(alertMessage:String?) -> Void {
         let alert = UIAlertController(title: "", message: alertMessage, preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default){ action -> Void in
-            // Put your code here
-//            let profilControllerObj = self.storyboard?.instantiateViewController(withIdentifier: "TutorGuardianProfileViewController") as? TutorGuardianProfileViewController
             self.navigationController?.popViewController(animated: true)
             
         })
@@ -224,7 +222,7 @@ class StudentRegistrationViewController: UIViewController,UITextFieldDelegate,UI
             textField.datePicker?.maximumDate = date
 
         }
-        textField.dateFormatter.dateFormat = Constants.dateFormatValue
+        textField.dateFormatter.dateFormat = Constants.findTutordateFormatValue
         textField.dateDidChange = { date in
             print("selectedDate ", date )
             textField.text = textField.dateFormatter.string(from: date)
@@ -285,6 +283,13 @@ class StudentRegistrationViewController: UIViewController,UITextFieldDelegate,UI
         {
             let length = (textField.text?.count)! - range.length + string.count
             if length > 6
+            {
+                return false
+            }
+        }else if datadictionary?.value(forKey: "type") as? Int == RegistrationDataType.RegistrationDataTypeMobile.rawValue
+        {
+            let length = (textField.text?.count)! - range.length + string.count
+            if length > 10
             {
                 return false
             }
@@ -427,7 +432,7 @@ class StudentRegistrationViewController: UIViewController,UITextFieldDelegate,UI
                     {
                         parameterData["s_gender"] = leftValue
                     }
-                    let rightValue =  dataContent["rightValue"] as? String
+                    var rightValue =  dataContent["rightValue"] as? String
                     if (rightValue?.isEmpty)!
                     {
                         TutorDefaultAlertController.showAlertController(alertMessage: "Please select date of birth" , showController: self)
@@ -436,7 +441,7 @@ class StudentRegistrationViewController: UIViewController,UITextFieldDelegate,UI
                     }else
                     {
                         let dateFormatterValue = DateFormatter()
-                        dateFormatterValue.dateFormat = Constants.dateFormatValue
+                        dateFormatterValue.dateFormat = Constants.findTutordateFormatValue
                         let date = dateFormatterValue.date(from: rightValue!)!
                         let calendar = Calendar.current
                         let components = calendar.dateComponents([.year, .month, .day, .hour], from: date)

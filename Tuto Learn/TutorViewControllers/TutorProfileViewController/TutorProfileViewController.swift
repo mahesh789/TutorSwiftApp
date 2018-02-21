@@ -310,6 +310,23 @@ class TutorProfileViewController: UIViewController,UITextFieldDelegate,UITableVi
         }
     }
     
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
+    {
+        if let textFieldTemp =  textField as? CustomTextField
+        {
+            let datadictionary = self.dataArray?.object(at: textFieldTemp.tag) as? NSMutableDictionary
+            if datadictionary?.value(forKey: "type") as? Int == RegistrationDataType.RegistrationDataTypeMobile.rawValue
+            {
+                let length = (textField.text?.count)! - range.length + string.count
+                if length > 10
+                {
+                    return false
+                }
+            }
+        }
+        return true
+    }
+    
     func configureDatePicker(textField:AAPickerView) -> Void {
         textField.pickerType = .DatePicker
         textField.datePicker?.datePickerMode = .date

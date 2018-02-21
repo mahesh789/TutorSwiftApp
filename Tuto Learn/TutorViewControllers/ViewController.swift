@@ -64,18 +64,17 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
             return
         }
         guard (self.userNameTextField.text! as NSString).isValidEmail() else {
-            TutorDefaultAlertController.showAlertController(alertMessage:"Please Enter Valid Email" , showController: self)
+            TutorDefaultAlertController.showAlertController(alertMessage:"Please Enter Valid ID" , showController: self)
             return
         }
         guard !(self.passwordTextField.text?.isEmpty)! else {
             TutorDefaultAlertController.showAlertController(alertMessage:"Please Enter Password" , showController: self)
             return
         }
-        guard (self.passwordTextField.text! as NSString).isValidPassword() else {
-            TutorDefaultAlertController.showAlertController(alertMessage:"Please Enter Valid password" , showController: self)
-            return
-        }
-       // self.setrootViewControllerAfterLogin()
+//        guard (self.passwordTextField.text! as NSString).isValidPassword() else {
+//            TutorDefaultAlertController.showAlertController(alertMessage:"Please Enter Valid password" , showController: self)
+//            return
+//        }
         MBProgressHUD.showAdded(to: self.view, animated: true)
        self.callLoginApiCallWithToken()
     }

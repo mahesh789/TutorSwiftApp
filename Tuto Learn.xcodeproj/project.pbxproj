@@ -39,6 +39,7 @@
 		3D33F56E1FE62B36003873F2 /* TutorPastHistorySession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D33F56C1FE62B36003873F2 /* TutorPastHistorySession.swift */; };
 		3D33F5701FE6DC84003873F2 /* TutorPastHistoryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D33F56F1FE6DC84003873F2 /* TutorPastHistoryHeaderView.swift */; };
 		3D33F5721FE6DC93003873F2 /* TutorPastHistoryHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D33F5711FE6DC93003873F2 /* TutorPastHistoryHeaderView.xib */; };
+		3D3EC3DD20304443001D59B2 /* TutorHelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3EC3DC20304443001D59B2 /* TutorHelpViewController.swift */; };
 		3D40DEEE1FE0D0A60015921E /* TutorHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D40DEED1FE0D0A60015921E /* TutorHistoryViewController.swift */; };
 		3D4515CF1FB70F9100591577 /* TutorTeachersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4515CE1FB70F9100591577 /* TutorTeachersListViewController.swift */; };
 		3D623F341FBB5AE60087AF13 /* TutorTeacherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D623F331FBB5AE60087AF13 /* TutorTeacherModel.swift */; };
@@ -148,6 +149,7 @@
 		3D33F56C1FE62B36003873F2 /* TutorPastHistorySession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorPastHistorySession.swift; sourceTree = "<group>"; };
 		3D33F56F1FE6DC84003873F2 /* TutorPastHistoryHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorPastHistoryHeaderView.swift; sourceTree = "<group>"; };
 		3D33F5711FE6DC93003873F2 /* TutorPastHistoryHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TutorPastHistoryHeaderView.xib; sourceTree = "<group>"; };
+		3D3EC3DC20304443001D59B2 /* TutorHelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorHelpViewController.swift; sourceTree = "<group>"; };
 		3D40DEED1FE0D0A60015921E /* TutorHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorHistoryViewController.swift; sourceTree = "<group>"; };
 		3D4515CE1FB70F9100591577 /* TutorTeachersListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorTeachersListViewController.swift; sourceTree = "<group>"; };
 		3D623F331FBB5AE60087AF13 /* TutorTeacherModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorTeacherModel.swift; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 		3D8B98551FA59C300083FC8F /* linkedin-sdk.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = "linkedin-sdk.framework"; sourceTree = "<group>"; };
 		3D92C76D1FAAE4CD001B7A91 /* Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		3D92C7741FAAFDD4001B7A91 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		3D97C2C2201A586C00461F07 /* Tuto Learn.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Tuto Learn.entitlements"; sourceTree = "<group>"; };
 		3D97FAE31FDBB219000AFD80 /* TutorTimeSlotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorTimeSlotViewController.swift; sourceTree = "<group>"; };
 		3D9AE04D1FB36E160061859F /* TutorHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorHomeViewController.swift; sourceTree = "<group>"; };
 		3D9AE0501FB4058C0061859F /* TutorCommonPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorCommonPickerView.swift; sourceTree = "<group>"; };
@@ -320,6 +323,7 @@
 		3D1BD8631FB0E69D00DDB3BB /* TutorViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				3D3EC3DB203043EB001D59B2 /* TutorHelpViewController */,
 				3D7112B1200384CC00DE6822 /* TutorMyWalletViewController */,
 				3D40DEEC1FE0D0860015921E /* TutorHistoryViewController */,
 				3D97FAE21FDBB1F9000AFD80 /* TutorTimeSlotViewController */,
@@ -370,6 +374,7 @@
 		3D2278451FA39DF500D3B6E0 /* Tuto Learn */ = {
 			isa = PBXGroup;
 			children = (
+				3D97C2C2201A586C00461F07 /* Tuto Learn.entitlements */,
 				3D22784D1FA39DF600D3B6E0 /* Assets.xcassets */,
 				3D92C7741FAAFDD4001B7A91 /* GoogleService-Info.plist */,
 				3D92C76D1FAAE4CD001B7A91 /* Header.h */,
@@ -430,6 +435,14 @@
 				3D33F56C1FE62B36003873F2 /* TutorPastHistorySession.swift */,
 			);
 			path = TutorHistoryModel;
+			sourceTree = "<group>";
+		};
+		3D3EC3DB203043EB001D59B2 /* TutorHelpViewController */ = {
+			isa = PBXGroup;
+			children = (
+				3D3EC3DC20304443001D59B2 /* TutorHelpViewController.swift */,
+			);
+			path = TutorHelpViewController;
 			sourceTree = "<group>";
 		};
 		3D40DEEC1FE0D0860015921E /* TutorHistoryViewController */ = {
@@ -786,6 +799,14 @@
 						DevelopmentTeam = 9SSCTGR44S;
 						LastSwiftMigration = 0900;
 						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					3D2278561FA39DF600D3B6E0 = {
 						CreatedOnToolsVersion = 9.0.1;
@@ -904,7 +925,7 @@
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -958,7 +979,7 @@
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1120,7 +1141,7 @@
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1148,6 +1169,7 @@
 				BA6A6A601FD40C8700E42B08 /* TutorMyAccountViewController.swift in Sources */,
 				3DD68B821FB800AF008B2C0C /* TutorViewProfileViewController.swift in Sources */,
 				3DBEC58C1FAF81050018CD66 /* TutorSharedClass.swift in Sources */,
+				3D3EC3DD20304443001D59B2 /* TutorHelpViewController.swift in Sources */,
 				07266CE41FBE03CE004A4FDE /* StudentRegistrationViewController.swift in Sources */,
 				3DF628F81FDBE024002B977F /* TutorTimeSlotTableViewCell.swift in Sources */,
 				3BB5AA1C1FD3DA5100658103 /* TutorStudentProfileViewController.swift in Sources */,
@@ -1348,6 +1370,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "Tuto Learn/Tuto Learn.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Haresh Shah (9SSCTGR44S)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
@@ -1365,7 +1388,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tuto.tutolearn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "f88eb114-d560-46bf-b2a8-edbeb9f08144";
+				PROVISIONING_PROFILE = "f66201f4-8fa8-441b-a340-8e9ee2006778";
 				PROVISIONING_PROFILE_SPECIFIER = TutorNewIOSDistribution;
 				SWIFT_OBJC_BRIDGING_HEADER = "Tuto Learn/Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1382,6 +1405,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "Tuto Learn/Tuto Learn.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Haresh Shah (9SSCTGR44S)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
@@ -1397,7 +1421,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tuto.tutolearn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "f88eb114-d560-46bf-b2a8-edbeb9f08144";
+				PROVISIONING_PROFILE = "f66201f4-8fa8-441b-a340-8e9ee2006778";
 				PROVISIONING_PROFILE_SPECIFIER = TutorNewIOSDistribution;
 				SWIFT_OBJC_BRIDGING_HEADER = "Tuto Learn/Header.h";
 				SWIFT_VERSION = 4.0;
