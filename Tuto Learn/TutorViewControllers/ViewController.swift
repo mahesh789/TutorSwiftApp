@@ -117,10 +117,10 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
                 {
                     if let resultDictionary = response.result.value as? NSDictionary
                     {
+                        print(resultDictionary)
                         if Int(truncating: resultDictionary["status"] as! NSNumber) == Constants.Status.StatusOK.rawValue
                         {
-                            print(resultDictionary)
-
+                            
                             if let resultParseLoginDictionary = resultDictionary.object(forKey:"data") as? NSDictionary
                             {
                                 print(resultParseLoginDictionary)

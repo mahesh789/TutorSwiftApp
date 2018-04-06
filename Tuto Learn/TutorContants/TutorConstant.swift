@@ -16,7 +16,7 @@ class Constants {
         case serverInvalid = 1
     }
     // MARK: List of Constants
-    static let baseUrl = "https://mytestserver.tech/api/auth/public/"
+    static let baseUrl = "https://tutoservices.com/auth/public/"
     static let studentLogin = "student_login_screen"
     static let studentRegister = "student_register"
     static let socialStudentRegister = "social_student_register"
