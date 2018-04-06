@@ -1,22 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="TwJ-JU-hmD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="TwJ-JU-hmD">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="HelveticaNeue.ttc">
-            <string>HelveticaNeue</string>
-            <string>HelveticaNeue-Italic</string>
-        </array>
-        <array key="HelveticaNeueLights.ttc">
-            <string>HelveticaNeue-Light</string>
-        </array>
         <array key="Roboto-Italic.ttf">
             <string>Roboto-Italic</string>
         </array>
@@ -2998,7 +2991,7 @@
                                 <color key="backgroundColor" red="0.0" green="0.57309991120000003" blue="0.60387867689999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="registrationCell" rowHeight="80" id="KXz-fG-oLK" customClass="RegistrationTableViewCell" customModule="Tuto_Learn" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="55.333333333333336" width="414" height="80"/>
+                                        <rect key="frame" x="0.0" y="55.333333333333343" width="414" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KXz-fG-oLK" id="U77-wH-iTN">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
@@ -3434,7 +3427,7 @@
                                                     <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <prototypes>
                                                         <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TutorMyAccountTableViewCell" id="Mcc-Lg-gip" customClass="TutorMyAccountTableViewCell" customModule="Tuto_Learn" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="55.333333333333336" width="414" height="44"/>
+                                                            <rect key="frame" x="0.0" y="55.333333333333343" width="414" height="44"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Mcc-Lg-gip" id="i3d-Ow-7qn">
                                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
