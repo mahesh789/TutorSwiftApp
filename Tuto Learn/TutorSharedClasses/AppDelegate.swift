@@ -71,14 +71,16 @@ public class AppDelegate: UIResponder, UIApplicationDelegate {
                     let value = Int(deepLinkId)
                     if value == 1
                     {
-                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                        let tutorHistoryViewController = storyboard.instantiateViewController(withIdentifier: "TutorHistoryViewController") as! TutorHistoryViewController
-                        
-                        let rvc = self.window?.rootViewController
-                        if let vc = self.getCurrentViewController(rvc!) {
-                            // do your stuff here
-                            tutorHistoryViewController.selectedValueString = "upcomingHistory"
-                            vc.navigationController?.pushViewController(tutorHistoryViewController, animated: true)
+                        if UserDefaults.standard.bool(forKey: "isUserLoggedIn") {
+                            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                            let tutorHistoryViewController = storyboard.instantiateViewController(withIdentifier: "TutorHistoryViewController") as! TutorHistoryViewController
+                            
+                            let rvc = self.window?.rootViewController
+                            if let vc = self.getCurrentViewController(rvc!) {
+                                // do your stuff here
+                                tutorHistoryViewController.selectedValueString = "upcomingHistory"
+                                vc.navigationController?.pushViewController(tutorHistoryViewController, animated: true)
+                            }
                         }
                     }
                 }
