@@ -15,7 +15,7 @@ class TutorHistoryViewController: UIViewController,UICollectionViewDelegate,UICo
     @IBOutlet weak var pastButton:UIButton!
     @IBOutlet weak var upComingButton:UIButton!
     @IBOutlet weak var tutorHistoryCollectionView:UICollectionView!
-    var selectedIndex = 0
+    var selectedValueString:String?
     var pastHistoryArray:[TutorPastHistoryModel] = []
     var upComingHistoryArray:[TutorPastHistoryModel] = []
     
@@ -29,7 +29,12 @@ class TutorHistoryViewController: UIViewController,UICollectionViewDelegate,UICo
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        self.getPastHistoryList()
+        if selectedValueString != nil {
+            self.calldeepLinkScrollAction()
+        }else{
+             self.getPastHistoryList()
+        }
+        
     }
     
     // MARK:PAST_History Api Implementation
@@ -141,6 +146,16 @@ class TutorHistoryViewController: UIViewController,UICollectionViewDelegate,UICo
          self.getUpcomingHistoryList()
     }
 }
+    
+    func calldeepLinkScrollAction() {
+        upComingButton.backgroundColor = UIColor (red: 23.0/255.0, green: 147.0/255.0, blue: 153/255.0, alpha: 1.0)
+        pastButton.backgroundColor = UIColor (red: 27.0/255.0, green: 171.0/255.0, blue: 171/255.0, alpha: 1.0)
+        self.tutorHistoryCollectionView.scrollToItem(at: NSIndexPath.init(row: 1, section: 0) as IndexPath, at: .centeredHorizontally, animated: true)
+        if self.upComingHistoryArray.count == 0
+        {
+            self.getUpcomingHistoryList()
+        }
+    }
     
     //MARK: UICollectionView Delgate and DataSource Methods
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

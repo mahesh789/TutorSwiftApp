@@ -62,13 +62,36 @@ public class AppDelegate: UIResponder, UIApplicationDelegate {
     
     //MARK : OneSignal Integration
     func oneSignalConfigration(launchOptions: [UIApplicationLaunchOptionsKey: Any]?)  {
-       
+        
+        let notificationOpenedBlock: OSHandleNotificationActionBlock = { result in
+            // This block gets called when the user reacts to a notification received
+            if let additionalData = result!.notification.payload!.additionalData {
+                if  let deepLinkId =  additionalData["TutorID"] as? String
+                {
+                    let value = Int(deepLinkId)
+                    if value == 1
+                    {
+                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                        let tutorHistoryViewController = storyboard.instantiateViewController(withIdentifier: "TutorHistoryViewController") as! TutorHistoryViewController
+                        
+                        let rvc = self.window?.rootViewController
+                        if let vc = self.getCurrentViewController(rvc!) {
+                            // do your stuff here
+                            tutorHistoryViewController.selectedValueString = "upcomingHistory"
+                            vc.navigationController?.pushViewController(tutorHistoryViewController, animated: true)
+                        }
+                    }
+                }
+            }
+        }
+        
         let onesignalInitSettings = [kOSSettingsKeyAutoPrompt: false]
         // Replace 'YOUR_APP_ID' with your OneSignal App ID.
         OneSignal.initWithLaunchOptions(launchOptions,
                                         appId: "ea28c2b3-a4b4-4869-abe9-48273d49b39b",
-                                        handleNotificationAction: nil,
+                                        handleNotificationAction: notificationOpenedBlock,
                                         settings: onesignalInitSettings)
+        
         
         OneSignal.inFocusDisplayType = OSNotificationDisplayType.notification;
         
@@ -77,9 +100,34 @@ public class AppDelegate: UIResponder, UIApplicationDelegate {
         OneSignal.promptForPushNotifications(userResponse: { accepted in
             print("User accepted notifications: \(accepted)")
         })
-        
     }
     
+    func getCurrentViewController(_ vc: UIViewController) -> UIViewController? {
+        if let pvc = vc.presentedViewController {
+            return getCurrentViewController(pvc)
+        }
+        else if let svc = vc as? UISplitViewController, svc.viewControllers.count > 0 {
+            return getCurrentViewController(svc.viewControllers.last!)
+        }
+        else if let nc = vc as? UINavigationController, nc.viewControllers.count > 0 {
+            return getCurrentViewController(nc.topViewController!)
+        }
+        else if let tbc = vc as? UITabBarController {
+            if let svc = tbc.selectedViewController {
+                return getCurrentViewController(svc)
+            }
+        }
+        return vc
+    }
+    
+    
+    private func application(application: UIApplication,  didReceiveRemoteNotification userInfo: [NSObject : AnyObject],  fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        
+        print("Recived: \(userInfo)")
+        
+        completionHandler(.newData)
+        
+    }
 
     public func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -106,4 +154,5 @@ public class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 }
+
 
